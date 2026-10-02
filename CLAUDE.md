@@ -1,7 +1,7 @@
 # Cuadernillo web · Programación — HTML, CSS, JS
 
 Sitio estático con los TPs de Programación (HTML, CSS y JavaScript) del Bachillerato Profesional en Programación. 5 horas cátedra por semana.
-Docente: Prof. Nicolás A. Cussi.
+Docente: Prof. Nicolás A. Cussi · C.T.P. "Olga B. de Arko" · Ushuaia.
 Repo: `Prof-NkoCussi/App-Web-Programacion-HTML-CSS-JS` · se publica con GitHub Pages · los alumnos lo abren desde el celular y desde las computadoras del laboratorio.
 Creado como copia del repo `Prof-NkoCussi/Cuadernillo-Web-Procesamiento-de-Datos`: misma estructura, cambia la paleta, la materia, los íconos y el contenido.
 
@@ -81,7 +81,7 @@ HTML, CSS y JavaScript vanilla. Sin frameworks, sin build, sin backend, sin depe
 - **Código en la impresión:** en el bloque `print`, el código y la consola pasan a fondo claro `#F1F5F9` con borde, y las variables `--cod-*` se redefinen: base `#0F172A`, etq `#1D4ED8`, atr `#9A3412`, str `#047857`, com `#475569`, num `#BE185D`, fun `#6D28D9`. Ahorra tinta y se lee en blanco y negro.
 - **Cabecera de cada hoja:** `PROGRAMACIÓN` con la bajada `HTML · CSS · JS`, y a la derecha `TRABAJO PRÁCTICO N°X` con la barra azul vertical. Mismas reglas de tamaño y de celular que el repo de origen.
 - **Pie de cada hoja:** `Programación - HTML, CSS, JS - Prof. Nicolás A. Cussi` + número de lámina (o `TP N` en profundizar y actividades).
-- **Portada y README:** "Bachillerato Profesional en Programación". **No escribir años de cursado** (ni 5.º ni 6.º) en ninguna parte del sitio.
+- **Portada y README:** "Bachillerato Profesional en Programación" y el nombre de la escuela (C.T.P. "Olga B. de Arko", Ushuaia). **No escribir años de cursado** (ni 5.º ni 6.º) en ninguna parte del sitio.
 - **Ícono de la materia:** una ventana de navegador con `</>` adentro, en el mismo estilo (trazo `--tinta` + relleno de acento; si el trazo se pierde sobre el azul, rellenar con `--acento-claro`).
 - **Sin eslóganes ni frases decorativas.** El "Desde Cero" del PDF no va.
 - **Progreso:** la clave de `localStorage` es `prog:tp-visto-`. No usar `tpd1:` ni `bd1:`: todos los cuadernillos comparten el dominio `prof-nkocussi.github.io` y se pisarían las marcas de "✓ Visto".
@@ -151,9 +151,11 @@ Se crean al hacer el TP donde aparecen por primera vez (casi todos en el TP1) y 
 - **Nombres de archivo:** siempre `index.html`, `estilos.css` y `app.js` (el PDF usa `styles.css` y `script.js`). Carpetas en minúscula y sin espacios.
 - **Estilo de JavaScript:** `let` y `const`, `===` y `!==`, punto y coma al final, camelCase, comillas dobles, `function nombre() {}`. Unir textos con `+` (sin plantillas `${}`). Funciones flecha solo en la receta del `sort`.
 - **`typeof`:** en el TP1 solo número, texto y booleano. No decir que un array o `null` son tipos que `typeof` reconoce: devuelve `"object"` para los dos.
-- **Editor y navegador:** Visual Studio Code y Chrome (consola con `F12`).
+- **Editor y navegador:** Visual Studio Code desde el TP1 y Chrome (consola con `F12`). Las computadoras del laboratorio tienen Windows: rutas, atajos y menús se escriben para Windows.
 - **Palabras:** "tablet" (no "tableta"), "frutilla" (no "fresa"), "celular". Sin años fijos en los ejemplos (el PDF pone "© 2024").
-- **Entregas:** del TP1 al TP15, por Google Classroom. En el TP16 y el TP17, el link del repositorio y del sitio publicado, pegados en Classroom.
+- **Entregas:** del TP1 al TP15, por Google Classroom, con la carpeta comprimida en `.zip`. En el TP16 y el TP17, el link del repositorio y del sitio publicado, pegados en Classroom.
+- **Cómo comprimir:** el TP1 lo explica en el recuadro "Entrega" y en "Para profundizar", porque se usa en todas las entregas: clic derecho sobre la carpeta → "Enviar a" → "Carpeta comprimida (en zip)" en Windows 10, o "Comprimir en archivo ZIP" en Windows 11. Los TPs siguientes solo dicen "subí la carpeta en `.zip`".
+- **Cuenta de GitHub (TP16):** cada alumno se registra con su propia cuenta de mail.
 
 ## PDF fuente
 
@@ -266,11 +268,11 @@ Notas del plan:
 - Sin años de cursado ni "Nivel 1", "Nivel 3" o "bachi" en el sitio.
 - TP5: `Math.max(...notas)` y `sort((a, b) => a - b)` como recetas fijas.
 - TP12: la práctica suma "que se vea bien en el celular".
-- TP16: pantallas de GitHub como esquemas SVG.
+- TP16: pantallas de GitHub como esquemas SVG. Los alumnos se registran con su propia cuenta de mail.
+- El README y la portada llevan el nombre de la escuela.
+- Entregas por Classroom con la carpeta en `.zip`; el TP1 explica cómo comprimir.
+- Visual Studio Code desde el TP1. Laboratorio con Windows.
 
 ## Pendientes a consultar con Nicolás
 
-- **README y portada:** si va el nombre de la escuela.
-- **Entregas por Classroom:** si la carpeta se sube comprimida en `.zip` o como archivos sueltos. Si es `.zip`, el TP1 tiene que explicar cómo comprimir.
-- **TP1:** confirmar que editan `app.js` con Visual Studio Code desde el primer día y qué sistema tienen las computadoras del laboratorio.
-- **TP16:** GitHub pide una cuenta de mail para registrarse; confirmar cuál usan los alumnos.
+- Ninguno por ahora.
