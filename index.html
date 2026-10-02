@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Taller de Procesamiento de Datos — Cuadernillo de actividades · Prof. Nicolás A. Cussi</title>
-  <meta name="description" content="Cuadernillo de actividades del Taller de Procesamiento de Datos (1.er año), organizado en 12 TPs. C.T.P. “Olga B. de Arko”, Ushuaia.">
-  <meta name="theme-color" content="#26C6D4">
+  <title>Programación - HTML, CSS, JS — Cuadernillo de actividades · Prof. Nicolás A. Cussi</title>
+  <meta name="description" content="Cuadernillo de actividades de Programación (HTML, CSS y JavaScript), organizado en 17 TPs. Bachillerato Profesional en Programación, Ushuaia.">
+  <meta name="theme-color" content="#2563EB">
   <link rel="preload" href="assets/fonts/barlow-condensed-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/estilos.css">
 </head>
@@ -13,13 +13,11 @@
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
-    <symbol id="i-pc-solido" viewBox="0 0 48 48">
-      <g style="fill:currentColor;stroke:none">
-        <path fill-rule="evenodd" d="M8 5h32a3 3 0 0 1 3 3v19a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3zm1.5 4.5v16h29v-16z"/>
-        <path d="M20 30h8v3.5h-8z"/>
-        <rect x="14" y="33" width="20" height="3" rx="1.5"/>
-        <path fill-rule="evenodd" d="M7 39h34a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2zm8 2.2v1.6h18v-1.6z"/>
-      </g>
+    <symbol id="i-web" viewBox="0 0 48 48">
+      <rect x="4" y="7" width="40" height="34" rx="4" style="fill:var(--ac2, var(--acento-claro))"/>
+      <path d="M8 7h32a4 4 0 0 1 4 4v5H4v-5a4 4 0 0 1 4-4z" style="fill:var(--ac)"/>
+      <rect x="4" y="7" width="40" height="34" rx="4"/>
+      <path d="M4 16h40M19 23l-6 6 6 6M29 23l6 6-6 6M26.5 21l-5 16"/>
     </symbol>
   </defs>
 </svg>
@@ -28,19 +26,20 @@
 
 <main class="portada">
   <div class="cab" aria-hidden="true">
-    <svg class="cab__logo"><use href="#i-pc-solido"/></svg>
-    <div class="cab__marca"><b>TALLER DE PROCESAMIENTO DE DATOS</b><span>1.ER AÑO</span></div>
+    <svg class="cab__logo"><use href="#i-web"/></svg>
+    <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
     <span class="cab__raya"></span>
   </div>
 
   <header class="portada__hero">
-    <h1>Procesamiento de <span>Datos</span></h1>
-    <p class="tit__sub">Cuadernillo de actividades · 1.er año</p>
+    <h1>Programación</h1>
+    <p class="portada__tecs"><span class="etq etq--html">HTML</span><span class="etq etq--css">CSS</span><span class="etq etq--js">JavaScript</span></p>
+    <p class="tit__sub">Cuadernillo de actividades</p>
   </header>
 
   <p class="portada__datos">
-    <strong>Prof. Nicolás A. Cussi</strong> • Taller de Procesamiento de Datos<br>
-    1.er año · C.T.P. “Olga B. de Arko” · Ushuaia
+    <strong>Prof. Nicolás A. Cussi</strong> • Programación - HTML, CSS, JS<br>
+    Bachillerato Profesional en Programación · C.T.P. “Olga B. de Arko” · Ushuaia
   </p>
 
   <aside class="idea" aria-label="Cómo usar el cuadernillo">
@@ -51,141 +50,176 @@
         <path d="M20 39h8M21.5 43h5"/>
       </svg>
     </span>
-    <p><strong>Cómo usarlo:</strong> cada TP tiene sus láminas, una página “Para profundizar” y, al final, las actividades: una parte para la carpeta y una práctica en la computadora.</p>
+    <p><strong>Cómo usarlo:</strong> cada TP tiene sus láminas, una página “Para profundizar” y, al final, las actividades: una parte para la carpeta y una práctica en la computadora. Los ejemplos de código se pueden copiar, y los de JavaScript, ejecutar.</p>
   </aside>
 
   <section class="bloque" id="indice" aria-labelledby="b1">
-    <h2 class="subtitulo" id="b1">Módulo 1 · Teclado y mecanografía</h2>
+    <h2 class="subtitulo" id="b1">Módulo 1 · De Python a JavaScript</h2>
     <ul class="lista-tp">
       <li>
         <a class="tp" href="unidades/tp01.html">
           <span class="tp__num" aria-hidden="true">1</span>
-          <span class="tp__titulo">TP N°1 — El teclado: mi herramienta de trabajo</span>
-          <span class="tp__temas">Zonas del teclado · Postura y posición de las manos · Un dedo para cada tecla · Atajos básicos y captura de pantalla</span>
+          <span class="tp__titulo">TP N°1 — Hola, JavaScript</span>
+          <span class="tp__temas">Qué es JavaScript, la carpeta plantilla y la consola · console.log() y alert() · let, const y tipos de datos · prompt(), Number() y operaciones</span>
           <span class="tp__meta">Láminas 1–4 <span class="tp__visto" data-visto="1" hidden>· ✓ Visto</span></span>
         </a>
       </li>
-    </ul>
-  </section>
-
-  <section class="bloque" aria-labelledby="b2">
-    <h2 class="subtitulo" id="b2">Módulo 2 · Documentos de texto</h2>
-    <ul class="lista-tp">
       <li>
         <div class="tp tp--pronto">
           <span class="tp__num" aria-hidden="true">2</span>
-          <span class="tp__titulo">TP N°2 — Mi primer documento</span>
-          <span class="tp__temas">Entrar a la cuenta y a Drive · Crear, abrir y guardar · Fuente, tamaño y color · Negrita, cursiva, subrayado y alineación</span>
+          <span class="tp__titulo">TP N°2 — Decisiones y bucles en JavaScript</span>
+          <span class="tp__temas">Operadores de comparación y lógicos · if, else if y else · while y do...while · for, contadores y acumuladores</span>
           <span class="tp__meta">Láminas 5–8 · Próximamente</span>
         </div>
       </li>
       <li>
         <div class="tp tp--pronto">
           <span class="tp__num" aria-hidden="true">3</span>
-          <span class="tp__titulo">TP N°3 — Documento con estructura</span>
-          <span class="tp__temas">Títulos · Listas numeradas y con viñetas · Interlineado, espaciado y sangrías · Tabla simple</span>
+          <span class="tp__titulo">TP N°3 — Crear mis propias funciones</span>
+          <span class="tp__temas">Qué es una función · Parámetros y argumentos · return · Funciones que se combinan y menú con prompt()</span>
           <span class="tp__meta">Láminas 9–12 · Próximamente</span>
         </div>
       </li>
+    </ul>
+  </section>
+
+  <section class="bloque" aria-labelledby="b2">
+    <h2 class="subtitulo" id="b2">Módulo 2 · Arrays y objetos</h2>
+    <ul class="lista-tp">
       <li>
         <div class="tp tp--pronto">
           <span class="tp__num" aria-hidden="true">4</span>
-          <span class="tp__titulo">TP N°4 — Documento con imágenes y enlaces</span>
-          <span class="tp__temas">Insertar imágenes · Tamaño, ubicación y ajuste de texto · Hipervínculos · Encabezado, pie y numeración</span>
+          <span class="tp__titulo">TP N°4 — Mi primer array</span>
+          <span class="tp__temas">Crear un array, posición y length · push, pop, shift y unshift · indexOf y splice · Recorrer con for y for...of</span>
           <span class="tp__meta">Láminas 13–16 · Próximamente</span>
         </div>
       </li>
       <li>
         <div class="tp tp--pronto">
           <span class="tp__num" aria-hidden="true">5</span>
-          <span class="tp__titulo">TP N°5 — Trabajo colaborativo y revisión</span>
-          <span class="tp__temas">Compartir y permisos · Comentarios y sugerencias · Historial de versiones · Tabla de contenidos y PDF</span>
+          <span class="tp__titulo">TP N°5 — Operaciones con arrays</span>
+          <span class="tp__temas">Suma y promedio · Math.max() y Math.min() · Ordenar con sort() · includes() y contar con condición</span>
           <span class="tp__meta">Láminas 17–20 · Próximamente</span>
+        </div>
+      </li>
+      <li>
+        <div class="tp tp--pronto">
+          <span class="tp__num" aria-hidden="true">6</span>
+          <span class="tp__titulo">TP N°6 — Objetos y mini-proyecto: Lista de tareas</span>
+          <span class="tp__temas">Objeto literal · Leer y modificar propiedades · Arrays de objetos · Todo junto: la lista de tareas</span>
+          <span class="tp__meta">Láminas 21–24 · Próximamente</span>
         </div>
       </li>
     </ul>
   </section>
 
   <section class="bloque" aria-labelledby="b3">
-    <h2 class="subtitulo" id="b3">Módulo 3 · Hojas de cálculo</h2>
+    <h2 class="subtitulo" id="b3">Módulo 3 · HTML básico</h2>
     <ul class="lista-tp">
       <li>
         <div class="tp tp--pronto">
-          <span class="tp__num" aria-hidden="true">6</span>
-          <span class="tp__titulo">TP N°6 — Conociendo la hoja de cálculo</span>
-          <span class="tp__temas">Filas, columnas, celdas y referencias · Tipos de datos · Ancho, alto y formato de número · Bordes y colores</span>
-          <span class="tp__meta">Láminas 21–24 · Próximamente</span>
-        </div>
-      </li>
-      <li>
-        <div class="tp tp--pronto">
           <span class="tp__num" aria-hidden="true">7</span>
-          <span class="tp__titulo">TP N°7 — Mis primeras fórmulas</span>
-          <span class="tp__temas">Fórmulas y operadores · Fórmulas con referencias · SUMA y PROMEDIO</span>
-          <span class="tp__meta">Láminas 25–27 · Próximamente</span>
+          <span class="tp__titulo">TP N°7 — Mi primera página web</span>
+          <span class="tp__temas">HTML, CSS y JavaScript trabajan juntos · Entorno de trabajo y archivos · Estructura básica y &lt;script&gt; · Títulos, párrafos, &lt;br&gt; y &lt;hr&gt;</span>
+          <span class="tp__meta">Láminas 25–28 · Próximamente</span>
         </div>
       </li>
       <li>
         <div class="tp tp--pronto">
           <span class="tp__num" aria-hidden="true">8</span>
-          <span class="tp__titulo">TP N°8 — Más funciones útiles</span>
-          <span class="tp__temas">CONTAR y CONTARA · MAX y MIN · Cantidad × precio · Referencias relativas y absolutas</span>
-          <span class="tp__meta">Láminas 28–31 · Próximamente</span>
+          <span class="tp__titulo">TP N°8 — Listas, imágenes y enlaces</span>
+          <span class="tp__temas">Etiquetas, elementos y atributos · Listas y listas anidadas · Imágenes · Enlaces y rutas</span>
+          <span class="tp__meta">Láminas 29–32 · Próximamente</span>
         </div>
       </li>
       <li>
         <div class="tp tp--pronto">
           <span class="tp__num" aria-hidden="true">9</span>
-          <span class="tp__titulo">TP N°9 — Gráficos y presentación de datos</span>
-          <span class="tp__temas">Ordenar y filtrar · Qué gráfico para qué dato · Insertar y personalizar · CONTAR.SI</span>
-          <span class="tp__meta">Láminas 32–35 · Próximamente</span>
+          <span class="tp__titulo">TP N°9 — Estructura más completa: tablas y formularios</span>
+          <span class="tp__temas">Tablas · form, label e input · Tipos de campo · Contenedores y HTML semántico</span>
+          <span class="tp__meta">Láminas 33–36 · Próximamente</span>
         </div>
       </li>
     </ul>
   </section>
 
   <section class="bloque" aria-labelledby="b4">
-    <h2 class="subtitulo" id="b4">Módulo 4 · Presentaciones y diseño</h2>
+    <h2 class="subtitulo" id="b4">Módulo 4 · CSS: dar estilo</h2>
     <ul class="lista-tp">
       <li>
         <div class="tp tp--pronto">
           <span class="tp__num" aria-hidden="true">10</span>
-          <span class="tp__titulo">TP N°10 — Mi primera presentación</span>
-          <span class="tp__temas">Diapositivas y diseños · Título y contenido · Imágenes · Tipos de letra y colores</span>
-          <span class="tp__meta">Láminas 36–39 · Próximamente</span>
+          <span class="tp__titulo">TP N°10 — Primeros estilos con CSS</span>
+          <span class="tp__temas">Qué es CSS y la etiqueta &lt;style&gt; · Colores y fondos · Tipografías y texto · margin y padding</span>
+          <span class="tp__meta">Láminas 37–40 · Próximamente</span>
         </div>
       </li>
       <li>
         <div class="tp tp--pronto">
           <span class="tp__num" aria-hidden="true">11</span>
-          <span class="tp__titulo">TP N°11 — Presentación con efectos</span>
-          <span class="tp__temas">Transiciones · Animaciones · Video y audio · Notas del orador y modo presentación</span>
-          <span class="tp__meta">Láminas 40–43 · Próximamente</span>
+          <span class="tp__titulo">TP N°11 — CSS externo y selectores</span>
+          <span class="tp__temas">Archivo .css y &lt;link&gt; · Clases e ID · Bordes, esquinas y sombras · Ancho, alto y unidades · Modelo de cajas</span>
+          <span class="tp__meta">Láminas 41–45 · Próximamente</span>
         </div>
       </li>
       <li>
         <div class="tp tp--pronto">
           <span class="tp__num" aria-hidden="true">12</span>
-          <span class="tp__titulo">TP N°12 — Diseño en Canva y edición de imagen</span>
-          <span class="tp__temas">Plantillas y elementos · Jerarquía, contraste y espacio en blanco · Recorte, brillo, contraste y filtros · Exportar</span>
-          <span class="tp__meta">Láminas 44–47 · Próximamente</span>
+          <span class="tp__titulo">TP N°12 — Diseñando una página completa</span>
+          <span class="tp__temas">display y position · Flexbox · Alinear y centrar · Header, hero, cards y footer · Diseño responsive</span>
+          <span class="tp__meta">Láminas 46–50 · Próximamente</span>
         </div>
       </li>
     </ul>
   </section>
 
-  <!-- Juego de mecanografía: cuando esté publicado, pasar este div a
-       <a class="tp" href="https://prof-nkocussi.github.io/Juego-Mecanografia/" target="_blank" rel="noopener">
-       y cambiar "Próximamente" por "Se abre en otra pestaña". -->
   <section class="bloque" aria-labelledby="b5">
-    <h2 class="subtitulo" id="b5">Práctica de teclado</h2>
+    <h2 class="subtitulo" id="b5">Módulo 5 · JavaScript en la página</h2>
     <ul class="lista-tp">
       <li>
+        <div class="tp tp--pronto">
+          <span class="tp__num" aria-hidden="true">13</span>
+          <span class="tp__titulo">TP N°13 — Hacer que la página responda</span>
+          <span class="tp__temas">Repaso de JavaScript y app.js · El DOM · textContent e innerHTML · .style y classList · Eventos</span>
+          <span class="tp__meta">Láminas 51–55 · Próximamente</span>
+        </div>
+      </li>
+      <li>
+        <div class="tp tp--pronto">
+          <span class="tp__num" aria-hidden="true">14</span>
+          <span class="tp__titulo">TP N°14 — Formularios que funcionan</span>
+          <span class="tp__temas">.value y Number() · Validaciones · Resultados y errores en la página · preventDefault()</span>
+          <span class="tp__meta">Láminas 56–59 · Próximamente</span>
+        </div>
+      </li>
+      <li>
+        <div class="tp tp--pronto">
+          <span class="tp__num" aria-hidden="true">15</span>
+          <span class="tp__titulo">TP N°15 — Mini-app interactiva</span>
+          <span class="tp__temas">Del array a la lista en pantalla · Del array a la tabla · Pasos para armar una mini-app</span>
+          <span class="tp__meta">Láminas 60–62 · Próximamente</span>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section class="bloque" aria-labelledby="b6">
+    <h2 class="subtitulo" id="b6">Módulo 6 · Proyecto integrador</h2>
+    <ul class="lista-tp">
+      <li>
+        <div class="tp tp--pronto">
+          <span class="tp__num" aria-hidden="true">16</span>
+          <span class="tp__titulo">TP N°16 — Mi sitio en GitHub</span>
+          <span class="tp__temas">Git y GitHub · Crear un repositorio y subir archivos · README en Markdown · GitHub Pages</span>
+          <span class="tp__meta">Láminas 63–66 · Próximamente</span>
+        </div>
+      </li>
+      <li>
         <div class="tp tp--pronto tp--integrador">
-          <span class="tp__num" aria-hidden="true">✦</span>
-          <span class="tp__titulo">Juego de mecanografía</span>
-          <span class="tp__temas">Niveles por teclas y por temas · Modo libre de 1 minuto · Se juega con teclado, en la computadora</span>
-          <span class="tp__meta">Próximamente</span>
+          <span class="tp__num" aria-hidden="true">17</span>
+          <span class="tp__titulo">TP N°17 — Mi portafolio digital</span>
+          <span class="tp__temas">Qué es un portafolio · Requisitos de HTML, CSS y JavaScript · Entrega y presentación oral</span>
+          <span class="tp__meta">Láminas 67–69 · Próximamente</span>
         </div>
       </li>
     </ul>
@@ -193,7 +227,7 @@
 
   <footer class="pie">
     <span class="pie__linea"></span>
-    <span>Taller de Procesamiento de Datos - Prof. Nicolás A. Cussi</span>
+    <span>Programación - HTML, CSS, JS - Prof. Nicolás A. Cussi</span>
     <span class="pie__linea"></span>
   </footer>
 </main>

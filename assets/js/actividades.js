@@ -1,5 +1,5 @@
 /* ==========================================================
-   Taller de Procesamiento de Datos — actividades.js
+   Programación - HTML, CSS, JS — actividades.js
    Parte técnica común a todos los TPs:
    - Botón "Guardar PDF" (impresión del navegador en A4)
    - Marca la parte visible en la barra (láminas · Para profundizar · Actividades)
@@ -9,7 +9,7 @@
 (function () {
   "use strict";
 
-  var CLAVE = "tpd1:tp-visto-";
+  var CLAVE = "prog:tp-visto-";  // prefijo propio: los cuadernillos comparten dominio
 
   /* ---- Guardado local seguro (puede no estar disponible) ---- */
   function guardar(clave, valor) {
