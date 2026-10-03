@@ -27,7 +27,7 @@ assets/fonts/              Barlow, Barlow Semi Condensed, Barlow Condensed (loca
 assets/img/                imágenes del sitio
 assets/img/ejemplos/       imágenes que usan los ejemplos de HTML (paisaje.jpg, etc.)
 assets/descargas/          carpeta plantilla del Módulo 1 (index.html + app.js) y su .zip
-_fuente/                   PDF fuente y sus páginas en JPG (fuera de git)
+_fuentes/                   PDF fuente y sus páginas en JPG (fuera de git)
 README.md                  presentación del sitio + tabla de TPs con su estado
 ```
 
@@ -159,7 +159,7 @@ Se crean al hacer el TP donde aparecen por primera vez (casi todos en el TP1) y 
 
 ## PDF fuente
 
-`_fuente/` tiene "HTML + CSS + JavaScript · Cuadernillo teórico-práctico" (40 páginas, **solo imagen**, 55 MB) y, en `_fuente/paginas/`, cada página en JPG (`p-01.jpg` a `p-40.jpg`). Leer solo las páginas del TP en curso; si el PDF es muy pesado, usar los JPG.
+`_fuentes/` tiene "HTML + CSS + JavaScript · Cuadernillo teórico-práctico" (40 páginas, **solo imagen**, 55 MB) y, en `_fuentes/paginas/`, cada página en JPG (`p-01.jpg` a `p-40.jpg`). Leer solo las páginas del TP en curso; si el PDF es muy pesado, usar los JPG.
 
 - Se usa para los TP7 a TP13 y el TP15. Respetar su texto, pasándolo a la estructura de este formato.
 - En los Módulos 1 y 2 el texto es nuevo: las páginas 30 a 37 sirven de apoyo, pero sus ejemplos usan DOM y hay que reescribirlos.
