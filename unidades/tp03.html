@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TP N°3 — Crear mis propias funciones · Programación - HTML, CSS, JS</title>
+  <meta name="description" content="TP N°3 de Programación: qué es una función, parámetros y argumentos, return, funciones que se combinan y menú con prompt(). Prof. Nicolás A. Cussi.">
+  <meta name="theme-color" content="#2563EB">
+  <link rel="preload" href="../assets/fonts/barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/barlow-semi-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/estilos.css">
+</head>
+<body data-tp="3">
+
+<!-- ====== Íconos ====== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-web" viewBox="0 0 48 48">
+      <rect x="4" y="7" width="40" height="34" rx="4" style="fill:var(--ac2, var(--acento-claro))"/>
+      <path d="M8 7h32a4 4 0 0 1 4 4v5H4v-5a4 4 0 0 1 4-4z" style="fill:var(--ac)"/>
+      <rect x="4" y="7" width="40" height="34" rx="4"/>
+      <path d="M4 16h40M19 23l-6 6 6 6M29 23l6 6-6 6M26.5 21l-5 16"/>
+    </symbol>
+    <symbol id="i-funcion" viewBox="0 0 48 48">
+      <rect x="14" y="11" width="20" height="26" rx="3" style="fill:var(--ac)"/>
+      <rect x="14" y="11" width="20" height="26" rx="3"/>
+      <path d="M2 24h9M7 20l4 4-4 4M37 24h9M42 20l4 4-4 4"/>
+    </symbol>
+    <symbol id="i-parametros" viewBox="0 0 48 48">
+      <rect x="6" y="24" width="36" height="18" rx="3" style="fill:var(--ac)"/>
+      <rect x="6" y="24" width="36" height="18" rx="3"/>
+      <path d="M17 4v14M12.5 13.5 17 18l4.5-4.5M31 4v14M26.5 13.5 31 18l4.5-4.5"/>
+    </symbol>
+    <symbol id="i-devolver" viewBox="0 0 48 48">
+      <rect x="4" y="6" width="22" height="22" rx="3" style="fill:var(--ac)"/>
+      <rect x="4" y="6" width="22" height="22" rx="3"/>
+      <path d="M26 17h8a8 8 0 0 1 0 16H14"/>
+      <path d="M20 27l-6 6 6 6" style="stroke:var(--ac);stroke-width:3.4"/>
+    </symbol>
+    <symbol id="i-foco" viewBox="0 0 48 48">
+      <path d="M24 2.5v4M10 8.5l2.8 2.8M38 8.5l-2.8 2.8M4 22h4M40 22h4"/>
+      <path d="M24 12a10 10 0 0 0-6.2 17.8c1.4 1.2 2.2 2.6 2.2 4.2v1h8v-1c0-1.6.8-3 2.2-4.2A10 10 0 0 0 24 12z" style="fill:var(--ac)"/>
+      <path d="M20 39h8M21.5 43h5"/>
+    </symbol>
+    <symbol id="i-editor" viewBox="0 0 48 48">
+      <path d="M7 7h34a3 3 0 0 1 3 3v4H4v-4a3 3 0 0 1 3-3z" style="fill:var(--ac)"/>
+      <rect x="4" y="7" width="40" height="34" rx="3"/>
+      <path d="M4 14h40M10 21h14M15 27h18M15 33h11"/>
+    </symbol>
+    <symbol id="i-lapiz" viewBox="0 0 48 48">
+      <path d="M33 6l9 9-25 25-9-9z" style="fill:var(--ac)"/>
+      <path d="M8 31 5.5 42.5 17 40z"/>
+      <path d="M27 12l9 9"/>
+    </symbol>
+    <symbol id="i-subir" viewBox="0 0 48 48">
+      <path d="M6 30v8a3 3 0 0 0 3 3h30a3 3 0 0 0 3-3v-8"/>
+      <path d="M24 31V7M15 16l9-9 9 9" style="stroke:var(--ac);stroke-width:3.4"/>
+    </symbol>
+    <symbol id="i-descarga" viewBox="0 0 24 24">
+      <path d="M12 3v12M7 10l5 5 5-5M5 20h14"/>
+    </symbol>
+  </defs>
+</svg>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="barra">
+  <div class="barra__fila">
+    <a class="barra__volver" href="../index.html">← Índice</a>
+    <span class="barra__titulo">TP N°3 — Crear mis propias funciones</span>
+    <button class="boton" type="button" data-imprimir aria-label="Guardar en PDF">
+      <svg aria-hidden="true" focusable="false"><use href="#i-descarga"/></svg><span><span class="boton__largo">Guardar </span>PDF</span>
+    </button>
+  </div>
+  <nav class="partes" aria-label="Partes del TP N°3">
+    <a href="#pag-9">9 · Funciones</a>
+    <a href="#pag-10">10 · Parámetros</a>
+    <a href="#pag-11">11 · return</a>
+    <a href="#pag-12">12 · Combinar</a>
+    <a href="#profundizar">Para profundizar</a>
+    <a href="#actividades">Actividades</a>
+  </nav>
+</header>
+
+<main id="contenido" class="laminas">
+  <h1 class="sr-only">TP N°3 — Crear mis propias funciones</h1>
+
+  <!-- =================== LÁMINA 9 =================== -->
+  <article class="lamina lamina--compacta" id="pag-9" aria-labelledby="t9">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°3</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t9"><span class="tit__num">9.</span> ¿Qué es una función?</h2>
+      <p class="tit__sub">Definirla con function y llamarla</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-funcion"/></svg>
+      <p>Una <strong>función</strong> es un bloque de código con un nombre. La escribimos <strong>una vez</strong> y la usamos todas las veces que haga falta, con solo nombrarla.</p>
+    </div>
+
+    <ul class="comparar">
+      <li><div><h3>Sin función</h3><p>Copiamos las mismas líneas en cada lugar. Si hay que cambiarlas, hay que cambiarlas <strong>en todos</strong>.</p></div></li>
+      <li><div><h3>Con función</h3><p>Las líneas están en <strong>un solo lugar</strong>. Las cambiamos ahí y cambian en todos los usos.</p></div></li>
+    </ul>
+
+    <div class="ej-par">
+      <div class="ej-col">
+      <figure class="codigo codigo--js" id="ej-9a">
+        <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+        <pre tabindex="0" aria-label="Código de app.js, sin función"><code>console.<span class="c-fun">log</span>(<span class="c-str">"¡Hora del recreo!"</span>);
+console.<span class="c-fun">log</span>(<span class="c-str">"Dura 15 minutos"</span>);
+console.<span class="c-fun">log</span>(<span class="c-str">"Clase de Física"</span>);
+console.<span class="c-fun">log</span>(<span class="c-str">"¡Hora del recreo!"</span>);
+console.<span class="c-fun">log</span>(<span class="c-str">"Dura 15 minutos"</span>);</code></pre>
+      </figure>
+      <div class="consola" data-codigo="ej-9a">
+        <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+        <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">¡Hora del recreo!
+Dura 15 minutos
+Clase de Física
+¡Hora del recreo!
+Dura 15 minutos</pre>
+      </div>
+      </div>
+      <div class="ej-col">
+      <figure class="codigo codigo--js" id="ej-9b">
+        <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+        <pre tabindex="0" aria-label="Código de app.js, con función"><code><span class="c-etq">function</span> <span class="c-fun">avisarRecreo</span>() {
+  console.<span class="c-fun">log</span>(<span class="c-str">"¡Hora del recreo!"</span>);
+  console.<span class="c-fun">log</span>(<span class="c-str">"Dura 15 minutos"</span>);
+}
+<span class="c-fun">avisarRecreo</span>();  <span class="c-com">// la llamamos</span>
+console.<span class="c-fun">log</span>(<span class="c-str">"Clase de Física"</span>);
+<span class="c-fun">avisarRecreo</span>();  <span class="c-com">// otra vez</span></code></pre>
+      </figure>
+      <div class="consola" data-codigo="ej-9b">
+        <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+        <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">¡Hora del recreo!
+Dura 15 minutos
+Clase de Física
+¡Hora del recreo!
+Dura 15 minutos</pre>
+      </div>
+      </div>
+    </div>
+
+    <section class="panel" aria-label="Definir y llamar una función">
+      <ol class="puntos puntos--2col">
+        <li><span class="puntos__n" aria-hidden="true">1</span><span>Se <strong>define</strong> con <code>function</code>, un nombre, paréntesis <code>()</code> y un bloque entre llaves <code>{ }</code>.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">2</span><span>Definirla <strong>no ejecuta nada</strong>: solo le dice al programa qué hacer cuando la usemos.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">3</span><span>Se <strong>llama</strong> con su nombre y paréntesis: <code>avisarRecreo();</code></span></li>
+        <li><span class="puntos__n" aria-hidden="true">4</span><span>Cada llamada ejecuta el bloque <strong>completo</strong>, de arriba hacia abajo.</span></li>
+      </ol>
+    </section>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> una función se define una vez y se llama todas las veces que haga falta. Si no la llamamos, no hace nada.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 9">9</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 10 =================== -->
+  <article class="lamina lamina--compacta" id="pag-10" aria-labelledby="t10">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°3</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t10"><span class="tit__num">10.</span> Parámetros y argumentos</h2>
+      <p class="tit__sub">Darle datos a una función · nombres en camelCase</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-parametros"/></svg>
+      <p>Entre los paréntesis, una función puede recibir datos. Así, <strong>la misma función</strong> sirve para datos distintos.</p>
+    </div>
+
+    <ul class="comparar">
+      <li><div><h3>Parámetro</h3><p>El nombre que va en la <strong>definición</strong>: <code>function saludar(nombre)</code>. Adentro de la función, se usa como una variable.</p></div></li>
+      <li><div><h3>Argumento</h3><p>El valor que mandamos al <strong>llamarla</strong>: <code>saludar("Ana")</code>. Se guarda en el parámetro.</p></div></li>
+    </ul>
+
+    <figure class="esquema">
+      <svg viewBox="0 0 390 184" style="max-width:320px;margin:0 auto;display:block" role="img" aria-labelledby="esq10">
+        <title id="esq10">Al llamar saludar con el argumento "Ana", ese valor se guarda en el parámetro nombre de la definición function saludar(nombre).</title>
+        <g class="tt" style="font-size:16px" text-anchor="middle">
+          <text x="280" y="18">parámetro</text>
+          <text x="280" y="180">argumento</text>
+        </g>
+        <rect x="232" y="28" width="96" height="38" rx="7" style="fill:var(--acento-claro);stroke:var(--acento);stroke-width:2"/>
+        <rect x="232" y="118" width="96" height="38" rx="7" style="fill:var(--acento-claro);stroke:var(--acento);stroke-width:2"/>
+        <g style="font-family:var(--fuente-codigo);font-size:20px;fill:var(--tinta)">
+          <text x="226" y="54" text-anchor="end"><tspan style="fill:var(--acento-numero);font-weight:700">function</tspan> saludar(</text>
+          <text x="280" y="54" text-anchor="middle" style="font-weight:700">nombre</text>
+          <text x="334" y="54">) {</text>
+          <text x="226" y="144" text-anchor="end">saludar(</text>
+          <text x="280" y="144" text-anchor="middle" style="font-weight:700">"Ana"</text>
+          <text x="334" y="144">);</text>
+        </g>
+        <path d="M280 114V72" style="fill:none;stroke:var(--acento);stroke-width:3;stroke-linecap:round"/>
+        <path d="M272 80l8-9 8 9" style="fill:none;stroke:var(--acento);stroke-width:3;stroke-linecap:round;stroke-linejoin:round"/>
+        <text class="tt" x="268" y="98" text-anchor="end" style="font-size:14px;fill:var(--gris)">se guarda en</text>
+      </svg>
+    </figure>
+
+    <div class="ej">
+      <figure class="codigo codigo--js" id="ej-10">
+        <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+        <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">function</span> <span class="c-fun">saludar</span>(nombre) {
+  console.<span class="c-fun">log</span>(<span class="c-str">"Hola, "</span> + nombre);
+}
+<span class="c-etq">function</span> <span class="c-fun">mostrarNota</span>(materia, nota) {
+  console.<span class="c-fun">log</span>(materia + <span class="c-str">": "</span> + nota);
+}
+<span class="c-fun">saludar</span>(<span class="c-str">"Ana"</span>);
+<span class="c-fun">mostrarNota</span>(<span class="c-str">"Física"</span>, <span class="c-num">8</span>);
+<span class="c-fun">mostrarNota</span>(<span class="c-str">"Historia"</span>, <span class="c-num">9</span>);</code></pre>
+      </figure>
+      <div class="consola" data-codigo="ej-10">
+        <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+        <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">Hola, Ana
+Física: 8
+Historia: 9</pre>
+      </div>
+    </div>
+
+    <section class="panel" aria-label="Reglas para parámetros y nombres">
+      <ol class="puntos puntos--2col">
+        <li><span class="puntos__n" aria-hidden="true">1</span><span>Varios parámetros van separados por <strong>coma</strong>: <code>(materia, nota)</code>.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">2</span><span>Los argumentos llegan <strong>en orden</strong>: el primero, al primer parámetro.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">3</span><span><strong>camelCase:</strong> todo junto y cada palabra nueva con mayúscula: <code>mostrarNota</code>.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">4</span><span>El nombre empieza con un <strong>verbo</strong> que dice qué hace: <code>saludar</code>.</span></li>
+      </ol>
+    </section>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> el parámetro espera un dato; el argumento es ese dato.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 10">10</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 11 =================== -->
+  <article class="lamina lamina--compacta" id="pag-11" aria-labelledby="t11">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°3</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t11"><span class="tit__num">11.</span> Devolver un resultado</h2>
+      <p class="tit__sub">return: mostrar no es lo mismo que devolver</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-devolver"/></svg>
+      <p><code>return</code> termina la función y <strong>devuelve</strong> un valor al lugar donde se la llamó. Ese valor se puede guardar en una variable, usar en una cuenta o mostrar.</p>
+    </div>
+
+    <ul class="comparar">
+      <li><div><h3>Mostrar: console.log()</h3><p>Escribe el valor en la consola. Lo vemos nosotros, pero el programa <strong>no lo puede usar</strong>.</p></div></li>
+      <li><div><h3>Devolver: return</h3><p>Entrega el valor al programa. Lo podemos <strong>guardar y seguir usando</strong>.</p></div></li>
+    </ul>
+
+    <div class="ej-par">
+      <div class="ej-col">
+      <figure class="codigo codigo--js" id="ej-11a">
+        <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+        <pre tabindex="0" aria-label="Código de app.js, función que muestra"><code><span class="c-com">// Muestra el doble</span>
+<span class="c-etq">function</span> <span class="c-fun">mostrarDoble</span>(n) {
+  console.<span class="c-fun">log</span>(n * <span class="c-num">2</span>);
+}
+<span class="c-etq">let</span> a = <span class="c-fun">mostrarDoble</span>(<span class="c-num">5</span>);
+console.<span class="c-fun">log</span>(<span class="c-str">"a vale "</span> + a);</code></pre>
+      </figure>
+      <div class="consola" data-codigo="ej-11a">
+        <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+        <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">10
+a vale undefined</pre>
+      </div>
+      </div>
+      <div class="ej-col">
+      <figure class="codigo codigo--js" id="ej-11b">
+        <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+        <pre tabindex="0" aria-label="Código de app.js, función que devuelve"><code><span class="c-com">// Devuelve el doble</span>
+<span class="c-etq">function</span> <span class="c-fun">doble</span>(n) {
+  <span class="c-etq">return</span> n * <span class="c-num">2</span>;
+}
+<span class="c-etq">let</span> b = <span class="c-fun">doble</span>(<span class="c-num">5</span>);
+console.<span class="c-fun">log</span>(<span class="c-str">"b vale "</span> + b);
+console.<span class="c-fun">log</span>(<span class="c-fun">doble</span>(<span class="c-num">3</span>) + <span class="c-num">1</span>);</code></pre>
+      </figure>
+      <div class="consola" data-codigo="ej-11b">
+        <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+        <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">b vale 10
+7</pre>
+      </div>
+      </div>
+    </div>
+
+    <section class="panel" aria-labelledby="s11">
+      <div class="panel__cab"><h3 class="subtitulo" id="s11">¿Qué pasó?</h3></div>
+      <ol class="puntos puntos--2col">
+        <li><span class="puntos__n" aria-hidden="true">1</span><span><code>mostrarDoble</code> muestra el 10, pero <strong>no devuelve nada</strong>: <code>a</code> queda <code>undefined</code> (sin valor).</span></li>
+        <li><span class="puntos__n" aria-hidden="true">2</span><span><code>doble</code> no muestra nada: <strong>devuelve</strong> 10. Lo guardamos en <code>b</code>.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">3</span><span>Lo devuelto se usa en una cuenta: <code>doble(3) + 1</code> da 7.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">4</span><span>Después de <code>return</code>, la función <strong>termina</strong>.</span></li>
+      </ol>
+    </section>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> <code>console.log()</code> muestra un valor; <code>return</code> lo devuelve para que el programa lo guarde o siga haciendo cuentas con él.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 11">11</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 12 =================== -->
+  <article class="lamina lamina--compacta" id="pag-12" aria-labelledby="t12">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°3</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t12"><span class="tit__num">12.</span> Funciones que trabajan juntas</h2>
+      <p class="tit__sub">Decisiones adentro, funciones que llaman a otras y un menú</p>
+    </div>
+
+    <ul class="comparar comparar--3">
+      <li><div><h3>Con decisiones</h3><p>Adentro puede haber un <code>if</code>. Vale el primer <code>return</code> que se alcanza.</p></div></li>
+      <li><div><h3>Llaman a otras</h3><p>Una función puede usar otra. Cada una hace <strong>una sola tarea</strong>.</p></div></li>
+      <li><div><h3>Un menú</h3><p>Un bucle pide la opción y llama a la función elegida.</p></div></li>
+    </ul>
+
+    <div class="ej-par">
+      <div class="ej-col">
+      <figure class="codigo codigo--js" id="ej-12a">
+        <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+        <pre tabindex="0" aria-label="Código de app.js, funciones con decisiones"><code><span class="c-etq">function</span> <span class="c-fun">promedio</span>(a, b) {
+  <span class="c-etq">return</span> (a + b) / <span class="c-num">2</span>;
+}
+<span class="c-etq">function</span> <span class="c-fun">informar</span>(a, b) {
+  <span class="c-etq">let</span> p = <span class="c-fun">promedio</span>(a, b);
+  <span class="c-etq">if</span> (p &gt;= <span class="c-num">6</span>) {
+    <span class="c-etq">return</span> p + <span class="c-str">": Aprobado"</span>;
+  }
+  <span class="c-etq">return</span> p + <span class="c-str">": Desaprobado"</span>;
+}
+console.<span class="c-fun">log</span>(<span class="c-fun">informar</span>(<span class="c-num">7</span>, <span class="c-num">9</span>));
+console.<span class="c-fun">log</span>(<span class="c-fun">informar</span>(<span class="c-num">4</span>, <span class="c-num">5</span>));</code></pre>
+      </figure>
+      <div class="consola" data-codigo="ej-12a">
+        <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+        <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">8: Aprobado
+4.5: Desaprobado</pre>
+      </div>
+      </div>
+      <div class="ej-col">
+      <figure class="codigo codigo--js" id="ej-12b">
+        <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+        <pre tabindex="0" aria-label="Código de app.js, menú con prompt"><code><span class="c-etq">function</span> <span class="c-fun">doble</span>(n) {
+  <span class="c-etq">return</span> n * <span class="c-num">2</span>;
+}
+<span class="c-etq">function</span> <span class="c-fun">mitad</span>(n) {
+  <span class="c-etq">return</span> n / <span class="c-num">2</span>;
+}
+<span class="c-etq">const</span> menu = <span class="c-str">"1) Doble 2) Mitad o salir"</span>;
+<span class="c-etq">let</span> opcion = <span class="c-fun">prompt</span>(menu);
+<span class="c-etq">while</span> (opcion !== <span class="c-str">"salir"</span> &amp;&amp; opcion !== <span class="c-etq">null</span>) {
+  <span class="c-etq">if</span> (opcion === <span class="c-str">"1"</span>) {
+    console.<span class="c-fun">log</span>(<span class="c-str">"Doble: "</span> + <span class="c-fun">doble</span>(<span class="c-num">10</span>));
+  } <span class="c-etq">else if</span> (opcion === <span class="c-str">"2"</span>) {
+    console.<span class="c-fun">log</span>(<span class="c-str">"Mitad: "</span> + <span class="c-fun">mitad</span>(<span class="c-num">10</span>));
+  }
+  opcion = <span class="c-fun">prompt</span>(menu);
+}
+console.<span class="c-fun">log</span>(<span class="c-str">"Fin"</span>);</code></pre>
+      </figure>
+      <div class="consola" data-codigo="ej-12b">
+        <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+        <p class="consola__nota">Con 1, 2 y salir (o Cancelar):</p>
+        <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">Doble: 20
+Mitad: 5
+Fin</pre>
+      </div>
+      </div>
+    </div>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> cada función hace una sola tarea. Combinándolas armamos programas más grandes, como un menú.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 12">12</span>
+    </footer>
+  </article>
+
+  <!-- =================== PARA PROFUNDIZAR =================== -->
+  <article class="lamina lamina--pf" id="profundizar" aria-labelledby="tpf">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°3</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="tpf"><span class="tit__num">+</span> Para profundizar</h2>
+      <p class="tit__sub">Un poco más sobre cada lámina</p>
+    </div>
+
+    <div class="pf-grid">
+    <section class="pf" aria-labelledby="pf9">
+      <p class="pf__etiqueta">Lámina 9</p>
+      <h3 class="pf__titulo" id="pf9">¿Por qué usar funciones?</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p>Para llamar a una función siempre van los paréntesis: sin <code>()</code> no se ejecuta. Por orden, escribimos las funciones al principio de <code>app.js</code> y las llamadas, abajo.</p>
+        </div>
+        <div class="pf__caja">
+          <h4>Ventajas de usar funciones</h4>
+          <ul class="pf__lista">
+            <li><strong>Reutilizar:</strong> la misma función se usa muchas veces.</li>
+            <li><strong>Ordenar:</strong> el programa queda partido en bloques más chicos y claros.</li>
+            <li><strong>Nombres que explican:</strong> un buen nombre dice qué hace la función.</li>
+            <li><strong>Una tarea por función:</strong> cada una hace una sola cosa.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf10">
+      <p class="pf__etiqueta">Lámina 10</p>
+      <h3 class="pf__titulo" id="pf10">Argumentos: variables, cuentas y olvidos</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p>El argumento puede ser un valor, una variable o una cuenta: <code>doble(7 + 1)</code>. Si falta un argumento, el parámetro queda <code>undefined</code>: <code>saludar()</code> muestra <code>Hola, undefined</code>.</p>
+        </div>
+        <div class="pf__caja">
+          <h4>Nombres en camelCase</h4>
+          <ul class="pf__lista">
+            <li>Bien: <code>calcularPromedio</code>, <code>esMayorDeEdad</code></li>
+            <li><code>calcular promedio</code>: con espacio da error.</li>
+            <li><code>calcular-promedio</code>: con guion da error.</li>
+            <li>Evitamos tildes y ñ: <code>calcularArea</code>, no <code>calcularÁrea</code>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf11">
+      <p class="pf__etiqueta">Lámina 11</p>
+      <h3 class="pf__titulo" id="pf11">Una que muestra y otra que devuelve</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p><code>saludar</code> muestra el saludo; <code>sumar</code> devuelve la suma, que guardamos en <code>resultado</code>:</p>
+          <div class="ej ej--pf">
+            <figure class="codigo codigo--js" id="ej-pf11">
+              <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+              <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">function</span> <span class="c-fun">saludar</span>(nombre) {
+  console.<span class="c-fun">log</span>(<span class="c-str">"Hola "</span> + nombre);
+}
+<span class="c-etq">function</span> <span class="c-fun">sumar</span>(a, b) {
+  <span class="c-etq">return</span> a + b;
+}
+<span class="c-fun">saludar</span>(<span class="c-str">"Ana"</span>);
+<span class="c-etq">let</span> resultado = <span class="c-fun">sumar</span>(<span class="c-num">5</span>, <span class="c-num">3</span>);
+console.<span class="c-fun">log</span>(<span class="c-str">"Resultado: "</span> + resultado);</code></pre>
+            </figure>
+            <div class="consola" data-codigo="ej-pf11">
+              <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+              <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">Hola Ana
+Resultado: 8</pre>
+            </div>
+          </div>
+          <p>Los parámetros y las variables creadas adentro de una función solo existen ahí adentro.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf12">
+      <p class="pf__etiqueta">Lámina 12</p>
+      <h3 class="pf__titulo" id="pf12">Cómo armar un menú</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p>La condición del <code>while</code> revisa dos cosas: que no hayan escrito <code>"salir"</code> y que no hayan tocado Cancelar (<code>null</code>). Para avisar cuando la opción no existe, sumamos un <code>else</code> al final.</p>
+        </div>
+        <div class="pf__caja">
+          <h4>Paso a paso</h4>
+          <ol class="pf__lista">
+            <li>Escribimos una función por opción.</li>
+            <li>Antes del bucle, pedimos la opción con <code>prompt()</code>.</li>
+            <li>El <code>while</code> sigue mientras no sea <code>"salir"</code> ni <code>null</code>.</li>
+            <li>Con <code>if</code> y <code>else if</code>, llamamos a la función elegida.</li>
+            <li>Al final de cada vuelta, volvemos a pedir la opción.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+    </div>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 3</span>
+    </footer>
+  </article>
+
+  <!-- =================== ACTIVIDADES · Parte 1 =================== -->
+  <article class="lamina lamina--act" id="actividades" aria-labelledby="act-1">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°3</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <header class="act-banda">
+      <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-lapiz"/></svg>
+      <div>
+        <h2 id="act-1">Actividades para hacer en la carpeta</h2>
+        <p>TP N°3 — Crear mis propias funciones</p>
+      </div>
+      <span class="act-banda__parte">Parte<br>1 de 2</span>
+    </header>
+
+    <p class="consigna"><strong>Consigna:</strong> Resolvé cada punto en la carpeta, con lápiz y sin usar la computadora.</p>
+
+    <ol class="acts acts--2col">
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">9-</span> ¿Qué es una función?</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿Con qué palabra clave se define una función? ¿Qué diferencia hay entre definirla y llamarla?</div></li>
+          <li><b class="act__letra">b)</b><div>Predecí qué muestra:
+            <figure class="codigo codigo--js" id="act-9b">
+              <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+              <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">function</span> <span class="c-fun">separar</span>() {
+  console.<span class="c-fun">log</span>(<span class="c-str">"* * *"</span>);
+}
+<span class="c-fun">separar</span>();
+console.<span class="c-fun">log</span>(<span class="c-str">"Hola"</span>);
+<span class="c-fun">separar</span>();</code></pre>
+            </figure></div></li>
+          <li><b class="act__letra">c)</b><div>Un programa tiene solo la función <code>saludar()</code>, completa, y no muestra nada. ¿Por qué? ¿Qué línea falta?</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">10-</span> Parámetros y argumentos</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>En <code>function sumar(a, b)</code> y <code>sumar(4, 6)</code>, ¿cuáles son los parámetros y cuáles los argumentos?</div></li>
+          <li><b class="act__letra">b)</b><div>Predecí qué muestra:
+            <figure class="codigo codigo--js" id="act-10b">
+              <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+              <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">function</span> <span class="c-fun">dividir</span>(a, b) {
+  console.<span class="c-fun">log</span>(a / b);
+}
+<span class="c-fun">dividir</span>(<span class="c-num">10</span>, <span class="c-num">2</span>);
+<span class="c-fun">dividir</span>(<span class="c-num">2</span>, <span class="c-num">10</span>);</code></pre>
+            </figure></div></li>
+          <li><b class="act__letra">c)</b><div>Escribí en camelCase: calcular área · es mayor de edad · convertir a dólares.</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">11-</span> Devolver un resultado</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿Para qué sirve <code>return</code>? ¿En qué se diferencia de <code>console.log()</code>?</div></li>
+          <li><b class="act__letra">b)</b><div>Prueba de escritorio: anotá cuánto vale <code>a</code> y <code>b</code>, y qué muestra.
+            <figure class="codigo codigo--js" id="act-11b">
+              <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+              <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">function</span> <span class="c-fun">triple</span>(n) {
+  <span class="c-etq">return</span> n * <span class="c-num">3</span>;
+}
+<span class="c-etq">let</span> a = <span class="c-fun">triple</span>(<span class="c-num">2</span>);
+<span class="c-etq">let</span> b = <span class="c-fun">triple</span>(a) + <span class="c-num">1</span>;
+console.<span class="c-fun">log</span>(a, b);</code></pre>
+            </figure></div></li>
+          <li><b class="act__letra">c)</b><div>Si <code>sumar</code> usara <code>console.log()</code> en lugar de <code>return</code>, ¿qué guarda <code>let t = sumar(2, 3);</code>?</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">12-</span> Funciones que trabajan juntas</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>Prueba de escritorio: ¿qué muestra?
+            <figure class="codigo codigo--js" id="act-12a">
+              <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+              <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">function</span> <span class="c-fun">mayor</span>(a, b) {
+  <span class="c-etq">if</span> (a &gt; b) {
+    <span class="c-etq">return</span> a;
+  }
+  <span class="c-etq">return</span> b;
+}
+console.<span class="c-fun">log</span>(<span class="c-fun">mayor</span>(<span class="c-num">4</span>, <span class="c-num">9</span>));
+console.<span class="c-fun">log</span>(<span class="c-fun">mayor</span>(<span class="c-num">7</span>, <span class="c-num">2</span>));</code></pre>
+            </figure></div></li>
+          <li><b class="act__letra">b)</b><div>En el menú de la lámina 12, ¿qué pasa si el usuario toca Cancelar? ¿Por qué?</div></li>
+          <li><b class="act__letra">c)</b><div>Escribí <code>esPar(n)</code>: devuelve <code>true</code> si <code>n</code> es par y <code>false</code> si no.</div></li>
+        </ol>
+      </li>
+    </ol>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 3</span>
+    </footer>
+  </article>
+
+  <!-- =================== ACTIVIDADES · Parte 2 =================== -->
+  <article class="lamina lamina--act" id="actividades-2" aria-labelledby="act-2">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°3</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <header class="act-banda">
+      <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-editor"/></svg>
+      <div>
+        <h2 id="act-2">Práctica en la computadora</h2>
+        <p>TP N°3 — Crear mis propias funciones</p>
+      </div>
+      <span class="act-banda__parte">Parte<br>2 de 2</span>
+    </header>
+
+    <p class="consigna"><strong>Consigna:</strong> Creá la carpeta <code>tp3-apellido</code> con dos copias de la plantilla: <code>parte-1</code> y <code>parte-2</code>. Cada <code>app.js</code> empieza con un comentario que dice qué hace el programa.</p>
+
+    <ol class="acts">
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">1-</span> Parte 1: seis funciones</h3>
+        <p>Creá estas 6 funciones y un programa que las pruebe mostrando los resultados en la consola:</p>
+        <ol class="act__items act__items--2col">
+          <li><b class="act__letra">1</b><div><code>saludar(nombre)</code> muestra "Hola [nombre]".</div></li>
+          <li><b class="act__letra">2</b><div><code>sumar(a, b)</code> devuelve la suma.</div></li>
+          <li><b class="act__letra">3</b><div><code>esMayorDeEdad(edad)</code> devuelve <code>true</code> o <code>false</code>.</div></li>
+          <li><b class="act__letra">4</b><div><code>areaRectangulo(base, altura)</code> devuelve el área.</div></li>
+          <li><b class="act__letra">5</b><div><code>convertirADolares(pesos)</code> devuelve el equivalente.</div></li>
+          <li><b class="act__letra">6</b><div><code>calcularPromedio(n1, n2, n3)</code> devuelve el promedio.</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">2-</span> Parte 2: programa con menú</h3>
+        <p>Programa con menú (hecho con <code>prompt()</code>) que ofrezca:</p>
+        <ol class="act__items act__items--2col">
+          <li><b class="act__letra">1</b><div><strong>Calculadora:</strong> suma, resta, multiplicación y división, como funciones.</div></li>
+          <li><b class="act__letra">2</b><div><strong>Conversor de unidades:</strong> km a millas, °C a °F, pesos a dólares.</div></li>
+          <li><b class="act__letra">3</b><div><strong>Calculadora de propinas:</strong> monto + porcentaje.</div></li>
+          <li><b class="act__letra">4</b><div><strong>Calculadora de descuentos:</strong> precio + % de descuento.</div></li>
+        </ol>
+        <p>Cada opción debe ser una función separada. El menú se repite hasta que el usuario elija "salir".</p>
+      </li>
+    </ol>
+
+    <section class="entrega" aria-labelledby="ent-1">
+      <svg class="ico ico--l" aria-hidden="true" focusable="false"><use href="#i-subir"/></svg>
+      <div>
+        <h3 id="ent-1">Entrega</h3>
+        <div class="entrega__cols">
+          <div>
+            <p>Subí la carpeta en <strong>.zip</strong>.</p>
+          </div>
+          <div>
+            <p class="entrega__sub">Antes de entregar, marcá:</p>
+            <ul class="checklist">
+              <li>Están las 6 funciones y el programa que las prueba.</li>
+              <li>Cada opción del menú es una función.</li>
+              <li>El menú termina con "salir" y también con Cancelar.</li>
+              <li>Ninguno muestra errores en la consola.</li>
+              <li>Cada <code>app.js</code> tiene su comentario.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 3</span>
+    </footer>
+  </article>
+</main>
+
+<script src="../assets/js/actividades.js"></script>
+<script src="../assets/js/ejemplos.js"></script>
+</body>
+</html>
