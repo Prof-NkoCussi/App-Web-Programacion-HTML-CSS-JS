@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TP N°2 — Decisiones y bucles en JavaScript · Programación - HTML, CSS, JS</title>
+  <meta name="description" content="TP N°2 de Programación: operadores de comparación y lógicos, if, else if y else, while y do...while, for, contadores y acumuladores. Prof. Nicolás A. Cussi.">
+  <meta name="theme-color" content="#2563EB">
+  <link rel="preload" href="../assets/fonts/barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/barlow-semi-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/estilos.css">
+</head>
+<body data-tp="2">
+
+<!-- ====== Íconos ====== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-web" viewBox="0 0 48 48">
+      <rect x="4" y="7" width="40" height="34" rx="4" style="fill:var(--ac2, var(--acento-claro))"/>
+      <path d="M8 7h32a4 4 0 0 1 4 4v5H4v-5a4 4 0 0 1 4-4z" style="fill:var(--ac)"/>
+      <rect x="4" y="7" width="40" height="34" rx="4"/>
+      <path d="M4 16h40M19 23l-6 6 6 6M29 23l6 6-6 6M26.5 21l-5 16"/>
+    </symbol>
+    <symbol id="i-balanza" viewBox="0 0 48 48">
+      <path d="M2 27h12a6 6 0 0 1-12 0zM34 27h12a6 6 0 0 1-12 0z" style="fill:var(--ac)"/>
+      <path d="M24 6v34M15 42h18M8 11h32M8 11 2 27M8 11l6 16M40 11l-6 16M40 11l6 16"/>
+    </symbol>
+    <symbol id="i-camino" viewBox="0 0 48 48">
+      <path d="M5 6h13L5 19zM43 6H30l13 13z" style="fill:var(--ac)"/>
+      <path d="M24 44V27L9 10M24 27 39 10"/>
+    </symbol>
+    <symbol id="i-recargar" viewBox="0 0 48 48">
+      <path d="M39 26a15 15 0 1 1-4.4-10.6"/>
+      <path d="M37 6v10H27" style="stroke:var(--ac);stroke-width:3.4"/>
+    </symbol>
+    <symbol id="i-contador" viewBox="0 0 48 48">
+      <rect x="4" y="8" width="40" height="32" rx="3"/>
+      <path d="M13 15v18M20 15v18M27 15v18M34 15v18"/>
+      <path d="M9 30 39 18" style="stroke:var(--ac);stroke-width:3.4"/>
+    </symbol>
+    <symbol id="i-dado" viewBox="0 0 48 48">
+      <rect x="7" y="7" width="34" height="34" rx="6" style="fill:var(--ac)"/>
+      <rect x="7" y="7" width="34" height="34" rx="6"/>
+      <circle cx="16" cy="16" r="2.6" style="fill:currentColor"/>
+      <circle cx="24" cy="24" r="2.6" style="fill:currentColor"/>
+      <circle cx="32" cy="32" r="2.6" style="fill:currentColor"/>
+    </symbol>
+    <symbol id="i-foco" viewBox="0 0 48 48">
+      <path d="M24 2.5v4M10 8.5l2.8 2.8M38 8.5l-2.8 2.8M4 22h4M40 22h4"/>
+      <path d="M24 12a10 10 0 0 0-6.2 17.8c1.4 1.2 2.2 2.6 2.2 4.2v1h8v-1c0-1.6.8-3 2.2-4.2A10 10 0 0 0 24 12z" style="fill:var(--ac)"/>
+      <path d="M20 39h8M21.5 43h5"/>
+    </symbol>
+    <symbol id="i-editor" viewBox="0 0 48 48">
+      <path d="M7 7h34a3 3 0 0 1 3 3v4H4v-4a3 3 0 0 1 3-3z" style="fill:var(--ac)"/>
+      <rect x="4" y="7" width="40" height="34" rx="3"/>
+      <path d="M4 14h40M10 21h14M15 27h18M15 33h11"/>
+    </symbol>
+    <symbol id="i-lapiz" viewBox="0 0 48 48">
+      <path d="M33 6l9 9-25 25-9-9z" style="fill:var(--ac)"/>
+      <path d="M8 31 5.5 42.5 17 40z"/>
+      <path d="M27 12l9 9"/>
+    </symbol>
+    <symbol id="i-subir" viewBox="0 0 48 48">
+      <path d="M6 30v8a3 3 0 0 0 3 3h30a3 3 0 0 0 3-3v-8"/>
+      <path d="M24 31V7M15 16l9-9 9 9" style="stroke:var(--ac);stroke-width:3.4"/>
+    </symbol>
+    <symbol id="i-descarga" viewBox="0 0 24 24">
+      <path d="M12 3v12M7 10l5 5 5-5M5 20h14"/>
+    </symbol>
+  </defs>
+</svg>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="barra">
+  <div class="barra__fila">
+    <a class="barra__volver" href="../index.html">← Índice</a>
+    <span class="barra__titulo">TP N°2 — Decisiones y bucles en JavaScript</span>
+    <button class="boton" type="button" data-imprimir aria-label="Guardar en PDF">
+      <svg aria-hidden="true" focusable="false"><use href="#i-descarga"/></svg><span><span class="boton__largo">Guardar </span>PDF</span>
+    </button>
+  </div>
+  <nav class="partes" aria-label="Partes del TP N°2">
+    <a href="#pag-5">5 · Operadores</a>
+    <a href="#pag-6">6 · if / else</a>
+    <a href="#pag-7">7 · while</a>
+    <a href="#pag-8">8 · for</a>
+    <a href="#profundizar">Para profundizar</a>
+    <a href="#actividades">Actividades</a>
+  </nav>
+</header>
+
+<main id="contenido" class="laminas">
+  <h1 class="sr-only">TP N°2 — Decisiones y bucles en JavaScript</h1>
+
+  <!-- =================== LÁMINA 5 =================== -->
+  <article class="lamina lamina--compacta" id="pag-5" aria-labelledby="t5">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°2</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t5"><span class="tit__num">5.</span> Comparar y combinar</h2>
+      <p class="tit__sub">Operadores de comparación y lógicos</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-balanza"/></svg>
+      <p>Una <strong>comparación</strong> responde con un booleano: <code>true</code> (verdadero) o <code>false</code> (falso). Con esas respuestas, el programa toma decisiones.</p>
+    </div>
+
+    <ul class="operaciones operaciones--6" aria-label="Operadores de comparación">
+      <li><b aria-hidden="true">===</b><span>Igual</span></li>
+      <li><b aria-hidden="true">!==</b><span>Distinto</span></li>
+      <li><b aria-hidden="true">&lt;</b><span>Menor</span></li>
+      <li><b aria-hidden="true">&gt;</b><span>Mayor</span></li>
+      <li><b aria-hidden="true">&lt;=</b><span>Menor o igual</span></li>
+      <li><b aria-hidden="true">&gt;=</b><span>Mayor o igual</span></li>
+    </ul>
+
+    <ul class="comparar comparar--3" aria-label="Operadores lógicos">
+      <li><div><h3><code>&amp;&amp;</code> (y)</h3><p>Da <code>true</code> si las <strong>dos</strong> condiciones son verdaderas.</p></div></li>
+      <li><div><h3><code>||</code> (o)</h3><p>Da <code>true</code> si <strong>al menos una</strong> es verdadera.</p></div></li>
+      <li><div><h3><code>!</code> (no)</h3><p><strong>Invierte</strong> el resultado: <code>!true</code> da <code>false</code>.</p></div></li>
+    </ul>
+
+    <div class="ej">
+      <figure class="codigo codigo--js" id="ej-5">
+        <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+        <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> edad = <span class="c-num">16</span>;
+<span class="c-etq">let</span> nota = <span class="c-num">7</span>;
+console.<span class="c-fun">log</span>(edad &gt;= <span class="c-num">18</span>);
+console.<span class="c-fun">log</span>(nota !== <span class="c-num">10</span>);
+console.<span class="c-fun">log</span>(edad === <span class="c-str">"16"</span>);  <span class="c-com">// número y texto</span>
+console.<span class="c-fun">log</span>(edad &gt;= <span class="c-num">13</span> &amp;&amp; edad &lt;= <span class="c-num">17</span>);
+console.<span class="c-fun">log</span>(nota &lt; <span class="c-num">4</span> || nota &gt; <span class="c-num">9</span>);
+console.<span class="c-fun">log</span>(!(nota &gt;= <span class="c-num">6</span>));</code></pre>
+      </figure>
+      <div class="consola" data-codigo="ej-5">
+        <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+        <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">false
+true
+false
+true
+false
+false</pre>
+      </div>
+    </div>
+
+    <section class="py-js" aria-labelledby="pj5">
+      <h3 class="py-js__tit" id="pj5">En Python <span class="py-js__flecha" aria-hidden="true">→</span> En JavaScript</h3>
+      <div class="py-js__cols">
+        <figure class="codigo codigo--py" id="py-5">
+          <figcaption><span class="codigo__archivo">Python</span></figcaption>
+          <pre tabindex="0" aria-label="Código en Python"><code>nota = <span class="c-num">7</span>
+<span class="c-fun">print</span>(nota == <span class="c-num">7</span> <span class="c-etq">and</span> nota &lt; <span class="c-num">9</span>)
+<span class="c-fun">print</span>(<span class="c-etq">not</span> nota &gt; <span class="c-num">9</span>)</code></pre>
+        </figure>
+        <figure class="codigo codigo--js" id="js-5">
+          <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+          <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> nota = <span class="c-num">7</span>;
+console.<span class="c-fun">log</span>(nota === <span class="c-num">7</span> &amp;&amp; nota &lt; <span class="c-num">9</span>);
+console.<span class="c-fun">log</span>(!(nota &gt; <span class="c-num">9</span>));</code></pre>
+        </figure>
+      </div>
+      <p class="py-js__nota"><code>==</code> pasa a <code>===</code> · <code>and</code>, <code>or</code> y <code>not</code> pasan a <code>&amp;&amp;</code>, <code>||</code> y <code>!</code></p>
+    </section>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> <code>=</code> guarda un valor en una variable; <code>===</code> compara dos valores y responde <code>true</code> o <code>false</code>.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS - Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 5">5</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 6 =================== -->
+  <article class="lamina lamina--compacta" id="pag-6" aria-labelledby="t6">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°2</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t6"><span class="tit__num">6.</span> Tomar decisiones</h2>
+      <p class="tit__sub">if, else if y else</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-camino"/></svg>
+      <p><code>if</code> ejecuta un bloque solo si la condición da <code>true</code>. <code>else if</code> prueba otra condición y <code>else</code> va si no se cumple ninguna. Se ejecuta <strong>un solo bloque</strong>: el primero que cumple.</p>
+    </div>
+
+    <section class="panel" aria-label="Lo que cambia con Python">
+      <ol class="puntos puntos--2col">
+        <li><span class="puntos__n" aria-hidden="true">1</span><span>La condición va entre <strong>paréntesis</strong>: <code>if (nota &gt;= 6)</code></span></li>
+        <li><span class="puntos__n" aria-hidden="true">2</span><span>El bloque va entre <strong>llaves</strong> <code>{ }</code>, sin <code>:</code></span></li>
+        <li><span class="puntos__n" aria-hidden="true">3</span><span><code>elif</code> se escribe <code>else if</code>, en dos palabras.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">4</span><span>La <strong>sangría</strong> no es obligatoria, pero la usamos para leer mejor.</span></li>
+      </ol>
+    </section>
+
+    <div class="ej">
+      <figure class="codigo codigo--js" id="ej-6">
+        <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+        <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> nota = <span class="c-fun">Number</span>(<span class="c-fun">prompt</span>(<span class="c-str">"Nota:"</span>));
+<span class="c-etq">if</span> (nota &gt;= <span class="c-num">9</span>) {
+  console.<span class="c-fun">log</span>(<span class="c-str">"Excelente"</span>);
+} <span class="c-etq">else if</span> (nota &gt;= <span class="c-num">6</span>) {
+  console.<span class="c-fun">log</span>(<span class="c-str">"Aprobado"</span>);
+} <span class="c-etq">else</span> {
+  console.<span class="c-fun">log</span>(<span class="c-str">"Desaprobado"</span>);
+}</code></pre>
+      </figure>
+      <div class="consola" data-codigo="ej-6">
+        <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+        <p class="consola__nota">Con 7:</p>
+        <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">Aprobado</pre>
+      </div>
+    </div>
+
+    <section class="py-js" aria-labelledby="pj6">
+      <h3 class="py-js__tit" id="pj6">En Python <span class="py-js__flecha" aria-hidden="true">→</span> En JavaScript</h3>
+      <div class="py-js__cols">
+        <figure class="codigo codigo--py" id="py-6">
+          <figcaption><span class="codigo__archivo">Python</span></figcaption>
+          <pre tabindex="0" aria-label="Código en Python"><code>temp = <span class="c-num">4</span>
+<span class="c-etq">if</span> temp &lt; <span class="c-num">0</span>:
+    <span class="c-fun">print</span>(<span class="c-str">"Helada"</span>)
+<span class="c-etq">elif</span> temp &lt; <span class="c-num">15</span>:
+    <span class="c-fun">print</span>(<span class="c-str">"Frío"</span>)
+<span class="c-etq">else</span>:
+    <span class="c-fun">print</span>(<span class="c-str">"Templado"</span>)</code></pre>
+        </figure>
+        <figure class="codigo codigo--js" id="js-6">
+          <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+          <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> temp = <span class="c-num">4</span>;
+<span class="c-etq">if</span> (temp &lt; <span class="c-num">0</span>) {
+  console.<span class="c-fun">log</span>(<span class="c-str">"Helada"</span>);
+} <span class="c-etq">else if</span> (temp &lt; <span class="c-num">15</span>) {
+  console.<span class="c-fun">log</span>(<span class="c-str">"Frío"</span>);
+} <span class="c-etq">else</span> {
+  console.<span class="c-fun">log</span>(<span class="c-str">"Templado"</span>);
+}</code></pre>
+        </figure>
+      </div>
+    </section>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> la condición va entre paréntesis y cada bloque, entre llaves.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS - Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 6">6</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 7 =================== -->
+  <article class="lamina lamina--compacta" id="pag-7" aria-labelledby="t7">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°2</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t7"><span class="tit__num">7.</span> Repetir mientras se cumpla</h2>
+      <p class="tit__sub">while y do...while</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-recargar"/></svg>
+      <p>Un <strong>bucle</strong> repite un bloque de código. Algo dentro del bloque tiene que cambiar la condición; si no, el bucle no termina nunca.</p>
+    </div>
+
+    <ul class="comparar">
+      <li><div><h3>while</h3><p>Pregunta <strong>antes</strong> de cada vuelta. Si la condición da <code>false</code> de entrada, no se ejecuta nunca.</p></div></li>
+      <li><div><h3>do...while</h3><p>Pregunta <strong>después</strong> de cada vuelta: se ejecuta <strong>al menos una vez</strong>. Sirve para pedir un dato hasta que esté bien.</p></div></li>
+    </ul>
+
+    <div class="ej-par">
+      <div class="ej-col">
+      <figure class="codigo codigo--js" id="ej-7a">
+        <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+        <pre tabindex="0" aria-label="Código de app.js, con while"><code><span class="c-etq">let</span> cuenta = <span class="c-num">3</span>;
+<span class="c-etq">while</span> (cuenta &gt; <span class="c-num">0</span>) {
+  console.<span class="c-fun">log</span>(cuenta + <span class="c-str">"..."</span>);
+  cuenta = cuenta - <span class="c-num">1</span>;
+}
+console.<span class="c-fun">log</span>(<span class="c-str">"¡Despegue!"</span>);</code></pre>
+      </figure>
+      <div class="consola" data-codigo="ej-7a">
+        <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+        <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">3...
+2...
+1...
+¡Despegue!</pre>
+      </div>
+      </div>
+      <div class="ej-col">
+      <figure class="codigo codigo--js" id="ej-7b">
+        <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+        <pre tabindex="0" aria-label="Código de app.js, con do...while"><code><span class="c-etq">let</span> dato = <span class="c-str">""</span>;
+<span class="c-etq">do</span> {
+  dato = <span class="c-fun">prompt</span>(<span class="c-str">"¿Cuánto es 7 x 8?"</span>);
+  console.<span class="c-fun">log</span>(<span class="c-str">"Dijiste "</span> + dato);
+} <span class="c-etq">while</span> (dato !== <span class="c-str">"56"</span> &amp;&amp; dato !== <span class="c-etq">null</span>);
+console.<span class="c-fun">log</span>(<span class="c-str">"Fin"</span>);</code></pre>
+      </figure>
+      <div class="consola" data-codigo="ej-7b">
+        <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+        <p class="consola__nota">Con 54 y después 56:</p>
+        <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">Dijiste 54
+Dijiste 56
+Fin</pre>
+      </div>
+      </div>
+    </div>
+
+    <section class="py-js" aria-labelledby="pj7">
+      <h3 class="py-js__tit" id="pj7">En Python <span class="py-js__flecha" aria-hidden="true">→</span> En JavaScript</h3>
+      <div class="py-js__cols">
+        <figure class="codigo codigo--py" id="py-7">
+          <figcaption><span class="codigo__archivo">Python</span></figcaption>
+          <pre tabindex="0" aria-label="Código en Python"><code>n = <span class="c-num">1</span>
+<span class="c-etq">while</span> n &lt;= <span class="c-num">3</span>:
+    <span class="c-fun">print</span>(n)
+    n = n + <span class="c-num">1</span></code></pre>
+        </figure>
+        <figure class="codigo codigo--js" id="js-7">
+          <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+          <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> n = <span class="c-num">1</span>;
+<span class="c-etq">while</span> (n &lt;= <span class="c-num">3</span>) {
+  console.<span class="c-fun">log</span>(n);
+  n = n + <span class="c-num">1</span>;
+}</code></pre>
+        </figure>
+      </div>
+    </section>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> si tocamos Cancelar, <code>prompt()</code> devuelve <code>null</code>. Todo bucle que pide datos con <code>prompt()</code> tiene que terminar también en ese caso.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS - Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 7">7</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 8 =================== -->
+  <article class="lamina lamina--compacta" id="pag-8" aria-labelledby="t8">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°2</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t8"><span class="tit__num">8.</span> El bucle for</h2>
+      <p class="tit__sub">Contadores y acumuladores</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-contador"/></svg>
+      <p>Usamos <code>for</code> cuando sabemos <strong>cuántas vueltas</strong> va a dar el bucle. Entre los paréntesis van tres partes, separadas por punto y coma.</p>
+    </div>
+
+    <ul class="tipos" aria-label="Las tres partes del for">
+      <li class="tarjeta"><span class="tarjeta__cab">Inicio</span><p class="tipo__valor tipo__valor--acento">let i = 1</p><p>Se hace una sola vez, antes de la primera vuelta.</p></li>
+      <li class="tarjeta"><span class="tarjeta__cab">Condición</span><p class="tipo__valor tipo__valor--acento">i &lt;= 5</p><p>Se revisa antes de cada vuelta. Con <code>false</code>, termina.</p></li>
+      <li class="tarjeta"><span class="tarjeta__cab">Paso</span><p class="tipo__valor tipo__valor--acento">i++</p><p>Se hace al final de cada vuelta. <code>i++</code> es <code>i = i + 1</code>.</p></li>
+    </ul>
+
+    <ul class="comparar">
+      <li><div><h3>Contador</h3><p>Suma <strong>1</strong> cada vez: <code>pares = pares + 1;</code></p></div></li>
+      <li><div><h3>Acumulador</h3><p>Suma un <strong>valor</strong>: <code>suma = suma + i;</code></p></div></li>
+    </ul>
+
+    <div class="ej">
+      <figure class="codigo codigo--js" id="ej-8">
+        <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+        <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> suma = <span class="c-num">0</span>;   <span class="c-com">// acumulador</span>
+<span class="c-etq">let</span> pares = <span class="c-num">0</span>;  <span class="c-com">// contador</span>
+<span class="c-etq">for</span> (<span class="c-etq">let</span> i = <span class="c-num">1</span>; i &lt;= <span class="c-num">10</span>; i++) {
+  suma = suma + i;
+  <span class="c-etq">if</span> (i % <span class="c-num">2</span> === <span class="c-num">0</span>) {
+    pares = pares + <span class="c-num">1</span>;
+  }
+}
+console.<span class="c-fun">log</span>(<span class="c-str">"Suma: "</span> + suma);
+console.<span class="c-fun">log</span>(<span class="c-str">"Pares: "</span> + pares);</code></pre>
+      </figure>
+      <div class="consola" data-codigo="ej-8">
+        <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+        <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">Suma: 55
+Pares: 5</pre>
+      </div>
+    </div>
+
+    <section class="py-js" aria-labelledby="pj8">
+      <h3 class="py-js__tit" id="pj8">En Python <span class="py-js__flecha" aria-hidden="true">→</span> En JavaScript</h3>
+      <div class="py-js__cols">
+        <figure class="codigo codigo--py" id="py-8">
+          <figcaption><span class="codigo__archivo">Python</span></figcaption>
+          <pre tabindex="0" aria-label="Código en Python"><code><span class="c-etq">for</span> i <span class="c-etq">in</span> <span class="c-fun">range</span>(<span class="c-num">5</span>):
+    <span class="c-fun">print</span>(i)</code></pre>
+        </figure>
+        <figure class="codigo codigo--js" id="js-8">
+          <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+          <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">for</span> (<span class="c-etq">let</span> i = <span class="c-num">0</span>; i &lt; <span class="c-num">5</span>; i++) {
+  console.<span class="c-fun">log</span>(i);
+}</code></pre>
+        </figure>
+      </div>
+    </section>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> <code>for</code> junta en una línea el inicio, la condición y el paso. Los contadores y acumuladores empiezan en 0, antes del bucle.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS - Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 8">8</span>
+    </footer>
+  </article>
+
+  <!-- =================== PARA PROFUNDIZAR =================== -->
+  <article class="lamina lamina--pf" id="profundizar" aria-labelledby="tpf">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°2</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="tpf"><span class="tit__num">+</span> Para profundizar</h2>
+      <p class="tit__sub">Un poco más sobre cada lámina</p>
+    </div>
+
+    <div class="pf-grid">
+    <section class="pf" aria-labelledby="pf5">
+      <p class="pf__etiqueta">Lámina 5</p>
+      <h3 class="pf__titulo" id="pf5">¿Por qué === y no ==?</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p>JavaScript también tiene <code>==</code> y <code>!=</code>, pero antes de comparar convierten los datos al mismo tipo: para <code>==</code>, el número <code>5</code> y el texto <code>"5"</code> son iguales. <code>===</code> y <code>!==</code> comparan el valor <strong>y el tipo</strong>. Por eso usamos siempre estos dos.</p>
+        </div>
+        <div class="pf__caja">
+          <h4>Para recordar</h4>
+          <ul class="pf__lista">
+            <li><code>5 == "5"</code> → true · <code>5 === "5"</code> → false</li>
+            <li><code>true &amp;&amp; false</code> → false · <code>true || false</code> → true</li>
+            <li><code>!(5 &gt; 3)</code> → false</li>
+            <li>En Python vale <code>13 &lt;= edad &lt;= 17</code>. En JavaScript se escribe <code>edad &gt;= 13 &amp;&amp; edad &lt;= 17</code></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf6">
+      <p class="pf__etiqueta">Lámina 6</p>
+      <h3 class="pf__titulo" id="pf6">Errores frecuentes con if</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p>Para que el código se lea fácil, dejamos sangría dentro de cada bloque y combinamos condiciones con <code>&amp;&amp;</code> y <code>||</code> en lugar de poner un <code>if</code> dentro de otro. En VS Code, <kbd>Shift</kbd> + <kbd>Alt</kbd> + <kbd>F</kbd> acomoda la sangría sola.</p>
+        </div>
+        <div class="pf__caja">
+          <h4>Cuidado con</h4>
+          <ul class="pf__lista">
+            <li><code>if (nota = 10)</code> guarda 10 en <code>nota</code> en vez de comparar. Va <code>===</code>.</li>
+            <li><code>if (nota &gt;= 6);</code> con punto y coma: el bloque se ejecuta siempre. Después de <code>)</code> y de <code>}</code> no va <code>;</code></li>
+            <li><code>elif</code> no existe en JavaScript: da error.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf7">
+      <p class="pf__etiqueta">Lámina 7</p>
+      <h3 class="pf__titulo" id="pf7">Bucles infinitos</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p>Si la condición nunca da <code>false</code>, el bucle no termina y la pestaña de Chrome se cuelga: la cerramos y corregimos el código. Con <code>prompt()</code>, el bucle también corta con el <code>null</code> de Cancelar:</p>
+          <div class="ej ej--pf">
+            <figure class="codigo codigo--js" id="ej-pf7">
+              <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+              <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> texto = <span class="c-fun">prompt</span>(<span class="c-str">"Escribí algo:"</span>);
+<span class="c-etq">while</span> (texto !== <span class="c-etq">null</span>) {
+  console.<span class="c-fun">log</span>(texto);
+  texto = <span class="c-fun">prompt</span>(<span class="c-str">"Escribí algo:"</span>);
+}</code></pre>
+            </figure>
+            <div class="consola" data-codigo="ej-pf7">
+              <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+              <p class="consola__nota">Con hola, chau y Cancelar:</p>
+              <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">hola
+chau</pre>
+            </div>
+          </div>
+          <p><code>Number(null)</code> da 0: si el bucle termina con 0, Cancelar también lo corta.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf8">
+      <p class="pf__etiqueta">Lámina 8</p>
+      <h3 class="pf__titulo" id="pf8">Atajos y qué bucle elegir</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p><code>i++</code> suma 1 e <code>i--</code> resta 1. <code>suma += n</code> es lo mismo que <code>suma = suma + n</code>. Para contar hacia atrás: <code>for (let i = 10; i &gt;= 1; i--)</code></p>
+        </div>
+        <div class="pf__caja">
+          <h4>¿Qué bucle uso?</h4>
+          <ul class="pf__lista">
+            <li><strong>for:</strong> sabemos cuántas vueltas va a dar.</li>
+            <li><strong>while:</strong> repetimos mientras se cumpla una condición, sin saber cuántas vueltas.</li>
+            <li><strong>do...while:</strong> el bloque tiene que ejecutarse al menos una vez.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    </div>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS - Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 2</span>
+    </footer>
+  </article>
+
+  <!-- =================== ACTIVIDADES · Parte 1 =================== -->
+  <article class="lamina lamina--act" id="actividades" aria-labelledby="act-1">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°2</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <header class="act-banda">
+      <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-lapiz"/></svg>
+      <div>
+        <h2 id="act-1">Actividades para hacer en la carpeta</h2>
+        <p>TP N°2 — Decisiones y bucles en JavaScript</p>
+      </div>
+      <span class="act-banda__parte">Parte<br>1 de 2</span>
+    </header>
+
+    <p class="consigna"><strong>Consigna:</strong> Resolvé cada punto en la carpeta, con lápiz y sin usar la computadora.</p>
+
+    <ol class="acts acts--2col">
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">5-</span> Comparar y combinar</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿Cuál es la diferencia entre <code>=</code> y <code>===</code>? Dá un ejemplo de cada uno.</div></li>
+          <li><b class="act__letra">b)</b><div>Con <code>let a = 8;</code> escribí <code>true</code> o <code>false</code>: <code>a === "8"</code> / <code>a !== 10</code> / <code>a &gt;= 8 &amp;&amp; a &lt; 10</code> / <code>a &lt; 5 || a &gt; 9</code> / <code>!(a &gt; 5)</code></div></li>
+          <li><b class="act__letra">c)</b><div>¿Qué operador lógico devuelve <code>true</code> solo si se cumplen las dos condiciones?</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">6-</span> Tomar decisiones</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿Qué muestra con <code>edad</code> en 10, 15 y 70?
+            <figure class="codigo codigo--js" id="act-6a">
+              <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+              <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> edad = <span class="c-num">10</span>;
+<span class="c-etq">if</span> (edad &lt; <span class="c-num">13</span>) {
+  console.<span class="c-fun">log</span>(<span class="c-str">"Niño"</span>);
+} <span class="c-etq">else if</span> (edad &lt; <span class="c-num">18</span>) {
+  console.<span class="c-fun">log</span>(<span class="c-str">"Adolescente"</span>);
+} <span class="c-etq">else</span> {
+  console.<span class="c-fun">log</span>(<span class="c-str">"Adulto"</span>);
+}</code></pre>
+            </figure></div></li>
+          <li><b class="act__letra">b)</b><div>Encontrá los 3 errores: <code>if nota &gt;= 6 {</code> / <code>} elif (nota &gt;= 4) {</code> / <code>if (nota = 10) {</code></div></li>
+          <li><b class="act__letra">c)</b><div>¿Qué palabra se usa para el caso alternativo? ¿Y para otra condición?</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">7-</span> Repetir mientras se cumpla</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿Qué tiene que pasar dentro de un <code>while</code> para que termine?</div></li>
+          <li><b class="act__letra">b)</b><div>¿Qué bucle se ejecuta al menos una vez? ¿Por qué?</div></li>
+          <li><b class="act__letra">c)</b><div>Hacé la prueba de escritorio y escribí qué muestra:
+            <figure class="codigo codigo--js" id="act-7c">
+              <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+              <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> n = <span class="c-num">10</span>;
+<span class="c-etq">while</span> (n &gt; <span class="c-num">0</span>) {
+  console.<span class="c-fun">log</span>(n);
+  n = n - <span class="c-num">3</span>;
+}</code></pre>
+            </figure></div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">8-</span> El bucle for</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿Qué bucle usás cuando ya sabés cuántas vueltas va a dar?</div></li>
+          <li><b class="act__letra">b)</b><div>Prueba de escritorio: anotá <code>i</code> y <code>total</code> en cada vuelta.
+            <figure class="codigo codigo--js" id="act-8b">
+              <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+              <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> total = <span class="c-num">0</span>;
+<span class="c-etq">for</span> (<span class="c-etq">let</span> i = <span class="c-num">1</span>; i &lt;= <span class="c-num">4</span>; i++) {
+  total = total + i * <span class="c-num">2</span>;
+}
+console.<span class="c-fun">log</span>(total);</code></pre>
+            </figure></div></li>
+          <li><b class="act__letra">c)</b><div>Pasá a JavaScript: <code>for i in range(3): print("Hola")</code></div></li>
+        </ol>
+      </li>
+    </ol>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS - Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 2</span>
+    </footer>
+  </article>
+
+  <!-- =================== ACTIVIDADES · Parte 2 =================== -->
+  <article class="lamina lamina--act" id="actividades-2" aria-labelledby="act-2">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°2</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <header class="act-banda">
+      <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-editor"/></svg>
+      <div>
+        <h2 id="act-2">Práctica en la computadora</h2>
+        <p>TP N°2 — Decisiones y bucles en JavaScript</p>
+      </div>
+      <span class="act-banda__parte">Parte<br>2 de 2</span>
+    </header>
+
+    <p class="consigna"><strong>Consigna:</strong> Resolvé en JavaScript estos 10 ejercicios, como los que ya hiciste en Python. Creá la carpeta <code>tp2-apellido</code> con una copia de la plantilla por ejercicio (<code>ejercicio-1</code> a <code>ejercicio-10</code>). Cada <code>app.js</code> empieza con un comentario que dice qué hace el programa.</p>
+
+    <ol class="acts">
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">1-</span> Los 10 ejercicios</h3>
+        <ol class="act__items act__items--2col">
+          <li><b class="act__letra">1</b><div>Pedir un número y decir si es positivo, negativo o cero.</div></li>
+          <li><b class="act__letra">2</b><div>Pedir edad y decir si es menor, mayor de edad o jubilado (más de 65).</div></li>
+          <li><b class="act__letra">3</b><div>Pedir nota y devolver "Aprobado" (≥6) o "Desaprobado".</div></li>
+          <li><b class="act__letra">4</b><div>Validar contraseña (si coincide con una predefinida, dar acceso).</div></li>
+          <li><b class="act__letra">5</b><div>Calculadora con operación elegida por el usuario (suma, resta, multiplicación, división).</div></li>
+          <li><b class="act__letra">6</b><div>Mostrar los números del 1 al 20 (con <code>for</code>).</div></li>
+          <li><b class="act__letra">7</b><div>Mostrar los números pares entre 1 y 50.</div></li>
+          <li><b class="act__letra">8</b><div>Pedir un número N y mostrar su tabla de multiplicar.</div></li>
+          <li><b class="act__letra">9</b><div>Pedir números hasta que el usuario escriba 0, e ir sumándolos; al final mostrar el total.</div></li>
+          <li><b class="act__letra">10</b><div>Adivinar el número (la PC piensa uno entre 1 y 100, el usuario adivina).</div></li>
+        </ol>
+      </li>
+    </ol>
+
+    <section class="receta" aria-labelledby="rec-1">
+      <h3 class="receta__tit" id="rec-1"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-dado"/></svg>Receta fija para el ejercicio 10: un número al azar</h3>
+      <figure class="codigo codigo--js" id="ej-receta">
+        <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+        <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> secreto = Math.<span class="c-fun">floor</span>(Math.<span class="c-fun">random</span>() * <span class="c-num">100</span>) + <span class="c-num">1</span>;</code></pre>
+      </figure>
+      <p>Se copia tal cual, sin entrar en cómo funciona: guarda en <code>secreto</code> un entero del 1 al 100.</p>
+    </section>
+
+    <section class="entrega" aria-labelledby="ent-1">
+      <svg class="ico ico--l" aria-hidden="true" focusable="false"><use href="#i-subir"/></svg>
+      <div>
+        <h3 id="ent-1">Entrega</h3>
+        <div class="entrega__cols">
+          <div>
+            <p>Subí la carpeta <code>tp2-apellido</code>, con los 10 ejercicios comentados, en <strong>.zip</strong> a la tarea de Classroom.</p>
+            <p class="entrega__sub entrega__sub--sep">Antes, probá cada programa</p>
+            <p>Con datos de todos los casos (en el 1: un positivo, un negativo y el 0). En el 9 y el 10, tocá también <strong>Cancelar</strong>.</p>
+          </div>
+          <div>
+            <p class="entrega__sub">Antes de entregar, marcá:</p>
+            <ul class="checklist">
+              <li>Están las 10 carpetas.</li>
+              <li>Cada <code>app.js</code> tiene su comentario.</li>
+              <li>Ninguno muestra errores en la consola.</li>
+              <li>El 9 y el 10 terminan con Cancelar.</li>
+              <li>Subí el .zip y toqué <strong>Entregar</strong>.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS - Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 2</span>
+    </footer>
+  </article>
+</main>
+
+<script src="../assets/js/actividades.js"></script>
+<script src="../assets/js/ejemplos.js"></script>
+</body>
+</html>

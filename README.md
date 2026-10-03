@@ -28,7 +28,7 @@ Un cuadernillo web para pasar de Python a JavaScript y después armar páginas w
 |---|---|---|
 | **Módulo 1 · De Python a JavaScript** | | |
 | 1 | Hola, JavaScript | ✅ Disponible |
-| 2 | Decisiones y bucles en JavaScript | Próximamente |
+| 2 | Decisiones y bucles en JavaScript | ✅ Disponible |
 | 3 | Crear mis propias funciones | Próximamente |
 | **Módulo 2 · Arrays y objetos** | | |
 | 4 | Mi primer array | Próximamente |

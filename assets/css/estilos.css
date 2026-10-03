@@ -1,6 +1,6 @@
 /* ==========================================================
    Programación - HTML, CSS, JS — Cuadernillo web
-   Prof. Nicolás A. Cussi • C.T.P. "Olga B. de Arko"
+   Prof. Nicolás A. Cussi
    Mobile first · Modo hoja A4 en escritorio e impresión
    ========================================================== */
 
@@ -650,6 +650,7 @@ ol.pf__lista li::before {
 /* Código + consola */
 .ej { display: grid; gap: 8px; }
 .ej-col { display: grid; gap: 6px; align-content: start; min-width: 0; }
+.ej-par { display: grid; gap: 12px; }   /* dos ejemplos lado a lado, cada uno con su consola abajo */
 .error-controlado__cols { display: grid; gap: 12px; }
 
 /* En Python → En JavaScript */
@@ -695,6 +696,19 @@ ol.pf__lista li::before {
 .operaciones b { font-family: var(--fuente-codigo); font-size: 28px; line-height: 1.1; color: var(--acento-numero); }
 .operaciones span { font-weight: 700; font-size: 15.5px; color: var(--tinta); }
 .operaciones p { font-size: 15px; }
+
+/* Receta fija: código que se usa tal cual, sin explicar cómo funciona por dentro */
+.receta {
+  display: grid; gap: 10px;
+  background: var(--acento-suave); border: 2px dashed var(--acento); border-radius: 12px; padding: 12px;
+}
+.receta__tit {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--fuente-titulo); font-weight: 700; font-size: 20px; line-height: 1.15; color: var(--tinta);
+}
+.receta__tit .ico { width: 30px; height: 30px; }
+.receta p { font-size: 16px; line-height: 1.4; }
+.receta :not(pre) > code { background: var(--blanco); }
 
 /* ==========================================================
    Pantallas medianas
@@ -743,10 +757,12 @@ ol.pf__lista li::before {
   .ej { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); }
   .ej--pf { grid-template-columns: minmax(0, 1fr); }
   .error-controlado__cols { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .ej-par { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); }
   .act__items--2col { grid-template-columns: 1fr 1fr; }
   .py-js__cols { grid-template-columns: 1fr 1fr; }
   .entrega__cols { grid-template-columns: 1fr 1fr; gap: 16px; }
   .operaciones { grid-template-columns: repeat(5, 1fr); }
+  .operaciones--6 { grid-template-columns: repeat(6, 1fr); }
   .pasos2 { grid-template-columns: 1fr 1fr; }
   .pasos2 .paso {
     grid-template-columns: 56px 1fr; grid-template-areas: "ico tit" "ico txt";

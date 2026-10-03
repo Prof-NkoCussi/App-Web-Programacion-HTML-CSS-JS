@@ -81,7 +81,14 @@ HTML, CSS y JavaScript vanilla. Sin frameworks, sin build, sin backend, sin depe
 - **Código en la impresión:** en el bloque `print`, el código y la consola pasan a fondo claro `#F1F5F9` con borde, y las variables `--cod-*` se redefinen: base `#0F172A`, etq `#1D4ED8`, atr `#9A3412`, str `#047857`, com `#475569`, num `#BE185D`, fun `#6D28D9`. Ahorra tinta y se lee en blanco y negro.
 - **Cabecera de cada hoja:** `PROGRAMACIÓN` con la bajada `HTML · CSS · JS`, y a la derecha `TRABAJO PRÁCTICO N°X` con la barra azul vertical. Mismas reglas de tamaño y de celular que el repo de origen.
 - **Pie de cada hoja:** `Programación - HTML, CSS, JS - Prof. Nicolás A. Cussi` + número de lámina (o `TP N` en profundizar y actividades).
-- **Portada y README:** "Bachillerato Profesional en Programación" y el nombre de la escuela (C.T.P. "Olga B. de Arko", Ushuaia). **No escribir años de cursado** (ni 5.º ni 6.º) en ninguna parte del sitio.
+- **Datos de la portada (`index.html`, `p.portada__datos`):** exactamente estas dos líneas, la primera en negrita y la segunda sin negrita, y sin el nombre de la escuela:
+  ```
+  Programación - HTML, CSS, JS • Prof. Nicolás A. Cussi
+  Bachillerato Profesional en Programación · Ushuaia
+  ```
+- **README:** "Bachillerato Profesional en Programación, Ushuaia", sin el nombre de la escuela.
+- El nombre de la escuela (C.T.P. "Olga B. de Arko") no va en ninguna parte del sitio ni del README.
+- **No escribir años de cursado** (ni 5.º ni 6.º) en ninguna parte del sitio.
 - **Ícono de la materia:** una ventana de navegador con `</>` adentro, en el mismo estilo (trazo `--tinta` + relleno de acento; si el trazo se pierde sobre el azul, rellenar con `--acento-claro`).
 - **Sin eslóganes ni frases decorativas.** El "Desde Cero" del PDF no va.
 - **Progreso:** la clave de `localStorage` es `prog:tp-visto-`. No usar `tpd1:` ni `bd1:`: todos los cuadernillos comparten el dominio `prof-nkocussi.github.io` y se pisarían las marcas de "✓ Visto".
@@ -279,7 +286,7 @@ Notas del plan:
 - TP5: `Math.max(...notas)` y `sort((a, b) => a - b)` como recetas fijas.
 - TP12: la práctica suma "que se vea bien en el celular".
 - TP17: pantallas de GitHub como esquemas SVG. Los alumnos se registran con su propia cuenta de mail.
-- El README y la portada llevan el nombre de la escuela.
+- Ni el README ni la portada llevan el nombre de la escuela. Datos de la portada: "Programación - HTML, CSS, JS • Prof. Nicolás A. Cussi" en negrita y "Bachillerato Profesional en Programación · Ushuaia" sin negrita (3/10/2026).
 - Entregas por Classroom con la carpeta en `.zip`; el TP1 explica cómo comprimir.
 - Visual Studio Code desde el TP1. Laboratorio con Windows.
 
