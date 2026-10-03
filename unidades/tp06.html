@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TP N°6 — Objetos y mini-proyecto: Lista de tareas · Programación - HTML, CSS, JS</title>
+  <meta name="description" content="TP N°6 de Programación: objetos literales, leer y modificar propiedades con punto, arrays de objetos y un programa con menú que junta todo lo visto. Prof. Nicolás A. Cussi.">
+  <meta name="theme-color" content="#2563EB">
+  <link rel="preload" href="../assets/fonts/barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/barlow-semi-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/estilos.css">
+</head>
+<body data-tp="6">
+
+<!-- ====== Íconos ====== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-web" viewBox="0 0 48 48">
+      <rect x="4" y="7" width="40" height="34" rx="4" style="fill:var(--ac2, var(--acento-claro))"/>
+      <path d="M8 7h32a4 4 0 0 1 4 4v5H4v-5a4 4 0 0 1 4-4z" style="fill:var(--ac)"/>
+      <rect x="4" y="7" width="40" height="34" rx="4"/>
+      <path d="M4 16h40M19 23l-6 6 6 6M29 23l6 6-6 6M26.5 21l-5 16"/>
+    </symbol>
+    <symbol id="i-objeto" viewBox="0 0 48 48">
+      <path d="M8 6h11v36H8a3 3 0 0 1-3-3V9a3 3 0 0 1 3-3z" style="fill:var(--ac)"/>
+      <rect x="5" y="6" width="38" height="36" rx="3"/>
+      <path d="M19 6v36M5 18h38M5 30h38M24 12h13M24 24h9M24 36h11"/>
+    </symbol>
+    <symbol id="i-lista-obj" viewBox="0 0 48 48">
+      <rect x="4" y="9" width="12" height="30" rx="2" style="fill:var(--ac)"/>
+      <rect x="4" y="9" width="12" height="30" rx="2"/>
+      <rect x="18" y="9" width="12" height="30" rx="2"/>
+      <rect x="32" y="9" width="12" height="30" rx="2"/>
+      <path d="M4 24h12M18 24h12M32 24h12"/>
+    </symbol>
+    <symbol id="i-foco" viewBox="0 0 48 48">
+      <path d="M24 2.5v4M10 8.5l2.8 2.8M38 8.5l-2.8 2.8M4 22h4M40 22h4"/>
+      <path d="M24 12a10 10 0 0 0-6.2 17.8c1.4 1.2 2.2 2.6 2.2 4.2v1h8v-1c0-1.6.8-3 2.2-4.2A10 10 0 0 0 24 12z" style="fill:var(--ac)"/>
+      <path d="M20 39h8M21.5 43h5"/>
+    </symbol>
+    <symbol id="i-editor" viewBox="0 0 48 48">
+      <path d="M7 7h34a3 3 0 0 1 3 3v4H4v-4a3 3 0 0 1 3-3z" style="fill:var(--ac)"/>
+      <rect x="4" y="7" width="40" height="34" rx="3"/>
+      <path d="M4 14h40M10 21h14M15 27h18M15 33h11"/>
+    </symbol>
+    <symbol id="i-lapiz" viewBox="0 0 48 48">
+      <path d="M33 6l9 9-25 25-9-9z" style="fill:var(--ac)"/>
+      <path d="M8 31 5.5 42.5 17 40z"/>
+      <path d="M27 12l9 9"/>
+    </symbol>
+    <symbol id="i-subir" viewBox="0 0 48 48">
+      <path d="M6 30v8a3 3 0 0 0 3 3h30a3 3 0 0 0 3-3v-8"/>
+      <path d="M24 31V7M15 16l9-9 9 9" style="stroke:var(--ac);stroke-width:3.4"/>
+    </symbol>
+    <symbol id="i-descarga" viewBox="0 0 24 24">
+      <path d="M12 3v12M7 10l5 5 5-5M5 20h14"/>
+    </symbol>
+    <symbol id="i-atras" viewBox="0 0 24 24">
+      <path d="M20 12H5M11 6l-6 6 6 6"/>
+    </symbol>
+  </defs>
+</svg>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="barra">
+  <div class="barra__fila">
+    <a class="boton barra__volver" href="../index.html"><svg aria-hidden="true" focusable="false"><use href="#i-atras"/></svg><span>Índice</span></a>
+    <span class="barra__titulo">TP N°6 — Objetos y mini-proyecto: Lista de tareas</span>
+    <button class="boton" type="button" data-imprimir aria-label="Guardar en PDF">
+      <svg aria-hidden="true" focusable="false"><use href="#i-descarga"/></svg><span><span class="boton__largo">Guardar </span>PDF</span>
+    </button>
+  </div>
+  <nav class="partes" aria-label="Partes del TP N°6">
+    <a href="#pag-21">21 · Objetos</a>
+    <a href="#pag-22">22 · Leer y modificar</a>
+    <a href="#pag-23">23 · Arrays de objetos</a>
+    <a href="#pag-24">24 · Todo junto</a>
+    <a href="#profundizar">Para profundizar</a>
+    <a href="#actividades">Actividades</a>
+  </nav>
+</header>
+
+<main id="contenido" class="laminas">
+  <h1 class="sr-only">TP N°6 — Objetos y mini-proyecto: Lista de tareas</h1>
+
+  <!-- =================== LÁMINA 21 =================== -->
+  <article class="lamina lamina--compacta" id="pag-21" aria-labelledby="t21">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°6</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t21"><span class="tit__num">21.</span> ¿Qué es un objeto?</h2>
+      <p class="tit__sub">Los datos de una misma cosa, cada uno con su nombre</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-objeto"/></svg>
+      <p>Un <strong>objeto</strong> guarda en una sola variable los datos de <strong>una misma cosa</strong>: un producto del kiosco, un alumno, un celular. Cada dato es una <strong>propiedad</strong>, con un <strong>nombre</strong> y un <strong>valor</strong>.</p>
+    </div>
+
+    <ul class="comparar comparar--esquema">
+      <li><div><h3>Array</h3><p>Guarda <strong>muchos datos del mismo tipo</strong>, en orden: los precios de todo el kiosco. Cada dato tiene una <strong>posición</strong>.</p>
+        <figure class="esquema">
+          <svg viewBox="0 0 290 130" style="max-width:290px" role="img" aria-labelledby="esq21a">
+            <title id="esq21a">El array precios guarda tres datos del mismo tipo: 800 en la posición 0, 500 en la posición 1 y 1200 en la posición 2.</title>
+            <text x="2" y="17" style="font-family:var(--fuente-codigo);font-size:17px;font-weight:700;fill:var(--tinta)">precios</text>
+            <g style="fill:var(--acento-claro);stroke:var(--acento);stroke-width:2">
+              <rect x="2" y="28" width="88" height="44" rx="6"/>
+              <rect x="98" y="28" width="88" height="44" rx="6"/>
+              <rect x="194" y="28" width="88" height="44" rx="6"/>
+            </g>
+            <g style="font-family:var(--fuente-codigo);font-size:20px;fill:var(--tinta)" text-anchor="middle">
+              <text x="46" y="57">800</text>
+              <text x="142" y="57">500</text>
+              <text x="238" y="57">1200</text>
+            </g>
+            <g style="fill:var(--acento)">
+              <circle cx="46" cy="94" r="14"/>
+              <circle cx="142" cy="94" r="14"/>
+              <circle cx="238" cy="94" r="14"/>
+            </g>
+            <g class="tt tt--claro" style="font-size:17px;font-weight:700" text-anchor="middle">
+              <text x="46" y="100">0</text>
+              <text x="142" y="100">1</text>
+              <text x="238" y="100">2</text>
+            </g>
+            <text class="tt" x="142" y="128" text-anchor="middle" style="font-size:14px;fill:var(--gris)">posición</text>
+          </svg>
+        </figure></div></li>
+      <li><div><h3>Objeto</h3><p>Guarda los <strong>datos distintos de una sola cosa</strong>: el nombre, el precio y si hay stock de un alfajor. Cada dato tiene un <strong>nombre</strong>.</p>
+        <figure class="esquema">
+          <svg viewBox="0 0 300 130" style="max-width:300px" role="img" aria-labelledby="esq21b">
+            <title id="esq21b">El objeto alfajor guarda tres datos distintos de un mismo producto, cada uno con su nombre: nombre vale "Alfajor", precio vale 800 y hayStock vale true.</title>
+            <text x="2" y="17" style="font-family:var(--fuente-codigo);font-size:17px;font-weight:700;fill:var(--tinta)">alfajor</text>
+            <rect x="2" y="28" width="108" height="84" style="fill:var(--acento-claro)"/>
+            <rect x="2" y="28" width="296" height="84" rx="6" style="fill:none;stroke:var(--acento);stroke-width:2"/>
+            <path d="M110 28v84M2 56h296M2 84h296" style="fill:none;stroke:var(--acento);stroke-width:2"/>
+            <g style="font-family:var(--fuente-codigo);font-size:16px;font-weight:700;fill:var(--tinta)">
+              <text x="12" y="48">nombre</text>
+              <text x="12" y="76">precio</text>
+              <text x="12" y="104">hayStock</text>
+            </g>
+            <g style="font-family:var(--fuente-codigo);font-size:17px;fill:var(--tinta)">
+              <text x="122" y="48">"Alfajor"</text>
+              <text x="122" y="76">800</text>
+              <text x="122" y="104">true</text>
+            </g>
+            <g class="tt" style="font-size:14px;fill:var(--gris)" text-anchor="middle">
+              <text x="56" y="128">nombre</text>
+              <text x="204" y="128">valor</text>
+            </g>
+          </svg>
+        </figure></div></li>
+    </ul>
+
+    <div class="esquema-par">
+      <figure class="codigo codigo--js" id="ej-21">
+        <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+        <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> alfajor = {
+  nombre: <span class="c-str">"Alfajor"</span>,
+  precio: <span class="c-num">800</span>,
+  hayStock: <span class="c-etq">true</span>
+};
+console.<span class="c-fun">log</span>(alfajor);</code></pre>
+      </figure>
+      <aside class="esquema-nota" aria-labelledby="n21">
+        <h3 id="n21">Cómo se escribe</h3>
+        <ul class="pf__lista">
+          <li>Las propiedades van entre <strong>llaves</strong> <code>{ }</code>.</li>
+          <li>Cada una lleva <strong>nombre</strong>, dos puntos y <strong>valor</strong>: <code>precio: 800</code>.</li>
+          <li>Entre una propiedad y la siguiente va una <strong>coma</strong>.</li>
+          <li>El valor puede ser un número, un texto o un booleano. El nombre va en camelCase: <code>hayStock</code>.</li>
+        </ul>
+      </aside>
+    </div>
+    <div class="consola" data-codigo="ej-21">
+      <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+      <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">{nombre: "Alfajor", precio: 800, hayStock: true}</pre>
+    </div>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> el array guarda muchos datos del mismo tipo, cada uno en una <b>posición</b>. El objeto guarda los datos de una sola cosa, cada uno con su <b>nombre</b>.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 21">21</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 22 =================== -->
+  <article class="lamina lamina--compacta" id="pag-22" aria-labelledby="t22">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°6</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t22"><span class="tit__num">22.</span> Leer y modificar propiedades</h2>
+      <p class="tit__sub">Con un punto: objeto.propiedad</p>
+    </div>
+
+    <ul class="comparar">
+      <li><div><h3>Leer</h3><p>Nombre del objeto, un <strong>punto</strong> y la propiedad: <code>alfajor.precio</code> da 800. Si la propiedad no existe, da <code>undefined</code>.</p></div></li>
+      <li><div><h3>Modificar</h3><p>Con <code>=</code> le damos un valor nuevo: <code>alfajor.precio = 900;</code> El valor anterior <strong>se pierde</strong>. Si la propiedad no existía, <strong>se agrega</strong>.</p></div></li>
+    </ul>
+
+    <div class="ej ej--apilado">
+      <figure class="codigo codigo--js" id="ej-22">
+        <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+        <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> alfajor = {
+  nombre: <span class="c-str">"Alfajor"</span>,
+  precio: <span class="c-num">800</span>,
+  stock: <span class="c-num">12</span>
+};
+console.<span class="c-fun">log</span>(alfajor.nombre + <span class="c-str">": $"</span> + alfajor.precio);
+alfajor.precio = <span class="c-num">900</span>;               <span class="c-com">// aumentó</span>
+alfajor.stock = alfajor.stock - <span class="c-num">1</span>;  <span class="c-com">// se vendió uno</span>
+alfajor.sabor = <span class="c-str">"chocolate"</span>;        <span class="c-com">// propiedad nueva</span>
+console.<span class="c-fun">log</span>(alfajor);
+console.<span class="c-fun">log</span>(alfajor.marca);         <span class="c-com">// no existe</span></code></pre>
+      </figure>
+      <div class="consola" data-codigo="ej-22">
+        <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+        <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">Alfajor: $800
+{nombre: "Alfajor", precio: 900, stock: 11, sabor: "chocolate"}
+undefined</pre>
+      </div>
+    </div>
+
+    <div class="esquema-par">
+    <figure class="esquema">
+      <svg viewBox="0 0 420 160" style="max-width:420px;margin:0 auto;display:block" role="img" aria-labelledby="esq22">
+        <title id="esq22">El objeto alfajor antes y después de modificarlo. Antes: nombre vale "Alfajor", precio 800 y stock 12. Después: nombre sigue igual, precio vale 900, stock vale 11 y hay una propiedad nueva, sabor, que vale "chocolate".</title>
+        <g class="tt" style="font-size:15px" text-anchor="middle">
+          <text x="85" y="15">antes</text>
+          <text x="330" y="15">después</text>
+        </g>
+        <g style="fill:var(--acento-claro)">
+          <rect x="1" y="25" width="66" height="96"/>
+          <rect x="241" y="25" width="66" height="128"/>
+        </g>
+        <g style="fill:var(--acento)">
+          <rect x="307" y="57" width="112" height="64"/>
+          <rect x="307" y="121" width="112" height="32"/>
+        </g>
+        <g style="fill:none;stroke:var(--acento);stroke-width:2">
+          <rect x="1" y="25" width="168" height="96" rx="5"/>
+          <rect x="241" y="25" width="178" height="128" rx="5"/>
+          <path d="M67 25v96M1 57h168M1 89h168M307 25v128M241 57h178M241 89h178M241 121h178"/>
+        </g>
+        <g style="font-family:var(--fuente-codigo);font-size:15px;font-weight:700;fill:var(--tinta)">
+          <text x="8" y="46">nombre</text>
+          <text x="8" y="78">precio</text>
+          <text x="8" y="110">stock</text>
+          <text x="248" y="46">nombre</text>
+          <text x="248" y="78">precio</text>
+          <text x="248" y="110">stock</text>
+          <text x="248" y="142">sabor</text>
+        </g>
+        <g style="font-family:var(--fuente-codigo);font-size:15px;fill:var(--tinta)">
+          <text x="75" y="46">"Alfajor"</text>
+          <text x="75" y="78">800</text>
+          <text x="75" y="110">12</text>
+          <text x="315" y="46">"Alfajor"</text>
+        </g>
+        <g style="font-family:var(--fuente-codigo);font-size:15px;font-weight:700;fill:var(--blanco)">
+          <text x="315" y="78">900</text>
+          <text x="315" y="110">11</text>
+          <text x="315" y="142">"chocolate"</text>
+        </g>
+        <path d="M182 73h44M219 66l8 7-8 7" style="fill:none;stroke:var(--acento);stroke-width:3;stroke-linecap:round;stroke-linejoin:round"/>
+      </svg>
+    </figure>
+    <aside class="esquema-nota" aria-labelledby="n22">
+      <h3 id="n22">¿Qué pasó?</h3>
+      <ul class="pf__lista">
+        <li><code>precio</code> pasó de 800 a 900: el 800 se perdió.</li>
+        <li><code>stock</code> usó su propio valor: 12 − 1 = 11, como un acumulador.</li>
+        <li><code>sabor</code> no existía: se agregó al final.</li>
+        <li><code>marca</code> no existe: leerla da <code>undefined</code> (sin valor).</li>
+      </ul>
+    </aside>
+    </div>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> con un punto leemos una propiedad: <code>alfajor.precio</code>. Con <code>=</code> la cambiamos. Si no existe, leerla da <b>undefined</b> y darle un valor la agrega.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 22">22</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 23 =================== -->
+  <article class="lamina lamina--compacta" id="pag-23" aria-labelledby="t23">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°6</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t23"><span class="tit__num">23.</span> Arrays de objetos</h2>
+      <p class="tit__sub">Una lista de cosas, cada una con sus datos</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-lista-obj"/></svg>
+      <p>En un <strong>array de objetos</strong>, cada dato de la lista es un objeto. Sirve para guardar <strong>muchas cosas del mismo tipo</strong>, cada una con sus propiedades: los alumnos de un curso, los productos del kiosco.</p>
+    </div>
+
+    <div class="esquema-par">
+    <figure class="esquema">
+      <svg viewBox="0 0 420 166" style="max-width:420px;margin:0 auto;display:block" role="img" aria-labelledby="esq23">
+        <title id="esq23">El array alumnos tiene 3 objetos: en la posición 0, Sofía con nota 9; en la posición 1, Tomás con nota 5; en la posición 2, Lucía con nota 7. alumnos[1] es el objeto de Tomás, y alumnos[1].nota es 5.</title>
+        <text x="210" y="17" text-anchor="middle" style="font-family:var(--fuente-codigo);font-size:16px;font-weight:700;fill:var(--acento-numero)">alumnos[1]</text>
+        <g style="fill:var(--acento-claro);stroke:var(--acento);stroke-width:2">
+          <rect x="2" y="28" width="132" height="62" rx="6"/>
+          <rect x="288" y="28" width="132" height="62" rx="6"/>
+        </g>
+        <rect x="145" y="28" width="132" height="62" rx="6" style="fill:var(--acento-claro);stroke:var(--tinta);stroke-width:3"/>
+        <rect x="150" y="64" width="122" height="22" rx="4" style="fill:var(--acento)"/>
+        <g style="font-family:var(--fuente-codigo);font-size:14px;fill:var(--tinta)">
+          <text x="11" y="52">nombre: "Sofía"</text>
+          <text x="11" y="80">nota: 9</text>
+          <text x="154" y="52">nombre: "Tomás"</text>
+          <text x="297" y="52">nombre: "Lucía"</text>
+          <text x="297" y="80">nota: 7</text>
+        </g>
+        <text x="154" y="80" style="font-family:var(--fuente-codigo);font-size:14px;font-weight:700;fill:var(--blanco)">nota: 5</text>
+        <g style="fill:var(--acento)">
+          <circle cx="68" cy="112" r="13"/>
+          <circle cx="211" cy="112" r="13"/>
+          <circle cx="354" cy="112" r="13"/>
+        </g>
+        <g class="tt tt--claro" style="font-size:16px;font-weight:700" text-anchor="middle">
+          <text x="68" y="118">0</text>
+          <text x="211" y="118">1</text>
+          <text x="354" y="118">2</text>
+        </g>
+        <text x="210" y="156" text-anchor="middle" style="font-family:var(--fuente-codigo);font-size:16px;font-weight:700;fill:var(--acento-numero)">alumnos[1].nota → 5</text>
+      </svg>
+    </figure>
+    <aside class="esquema-nota" aria-labelledby="n23">
+      <h3 id="n23">Primero la posición, después la propiedad</h3>
+      <ul class="pf__lista">
+        <li><code>alumnos[1]</code> es el objeto de la posición 1: el de Tomás.</li>
+        <li><code>alumnos[1].nota</code> es la nota de ese objeto: 5.</li>
+        <li><code>alumnos.length</code> cuenta los objetos: 3.</li>
+      </ul>
+    </aside>
+    </div>
+
+    <div class="ej">
+      <figure class="codigo codigo--js" id="ej-23">
+        <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+        <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> alumnos = [
+  { nombre: <span class="c-str">"Sofía"</span>, nota: <span class="c-num">9</span> },
+  { nombre: <span class="c-str">"Tomás"</span>, nota: <span class="c-num">5</span> },
+  { nombre: <span class="c-str">"Lucía"</span>, nota: <span class="c-num">7</span> }
+];
+console.<span class="c-fun">log</span>(alumnos[<span class="c-num">1</span>]);
+console.<span class="c-fun">log</span>(alumnos[<span class="c-num">1</span>].nota);
+alumnos.<span class="c-fun">push</span>({ nombre: <span class="c-str">"Juan"</span>, nota: <span class="c-num">4</span> });
+console.<span class="c-fun">log</span>(alumnos.length);
+<span class="c-etq">for</span> (<span class="c-etq">const</span> alumno <span class="c-etq">of</span> alumnos) {
+  <span class="c-etq">if</span> (alumno.nota &gt;= <span class="c-num">6</span>) {
+    console.<span class="c-fun">log</span>(alumno.nombre + <span class="c-str">" aprobó"</span>);
+  }
+}</code></pre>
+      </figure>
+      <div class="consola" data-codigo="ej-23">
+        <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+        <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">{nombre: "Tomás", nota: 5}
+5
+4
+Sofía aprobó
+Lucía aprobó</pre>
+      </div>
+    </div>
+
+    <section class="panel" aria-label="Qué pasó en el ejemplo">
+      <ol class="puntos puntos--2col">
+        <li><span class="puntos__n" aria-hidden="true">1</span><span>En el <code>for...of</code>, <code>alumno</code> toma <strong>un objeto por vuelta</strong>. <code>push</code> agrega un objeto entero.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">2</span><span>Todos los objetos tienen las <strong>mismas propiedades</strong>: el mismo código sirve para todos.</span></li>
+      </ol>
+    </section>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> en un array de objetos, primero va la posición y después la propiedad: <code>alumnos[1].nota</code>. Con <code>for...of</code>, cada vuelta trae un objeto entero.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 23">23</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 24 =================== -->
+  <article class="lamina lamina--compacta" id="pag-24" aria-labelledby="t24">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°6</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t24"><span class="tit__num">24.</span> Todo junto en un programa</h2>
+      <p class="tit__sub">Arrays, objetos, funciones, bucles y condicionales</p>
+    </div>
+
+    <div class="ej ej--ancho">
+      <figure class="codigo codigo--js" id="ej-24a">
+        <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+        <pre tabindex="0" aria-label="Código de app.js, primera parte: los datos y las funciones"><code><span class="c-etq">let</span> alumnos = [
+  { nombre: <span class="c-str">"Sofía"</span>, nota: <span class="c-num">9</span> },
+  { nombre: <span class="c-str">"Tomás"</span>, nota: <span class="c-num">5</span> }
+];
+<span class="c-etq">function</span> <span class="c-fun">verAlumnos</span>() {
+  <span class="c-etq">for</span> (<span class="c-etq">const</span> alumno <span class="c-etq">of</span> alumnos) {
+    console.<span class="c-fun">log</span>(alumno.nombre + <span class="c-str">": "</span> + alumno.nota);
+  }
+}
+<span class="c-etq">function</span> <span class="c-fun">agregarAlumno</span>() {
+  <span class="c-etq">let</span> nombre = <span class="c-fun">prompt</span>(<span class="c-str">"Nombre:"</span>);
+  <span class="c-etq">if</span> (nombre !== <span class="c-etq">null</span> &amp;&amp; nombre !== <span class="c-str">""</span>) {
+    <span class="c-etq">let</span> nota = <span class="c-fun">Number</span>(<span class="c-fun">prompt</span>(<span class="c-str">"Nota:"</span>));
+    alumnos.<span class="c-fun">push</span>({ nombre: nombre, nota: nota });
+  }
+}</code></pre>
+      </figure>
+      <aside class="esquema-nota" aria-labelledby="n24">
+        <h3 id="n24">Cómo está armado</h3>
+        <ul class="pf__lista">
+          <li><strong>Los datos:</strong> un array de objetos, arriba de todo.</li>
+          <li><strong>Una función por opción.</strong> Las dos trabajan sobre el mismo array.</li>
+          <li>Si tocan Cancelar o no escriben un nombre, <code>agregarAlumno</code> no agrega nada.</li>
+          <li><strong>El menú</strong> va abajo, en el mismo <code>app.js</code>.</li>
+        </ul>
+      </aside>
+    </div>
+
+    <div class="ej ej--ancho">
+      <figure class="codigo codigo--js" id="ej-24b">
+        <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+        <pre tabindex="0" aria-label="Código de app.js, segunda parte: el menú"><code><span class="c-etq">const</span> menu = <span class="c-str">"1) Ver 2) Agregar o salir"</span>;
+<span class="c-etq">let</span> opcion = <span class="c-fun">prompt</span>(menu);
+<span class="c-etq">while</span> (opcion !== <span class="c-str">"salir"</span> &amp;&amp; opcion !== <span class="c-etq">null</span>) {
+  <span class="c-etq">if</span> (opcion === <span class="c-str">"1"</span>) {
+    <span class="c-fun">verAlumnos</span>();
+  } <span class="c-etq">else if</span> (opcion === <span class="c-str">"2"</span>) {
+    <span class="c-fun">agregarAlumno</span>();
+  } <span class="c-etq">else</span> {
+    console.<span class="c-fun">log</span>(<span class="c-str">"No existe la opción "</span> + opcion);
+  }
+  opcion = <span class="c-fun">prompt</span>(menu);
+}
+console.<span class="c-fun">log</span>(<span class="c-str">"Fin"</span>);</code></pre>
+      </figure>
+      <div class="ej-col">
+        <div class="consola" data-codigo="ej-24a ej-24b">
+          <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+          <p class="consola__nota">Corre las dos partes. Con 2, Lucía, 7, 1 y salir (o Cancelar):</p>
+          <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">Sofía: 9
+Tomás: 5
+Lucía: 7
+Fin</pre>
+        </div>
+        <aside class="esquema-nota" aria-labelledby="n24b">
+          <h3 id="n24b">El menú</h3>
+          <ul class="pf__lista">
+            <li>Sigue hasta "salir" o Cancelar (<code>null</code>).</li>
+            <li>Lo que agrega la opción 2 <strong>queda en el array</strong>.</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> los datos en un array de objetos, una función por opción y un menú que las llama. Así se arma un programa completo.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 24">24</span>
+    </footer>
+  </article>
+
+  <!-- =================== PARA PROFUNDIZAR =================== -->
+  <article class="lamina lamina--pf" id="profundizar" aria-labelledby="tpf">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°6</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="tpf"><span class="tit__num">+</span> Para profundizar</h2>
+      <p class="tit__sub">Un poco más sobre cada lámina</p>
+    </div>
+
+    <div class="pf-grid">
+    <section class="pf" aria-labelledby="pf21">
+      <p class="pf__etiqueta">Lámina 21</p>
+      <h3 class="pf__titulo" id="pf21">Un array adentro de un objeto</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p>Una propiedad también puede guardar un array. Se lee con el punto y después, los corchetes:</p>
+          <div class="ej ej--pf">
+            <figure class="codigo codigo--js" id="ej-pf21">
+              <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+              <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> alumna = {
+  nombre: <span class="c-str">"Ana"</span>,
+  notas: [<span class="c-num">7</span>, <span class="c-num">9</span>, <span class="c-num">8</span>]
+};
+console.<span class="c-fun">log</span>(alumna.notas[<span class="c-num">0</span>]);
+console.<span class="c-fun">log</span>(alumna.notas.length);</code></pre>
+            </figure>
+            <div class="consola" data-codigo="ej-pf21">
+              <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+              <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">7
+3</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf22">
+      <p class="pf__etiqueta">Lámina 22</p>
+      <h3 class="pf__titulo" id="pf22">Un nombre mal escrito no da error</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p>Con un nombre mal escrito, JavaScript no avisa: crea otra propiedad.</p>
+          <div class="ej ej--pf">
+            <figure class="codigo codigo--js" id="ej-pf22">
+              <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+              <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> chicle = { precio: <span class="c-num">300</span> };
+chicle.Precio = <span class="c-num">350</span>;  <span class="c-com">// con mayúscula</span>
+console.<span class="c-fun">log</span>(chicle);</code></pre>
+            </figure>
+            <div class="consola" data-codigo="ej-pf22">
+              <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+              <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">{precio: 300, Precio: 350}</pre>
+            </div>
+          </div>
+        </div>
+        <div class="pf__caja">
+          <h4>Otro error común</h4>
+          <ul class="pf__lista">
+            <li><code>alfajor.precio: 900;</code> da error: los dos puntos van solo adentro de las llaves. Para modificar va <code>=</code>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf23">
+      <p class="pf__etiqueta">Lámina 23</p>
+      <h3 class="pf__titulo" id="pf23">El promedio del curso</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p>Con un acumulador, como en el TP5, sumamos la misma propiedad de todos los objetos:</p>
+          <div class="ej ej--pf">
+            <figure class="codigo codigo--js" id="ej-pf23">
+              <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+              <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> alumnos = [
+  { nombre: <span class="c-str">"Sofía"</span>, nota: <span class="c-num">9</span> },
+  { nombre: <span class="c-str">"Tomás"</span>, nota: <span class="c-num">5</span> }
+];
+<span class="c-etq">let</span> suma = <span class="c-num">0</span>;
+<span class="c-etq">for</span> (<span class="c-etq">const</span> alumno <span class="c-etq">of</span> alumnos) {
+  suma = suma + alumno.nota;
+}
+console.<span class="c-fun">log</span>(suma / alumnos.length);</code></pre>
+            </figure>
+            <div class="consola" data-codigo="ej-pf23">
+              <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+              <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">7</pre>
+            </div>
+          </div>
+          <p>Para contar aprobados: un contador y <code>if (alumno.nota &gt;= 6)</code>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf24">
+      <p class="pf__etiqueta">Lámina 24</p>
+      <h3 class="pf__titulo" id="pf24">Elegir un objeto por su número</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p>La posición es uno menos que el número: <code>n - 1</code>. Con Cancelar, <code>Number(null)</code> da 0 y el <code>if</code> lo frena.</p>
+          <div class="ej ej--pf">
+            <figure class="codigo codigo--js" id="ej-pf24">
+              <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+              <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> alumnos = [
+  { nombre: <span class="c-str">"Sofía"</span>, nota: <span class="c-num">9</span> },
+  { nombre: <span class="c-str">"Tomás"</span>, nota: <span class="c-num">5</span> }
+];
+<span class="c-etq">let</span> n = <span class="c-fun">Number</span>(<span class="c-fun">prompt</span>(<span class="c-str">"¿Qué número?"</span>));
+<span class="c-etq">if</span> (n &gt;= <span class="c-num">1</span> &amp;&amp; n &lt;= alumnos.length) {
+  console.<span class="c-fun">log</span>(alumnos[n - <span class="c-num">1</span>].nombre);
+} <span class="c-etq">else</span> {
+  console.<span class="c-fun">log</span>(<span class="c-str">"No hay alumno "</span> + n);
+}</code></pre>
+            </figure>
+            <div class="consola" data-codigo="ej-pf24">
+              <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+              <p class="consola__nota">Con 2:</p>
+              <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">Tomás</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    </div>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 6</span>
+    </footer>
+  </article>
+
+  <!-- =================== ACTIVIDADES · Parte 1 =================== -->
+  <article class="lamina lamina--act" id="actividades" aria-labelledby="act-1">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°6</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <header class="act-banda">
+      <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-lapiz"/></svg>
+      <div>
+        <h2 id="act-1">Actividades para hacer en la carpeta</h2>
+        <p>TP N°6 — Objetos y mini-proyecto: Lista de tareas</p>
+      </div>
+      <span class="act-banda__parte">Parte<br>1 de 2</span>
+    </header>
+
+    <p class="consigna"><strong>Consigna:</strong> Resolvé cada punto en la carpeta, con lápiz y sin usar la computadora.</p>
+
+    <ol class="acts acts--2col">
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">21-</span> ¿Qué es un objeto?</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿Qué diferencia hay entre un array y un objeto? Escribí un ejemplo de cada uno.</div></li>
+          <li><b class="act__letra">b)</b><div>Encontrá los 3 errores y escribí el objeto bien:
+            <figure class="codigo codigo--js" id="act-21b">
+              <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+              <pre tabindex="0" aria-label="Código de app.js, con errores"><code><span class="c-etq">let</span> mochila = {
+  color = <span class="c-str">"azul"</span>,
+  bolsillos: <span class="c-num">3</span>
+  conRueditas: <span class="c-etq">false</span>
+];</code></pre>
+            </figure></div></li>
+          <li><b class="act__letra">c)</b><div>Escribí el objeto <code>libro</code> con el título, el autor y la cantidad de páginas de un libro que te guste.</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">22-</span> Leer y modificar propiedades</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>Predecí cómo queda el objeto y qué muestra:
+            <figure class="codigo codigo--js" id="act-22a">
+              <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+              <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> bici = {
+  km: <span class="c-num">120</span>,
+  prestada: <span class="c-etq">false</span>
+};
+bici.km = bici.km + <span class="c-num">15</span>;
+bici.prestada = <span class="c-etq">true</span>;
+bici.color = <span class="c-str">"rojo"</span>;
+console.<span class="c-fun">log</span>(bici);</code></pre>
+            </figure></div></li>
+          <li><b class="act__letra">b)</b><div>¿Qué muestran <code>bici.Km</code> y <code>bici.marca</code>? ¿Por qué?</div></li>
+          <li><b class="act__letra">c)</b><div>Escribí la línea que sube en 100 el precio de <code>alfajor</code>, a partir del precio que tiene.</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">23-</span> Arrays de objetos</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>En la lámina 23, sin el <code>push</code>, ¿qué muestran <code>alumnos[2].nombre</code>, <code>alumnos[0]</code> y <code>alumnos.length</code>?</div></li>
+          <li><b class="act__letra">b)</b><div>¿Array, objeto o array de objetos? Elegí uno para cada caso:
+            <ul class="act__frases">
+              <li>las temperaturas de la semana;</li>
+              <li>nombre, edad y ciudad de una alumna;</li>
+              <li>los libros de la biblioteca, con título y autor.</li>
+            </ul></div></li>
+          <li><b class="act__letra">c)</b><div>Escribí un <code>for...of</code> que muestre a los alumnos con nota menor que 6.</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">24-</span> Todo junto en un programa</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>En el programa de la lámina 24, ¿qué pasa si escribís 3? ¿Y si tocás Cancelar en el menú?</div></li>
+          <li><b class="act__letra">b)</b><div>Prueba de escritorio: si escribís 2, Ana, 8, 1 y salir, ¿qué muestra la consola?</div></li>
+          <li><b class="act__letra">c)</b><div>Escribí la función <code>verAprobados()</code>, que muestre solo los alumnos con nota 6 o más. ¿Qué líneas sumás al menú para que sea la opción 3?</div></li>
+        </ol>
+      </li>
+    </ol>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 6</span>
+    </footer>
+  </article>
+
+  <!-- =================== ACTIVIDADES · Parte 2 =================== -->
+  <article class="lamina lamina--act" id="actividades-2" aria-labelledby="act-2">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°6</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <header class="act-banda">
+      <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-editor"/></svg>
+      <div>
+        <h2 id="act-2">Práctica en la computadora</h2>
+        <p>TP N°6 — Objetos y mini-proyecto: Lista de tareas</p>
+      </div>
+      <span class="act-banda__parte">Parte<br>2 de 2</span>
+    </header>
+
+    <p class="consigna"><strong>Consigna:</strong> Armá el programa en una copia de la plantilla llamada <code>tp6-apellido</code>. El <code>app.js</code> empieza con un comentario que dice qué hace.</p>
+
+    <ol class="acts acts--amplio">
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">1-</span> Lista de tareas</h3>
+        <p class="act__caso">Programa de lista de tareas con menú (hecho con <code>prompt()</code>), donde cada tarea es un objeto:</p>
+        <figure class="codigo codigo--js" id="act-tarea">
+          <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+          <pre tabindex="0" aria-label="Código de app.js, una tarea"><code><span class="c-etq">let</span> tarea = { texto: <span class="c-str">"Comprar yerba"</span>, completada: <span class="c-etq">false</span> };</code></pre>
+        </figure>
+        <ol class="act__items act__items--2col">
+          <li><b class="act__letra">1</b><div><strong>Agregar tarea.</strong></div></li>
+          <li><b class="act__letra">2</b><div><strong>Ver todas las tareas:</strong> las completadas se muestran con "✓".</div></li>
+          <li><b class="act__letra">3</b><div><strong>Marcar tarea como completada:</strong> cambia la propiedad <code>completada</code> a <code>true</code>.</div></li>
+          <li><b class="act__letra">4</b><div><strong>Eliminar tarea.</strong></div></li>
+          <li><b class="act__letra">5</b><div><strong>Salir.</strong></div></li>
+        </ol>
+        <p class="act__caso">Cada opción debe ser una función. El menú se repite hasta que se elija salir. La versión con botones y lista en pantalla llega en el TP15.</p>
+      </li>
+    </ol>
+
+    <section class="panel" aria-label="Para tener en cuenta">
+      <ol class="puntos">
+        <li><span class="puntos__n" aria-hidden="true">!</span><span>Para marcar o eliminar, mostrá las tareas numeradas y pedí el número: la tarea 1 está en la posición 0 (ver "Para profundizar", lámina 24).</span></li>
+      </ol>
+    </section>
+
+    <section class="entrega" aria-labelledby="ent-1">
+      <svg class="ico ico--l" aria-hidden="true" focusable="false"><use href="#i-subir"/></svg>
+      <div>
+        <h3 id="ent-1">Entrega</h3>
+        <div class="entrega__cols">
+          <div>
+            <p>Guardá las capturas del programa funcionando <strong>adentro de la carpeta</strong> del proyecto y subí la carpeta en <strong>.zip</strong>: todo va en el mismo archivo.</p>
+            <p class="entrega__sub--sep">Para sacar una captura: <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd>, marcá la parte de la pantalla y tocá el aviso que aparece para guardarla.</p>
+          </div>
+          <div>
+            <p class="entrega__sub">Antes de entregar, marcá:</p>
+            <ul class="checklist">
+              <li>Cada tarea es un objeto con <code>texto</code> y <code>completada</code>.</li>
+              <li>Cada opción del menú es una función.</li>
+              <li>Las completadas se ven con "✓".</li>
+              <li>El menú termina con "salir" y con Cancelar.</li>
+              <li>Las capturas están adentro del <code>.zip</code>.</li>
+              <li>El <code>app.js</code> tiene su comentario. No hay errores en la consola.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 6</span>
+    </footer>
+  </article>
+</main>
+
+<script src="../assets/js/actividades.js"></script>
+<script src="../assets/js/ejemplos.js"></script>
+</body>
+</html>

@@ -137,10 +137,17 @@
     agregarLinea(enCurso.salida, d.texto, clase);
   });
 
+  /* data-codigo puede nombrar varios bloques del mismo archivo, separados por espacio:
+     se corren juntos, en ese orden */
+  function bloquesDe(consola) {
+    return consola.getAttribute("data-codigo").trim().split(/\s+/).map(function (id) {
+      return document.getElementById(id);
+    });
+  }
+
   function ejecutar(consola, boton) {
-    var fig = document.getElementById(consola.getAttribute("data-codigo"));
-    var pre = fig && fig.querySelector("pre");
-    if (!pre) { return; }
+    var pres = bloquesDe(consola).map(function (fig) { return fig && fig.querySelector("pre"); });
+    if (pres.indexOf(null) !== -1) { return; }
     if (enCurso) {
       enCurso.marco.parentNode.removeChild(enCurso.marco);
       enCurso.boton.disabled = false;
@@ -154,7 +161,8 @@
     if (estado) { estado.textContent = ""; }
     if (nota) { nota.hidden = true; }
 
-    var codigo = pre.textContent.replace(/<\/script/gi, "<\\/script");
+    var codigo = pres.map(function (pre) { return pre.textContent; }).join("\n")
+      .replace(/<\/script/gi, "<\\/script");
     var marco = document.createElement("iframe");
     marco.setAttribute("sandbox", "allow-scripts allow-modals");
     marco.setAttribute("title", "Ejecución del ejemplo");
@@ -176,7 +184,7 @@
     var barra = consola.querySelector(".consola__barra");
     if (!barra) { return; }
     var boton = crearBoton("▶ Ejecutar", "boton-cod--ejecutar");
-    var fig = document.getElementById(consola.getAttribute("data-codigo"));
+    var fig = bloquesDe(consola)[0];
     var rotulo = fig && fig.querySelector(".codigo__archivo");
     var archivo = rotulo ? rotulo.textContent.trim() : "el ejemplo";
     boton.setAttribute("aria-label", "Ejecutar " + archivo + " y ver la salida");

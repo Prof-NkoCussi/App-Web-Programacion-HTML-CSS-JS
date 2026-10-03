@@ -334,6 +334,10 @@ button.boton { border: 0; font-family: inherit; cursor: pointer; }
 }
 .comparar h3 { font-family: var(--fuente-titulo); font-weight: 700; font-size: 23px; color: var(--tinta); line-height: 1.1; margin-bottom: 4px; }
 .comparar p { font-size: 16.5px; line-height: 1.35; }
+/* Con un esquema SVG debajo del texto de cada tarjeta: en el celular cada esquema usa todo el ancho */
+.comparar--esquema li { align-items: start; }
+.comparar--esquema .esquema { margin-top: 10px; }
+.comparar--esquema .esquema svg { margin: 0 auto; }
 
 /* Tabla comparativa */
 .tabla-comp { width: calc(100% + 12px); margin: -6px; border-collapse: separate; border-spacing: 6px; table-layout: fixed; }
@@ -555,6 +559,7 @@ ol.pf__lista li::before {
 .act-tabla thead th { background: var(--acento-claro); font-weight: 700; color: var(--tinta); text-align: center; }
 .act-tabla tbody th { font-weight: 600; color: var(--tinta); }
 .act__items .codigo { margin-top: 5px; }
+.act > .codigo { margin-top: 9px; }
 .act .codigo figcaption { padding: 2px 6px 2px 8px; }
 .act .codigo__archivo { font-size: 11.5px; padding: 0 7px; }
 
@@ -758,7 +763,7 @@ ol.pf__lista li::before {
   .ejemplo { grid-template-columns: auto auto 1fr; }
   .ejemplo p { grid-column: auto; padding-left: 12px; border-left: 2px solid var(--panel-linea); }
   .ej { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); }
-  .ej--pf { grid-template-columns: minmax(0, 1fr); }
+  .ej--pf, .ej--apilado { grid-template-columns: minmax(0, 1fr); }   /* apilado: la salida (objetos) necesita todo el ancho */
   .ej--ancho { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }   /* código con líneas largas y salida corta */
   .esquema-par { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 14px; }
   .error-controlado__cols { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
