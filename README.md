@@ -46,9 +46,11 @@ Un cuadernillo web para pasar de Python a JavaScript y después armar páginas w
 | 13 | Hacer que la página responda | Próximamente |
 | 14 | Formularios que funcionan | Próximamente |
 | 15 | Mini-app interactiva | Próximamente |
-| **Módulo 6 · Proyecto integrador** | | |
-| 16 | Mi sitio en GitHub | Próximamente |
-| 17 | Mi portafolio digital | Próximamente |
+| **Módulo 6 · Del navegador al servidor** | | |
+| 16 | Primeros pasos con PHP | Próximamente |
+| **Módulo 7 · Proyecto integrador** | | |
+| 17 | Mi sitio en GitHub | Próximamente |
+| 18 | Mi portafolio digital | Próximamente |
 
 ## Estructura del repositorio
 
