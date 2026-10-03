@@ -95,7 +95,7 @@ HTML, CSS y JavaScript vanilla. Sin frameworks, sin build, sin backend, sin depe
 
 ## Formato de cada TP
 
-1. **Barra superior** (`header.barra`): "← Índice" · "TP N°X — nombre del TP" · botón `data-imprimir`. Debajo, `nav.partes` con accesos a cada lámina, "Para profundizar" y "Actividades". Hay nombres largos (TP6, TP9): verificar a 360 px.
+1. **Barra superior** (`header.barra`): botón "Índice" · "TP N°X — nombre del TP" · botón `data-imprimir`. El botón "Índice" es igual al de "Guardar PDF" (clase `.boton`, fondo `--tinta`, texto blanco), con el ícono de flecha hacia atrás `#i-atras` en lugar de la flecha de descarga: `<a class="boton barra__volver" href="../index.html"><svg aria-hidden="true" focusable="false"><use href="#i-atras"/></svg><span>Índice</span></a>`. El `<symbol id="i-atras">` va en el sprite de cada TP, junto a `i-descarga`. Debajo, `nav.partes` con accesos a cada lámina, "Para profundizar" y "Actividades". Hay nombres largos (TP6, TP9): verificar a 360 px.
 2. **Láminas** (`article.lamina#pag-N`): `.cab` → `.tit` (número en azul + título + subtítulo) → bloques → `.idea` (Idea clave) → `.pie`. 4 láminas por TP; 5 en los TP11, TP12 y TP13; 3 en los TP15 y TP18.
 3. **Para profundizar** (`article.lamina.lamina--pf#profundizar`): `.pf-grid` de 2×2, un bloque `.pf` por lámina (texto + recuadro `.pf__caja` con ejemplo o lista). Con 3 láminas, el cuarto bloque integra. Con 5 láminas, dos láminas vecinas comparten un bloque. Acá van las "Buenas prácticas" y los "Resumen" del PDF que no entren en la lámina.
 4. **Actividades** (`article.lamina.lamina--act`, ids `actividades` y `actividades-2`), en dos hojas:
