@@ -80,7 +80,7 @@ HTML, CSS y JavaScript vanilla. Sin frameworks, sin build, sin backend, sin depe
 - **Texto sobre color:** sobre `--acento`, `--css` y `--js` va texto **blanco** (5,2:1, 5,7:1 y 6:1). Es al revés que en el repo de origen, donde sobre el cian iba texto oscuro: revisar cada lugar donde había texto sobre el acento. Sobre los tonos claros y suaves va `--tinta` o `--texto`.
 - **Código en la impresión:** en el bloque `print`, el código y la consola pasan a fondo claro `#F1F5F9` con borde, y las variables `--cod-*` se redefinen: base `#0F172A`, etq `#1D4ED8`, atr `#9A3412`, str `#047857`, com `#475569`, num `#BE185D`, fun `#6D28D9`. Ahorra tinta y se lee en blanco y negro.
 - **Cabecera de cada hoja:** `PROGRAMACIÓN` con la bajada `HTML · CSS · JS`, y a la derecha `TRABAJO PRÁCTICO N°X` con la barra azul vertical. Mismas reglas de tamaño y de celular que el repo de origen.
-- **Pie de cada hoja:** `Programación - HTML, CSS, JS - Prof. Nicolás A. Cussi` + número de lámina (o `TP N` en profundizar y actividades).
+- **Pie de cada hoja y de la portada:** `Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi`, exactamente así: guion corto (`-`) entre "Programación" y "HTML", y guion largo (`—`) antes de "Prof.". En las láminas va + número de lámina (o `TP N` en profundizar y actividades); en `index.html`, sin número.
 - **Datos de la portada (`index.html`, `p.portada__datos`):** exactamente estas dos líneas, la primera en negrita y la segunda sin negrita, y sin el nombre de la escuela:
   ```
   Programación - HTML, CSS, JS • Prof. Nicolás A. Cussi
