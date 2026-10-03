@@ -32,7 +32,7 @@ Un cuadernillo web para pasar de Python a JavaScript y después armar páginas w
 | 3 | Crear mis propias funciones | ✅ Disponible |
 | **Módulo 2 · Arrays y objetos** | | |
 | 4 | Mi primer array | ✅ Disponible |
-| 5 | Operaciones con arrays | Próximamente |
+| 5 | Operaciones con arrays | ✅ Disponible |
 | 6 | Objetos y mini-proyecto: Lista de tareas | Próximamente |
 | **Módulo 3 · HTML básico** | | |
 | 7 | Mi primera página web | Próximamente |
