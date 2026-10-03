@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TP N°4 — Mi primer array · Programación - HTML, CSS, JS</title>
+  <meta name="description" content="TP N°4 de Programación: qué es un array, posiciones y length, push, pop, shift y unshift, indexOf y splice, recorrer con for y for...of. Prof. Nicolás A. Cussi.">
+  <meta name="theme-color" content="#2563EB">
+  <link rel="preload" href="../assets/fonts/barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/barlow-semi-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/estilos.css">
+</head>
+<body data-tp="4">
+
+<!-- ====== Íconos ====== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-web" viewBox="0 0 48 48">
+      <rect x="4" y="7" width="40" height="34" rx="4" style="fill:var(--ac2, var(--acento-claro))"/>
+      <path d="M8 7h32a4 4 0 0 1 4 4v5H4v-5a4 4 0 0 1 4-4z" style="fill:var(--ac)"/>
+      <rect x="4" y="7" width="40" height="34" rx="4"/>
+      <path d="M4 16h40M19 23l-6 6 6 6M29 23l6 6-6 6M26.5 21l-5 16"/>
+    </symbol>
+    <symbol id="i-array" viewBox="0 0 48 48">
+      <rect x="3" y="14" width="14" height="18" rx="2" style="fill:var(--ac)"/>
+      <path d="M3 16a2 2 0 0 1 2-2h38a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM17 14v18M31 14v18"/>
+      <path d="M10 39v1M24 39v1M38 39v1"/>
+    </symbol>
+    <symbol id="i-agregar" viewBox="0 0 48 48">
+      <rect x="30" y="14" width="15" height="18" rx="2" style="fill:var(--ac)"/>
+      <path d="M3 16a2 2 0 0 1 2-2h21v18H5a2 2 0 0 1-2-2zM15 14v18"/>
+      <rect x="30" y="14" width="15" height="18" rx="2"/>
+      <path d="M37.5 18.5v9M33 23h9"/>
+    </symbol>
+    <symbol id="i-buscar" viewBox="0 0 48 48">
+      <circle cx="20" cy="20" r="13" style="fill:var(--ac)"/>
+      <circle cx="20" cy="20" r="13"/>
+      <path d="M29.5 29.5 43 43"/>
+    </symbol>
+    <symbol id="i-recorrer" viewBox="0 0 48 48">
+      <path d="M5 11h36M35 5l6 6-6 6" style="stroke:var(--ac);stroke-width:3.4"/>
+      <path d="M3 25a2 2 0 0 1 2-2h38a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM17 23v18M31 23v18"/>
+    </symbol>
+    <symbol id="i-foco" viewBox="0 0 48 48">
+      <path d="M24 2.5v4M10 8.5l2.8 2.8M38 8.5l-2.8 2.8M4 22h4M40 22h4"/>
+      <path d="M24 12a10 10 0 0 0-6.2 17.8c1.4 1.2 2.2 2.6 2.2 4.2v1h8v-1c0-1.6.8-3 2.2-4.2A10 10 0 0 0 24 12z" style="fill:var(--ac)"/>
+      <path d="M20 39h8M21.5 43h5"/>
+    </symbol>
+    <symbol id="i-editor" viewBox="0 0 48 48">
+      <path d="M7 7h34a3 3 0 0 1 3 3v4H4v-4a3 3 0 0 1 3-3z" style="fill:var(--ac)"/>
+      <rect x="4" y="7" width="40" height="34" rx="3"/>
+      <path d="M4 14h40M10 21h14M15 27h18M15 33h11"/>
+    </symbol>
+    <symbol id="i-lapiz" viewBox="0 0 48 48">
+      <path d="M33 6l9 9-25 25-9-9z" style="fill:var(--ac)"/>
+      <path d="M8 31 5.5 42.5 17 40z"/>
+      <path d="M27 12l9 9"/>
+    </symbol>
+    <symbol id="i-subir" viewBox="0 0 48 48">
+      <path d="M6 30v8a3 3 0 0 0 3 3h30a3 3 0 0 0 3-3v-8"/>
+      <path d="M24 31V7M15 16l9-9 9 9" style="stroke:var(--ac);stroke-width:3.4"/>
+    </symbol>
+    <symbol id="i-descarga" viewBox="0 0 24 24">
+      <path d="M12 3v12M7 10l5 5 5-5M5 20h14"/>
+    </symbol>
+  </defs>
+</svg>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="barra">
+  <div class="barra__fila">
+    <a class="barra__volver" href="../index.html">← Índice</a>
+    <span class="barra__titulo">TP N°4 — Mi primer array</span>
+    <button class="boton" type="button" data-imprimir aria-label="Guardar en PDF">
+      <svg aria-hidden="true" focusable="false"><use href="#i-descarga"/></svg><span><span class="boton__largo">Guardar </span>PDF</span>
+    </button>
+  </div>
+  <nav class="partes" aria-label="Partes del TP N°4">
+    <a href="#pag-13">13 · Arrays</a>
+    <a href="#pag-14">14 · Agregar y quitar</a>
+    <a href="#pag-15">15 · Buscar y eliminar</a>
+    <a href="#pag-16">16 · Recorrer</a>
+    <a href="#profundizar">Para profundizar</a>
+    <a href="#actividades">Actividades</a>
+  </nav>
+</header>
+
+<main id="contenido" class="laminas">
+  <h1 class="sr-only">TP N°4 — Mi primer array</h1>
+
+  <!-- =================== LÁMINA 13 =================== -->
+  <article class="lamina lamina--compacta" id="pag-13" aria-labelledby="t13">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°4</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t13"><span class="tit__num">13.</span> ¿Qué es un array?</h2>
+      <p class="tit__sub">Crearlo, leer cada posición y contar con length</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-array"/></svg>
+      <p>Un <strong>array</strong> es una lista de datos guardada en <strong>una sola variable</strong>. Cada dato ocupa una <strong>posición</strong>, y las posiciones se cuentan desde <strong>0</strong>.</p>
+    </div>
+
+    <ul class="comparar">
+      <li><div><h3>Sin array</h3><p>Una variable por dato: <code>fruta1</code>, <code>fruta2</code>, <code>fruta3</code>… Con 30 datos, 30 variables.</p></div></li>
+      <li><div><h3>Con array</h3><p>Todos los datos en <strong>una variable</strong>, entre corchetes <code>[ ]</code> y separados por coma.</p></div></li>
+    </ul>
+
+    <div class="esquema-par">
+    <figure class="esquema">
+      <svg viewBox="30 0 460 114" style="max-width:440px;margin:0 auto;display:block" role="img" aria-labelledby="esq13">
+        <title id="esq13">El array frutas tiene 3 datos: "uva" en la posición 0, "pera" en la 1 y "frutilla" en la 2. Se leen con frutas[0], frutas[1] y frutas[2]. frutas.length es 3.</title>
+        <g style="font-family:var(--fuente-codigo);font-size:17px;font-weight:700;fill:var(--acento-numero)" text-anchor="middle">
+          <text x="140" y="20">frutas[0]</text>
+          <text x="275" y="20">frutas[1]</text>
+          <text x="410" y="20">frutas[2]</text>
+        </g>
+        <g style="fill:var(--acento-claro);stroke:var(--acento);stroke-width:2">
+          <rect x="76" y="30" width="128" height="44" rx="6"/>
+          <rect x="211" y="30" width="128" height="44" rx="6"/>
+          <rect x="346" y="30" width="128" height="44" rx="6"/>
+        </g>
+        <g style="font-family:var(--fuente-codigo);font-size:18px;fill:var(--tinta)" text-anchor="middle">
+          <text x="140" y="58">"uva"</text>
+          <text x="275" y="58">"pera"</text>
+          <text x="410" y="58">"frutilla"</text>
+        </g>
+        <g style="fill:var(--acento)">
+          <circle cx="140" cy="96" r="14"/>
+          <circle cx="275" cy="96" r="14"/>
+          <circle cx="410" cy="96" r="14"/>
+        </g>
+        <g class="tt tt--claro" style="font-size:17px;font-weight:700" text-anchor="middle">
+          <text x="140" y="102">0</text>
+          <text x="275" y="102">1</text>
+          <text x="410" y="102">2</text>
+        </g>
+        <text class="tt" x="112" y="101" text-anchor="end" style="font-size:15px;fill:var(--gris)">posición</text>
+      </svg>
+    </figure>
+    <aside class="esquema-nota" aria-labelledby="n13">
+      <h3 id="n13">¿Por qué la última posición es la 2?</h3>
+      <ul class="pf__lista">
+        <li><code>frutas.length</code> es 3: cuenta cuántos datos hay. Son 3: uva, pera y frutilla. Va <strong>sin paréntesis</strong>.</li>
+        <li>Las posiciones se cuentan desde 0: uva está en la 0, pera en la 1 y frutilla en la 2.</li>
+        <li>Por eso la última siempre es <strong>uno menos</strong> que la cantidad: 3 datos, última posición 2. En código, <code>length - 1</code>.</li>
+      </ul>
+    </aside>
+    </div>
+
+    <div class="ej">
+      <figure class="codigo codigo--js" id="ej-13">
+        <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+        <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> frutas = [<span class="c-str">"uva"</span>, <span class="c-str">"pera"</span>, <span class="c-str">"frutilla"</span>];
+console.<span class="c-fun">log</span>(frutas);
+console.<span class="c-fun">log</span>(frutas[<span class="c-num">0</span>]);
+console.<span class="c-fun">log</span>(frutas.length);
+console.<span class="c-fun">log</span>(frutas[frutas.length - <span class="c-num">1</span>]);
+console.<span class="c-fun">log</span>(frutas[<span class="c-num">3</span>]);  <span class="c-com">// no existe</span>
+frutas[<span class="c-num">1</span>] = <span class="c-str">"kiwi"</span>;  <span class="c-com">// reemplaza "pera"</span>
+console.<span class="c-fun">log</span>(frutas);</code></pre>
+      </figure>
+      <div class="consola" data-codigo="ej-13">
+        <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+        <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">["uva", "pera", "frutilla"]
+uva
+3
+frutilla
+undefined
+["uva", "kiwi", "frutilla"]</pre>
+      </div>
+    </div>
+
+    <section class="panel" aria-label="Reglas para usar un array">
+      <ol class="puntos puntos--2col">
+        <li><span class="puntos__n" aria-hidden="true">1</span><span>Leemos un dato con <code>frutas[0]</code> y lo cambiamos con <code>=</code>.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">2</span><span>Una posición que no existe da <code>undefined</code> (sin valor).</span></li>
+      </ol>
+    </section>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> las posiciones empiezan en <b>0</b>. Por eso la última es <code>length - 1</code>: <code>frutas[frutas.length - 1]</code> devuelve "frutilla".</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 13">13</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 14 =================== -->
+  <article class="lamina lamina--compacta" id="pag-14" aria-labelledby="t14">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°4</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t14"><span class="tit__num">14.</span> Agregar y quitar datos</h2>
+      <p class="tit__sub">push, pop, shift y unshift</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-agregar"/></svg>
+      <p>Un array puede crecer y achicarse mientras el programa corre. Para eso usamos <strong>métodos</strong>: acciones que se escriben después del nombre del array, con un punto: <code>fila.push("Caro")</code>.</p>
+    </div>
+
+    <table class="tabla-comp">
+      <caption class="sr-only">Métodos para agregar y quitar datos, al final y al principio del array</caption>
+      <thead>
+        <tr><th scope="col">Dónde</th><th scope="col">Agregar</th><th scope="col">Quitar</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">Al final</th><td><code>push(dato)</code></td><td><code>pop()</code></td></tr>
+        <tr><th scope="row">Al principio</th><td><code>unshift(dato)</code></td><td><code>shift()</code></td></tr>
+      </tbody>
+    </table>
+
+    <div class="ej">
+      <figure class="codigo codigo--js" id="ej-14">
+        <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+        <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-com">// La fila del buffet</span>
+<span class="c-etq">let</span> fila = [<span class="c-str">"Ana"</span>, <span class="c-str">"Beto"</span>];
+fila.<span class="c-fun">push</span>(<span class="c-str">"Caro"</span>);     <span class="c-com">// llega al final</span>
+console.<span class="c-fun">log</span>(fila);
+fila.<span class="c-fun">unshift</span>(<span class="c-str">"Dani"</span>);  <span class="c-com">// se pone adelante</span>
+console.<span class="c-fun">log</span>(fila);
+<span class="c-etq">let</span> primero = fila.<span class="c-fun">shift</span>();
+console.<span class="c-fun">log</span>(primero + <span class="c-str">" ya compró"</span>);
+<span class="c-etq">let</span> ultimo = fila.<span class="c-fun">pop</span>();
+console.<span class="c-fun">log</span>(ultimo + <span class="c-str">" se cansó y se fue"</span>);
+console.<span class="c-fun">log</span>(fila);
+console.<span class="c-fun">log</span>(fila.length);</code></pre>
+      </figure>
+      <div class="consola" data-codigo="ej-14">
+        <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+        <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">["Ana", "Beto", "Caro"]
+["Dani", "Ana", "Beto", "Caro"]
+Dani ya compró
+Caro se cansó y se fue
+["Ana", "Beto"]
+2</pre>
+      </div>
+    </div>
+
+    <section class="panel" aria-label="Qué pasó en el ejemplo">
+      <ol class="puntos puntos--2col">
+        <li><span class="puntos__n" aria-hidden="true">1</span><span><code>push</code> y <code>unshift</code> reciben entre paréntesis el dato que agregan.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">2</span><span><code>shift</code> y <code>pop</code> van con paréntesis vacíos y <strong>devuelven</strong> el dato que quitan: lo guardamos en una variable.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">3</span><span>Los cuatro <strong>cambian el array</strong> y su <code>length</code>.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">4</span><span>Al agregar o quitar <strong>adelante</strong>, los demás datos cambian de posición: "Ana" pasó de la 0 a la 1.</span></li>
+      </ol>
+    </section>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> <code>push</code> y <code>pop</code> trabajan al <b>final</b> del array; <code>unshift</code> y <code>shift</code>, al <b>principio</b>.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 14">14</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 15 =================== -->
+  <article class="lamina lamina--compacta" id="pag-15" aria-labelledby="t15">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°4</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t15"><span class="tit__num">15.</span> Buscar y eliminar</h2>
+      <p class="tit__sub">indexOf, splice y el cuidado con el -1</p>
+    </div>
+
+    <ul class="comparar">
+      <li><div><h3>Buscar: indexOf()</h3><p><code>indexOf(dato)</code> devuelve la <strong>posición</strong> del dato. Si no lo encuentra, devuelve <strong>-1</strong>.</p></div></li>
+      <li><div><h3>Eliminar: splice()</h3><p><code>splice(posición, cantidad)</code> quita datos desde esa posición. Los de atrás <strong>se corren</strong>.</p></div></li>
+    </ul>
+
+    <div class="ej ej--ancho">
+      <figure class="codigo codigo--js" id="ej-15a">
+        <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+        <pre tabindex="0" aria-label="Código de app.js, sin revisar el -1"><code><span class="c-etq">let</span> materias = [<span class="c-str">"Física"</span>, <span class="c-str">"Arte"</span>, <span class="c-str">"Inglés"</span>];
+console.<span class="c-fun">log</span>(materias.<span class="c-fun">indexOf</span>(<span class="c-str">"Arte"</span>));
+console.<span class="c-fun">log</span>(materias.<span class="c-fun">indexOf</span>(<span class="c-str">"Química"</span>));
+<span class="c-com">// Sin revisar el -1:</span>
+<span class="c-etq">let</span> pos = materias.<span class="c-fun">indexOf</span>(<span class="c-str">"Química"</span>);
+materias.<span class="c-fun">splice</span>(pos, <span class="c-num">1</span>);
+console.<span class="c-fun">log</span>(materias);</code></pre>
+      </figure>
+      <div class="consola" data-codigo="ej-15a">
+        <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+        <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">1
+-1
+["Física", "Arte"]</pre>
+      </div>
+    </div>
+
+    <div class="ej ej--ancho">
+      <figure class="codigo codigo--js" id="ej-15b">
+        <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+        <pre tabindex="0" aria-label="Código de app.js, revisando el -1"><code><span class="c-etq">let</span> materias = [<span class="c-str">"Física"</span>, <span class="c-str">"Arte"</span>, <span class="c-str">"Inglés"</span>];
+<span class="c-etq">let</span> borrar = <span class="c-fun">prompt</span>(<span class="c-str">"¿Qué materia borramos?"</span>);
+<span class="c-etq">let</span> pos = materias.<span class="c-fun">indexOf</span>(borrar);
+<span class="c-etq">if</span> (pos !== -<span class="c-num">1</span>) {
+  materias.<span class="c-fun">splice</span>(pos, <span class="c-num">1</span>);
+  console.<span class="c-fun">log</span>(<span class="c-str">"Borramos "</span> + borrar);
+} <span class="c-etq">else</span> {
+  console.<span class="c-fun">log</span>(borrar + <span class="c-str">" no está en la lista"</span>);
+}
+console.<span class="c-fun">log</span>(materias);</code></pre>
+      </figure>
+      <div class="consola" data-codigo="ej-15b">
+        <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+        <p class="consola__nota">Con Arte:</p>
+        <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">Borramos Arte
+["Física", "Inglés"]</pre>
+      </div>
+    </div>
+
+    <section class="panel" aria-label="Qué pasó en los ejemplos">
+      <ol class="puntos puntos--2col">
+        <li><span class="puntos__n" aria-hidden="true">1</span><span>"Arte" está en la posición 1. "Química" no está: <code>indexOf</code> devuelve <strong>-1</strong>.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">2</span><span><code>splice(-1, 1)</code> no da error: borra el <strong>último</strong>. Perdimos "Inglés".</span></li>
+        <li><span class="puntos__n" aria-hidden="true">3</span><span>El segundo ejemplo revisa <code>pos !== -1</code> antes de usar <code>splice</code>.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">4</span><span>Si escribimos una materia que no está, avisa y el array queda igual.</span></li>
+      </ol>
+    </section>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> <code>indexOf</code> devuelve <b>-1</b> cuando no encuentra el dato. Antes de usar <code>splice</code>, siempre revisamos ese -1 con un <code>if</code>.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 15">15</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 16 =================== -->
+  <article class="lamina lamina--compacta" id="pag-16" aria-labelledby="t16">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°4</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t16"><span class="tit__num">16.</span> Recorrer un array</h2>
+      <p class="tit__sub">for y for...of: un dato en cada vuelta</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-recorrer"/></svg>
+      <p><strong>Recorrer</strong> un array es pasar por todos sus datos, uno por uno, con un bucle. Así el mismo código sirve para un array de 3 datos o de 300.</p>
+    </div>
+
+    <div class="ej ej--ancho">
+      <figure class="codigo codigo--js" id="ej-16a">
+        <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+        <pre tabindex="0" aria-label="Código de app.js, recorrer con for"><code><span class="c-etq">let</span> notas = [<span class="c-num">7</span>, <span class="c-num">9</span>, <span class="c-num">5</span>];
+<span class="c-etq">for</span> (<span class="c-etq">let</span> i = <span class="c-num">0</span>; i &lt; notas.length; i++) {
+  console.<span class="c-fun">log</span>(i + <span class="c-str">": "</span> + notas[i]);
+}
+<span class="c-com">// Al revés: de la última a la primera</span>
+<span class="c-etq">for</span> (<span class="c-etq">let</span> i = notas.length - <span class="c-num">1</span>; i &gt;= <span class="c-num">0</span>; i--) {
+  console.<span class="c-fun">log</span>(i + <span class="c-str">": "</span> + notas[i]);
+}</code></pre>
+      </figure>
+      <div class="consola" data-codigo="ej-16a">
+        <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+        <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">0: 7
+1: 9
+2: 5
+2: 5
+1: 9
+0: 7</pre>
+      </div>
+    </div>
+
+    <div class="ej ej--ancho">
+      <figure class="codigo codigo--js" id="ej-16b">
+        <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+        <pre tabindex="0" aria-label="Código de app.js, cargar y recorrer con for...of"><code><span class="c-etq">let</span> amigos = [];  <span class="c-com">// array vacío</span>
+<span class="c-etq">let</span> nombre = <span class="c-fun">prompt</span>(<span class="c-str">"Nombre (o fin)"</span>);
+<span class="c-etq">while</span> (nombre !== <span class="c-str">"fin"</span> &amp;&amp; nombre !== <span class="c-etq">null</span>) {
+  amigos.<span class="c-fun">push</span>(nombre);
+  nombre = <span class="c-fun">prompt</span>(<span class="c-str">"Nombre (o fin)"</span>);
+}
+<span class="c-etq">for</span> (<span class="c-etq">const</span> amigo <span class="c-etq">of</span> amigos) {
+  console.<span class="c-fun">log</span>(<span class="c-str">"Hola, "</span> + amigo);
+}
+console.<span class="c-fun">log</span>(<span class="c-str">"Total: "</span> + amigos.length);</code></pre>
+      </figure>
+      <div class="consola" data-codigo="ej-16b">
+        <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+        <p class="consola__nota">Con Ana, Beto y fin (o Cancelar):</p>
+        <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">Hola, Ana
+Hola, Beto
+Total: 2</pre>
+      </div>
+    </div>
+
+    <section class="panel" aria-label="Cómo recorrer y cargar un array">
+      <ol class="puntos puntos--2col">
+        <li><span class="puntos__n" aria-hidden="true">1</span><span><strong>for:</strong> con <code>i &lt; notas.length</code>, <code>i</code> llega hasta <code>length - 1</code>.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">2</span><span><strong>Al revés:</strong> <code>i</code> arranca en <code>length - 1</code> y baja mientras <code>i &gt;= 0</code>.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">3</span><span><strong>for...of:</strong> en cada vuelta, <code>amigo</code> toma el dato siguiente.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">4</span><span><strong>Cargar:</strong> <code>[]</code> y un <code>push</code> por vuelta, hasta "fin" o Cancelar.</span></li>
+      </ol>
+    </section>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> con <code>for</code> recorremos por posición, de <code>0</code> a <code>length - 1</code> o al revés. Con <code>for...of</code> recorremos los datos directamente.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 16">16</span>
+    </footer>
+  </article>
+
+  <!-- =================== PARA PROFUNDIZAR =================== -->
+  <article class="lamina lamina--pf" id="profundizar" aria-labelledby="tpf">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°4</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="tpf"><span class="tit__num">+</span> Para profundizar</h2>
+      <p class="tit__sub">Un poco más sobre cada lámina</p>
+    </div>
+
+    <div class="pf-grid">
+    <section class="pf" aria-labelledby="pf13">
+      <p class="pf__etiqueta">Lámina 13</p>
+      <h3 class="pf__titulo" id="pf13">Qué se puede guardar en un array</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p>Un array puede guardar números, textos o booleanos: <code>[7, 9, 5]</code>, <code>["sí", "no"]</code>, <code>[true, false]</code>. <code>[]</code> es un array vacío: su <code>length</code> es 0.</p>
+        </div>
+        <div class="pf__caja">
+          <h4>Buenas prácticas</h4>
+          <ul class="pf__lista">
+            <li>Recordar que las posiciones empiezan en 0.</li>
+            <li>Guardar en un array datos <strong>del mismo tipo</strong> y relacionados: todas notas o todos nombres.</li>
+            <li>Nombrar el array en plural: <code>frutas</code>, <code>notas</code>, <code>amigos</code>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf14">
+      <p class="pf__etiqueta">Lámina 14</p>
+      <h3 class="pf__titulo" id="pf14">Lo que devuelven los métodos</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p><code>pop</code> y <code>shift</code> devuelven el dato que quitaron; con el array vacío, devuelven <code>undefined</code>. <code>push</code> y <code>unshift</code> devuelven el nuevo <code>length</code>:</p>
+          <div class="ej ej--pf">
+            <figure class="codigo codigo--js" id="ej-pf14">
+              <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+              <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> mochila = [];
+console.<span class="c-fun">log</span>(mochila.<span class="c-fun">pop</span>());
+console.<span class="c-fun">log</span>(mochila.<span class="c-fun">push</span>(<span class="c-str">"carpeta"</span>));
+console.<span class="c-fun">log</span>(mochila);</code></pre>
+            </figure>
+            <div class="consola" data-codigo="ej-pf14">
+              <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+              <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">undefined
+1
+["carpeta"]</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf15">
+      <p class="pf__etiqueta">Lámina 15</p>
+      <h3 class="pf__titulo" id="pf15">Más sobre indexOf y splice</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p><code>indexOf</code> busca el dato <strong>exacto</strong>: <code>"arte"</code> no es igual a <code>"Arte"</code> y da -1. Si el dato está repetido, devuelve la <strong>primera</strong> posición donde aparece.</p>
+        </div>
+        <div class="pf__caja">
+          <h4>Con [10, 20, 30, 40]</h4>
+          <ul class="pf__lista">
+            <li><code>splice(1, 1)</code> quita el 20: queda <code>[10, 30, 40]</code>.</li>
+            <li><code>splice(0, 2)</code> quita los dos primeros: queda <code>[30, 40]</code>.</li>
+            <li><code>splice(2, 2)</code> quita los dos últimos: queda <code>[10, 20]</code>.</li>
+            <li><code>splice(-1, 1)</code> quita el último: queda <code>[10, 20, 30]</code>. Por eso revisamos el -1.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf16">
+      <p class="pf__etiqueta">Lámina 16</p>
+      <h3 class="pf__titulo" id="pf16">Una vuelta de más</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p>Con <code>&lt;=</code> en lugar de <code>&lt;</code>, el <code>for</code> da una vuelta de más y lee una posición que no existe:</p>
+          <div class="ej ej--pf">
+            <figure class="codigo codigo--js" id="ej-pf16">
+              <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+              <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> notas = [<span class="c-num">7</span>, <span class="c-num">9</span>];
+<span class="c-etq">for</span> (<span class="c-etq">let</span> i = <span class="c-num">0</span>; i &lt;= notas.length; i++) {
+  console.<span class="c-fun">log</span>(notas[i]);
+}</code></pre>
+            </figure>
+            <div class="consola" data-codigo="ej-pf16">
+              <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+              <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">7
+9
+undefined</pre>
+            </div>
+          </div>
+        </div>
+        <div class="pf__caja">
+          <h4>Otros errores comunes</h4>
+          <ul class="pf__lista">
+            <li>Empezar en <code>i = 1</code>: se saltea el primer dato.</li>
+            <li>Al revés, empezar en <code>length</code>: la primera vuelta da <code>undefined</code>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    </div>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 4</span>
+    </footer>
+  </article>
+
+  <!-- =================== ACTIVIDADES · Parte 1 =================== -->
+  <article class="lamina lamina--act" id="actividades" aria-labelledby="act-1">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°4</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <header class="act-banda">
+      <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-lapiz"/></svg>
+      <div>
+        <h2 id="act-1">Actividades para hacer en la carpeta</h2>
+        <p>TP N°4 — Mi primer array</p>
+      </div>
+      <span class="act-banda__parte">Parte<br>1 de 2</span>
+    </header>
+
+    <p class="consigna"><strong>Consigna:</strong> Resolvé cada punto en la carpeta, con lápiz y sin usar la computadora.</p>
+
+    <ol class="acts acts--2col">
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">13-</span> ¿Qué es un array?</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿Desde qué posición empieza un array? Si tiene 6 datos, ¿en qué posición está el último?</div></li>
+          <li><b class="act__letra">b)</b><div>Predecí qué muestra:
+            <figure class="codigo codigo--js" id="act-13b">
+              <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+              <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> n = [<span class="c-num">4</span>, <span class="c-num">8</span>, <span class="c-num">15</span>, <span class="c-num">16</span>];
+console.<span class="c-fun">log</span>(n[<span class="c-num">1</span>]);
+console.<span class="c-fun">log</span>(n.length);
+console.<span class="c-fun">log</span>(n[n.length - <span class="c-num">1</span>]);
+console.<span class="c-fun">log</span>(n[<span class="c-num">4</span>]);</code></pre>
+            </figure></div></li>
+          <li><b class="act__letra">c)</b><div>¿Qué propiedad indica cuántos datos tiene un array? Escribí cómo se usa con un array llamado <code>notas</code>.</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">14-</span> Agregar y quitar datos</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿Qué método agrega un dato al final? ¿Y cuál lo agrega al principio?</div></li>
+          <li><b class="act__letra">b)</b><div>Anotá cómo queda <code>fila</code> después de cada línea:
+            <figure class="codigo codigo--js" id="act-14b">
+              <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+              <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> fila = [<span class="c-str">"Ana"</span>];
+fila.<span class="c-fun">push</span>(<span class="c-str">"Beto"</span>);
+fila.<span class="c-fun">unshift</span>(<span class="c-str">"Caro"</span>);
+fila.<span class="c-fun">pop</span>();
+fila.<span class="c-fun">push</span>(<span class="c-str">"Dani"</span>);
+fila.<span class="c-fun">shift</span>();</code></pre>
+            </figure></div></li>
+          <li><b class="act__letra">c)</b><div><code>colores</code> tiene 4 datos y se ejecuta <code>let x = colores.pop();</code> ¿Qué guarda <code>x</code>? ¿Cuánto vale <code>colores.length</code>?</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">15-</span> Buscar y eliminar</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>Si <code>letras</code> es <code>["a", "b", "c", "b"]</code>, ¿qué devuelve <code>letras.indexOf("b")</code>? ¿Y <code>letras.indexOf("z")</code>?</div></li>
+          <li><b class="act__letra">b)</b><div>Anotá cómo queda <code>n</code> después de cada línea:
+            <figure class="codigo codigo--js" id="act-15b">
+              <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+              <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> n = [<span class="c-num">1</span>, <span class="c-num">2</span>, <span class="c-num">3</span>, <span class="c-num">4</span>, <span class="c-num">5</span>];
+n.<span class="c-fun">splice</span>(<span class="c-num">1</span>, <span class="c-num">1</span>);
+n.<span class="c-fun">splice</span>(<span class="c-num">0</span>, <span class="c-num">2</span>);
+n.<span class="c-fun">push</span>(<span class="c-num">6</span>);
+n.<span class="c-fun">unshift</span>(<span class="c-num">0</span>);</code></pre>
+            </figure></div></li>
+          <li><b class="act__letra">c)</b><div>Un programa usa <code>splice(pos, 1)</code> sin revisar <code>pos</code>, y la materia buscada no está. ¿Qué dato borra? ¿Cómo se evita?</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">16-</span> Recorrer un array</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>Prueba de escritorio: anotá <code>i</code> en cada vuelta y qué muestra.
+            <figure class="codigo codigo--js" id="act-16a">
+              <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+              <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> v = [<span class="c-str">"x"</span>, <span class="c-str">"y"</span>, <span class="c-str">"z"</span>];
+<span class="c-etq">let</span> i = v.length - <span class="c-num">1</span>;
+<span class="c-etq">while</span> (i &gt;= <span class="c-num">0</span>) {
+  console.<span class="c-fun">log</span>(v[i]);
+  i--;
+}</code></pre>
+            </figure></div></li>
+          <li><b class="act__letra">b)</b><div>Escribí un <code>for...of</code> que muestre cada dato de <code>frutas</code>.</div></li>
+          <li><b class="act__letra">c)</b><div>Un <code>for</code> usa <code>i = 1</code> e <code>i &lt;= notas.length</code>. ¿Qué dato se saltea? ¿Qué muestra de más?</div></li>
+        </ol>
+      </li>
+    </ol>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 4</span>
+    </footer>
+  </article>
+
+  <!-- =================== ACTIVIDADES · Parte 2 =================== -->
+  <article class="lamina lamina--act" id="actividades-2" aria-labelledby="act-2">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°4</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <header class="act-banda">
+      <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-editor"/></svg>
+      <div>
+        <h2 id="act-2">Práctica en la computadora</h2>
+        <p>TP N°4 — Mi primer array</p>
+      </div>
+      <span class="act-banda__parte">Parte<br>2 de 2</span>
+    </header>
+
+    <p class="consigna"><strong>Consigna:</strong> Creá la carpeta <code>tp4-apellido</code> con una copia de la plantilla por ejercicio (<code>ejercicio-1</code> a <code>ejercicio-6</code>). Cada <code>app.js</code> empieza con un comentario que dice qué hace el programa.</p>
+
+    <ol class="acts acts--amplio">
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">1-</span> Los 6 ejercicios</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">1</b><div>Crear un array con los nombres de 5 amigos y mostrarlos uno por uno.</div></li>
+          <li><b class="act__letra">2</b><div>Pedir 5 números al usuario y guardarlos en un array.</div></li>
+          <li><b class="act__letra">3</b><div>Mostrar el array del ejercicio 2 al revés.</div></li>
+          <li><b class="act__letra">4</b><div>Pedir números hasta que escriba "fin" y guardarlos en un array; al final mostrar cuántos son.</div></li>
+          <li><b class="act__letra">5</b><div>Crear un array con las materias que cursás este año y permitir al usuario eliminar una por nombre.</div></li>
+          <li><b class="act__letra">6</b><div>Dado un array de números, mostrar cuántos son pares y cuántos impares.</div></li>
+        </ol>
+      </li>
+    </ol>
+
+    <section class="entrega" aria-labelledby="ent-1">
+      <svg class="ico ico--l" aria-hidden="true" focusable="false"><use href="#i-subir"/></svg>
+      <div>
+        <h3 id="ent-1">Entrega</h3>
+        <div class="entrega__cols">
+          <div>
+            <p>Subí la carpeta en <strong>.zip</strong>.</p>
+          </div>
+          <div>
+            <p class="entrega__sub">Antes de entregar, marcá:</p>
+            <ul class="checklist">
+              <li>Están las 6 carpetas.</li>
+              <li>Cada <code>app.js</code> tiene su comentario.</li>
+              <li>El 4 termina con "fin" y también con Cancelar.</li>
+              <li>El 5 revisa el -1 antes de usar <code>splice</code>.</li>
+              <li>Ninguno muestra errores en la consola.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 4</span>
+    </footer>
+  </article>
+</main>
+
+<script src="../assets/js/actividades.js"></script>
+<script src="../assets/js/ejemplos.js"></script>
+</body>
+</html>

@@ -422,6 +422,13 @@ kbd {
 .esquema .guia { stroke: var(--tinta); stroke-width: .5; }
 .esquema .badge { fill: var(--tinta); }
 
+/* Esquema con un recuadro que lo explica al lado */
+.esquema-par { display: grid; gap: 10px; align-items: center; }
+.esquema-nota { background: var(--acento-suave); border-radius: var(--radio); padding: 10px 14px; }
+.esquema-nota h3 { font-family: var(--fuente-titulo); font-weight: 700; font-size: 18px; line-height: 1.15; color: var(--tinta); margin-bottom: 6px; }
+.esquema-nota li { font-size: 15.5px; line-height: 1.35; }
+.esquema-nota :not(pre) > code { background: var(--blanco); }
+
 /* Lista numerada con círculos */
 .puntos { display: grid; gap: 6px; }
 .puntos li {
@@ -756,6 +763,8 @@ ol.pf__lista li::before {
   .ejemplo p { grid-column: auto; padding-left: 12px; border-left: 2px solid var(--panel-linea); }
   .ej { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); }
   .ej--pf { grid-template-columns: minmax(0, 1fr); }
+  .ej--ancho { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }   /* código con líneas largas y salida corta */
+  .esquema-par { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 14px; }
   .error-controlado__cols { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .ej-par { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); }
   .act__items--2col { grid-template-columns: 1fr 1fr; }
