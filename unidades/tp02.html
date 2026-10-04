@@ -45,6 +45,10 @@
       <circle cx="24" cy="24" r="2.6" style="fill:currentColor"/>
       <circle cx="32" cy="32" r="2.6" style="fill:currentColor"/>
     </symbol>
+    <symbol id="i-importante" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="21" style="fill:var(--ac);stroke:none"/>
+      <path d="M24 12v15M24 35v.5" style="stroke:var(--blanco);stroke-width:5.5"/>
+    </symbol>
     <symbol id="i-foco" viewBox="0 0 48 48">
       <path d="M24 2.5v4M10 8.5l2.8 2.8M38 8.5l-2.8 2.8M4 22h4M40 22h4"/>
       <path d="M24 12a10 10 0 0 0-6.2 17.8c1.4 1.2 2.2 2.6 2.2 4.2v1h8v-1c0-1.6.8-3 2.2-4.2A10 10 0 0 0 24 12z" style="fill:var(--ac)"/>
@@ -112,7 +116,7 @@
 
     <div class="intro">
       <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-balanza"/></svg>
-      <p>Una <strong>comparación</strong> responde con un booleano: <code>true</code> (verdadero) o <code>false</code> (falso). Con esas respuestas, el programa toma decisiones.</p>
+      <p>Una <strong>comparación</strong> responde con un booleano: <code class="cod-js">true</code> (verdadero) o <code class="cod-js">false</code> (falso). Con esas respuestas, el programa toma decisiones.</p>
     </div>
 
     <ul class="operaciones operaciones--6" aria-label="Operadores de comparación">
@@ -125,9 +129,9 @@
     </ul>
 
     <ul class="comparar comparar--3" aria-label="Operadores lógicos">
-      <li><div><h3><code>&amp;&amp;</code> (y)</h3><p>Da <code>true</code> si las <strong>dos</strong> condiciones son verdaderas.</p></div></li>
-      <li><div><h3><code>||</code> (o)</h3><p>Da <code>true</code> si <strong>al menos una</strong> es verdadera.</p></div></li>
-      <li><div><h3><code>!</code> (no)</h3><p><strong>Invierte</strong> el resultado: <code>!true</code> da <code>false</code>.</p></div></li>
+      <li><div><h3><code class="cod-js">&amp;&amp;</code> (y)</h3><p>Da <code class="cod-js">true</code> si las <strong>dos</strong> condiciones son verdaderas.</p></div></li>
+      <li><div><h3><code class="cod-js">||</code> (o)</h3><p>Da <code class="cod-js">true</code> si <strong>al menos una</strong> es verdadera.</p></div></li>
+      <li><div><h3><code class="cod-js">!</code> (no)</h3><p><strong>Invierte</strong> el resultado: <code class="cod-js">!true</code> da <code class="cod-js">false</code>.</p></div></li>
     </ul>
 
     <div class="ej">
@@ -169,12 +173,12 @@ console.<span class="c-fun">log</span>(nota === <span class="c-num">7</span> &am
 console.<span class="c-fun">log</span>(!(nota &gt; <span class="c-num">9</span>));</code></pre>
         </figure>
       </div>
-      <p class="py-js__nota"><code>==</code> pasa a <code>===</code> · <code>and</code>, <code>or</code> y <code>not</code> pasan a <code>&amp;&amp;</code>, <code>||</code> y <code>!</code></p>
+      <p class="py-js__nota"><code class="cod-py">==</code> pasa a <code class="cod-js">===</code> · <code class="cod-py">and</code>, <code class="cod-py">or</code> y <code class="cod-py">not</code> pasan a <code class="cod-js">&amp;&amp;</code>, <code class="cod-js">||</code> y <code class="cod-js">!</code></p>
     </section>
 
     <aside class="idea" aria-label="Idea clave">
       <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
-      <p><strong>Idea clave:</strong> <code>=</code> guarda un valor en una variable; <code>===</code> compara dos valores y responde <code>true</code> o <code>false</code>.</p>
+      <p><strong>Idea clave:</strong> <code class="cod-js">=</code> guarda un valor en una variable; <code class="cod-js">===</code> compara dos valores y responde <code class="cod-js">true</code> o <code class="cod-js">false</code>.</p>
     </aside>
 
     <footer class="pie">
@@ -201,14 +205,14 @@ console.<span class="c-fun">log</span>(!(nota &gt; <span class="c-num">9</span>)
 
     <div class="intro">
       <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-camino"/></svg>
-      <p><code>if</code> ejecuta un bloque solo si la condición da <code>true</code>. <code>else if</code> prueba otra condición y <code>else</code> va si no se cumple ninguna. Se ejecuta <strong>un solo bloque</strong>: el primero que cumple.</p>
+      <p><code class="cod-js">if</code> ejecuta un bloque solo si la condición da <code class="cod-js">true</code>. <code class="cod-js">else if</code> prueba otra condición y <code class="cod-js">else</code> va si no se cumple ninguna. Se ejecuta <strong>un solo bloque</strong>: el primero que cumple.</p>
     </div>
 
     <section class="panel" aria-label="Lo que cambia con Python">
       <ol class="puntos puntos--2col">
-        <li><span class="puntos__n" aria-hidden="true">1</span><span>La condición va entre <strong>paréntesis</strong>: <code>if (nota &gt;= 6)</code></span></li>
-        <li><span class="puntos__n" aria-hidden="true">2</span><span>El bloque va entre <strong>llaves</strong> <code>{ }</code>, sin <code>:</code></span></li>
-        <li><span class="puntos__n" aria-hidden="true">3</span><span><code>elif</code> se escribe <code>else if</code>, en dos palabras.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">1</span><span>La condición va entre <strong>paréntesis</strong>: <code class="cod-js">if (nota &gt;= 6)</code></span></li>
+        <li><span class="puntos__n" aria-hidden="true">2</span><span>El bloque va entre <strong>llaves</strong> <code class="cod-js">{ }</code>, sin <code class="cod-js">:</code></span></li>
+        <li><span class="puntos__n" aria-hidden="true">3</span><span><code class="cod-py">elif</code> se escribe <code class="cod-js">else if</code>, en dos palabras.</span></li>
         <li><span class="puntos__n" aria-hidden="true">4</span><span>La <strong>sangría</strong> no es obligatoria, pero la usamos para leer mejor.</span></li>
       </ol>
     </section>
@@ -292,7 +296,7 @@ console.<span class="c-fun">log</span>(!(nota &gt; <span class="c-num">9</span>)
     </div>
 
     <ul class="comparar">
-      <li><div><h3>while</h3><p>Pregunta <strong>antes</strong> de cada vuelta. Si la condición da <code>false</code> de entrada, no se ejecuta nunca.</p></div></li>
+      <li><div><h3>while</h3><p>Pregunta <strong>antes</strong> de cada vuelta. Si la condición da <code class="cod-js">false</code> de entrada, no se ejecuta nunca.</p></div></li>
       <li><div><h3>do...while</h3><p>Pregunta <strong>después</strong> de cada vuelta: se ejecuta <strong>al menos una vez</strong>. Sirve para pedir un dato hasta que esté bien.</p></div></li>
     </ul>
 
@@ -358,7 +362,7 @@ Fin</pre>
 
     <aside class="idea" aria-label="Idea clave">
       <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
-      <p><strong>Idea clave:</strong> si tocamos Cancelar, <code>prompt()</code> devuelve <code>null</code>. Todo bucle que pide datos con <code>prompt()</code> tiene que terminar también en ese caso.</p>
+      <p><strong>Idea clave:</strong> si tocamos Cancelar, <code class="cod-js">prompt()</code> devuelve <code class="cod-js">null</code>. Todo bucle que pide datos con <code class="cod-js">prompt()</code> tiene que terminar también en ese caso.</p>
     </aside>
 
     <footer class="pie">
@@ -385,18 +389,18 @@ Fin</pre>
 
     <div class="intro">
       <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-contador"/></svg>
-      <p>Usamos <code>for</code> cuando sabemos <strong>cuántas vueltas</strong> va a dar el bucle. Entre los paréntesis van tres partes, separadas por punto y coma.</p>
+      <p>Usamos <code class="cod-js">for</code> cuando sabemos <strong>cuántas vueltas</strong> va a dar el bucle. Entre los paréntesis van tres partes, separadas por punto y coma.</p>
     </div>
 
     <ul class="tipos" aria-label="Las tres partes del for">
       <li class="tarjeta"><span class="tarjeta__cab">Inicio</span><p class="tipo__valor tipo__valor--acento">let i = 1</p><p>Se hace una sola vez, antes de la primera vuelta.</p></li>
-      <li class="tarjeta"><span class="tarjeta__cab">Condición</span><p class="tipo__valor tipo__valor--acento">i &lt;= 5</p><p>Se revisa antes de cada vuelta. Con <code>false</code>, termina.</p></li>
-      <li class="tarjeta"><span class="tarjeta__cab">Paso</span><p class="tipo__valor tipo__valor--acento">i++</p><p>Se hace al final de cada vuelta. <code>i++</code> es <code>i = i + 1</code>.</p></li>
+      <li class="tarjeta"><span class="tarjeta__cab">Condición</span><p class="tipo__valor tipo__valor--acento">i &lt;= 5</p><p>Se revisa antes de cada vuelta. Con <code class="cod-js">false</code>, termina.</p></li>
+      <li class="tarjeta"><span class="tarjeta__cab">Paso</span><p class="tipo__valor tipo__valor--acento">i++</p><p>Se hace al final de cada vuelta. <code class="cod-js">i++</code> es <code class="cod-js">i = i + 1</code>.</p></li>
     </ul>
 
     <ul class="comparar">
-      <li><div><h3>Contador</h3><p>Suma <strong>1</strong> cada vez: <code>pares = pares + 1;</code></p></div></li>
-      <li><div><h3>Acumulador</h3><p>Suma un <strong>valor</strong>: <code>suma = suma + i;</code></p></div></li>
+      <li><div><h3>Contador</h3><p>Suma <strong>1</strong> cada vez: <code class="cod-js">pares = pares + 1;</code></p></div></li>
+      <li><div><h3>Acumulador</h3><p>Suma un <strong>valor</strong>: <code class="cod-js">suma = suma + i;</code></p></div></li>
     </ul>
 
     <div class="ej">
@@ -439,7 +443,7 @@ Pares: 5</pre>
 
     <aside class="idea" aria-label="Idea clave">
       <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
-      <p><strong>Idea clave:</strong> <code>for</code> junta en una línea el inicio, la condición y el paso. Los contadores y acumuladores empiezan en 0, antes del bucle.</p>
+      <p><strong>Idea clave:</strong> <code class="cod-js">for</code> junta en una línea el inicio, la condición y el paso. Los contadores y acumuladores empiezan en 0, antes del bucle.</p>
     </aside>
 
     <footer class="pie">
@@ -470,15 +474,15 @@ Pares: 5</pre>
       <h3 class="pf__titulo" id="pf5">¿Por qué === y no ==?</h3>
       <div class="pf__cols">
         <div class="pf__texto">
-          <p>JavaScript también tiene <code>==</code> y <code>!=</code>, pero antes de comparar convierten los datos al mismo tipo: para <code>==</code>, el número <code>5</code> y el texto <code>"5"</code> son iguales. <code>===</code> y <code>!==</code> comparan el valor <strong>y el tipo</strong>. Por eso usamos siempre estos dos.</p>
+          <p>JavaScript también tiene <code class="cod-js">==</code> y <code class="cod-js">!=</code>, pero antes de comparar convierten los datos al mismo tipo: para <code class="cod-js">==</code>, el número <code class="cod-js">5</code> y el texto <code class="cod-js">"5"</code> son iguales. <code class="cod-js">===</code> y <code class="cod-js">!==</code> comparan el valor <strong>y el tipo</strong>. Por eso usamos siempre estos dos.</p>
         </div>
         <div class="pf__caja">
           <h4>Para recordar</h4>
           <ul class="pf__lista">
-            <li><code>5 == "5"</code> → true · <code>5 === "5"</code> → false</li>
-            <li><code>true &amp;&amp; false</code> → false · <code>true || false</code> → true</li>
-            <li><code>!(5 &gt; 3)</code> → false</li>
-            <li>En Python vale <code>13 &lt;= edad &lt;= 17</code>. En JavaScript se escribe <code>edad &gt;= 13 &amp;&amp; edad &lt;= 17</code></li>
+            <li><code class="cod-js">5 == "5"</code> → true · <code class="cod-js">5 === "5"</code> → false</li>
+            <li><code class="cod-js">true &amp;&amp; false</code> → false · <code class="cod-js">true || false</code> → true</li>
+            <li><code class="cod-js">!(5 &gt; 3)</code> → false</li>
+            <li>En Python vale <code class="cod-py">13 &lt;= edad &lt;= 17</code>. En JavaScript se escribe <code class="cod-js">edad &gt;= 13 &amp;&amp; edad &lt;= 17</code></li>
           </ul>
         </div>
       </div>
@@ -489,14 +493,14 @@ Pares: 5</pre>
       <h3 class="pf__titulo" id="pf6">Errores frecuentes con if</h3>
       <div class="pf__cols">
         <div class="pf__texto">
-          <p>Para que el código se lea fácil, dejamos sangría dentro de cada bloque y combinamos condiciones con <code>&amp;&amp;</code> y <code>||</code> en lugar de poner un <code>if</code> dentro de otro. En VS Code, <kbd>Shift</kbd> + <kbd>Alt</kbd> + <kbd>F</kbd> acomoda la sangría sola.</p>
+          <p>Para que el código se lea fácil, dejamos sangría dentro de cada bloque y combinamos condiciones con <code class="cod-js">&amp;&amp;</code> y <code class="cod-js">||</code> en lugar de poner un <code class="cod-js">if</code> dentro de otro. En VS Code, <kbd>Shift</kbd> + <kbd>Alt</kbd> + <kbd>F</kbd> acomoda la sangría sola.</p>
         </div>
-        <div class="pf__caja">
-          <h4>Cuidado con</h4>
+        <div class="pf__caja pf__caja--importante">
+          <h4><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-importante"/></svg>Cuidado con</h4>
           <ul class="pf__lista">
-            <li><code>if (nota = 10)</code> guarda 10 en <code>nota</code> en vez de comparar. Va <code>===</code>.</li>
-            <li><code>if (nota &gt;= 6);</code> con punto y coma: el bloque se ejecuta siempre. Después de <code>)</code> y de <code>}</code> no va <code>;</code></li>
-            <li><code>elif</code> no existe en JavaScript: da error.</li>
+            <li><code class="cod-js">if (nota = 10)</code> guarda 10 en <code class="cod-js">nota</code> en vez de comparar. Va <code class="cod-js">===</code>.</li>
+            <li><code class="cod-js">if (nota &gt;= 6);</code> con punto y coma: el bloque se ejecuta siempre. Después de <code class="cod-js">)</code> y de <code class="cod-js">}</code> no va <code class="cod-js">;</code></li>
+            <li><code class="cod-py">elif</code> no existe en JavaScript: da error.</li>
           </ul>
         </div>
       </div>
@@ -507,7 +511,7 @@ Pares: 5</pre>
       <h3 class="pf__titulo" id="pf7">Bucles infinitos</h3>
       <div class="pf__cols">
         <div class="pf__texto">
-          <p>Si la condición nunca da <code>false</code>, el bucle no termina y la pestaña de Chrome se cuelga: la cerramos y corregimos el código. Con <code>prompt()</code>, el bucle también corta con el <code>null</code> de Cancelar:</p>
+          <p>Si la condición nunca da <code class="cod-js">false</code>, el bucle no termina y la pestaña de Chrome se cuelga: la cerramos y corregimos el código. Con <code class="cod-js">prompt()</code>, el bucle también corta con el <code class="cod-js">null</code> de Cancelar:</p>
           <div class="ej ej--pf">
             <figure class="codigo codigo--js" id="ej-pf7">
               <figcaption><span class="codigo__archivo">app.js</span></figcaption>
@@ -524,7 +528,7 @@ Pares: 5</pre>
 chau</pre>
             </div>
           </div>
-          <p><code>Number(null)</code> da 0: si el bucle termina con 0, Cancelar también lo corta.</p>
+          <p><code class="cod-js">Number(null)</code> da 0: si el bucle termina con 0, Cancelar también lo corta.</p>
         </div>
       </div>
     </section>
@@ -534,7 +538,7 @@ chau</pre>
       <h3 class="pf__titulo" id="pf8">Atajos y qué bucle elegir</h3>
       <div class="pf__cols">
         <div class="pf__texto">
-          <p><code>i++</code> suma 1 e <code>i--</code> resta 1. <code>suma += n</code> es lo mismo que <code>suma = suma + n</code>. Para contar hacia atrás: <code>for (let i = 10; i &gt;= 1; i--)</code></p>
+          <p><code class="cod-js">i++</code> suma 1 e <code class="cod-js">i--</code> resta 1. <code class="cod-js">suma += n</code> es lo mismo que <code class="cod-js">suma = suma + n</code>. Para contar hacia atrás: <code class="cod-js">for (let i = 10; i &gt;= 1; i--)</code></p>
         </div>
         <div class="pf__caja">
           <h4>¿Qué bucle uso?</h4>
@@ -578,17 +582,17 @@ chau</pre>
 
     <ol class="acts acts--2col">
       <li class="act">
-        <h3 class="act__titulo"><span class="act__num">5-</span> Comparar y combinar</h3>
+        <h3 class="act__titulo"><span class="act__num">1-</span> Comparar y combinar</h3>
         <ol class="act__items">
-          <li><b class="act__letra">a)</b><div>¿Cuál es la diferencia entre <code>=</code> y <code>===</code>? Dá un ejemplo de cada uno.</div></li>
-          <li><b class="act__letra">b)</b><div>Con <code>let a = 8;</code> escribí <code>true</code> o <code>false</code>: <code>a === "8"</code> / <code>a !== 10</code> / <code>a &gt;= 8 &amp;&amp; a &lt; 10</code> / <code>a &lt; 5 || a &gt; 9</code> / <code>!(a &gt; 5)</code></div></li>
-          <li><b class="act__letra">c)</b><div>¿Qué operador lógico devuelve <code>true</code> solo si se cumplen las dos condiciones?</div></li>
+          <li><b class="act__letra">a)</b><div>¿Cuál es la diferencia entre <code class="cod-js">=</code> y <code class="cod-js">===</code>? Dá un ejemplo de cada uno.</div></li>
+          <li><b class="act__letra">b)</b><div>Con <code class="cod-js">let a = 8;</code> escribí <code class="cod-js">true</code> o <code class="cod-js">false</code>: <code class="cod-js">a === "8"</code> / <code class="cod-js">a !== 10</code> / <code class="cod-js">a &gt;= 8 &amp;&amp; a &lt; 10</code> / <code class="cod-js">a &lt; 5 || a &gt; 9</code> / <code class="cod-js">!(a &gt; 5)</code></div></li>
+          <li><b class="act__letra">c)</b><div>¿Qué operador lógico devuelve <code class="cod-js">true</code> solo si se cumplen las dos condiciones?</div></li>
         </ol>
       </li>
       <li class="act">
-        <h3 class="act__titulo"><span class="act__num">6-</span> Tomar decisiones</h3>
+        <h3 class="act__titulo"><span class="act__num">2-</span> Tomar decisiones</h3>
         <ol class="act__items">
-          <li><b class="act__letra">a)</b><div>¿Qué muestra con <code>edad</code> en 10, 15 y 70?
+          <li><b class="act__letra">a)</b><div>¿Qué muestra con <code class="cod-js">edad</code> en 10, 15 y 70?
             <figure class="codigo codigo--js" id="act-6a">
               <figcaption><span class="codigo__archivo">app.js</span></figcaption>
               <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> edad = <span class="c-num">10</span>;
@@ -600,14 +604,14 @@ chau</pre>
   console.<span class="c-fun">log</span>(<span class="c-str">"Adulto"</span>);
 }</code></pre>
             </figure></div></li>
-          <li><b class="act__letra">b)</b><div>Encontrá los 3 errores: <code>if nota &gt;= 6 {</code> / <code>} elif (nota &gt;= 4) {</code> / <code>if (nota = 10) {</code></div></li>
+          <li><b class="act__letra">b)</b><div>Encontrá los 3 errores: <code class="cod-js">if nota &gt;= 6 {</code> / <code class="cod-js">} elif (nota &gt;= 4) {</code> / <code class="cod-js">if (nota = 10) {</code></div></li>
           <li><b class="act__letra">c)</b><div>¿Qué palabra se usa para el caso alternativo? ¿Y para otra condición?</div></li>
         </ol>
       </li>
       <li class="act">
-        <h3 class="act__titulo"><span class="act__num">7-</span> Repetir mientras se cumpla</h3>
+        <h3 class="act__titulo"><span class="act__num">3-</span> Repetir mientras se cumpla</h3>
         <ol class="act__items">
-          <li><b class="act__letra">a)</b><div>¿Qué tiene que pasar dentro de un <code>while</code> para que termine?</div></li>
+          <li><b class="act__letra">a)</b><div>¿Qué tiene que pasar dentro de un <code class="cod-js">while</code> para que termine?</div></li>
           <li><b class="act__letra">b)</b><div>¿Qué bucle se ejecuta al menos una vez? ¿Por qué?</div></li>
           <li><b class="act__letra">c)</b><div>Hacé la prueba de escritorio y escribí qué muestra:
             <figure class="codigo codigo--js" id="act-7c">
@@ -621,10 +625,10 @@ chau</pre>
         </ol>
       </li>
       <li class="act">
-        <h3 class="act__titulo"><span class="act__num">8-</span> El bucle for</h3>
+        <h3 class="act__titulo"><span class="act__num">4-</span> El bucle for</h3>
         <ol class="act__items">
           <li><b class="act__letra">a)</b><div>¿Qué bucle usás cuando ya sabés cuántas vueltas va a dar?</div></li>
-          <li><b class="act__letra">b)</b><div>Prueba de escritorio: anotá <code>i</code> y <code>total</code> en cada vuelta.
+          <li><b class="act__letra">b)</b><div>Prueba de escritorio: anotá <code class="cod-js">i</code> y <code class="cod-js">total</code> en cada vuelta.
             <figure class="codigo codigo--js" id="act-8b">
               <figcaption><span class="codigo__archivo">app.js</span></figcaption>
               <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> total = <span class="c-num">0</span>;
@@ -633,7 +637,7 @@ chau</pre>
 }
 console.<span class="c-fun">log</span>(total);</code></pre>
             </figure></div></li>
-          <li><b class="act__letra">c)</b><div>Pasá a JavaScript: <code>for i in range(3): print("Hola")</code></div></li>
+          <li><b class="act__letra">c)</b><div>Pasá a JavaScript: <code class="cod-py">for i in range(3): print("Hola")</code></div></li>
         </ol>
       </li>
     </ol>
@@ -647,7 +651,7 @@ console.<span class="c-fun">log</span>(total);</code></pre>
   </article>
 
   <!-- =================== ACTIVIDADES · Parte 2 =================== -->
-  <article class="lamina lamina--act" id="actividades-2" aria-labelledby="act-2">
+  <article class="lamina lamina--act lamina--compu" id="actividades-2" aria-labelledby="act-2">
     <div class="cab" aria-hidden="true">
       <svg class="cab__logo"><use href="#i-web"/></svg>
       <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
@@ -664,7 +668,7 @@ console.<span class="c-fun">log</span>(total);</code></pre>
       <span class="act-banda__parte">Parte<br>2 de 2</span>
     </header>
 
-    <p class="consigna"><strong>Consigna:</strong> Resolvé en JavaScript estos 10 ejercicios, como los que ya hiciste en Python. Creá la carpeta <code>tp2-apellido</code> con una copia de la plantilla por ejercicio (<code>ejercicio-1</code> a <code>ejercicio-10</code>). Cada <code>app.js</code> empieza con un comentario que dice qué hace el programa.</p>
+    <p class="consigna"><strong>Consigna:</strong> Resolvé en JavaScript estos 10 ejercicios, como los que ya hiciste en Python. Creá la carpeta <code class="cod-carpeta">tp2-apellido</code> con una copia de la plantilla por ejercicio (<code class="cod-carpeta">ejercicio-1</code> a <code class="cod-carpeta">ejercicio-10</code>). Cada <code class="cod-js">app.js</code> empieza con un comentario que dice qué hace el programa.</p>
 
     <ol class="acts">
       <li class="act">
@@ -675,7 +679,7 @@ console.<span class="c-fun">log</span>(total);</code></pre>
           <li><b class="act__letra">3</b><div>Pedir nota y devolver "Aprobado" (≥6) o "Desaprobado".</div></li>
           <li><b class="act__letra">4</b><div>Validar contraseña (si coincide con una predefinida, dar acceso).</div></li>
           <li><b class="act__letra">5</b><div>Calculadora con operación elegida por el usuario (suma, resta, multiplicación, división).</div></li>
-          <li><b class="act__letra">6</b><div>Mostrar los números del 1 al 20 (con <code>for</code>).</div></li>
+          <li><b class="act__letra">6</b><div>Mostrar los números del 1 al 20 (con <code class="cod-js">for</code>).</div></li>
           <li><b class="act__letra">7</b><div>Mostrar los números pares entre 1 y 50.</div></li>
           <li><b class="act__letra">8</b><div>Pedir un número N y mostrar su tabla de multiplicar.</div></li>
           <li><b class="act__letra">9</b><div>Pedir números hasta que el usuario escriba 0, e ir sumándolos; al final mostrar el total.</div></li>
@@ -690,7 +694,7 @@ console.<span class="c-fun">log</span>(total);</code></pre>
         <figcaption><span class="codigo__archivo">app.js</span></figcaption>
         <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> secreto = Math.<span class="c-fun">floor</span>(Math.<span class="c-fun">random</span>() * <span class="c-num">100</span>) + <span class="c-num">1</span>;</code></pre>
       </figure>
-      <p>Se copia tal cual, sin entrar en cómo funciona: guarda en <code>secreto</code> un entero del 1 al 100.</p>
+      <p>Se copia tal cual, sin entrar en cómo funciona: guarda en <code class="cod-js">secreto</code> un entero del 1 al 100.</p>
     </section>
 
     <section class="entrega" aria-labelledby="ent-1">
@@ -699,7 +703,7 @@ console.<span class="c-fun">log</span>(total);</code></pre>
         <h3 id="ent-1">Entrega</h3>
         <div class="entrega__cols">
           <div>
-            <p>Subí la carpeta <code>tp2-apellido</code>, con los 10 ejercicios comentados, en <strong>.zip</strong> a la tarea de Classroom.</p>
+            <p>Subí la carpeta <code class="cod-carpeta">tp2-apellido</code>, con los 10 ejercicios comentados, en <strong>.zip</strong> a la tarea de Classroom.</p>
             <p class="entrega__sub entrega__sub--sep">Antes, probá cada programa</p>
             <p>Con datos de todos los casos (en el 1: un positivo, un negativo y el 0). En el 9 y el 10, tocá también <strong>Cancelar</strong>.</p>
           </div>
@@ -707,7 +711,7 @@ console.<span class="c-fun">log</span>(total);</code></pre>
             <p class="entrega__sub">Antes de entregar, marcá:</p>
             <ul class="checklist">
               <li>Están las 10 carpetas.</li>
-              <li>Cada <code>app.js</code> tiene su comentario.</li>
+              <li>Cada <code class="cod-js">app.js</code> tiene su comentario.</li>
               <li>Ninguno muestra errores en la consola.</li>
               <li>El 9 y el 10 terminan con Cancelar.</li>
               <li>Subí el .zip y toqué <strong>Entregar</strong>.</li>

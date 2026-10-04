@@ -18,7 +18,7 @@ Un cuadernillo web para pasar de Python a JavaScript y después armar páginas w
 
 - Abrí el link y elegí un TP en el índice.
 - Con la barra de arriba saltás a cada lámina, a "Para profundizar" o a las actividades.
-- Cada bloque de código tiene un botón **Copiar**. Los ejemplos de JavaScript tienen además un botón **▶ Ejecutar**, que muestra lo que el programa escribe en la consola.
+- Cada bloque de código tiene un botón **Copiar**. Los ejemplos de JavaScript tienen además un botón **▶ Ejecutar**, que muestra lo que el programa escribe en la consola. Los ejemplos de HTML muestran su resultado real en un marco de navegador.
 - El botón **PDF** guarda el TP en hojas A4 (usa la opción de imprimir del navegador: elegí "Guardar como PDF").
 - El índice marca con **✓ Visto** los TPs que ya abriste. Eso se guarda solo en tu dispositivo.
 
@@ -35,7 +35,7 @@ Un cuadernillo web para pasar de Python a JavaScript y después armar páginas w
 | 5 | Operaciones con arrays | ✅ Disponible |
 | 6 | Objetos y mini-proyecto: Lista de tareas | ✅ Disponible |
 | **Módulo 3 · HTML básico** | | |
-| 7 | Mi primera página web | Próximamente |
+| 7 | Mi primera página web | ✅ Disponible |
 | 8 | Listas, imágenes y enlaces | Próximamente |
 | 9 | Estructura más completa: tablas y formularios | Próximamente |
 | **Módulo 4 · CSS: dar estilo** | | |
@@ -59,7 +59,7 @@ index.html                 portada e índice de TPs
 unidades/tpNN.html         una página por TP
 assets/css/estilos.css     estilos y paleta de colores
 assets/js/actividades.js   botón PDF, barra de navegación y marca de "Visto"
-assets/js/ejemplos.js      botones "Copiar" y "▶ Ejecutar" de los ejemplos
+assets/js/ejemplos.js      botones "Copiar" y "▶ Ejecutar", y resultado en el navegador de los ejemplos
 assets/descargas/          carpeta plantilla del Módulo 1 (index.html + app.js) y su .zip
 assets/fonts/              tipografías
 ```

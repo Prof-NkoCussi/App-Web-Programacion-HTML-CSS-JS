@@ -155,9 +155,9 @@ Dura 15 minutos</pre>
 
     <section class="panel" aria-label="Definir y llamar una función">
       <ol class="puntos puntos--2col">
-        <li><span class="puntos__n" aria-hidden="true">1</span><span>Se <strong>define</strong> con <code>function</code>, un nombre, paréntesis <code>()</code> y un bloque entre llaves <code>{ }</code>.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">1</span><span>Se <strong>define</strong> con <code class="cod-js">function</code>, un nombre, paréntesis <code class="cod-js">()</code> y un bloque entre llaves <code class="cod-js">{ }</code>.</span></li>
         <li><span class="puntos__n" aria-hidden="true">2</span><span>Definirla <strong>no ejecuta nada</strong>: solo le dice al programa qué hacer cuando la usemos.</span></li>
-        <li><span class="puntos__n" aria-hidden="true">3</span><span>Se <strong>llama</strong> con su nombre y paréntesis: <code>avisarRecreo();</code></span></li>
+        <li><span class="puntos__n" aria-hidden="true">3</span><span>Se <strong>llama</strong> con su nombre y paréntesis: <code class="cod-js">avisarRecreo();</code></span></li>
         <li><span class="puntos__n" aria-hidden="true">4</span><span>Cada llamada ejecuta el bloque <strong>completo</strong>, de arriba hacia abajo.</span></li>
       </ol>
     </section>
@@ -195,19 +195,19 @@ Dura 15 minutos</pre>
     </div>
 
     <ul class="comparar">
-      <li><div><h3>Parámetro</h3><p>El nombre que va en la <strong>definición</strong>: <code>function saludar(nombre)</code>. Adentro de la función, se usa como una variable.</p></div></li>
-      <li><div><h3>Argumento</h3><p>El valor que mandamos al <strong>llamarla</strong>: <code>saludar("Ana")</code>. Se guarda en el parámetro.</p></div></li>
+      <li><div><h3>Parámetro</h3><p>El nombre que va en la <strong>definición</strong>: <code class="cod-js">function saludar(nombre)</code>. Adentro de la función, se usa como una variable.</p></div></li>
+      <li><div><h3>Argumento</h3><p>El valor que mandamos al <strong>llamarla</strong>: <code class="cod-js">saludar("Ana")</code>. Se guarda en el parámetro.</p></div></li>
     </ul>
 
     <figure class="esquema">
       <svg viewBox="0 0 390 184" style="max-width:320px;margin:0 auto;display:block" role="img" aria-labelledby="esq10">
         <title id="esq10">Al llamar saludar con el argumento "Ana", ese valor se guarda en el parámetro nombre de la definición function saludar(nombre).</title>
-        <g class="tt" style="font-size:16px" text-anchor="middle">
-          <text x="280" y="18">parámetro</text>
-          <text x="280" y="180">argumento</text>
+        <g class="tt" style="font-size:16px;font-weight:700" text-anchor="middle">
+          <text x="280" y="18" style="fill:var(--turquesa-texto)">parámetro</text>
+          <text x="280" y="180" style="fill:var(--naranja-texto)">argumento</text>
         </g>
-        <rect x="232" y="28" width="96" height="38" rx="7" style="fill:var(--acento-claro);stroke:var(--acento);stroke-width:2"/>
-        <rect x="232" y="118" width="96" height="38" rx="7" style="fill:var(--acento-claro);stroke:var(--acento);stroke-width:2"/>
+        <rect x="232" y="28" width="96" height="38" rx="7" style="fill:var(--turquesa-claro);stroke:var(--turquesa);stroke-width:2"/>
+        <rect x="232" y="118" width="96" height="38" rx="7" style="fill:var(--naranja-claro);stroke:var(--naranja);stroke-width:2"/>
         <g style="font-family:var(--fuente-codigo);font-size:20px;fill:var(--tinta)">
           <text x="226" y="54" text-anchor="end"><tspan style="fill:var(--acento-numero);font-weight:700">function</tspan> saludar(</text>
           <text x="280" y="54" text-anchor="middle" style="font-weight:700">nombre</text>
@@ -216,8 +216,8 @@ Dura 15 minutos</pre>
           <text x="280" y="144" text-anchor="middle" style="font-weight:700">"Ana"</text>
           <text x="334" y="144">);</text>
         </g>
-        <path d="M280 114V72" style="fill:none;stroke:var(--acento);stroke-width:3;stroke-linecap:round"/>
-        <path d="M272 80l8-9 8 9" style="fill:none;stroke:var(--acento);stroke-width:3;stroke-linecap:round;stroke-linejoin:round"/>
+        <path d="M280 114V72" style="fill:none;stroke:var(--naranja);stroke-width:3;stroke-linecap:round"/>
+        <path d="M272 80l8-9 8 9" style="fill:none;stroke:var(--naranja);stroke-width:3;stroke-linecap:round;stroke-linejoin:round"/>
         <text class="tt" x="268" y="98" text-anchor="end" style="font-size:14px;fill:var(--gris)">se guarda en</text>
       </svg>
     </figure>
@@ -245,10 +245,10 @@ Historia: 9</pre>
 
     <section class="panel" aria-label="Reglas para parámetros y nombres">
       <ol class="puntos puntos--2col">
-        <li><span class="puntos__n" aria-hidden="true">1</span><span>Varios parámetros van separados por <strong>coma</strong>: <code>(materia, nota)</code>.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">1</span><span>Varios parámetros van separados por <strong>coma</strong>: <code class="cod-js">(materia, nota)</code>.</span></li>
         <li><span class="puntos__n" aria-hidden="true">2</span><span>Los argumentos llegan <strong>en orden</strong>: el primero, al primer parámetro.</span></li>
-        <li><span class="puntos__n" aria-hidden="true">3</span><span><strong>camelCase:</strong> todo junto y cada palabra nueva con mayúscula: <code>mostrarNota</code>.</span></li>
-        <li><span class="puntos__n" aria-hidden="true">4</span><span>El nombre empieza con un <strong>verbo</strong> que dice qué hace: <code>saludar</code>.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">3</span><span><strong>camelCase:</strong> todo junto y cada palabra nueva con mayúscula: <code class="cod-js">mostrarNota</code>.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">4</span><span>El nombre empieza con un <strong>verbo</strong> que dice qué hace: <code class="cod-js">saludar</code>.</span></li>
       </ol>
     </section>
 
@@ -281,7 +281,7 @@ Historia: 9</pre>
 
     <div class="intro">
       <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-devolver"/></svg>
-      <p><code>return</code> termina la función y <strong>devuelve</strong> un valor al lugar donde se la llamó. Ese valor se puede guardar en una variable, usar en una cuenta o mostrar.</p>
+      <p><code class="cod-js">return</code> termina la función y <strong>devuelve</strong> un valor al lugar donde se la llamó. Ese valor se puede guardar en una variable, usar en una cuenta o mostrar.</p>
     </div>
 
     <ul class="comparar">
@@ -328,16 +328,16 @@ console.<span class="c-fun">log</span>(<span class="c-fun">doble</span>(<span cl
     <section class="panel" aria-labelledby="s11">
       <div class="panel__cab"><h3 class="subtitulo" id="s11">¿Qué pasó?</h3></div>
       <ol class="puntos puntos--2col">
-        <li><span class="puntos__n" aria-hidden="true">1</span><span><code>mostrarDoble</code> muestra el 10, pero <strong>no devuelve nada</strong>: <code>a</code> queda <code>undefined</code> (sin valor).</span></li>
-        <li><span class="puntos__n" aria-hidden="true">2</span><span><code>doble</code> no muestra nada: <strong>devuelve</strong> 10. Lo guardamos en <code>b</code>.</span></li>
-        <li><span class="puntos__n" aria-hidden="true">3</span><span>Lo devuelto se usa en una cuenta: <code>doble(3) + 1</code> da 7.</span></li>
-        <li><span class="puntos__n" aria-hidden="true">4</span><span>Después de <code>return</code>, la función <strong>termina</strong>.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">1</span><span><code class="cod-js">mostrarDoble</code> muestra el 10, pero <strong>no devuelve nada</strong>: <code class="cod-js">a</code> queda <code class="cod-js">undefined</code> (sin valor).</span></li>
+        <li><span class="puntos__n" aria-hidden="true">2</span><span><code class="cod-js">doble</code> no muestra nada: <strong>devuelve</strong> 10. Lo guardamos en <code class="cod-js">b</code>.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">3</span><span>Lo devuelto se usa en una cuenta: <code class="cod-js">doble(3) + 1</code> da 7.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">4</span><span>Después de <code class="cod-js">return</code>, la función <strong>termina</strong>.</span></li>
       </ol>
     </section>
 
     <aside class="idea" aria-label="Idea clave">
       <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
-      <p><strong>Idea clave:</strong> <code>console.log()</code> muestra un valor; <code>return</code> lo devuelve para que el programa lo guarde o siga haciendo cuentas con él.</p>
+      <p><strong>Idea clave:</strong> <code class="cod-js">console.log()</code> muestra un valor; <code class="cod-js">return</code> lo devuelve para que el programa lo guarde o siga haciendo cuentas con él.</p>
     </aside>
 
     <footer class="pie">
@@ -363,7 +363,7 @@ console.<span class="c-fun">log</span>(<span class="c-fun">doble</span>(<span cl
     </div>
 
     <ul class="comparar comparar--3">
-      <li><div><h3>Con decisiones</h3><p>Adentro puede haber un <code>if</code>. Vale el primer <code>return</code> que se alcanza.</p></div></li>
+      <li><div><h3>Con decisiones</h3><p>Adentro puede haber un <code class="cod-js">if</code>. Vale el primer <code class="cod-js">return</code> que se alcanza.</p></div></li>
       <li><div><h3>Llaman a otras</h3><p>Una función puede usar otra. Cada una hace <strong>una sola tarea</strong>.</p></div></li>
       <li><div><h3>Un menú</h3><p>Un bucle pide la opción y llama a la función elegida.</p></div></li>
     </ul>
@@ -455,7 +455,7 @@ Fin</pre>
       <h3 class="pf__titulo" id="pf9">¿Por qué usar funciones?</h3>
       <div class="pf__cols">
         <div class="pf__texto">
-          <p>Para llamar a una función siempre van los paréntesis: sin <code>()</code> no se ejecuta. Por orden, escribimos las funciones al principio de <code>app.js</code> y las llamadas, abajo.</p>
+          <p>Para llamar a una función siempre van los paréntesis: sin <code class="cod-js">()</code> no se ejecuta. Por orden, escribimos las funciones al principio de <code class="cod-js">app.js</code> y las llamadas, abajo.</p>
         </div>
         <div class="pf__caja">
           <h4>Ventajas de usar funciones</h4>
@@ -474,15 +474,15 @@ Fin</pre>
       <h3 class="pf__titulo" id="pf10">Argumentos: variables, cuentas y olvidos</h3>
       <div class="pf__cols">
         <div class="pf__texto">
-          <p>El argumento puede ser un valor, una variable o una cuenta: <code>doble(7 + 1)</code>. Si falta un argumento, el parámetro queda <code>undefined</code>: <code>saludar()</code> muestra <code>Hola, undefined</code>.</p>
+          <p>El argumento puede ser un valor, una variable o una cuenta: <code class="cod-js">doble(7 + 1)</code>. Si falta un argumento, el parámetro queda <code class="cod-js">undefined</code>: <code class="cod-js">saludar()</code> muestra <code class="cod-js">Hola, undefined</code>.</p>
         </div>
         <div class="pf__caja">
           <h4>Nombres en camelCase</h4>
           <ul class="pf__lista">
-            <li>Bien: <code>calcularPromedio</code>, <code>esMayorDeEdad</code></li>
-            <li><code>calcular promedio</code>: con espacio da error.</li>
-            <li><code>calcular-promedio</code>: con guion da error.</li>
-            <li>Evitamos tildes y ñ: <code>calcularArea</code>, no <code>calcularÁrea</code>.</li>
+            <li>Bien: <code class="cod-js">calcularPromedio</code>, <code class="cod-js">esMayorDeEdad</code></li>
+            <li><code class="cod-js">calcular promedio</code>: con espacio da error.</li>
+            <li><code class="cod-js">calcular-promedio</code>: con guion da error.</li>
+            <li>Evitamos tildes y ñ: <code class="cod-js">calcularArea</code>, no <code class="cod-js">calcularÁrea</code>.</li>
           </ul>
         </div>
       </div>
@@ -493,7 +493,7 @@ Fin</pre>
       <h3 class="pf__titulo" id="pf11">Una que muestra y otra que devuelve</h3>
       <div class="pf__cols">
         <div class="pf__texto">
-          <p><code>saludar</code> muestra el saludo; <code>sumar</code> devuelve la suma, que guardamos en <code>resultado</code>:</p>
+          <p><code class="cod-js">saludar</code> muestra el saludo; <code class="cod-js">sumar</code> devuelve la suma, que guardamos en <code class="cod-js">resultado</code>:</p>
           <div class="ej ej--pf">
             <figure class="codigo codigo--js" id="ej-pf11">
               <figcaption><span class="codigo__archivo">app.js</span></figcaption>
@@ -523,15 +523,15 @@ Resultado: 8</pre>
       <h3 class="pf__titulo" id="pf12">Cómo armar un menú</h3>
       <div class="pf__cols">
         <div class="pf__texto">
-          <p>La condición del <code>while</code> revisa dos cosas: que no hayan escrito <code>"salir"</code> y que no hayan tocado Cancelar (<code>null</code>). Para avisar cuando la opción no existe, sumamos un <code>else</code> al final.</p>
+          <p>La condición del <code class="cod-js">while</code> revisa dos cosas: que no hayan escrito <code class="cod-js">"salir"</code> y que no hayan tocado Cancelar (<code class="cod-js">null</code>). Para avisar cuando la opción no existe, sumamos un <code class="cod-js">else</code> al final.</p>
         </div>
         <div class="pf__caja">
           <h4>Paso a paso</h4>
           <ol class="pf__lista">
             <li>Escribimos una función por opción.</li>
-            <li>Antes del bucle, pedimos la opción con <code>prompt()</code>.</li>
-            <li>El <code>while</code> sigue mientras no sea <code>"salir"</code> ni <code>null</code>.</li>
-            <li>Con <code>if</code> y <code>else if</code>, llamamos a la función elegida.</li>
+            <li>Antes del bucle, pedimos la opción con <code class="cod-js">prompt()</code>.</li>
+            <li>El <code class="cod-js">while</code> sigue mientras no sea <code class="cod-js">"salir"</code> ni <code class="cod-js">null</code>.</li>
+            <li>Con <code class="cod-js">if</code> y <code class="cod-js">else if</code>, llamamos a la función elegida.</li>
             <li>Al final de cada vuelta, volvemos a pedir la opción.</li>
           </ol>
         </div>
@@ -569,7 +569,7 @@ Resultado: 8</pre>
 
     <ol class="acts acts--2col">
       <li class="act">
-        <h3 class="act__titulo"><span class="act__num">9-</span> ¿Qué es una función?</h3>
+        <h3 class="act__titulo"><span class="act__num">1-</span> ¿Qué es una función?</h3>
         <ol class="act__items">
           <li><b class="act__letra">a)</b><div>¿Con qué palabra clave se define una función? ¿Qué diferencia hay entre definirla y llamarla?</div></li>
           <li><b class="act__letra">b)</b><div>Predecí qué muestra:
@@ -582,13 +582,13 @@ Resultado: 8</pre>
 console.<span class="c-fun">log</span>(<span class="c-str">"Hola"</span>);
 <span class="c-fun">separar</span>();</code></pre>
             </figure></div></li>
-          <li><b class="act__letra">c)</b><div>Un programa tiene solo la función <code>saludar()</code>, completa, y no muestra nada. ¿Por qué? ¿Qué línea falta?</div></li>
+          <li><b class="act__letra">c)</b><div>Un programa tiene solo la función <code class="cod-js">saludar()</code>, completa, y no muestra nada. ¿Por qué? ¿Qué línea falta?</div></li>
         </ol>
       </li>
       <li class="act">
-        <h3 class="act__titulo"><span class="act__num">10-</span> Parámetros y argumentos</h3>
+        <h3 class="act__titulo"><span class="act__num">2-</span> Parámetros y argumentos</h3>
         <ol class="act__items">
-          <li><b class="act__letra">a)</b><div>En <code>function sumar(a, b)</code> y <code>sumar(4, 6)</code>, ¿cuáles son los parámetros y cuáles los argumentos?</div></li>
+          <li><b class="act__letra">a)</b><div>En <code class="cod-js">function sumar(a, b)</code> y <code class="cod-js">sumar(4, 6)</code>, ¿cuáles son los parámetros y cuáles los argumentos?</div></li>
           <li><b class="act__letra">b)</b><div>Predecí qué muestra:
             <figure class="codigo codigo--js" id="act-10b">
               <figcaption><span class="codigo__archivo">app.js</span></figcaption>
@@ -602,10 +602,10 @@ console.<span class="c-fun">log</span>(<span class="c-str">"Hola"</span>);
         </ol>
       </li>
       <li class="act">
-        <h3 class="act__titulo"><span class="act__num">11-</span> Devolver un resultado</h3>
+        <h3 class="act__titulo"><span class="act__num">3-</span> Devolver un resultado</h3>
         <ol class="act__items">
-          <li><b class="act__letra">a)</b><div>¿Para qué sirve <code>return</code>? ¿En qué se diferencia de <code>console.log()</code>?</div></li>
-          <li><b class="act__letra">b)</b><div>Prueba de escritorio: anotá cuánto vale <code>a</code> y <code>b</code>, y qué muestra.
+          <li><b class="act__letra">a)</b><div>¿Para qué sirve <code class="cod-js">return</code>? ¿En qué se diferencia de <code class="cod-js">console.log()</code>?</div></li>
+          <li><b class="act__letra">b)</b><div>Prueba de escritorio: anotá cuánto vale <code class="cod-js">a</code> y <code class="cod-js">b</code>, y qué muestra.
             <figure class="codigo codigo--js" id="act-11b">
               <figcaption><span class="codigo__archivo">app.js</span></figcaption>
               <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">function</span> <span class="c-fun">triple</span>(n) {
@@ -615,11 +615,11 @@ console.<span class="c-fun">log</span>(<span class="c-str">"Hola"</span>);
 <span class="c-etq">let</span> b = <span class="c-fun">triple</span>(a) + <span class="c-num">1</span>;
 console.<span class="c-fun">log</span>(a, b);</code></pre>
             </figure></div></li>
-          <li><b class="act__letra">c)</b><div>Si <code>sumar</code> usara <code>console.log()</code> en lugar de <code>return</code>, ¿qué guarda <code>let t = sumar(2, 3);</code>?</div></li>
+          <li><b class="act__letra">c)</b><div>Si <code class="cod-js">sumar</code> usara <code class="cod-js">console.log()</code> en lugar de <code class="cod-js">return</code>, ¿qué guarda <code class="cod-js">let t = sumar(2, 3);</code>?</div></li>
         </ol>
       </li>
       <li class="act">
-        <h3 class="act__titulo"><span class="act__num">12-</span> Funciones que trabajan juntas</h3>
+        <h3 class="act__titulo"><span class="act__num">4-</span> Funciones que trabajan juntas</h3>
         <ol class="act__items">
           <li><b class="act__letra">a)</b><div>Prueba de escritorio: ¿qué muestra?
             <figure class="codigo codigo--js" id="act-12a">
@@ -634,7 +634,7 @@ console.<span class="c-fun">log</span>(<span class="c-fun">mayor</span>(<span cl
 console.<span class="c-fun">log</span>(<span class="c-fun">mayor</span>(<span class="c-num">7</span>, <span class="c-num">2</span>));</code></pre>
             </figure></div></li>
           <li><b class="act__letra">b)</b><div>En el menú de la lámina 12, ¿qué pasa si el usuario toca Cancelar? ¿Por qué?</div></li>
-          <li><b class="act__letra">c)</b><div>Escribí <code>esPar(n)</code>: devuelve <code>true</code> si <code>n</code> es par y <code>false</code> si no.</div></li>
+          <li><b class="act__letra">c)</b><div>Escribí <code class="cod-js">esPar(n)</code>: devuelve <code class="cod-js">true</code> si <code class="cod-js">n</code> es par y <code class="cod-js">false</code> si no.</div></li>
         </ol>
       </li>
     </ol>
@@ -648,7 +648,7 @@ console.<span class="c-fun">log</span>(<span class="c-fun">mayor</span>(<span cl
   </article>
 
   <!-- =================== ACTIVIDADES · Parte 2 =================== -->
-  <article class="lamina lamina--act" id="actividades-2" aria-labelledby="act-2">
+  <article class="lamina lamina--act lamina--compu" id="actividades-2" aria-labelledby="act-2">
     <div class="cab" aria-hidden="true">
       <svg class="cab__logo"><use href="#i-web"/></svg>
       <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
@@ -665,24 +665,24 @@ console.<span class="c-fun">log</span>(<span class="c-fun">mayor</span>(<span cl
       <span class="act-banda__parte">Parte<br>2 de 2</span>
     </header>
 
-    <p class="consigna"><strong>Consigna:</strong> Creá la carpeta <code>tp3-apellido</code> con dos copias de la plantilla: <code>parte-1</code> y <code>parte-2</code>. Cada <code>app.js</code> empieza con un comentario que dice qué hace el programa.</p>
+    <p class="consigna"><strong>Consigna:</strong> Creá la carpeta <code class="cod-carpeta">tp3-apellido</code> con dos copias de la plantilla: <code class="cod-carpeta">parte-1</code> y <code class="cod-carpeta">parte-2</code>. Cada <code class="cod-js">app.js</code> empieza con un comentario que dice qué hace el programa.</p>
 
     <ol class="acts">
       <li class="act">
         <h3 class="act__titulo"><span class="act__num">1-</span> Parte 1: seis funciones</h3>
         <p>Creá estas 6 funciones y un programa que las pruebe mostrando los resultados en la consola:</p>
         <ol class="act__items act__items--2col">
-          <li><b class="act__letra">1</b><div><code>saludar(nombre)</code> muestra "Hola [nombre]".</div></li>
-          <li><b class="act__letra">2</b><div><code>sumar(a, b)</code> devuelve la suma.</div></li>
-          <li><b class="act__letra">3</b><div><code>esMayorDeEdad(edad)</code> devuelve <code>true</code> o <code>false</code>.</div></li>
-          <li><b class="act__letra">4</b><div><code>areaRectangulo(base, altura)</code> devuelve el área.</div></li>
-          <li><b class="act__letra">5</b><div><code>convertirADolares(pesos)</code> devuelve el equivalente.</div></li>
-          <li><b class="act__letra">6</b><div><code>calcularPromedio(n1, n2, n3)</code> devuelve el promedio.</div></li>
+          <li><b class="act__letra">1</b><div><code class="cod-js">saludar(nombre)</code> muestra "Hola [nombre]".</div></li>
+          <li><b class="act__letra">2</b><div><code class="cod-js">sumar(a, b)</code> devuelve la suma.</div></li>
+          <li><b class="act__letra">3</b><div><code class="cod-js">esMayorDeEdad(edad)</code> devuelve <code class="cod-js">true</code> o <code class="cod-js">false</code>.</div></li>
+          <li><b class="act__letra">4</b><div><code class="cod-js">areaRectangulo(base, altura)</code> devuelve el área.</div></li>
+          <li><b class="act__letra">5</b><div><code class="cod-js">convertirADolares(pesos)</code> devuelve el equivalente.</div></li>
+          <li><b class="act__letra">6</b><div><code class="cod-js">calcularPromedio(n1, n2, n3)</code> devuelve el promedio.</div></li>
         </ol>
       </li>
       <li class="act">
         <h3 class="act__titulo"><span class="act__num">2-</span> Parte 2: programa con menú</h3>
-        <p>Programa con menú (hecho con <code>prompt()</code>) que ofrezca:</p>
+        <p>Programa con menú (hecho con <code class="cod-js">prompt()</code>) que ofrezca:</p>
         <ol class="act__items act__items--2col">
           <li><b class="act__letra">1</b><div><strong>Calculadora:</strong> suma, resta, multiplicación y división, como funciones.</div></li>
           <li><b class="act__letra">2</b><div><strong>Conversor de unidades:</strong> km a millas, °C a °F, pesos a dólares.</div></li>
@@ -708,7 +708,7 @@ console.<span class="c-fun">log</span>(<span class="c-fun">mayor</span>(<span cl
               <li>Cada opción del menú es una función.</li>
               <li>El menú termina con "salir" y también con Cancelar.</li>
               <li>Ninguno muestra errores en la consola.</li>
-              <li>Cada <code>app.js</code> tiene su comentario.</li>
+              <li>Cada <code class="cod-js">app.js</code> tiene su comentario.</li>
             </ul>
           </div>
         </div>

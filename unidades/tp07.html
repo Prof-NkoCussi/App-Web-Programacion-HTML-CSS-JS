@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TP N°7 — Mi primera página web · Programación - HTML, CSS, JS</title>
+  <meta name="description" content="TP N°7 de Programación: cómo trabajan juntos HTML, CSS y JavaScript, el entorno de trabajo y los archivos, la estructura básica de HTML, títulos, párrafos, br y hr. Prof. Nicolás A. Cussi.">
+  <meta name="theme-color" content="#2563EB">
+  <link rel="preload" href="../assets/fonts/barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/barlow-semi-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/estilos.css">
+</head>
+<body data-tp="7">
+
+<!-- ====== Íconos ====== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-web" viewBox="0 0 48 48">
+      <rect x="4" y="7" width="40" height="34" rx="4" style="fill:var(--ac2, var(--acento-claro))"/>
+      <path d="M8 7h32a4 4 0 0 1 4 4v5H4v-5a4 4 0 0 1 4-4z" style="fill:var(--ac)"/>
+      <rect x="4" y="7" width="40" height="34" rx="4"/>
+      <path d="M4 16h40M19 23l-6 6 6 6M29 23l6 6-6 6M26.5 21l-5 16"/>
+    </symbol>
+    <symbol id="i-capas" viewBox="0 0 48 48">
+      <path d="M24 5 44 15 24 25 4 15z" style="fill:var(--ac)"/>
+      <path d="M4 24l20 10 20-10M4 33l20 10 20-10"/>
+    </symbol>
+    <symbol id="i-carpeta" viewBox="0 0 48 48">
+      <path d="M4 12a3 3 0 0 1 3-3h11l4 5h19a3 3 0 0 1 3 3v21a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z" style="fill:var(--ac)"/>
+      <path d="M4 20h40"/>
+    </symbol>
+    <symbol id="i-editor" viewBox="0 0 48 48">
+      <path d="M7 7h34a3 3 0 0 1 3 3v4H4v-4a3 3 0 0 1 3-3z" style="fill:var(--ac)"/>
+      <rect x="4" y="7" width="40" height="34" rx="3"/>
+      <path d="M4 14h40M10 21h14M15 27h18M15 33h11"/>
+    </symbol>
+    <symbol id="i-archivo" viewBox="0 0 48 48">
+      <path d="M10 4h19l10 10v30H10z"/>
+      <path d="M29 4v10h10"/>
+      <path d="M24.5 21v15M17 28.5h15" style="stroke:var(--ac);stroke-width:3.4"/>
+    </symbol>
+    <symbol id="i-navegador" viewBox="0 0 48 48">
+      <ellipse cx="24" cy="24" rx="8" ry="19" style="fill:var(--ac)"/>
+      <circle cx="24" cy="24" r="19"/>
+      <path d="M5 24h38M8.5 14h31M8.5 34h31"/>
+    </symbol>
+    <symbol id="i-texto" viewBox="0 0 48 48">
+      <rect x="5" y="5" width="26" height="9" rx="2" style="fill:var(--ac)"/>
+      <path d="M5 23h38M5 31h38M5 39h24"/>
+    </symbol>
+    <symbol id="i-importante" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="21" style="fill:var(--ac);stroke:none"/>
+      <path d="M24 12v15M24 35v.5" style="stroke:var(--blanco);stroke-width:5.5"/>
+    </symbol>
+    <symbol id="i-consejo" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="21" style="fill:var(--ac);stroke:none"/>
+      <path d="M14 24.5l7 7 13-14" style="stroke:var(--blanco);stroke-width:5.5"/>
+    </symbol>
+    <symbol id="i-foco" viewBox="0 0 48 48">
+      <path d="M24 2.5v4M10 8.5l2.8 2.8M38 8.5l-2.8 2.8M4 22h4M40 22h4"/>
+      <path d="M24 12a10 10 0 0 0-6.2 17.8c1.4 1.2 2.2 2.6 2.2 4.2v1h8v-1c0-1.6.8-3 2.2-4.2A10 10 0 0 0 24 12z" style="fill:var(--ac)"/>
+      <path d="M20 39h8M21.5 43h5"/>
+    </symbol>
+    <symbol id="i-lapiz" viewBox="0 0 48 48">
+      <path d="M33 6l9 9-25 25-9-9z" style="fill:var(--ac)"/>
+      <path d="M8 31 5.5 42.5 17 40z"/>
+      <path d="M27 12l9 9"/>
+    </symbol>
+    <symbol id="i-subir" viewBox="0 0 48 48">
+      <path d="M6 30v8a3 3 0 0 0 3 3h30a3 3 0 0 0 3-3v-8"/>
+      <path d="M24 31V7M15 16l9-9 9 9" style="stroke:var(--ac);stroke-width:3.4"/>
+    </symbol>
+    <symbol id="i-descarga" viewBox="0 0 24 24">
+      <path d="M12 3v12M7 10l5 5 5-5M5 20h14"/>
+    </symbol>
+    <symbol id="i-atras" viewBox="0 0 24 24">
+      <path d="M20 12H5M11 6l-6 6 6 6"/>
+    </symbol>
+  </defs>
+</svg>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="barra">
+  <div class="barra__fila">
+    <a class="boton barra__volver" href="../index.html"><svg aria-hidden="true" focusable="false"><use href="#i-atras"/></svg><span>Índice</span></a>
+    <span class="barra__titulo">TP N°7 — Mi primera página web</span>
+    <button class="boton" type="button" data-imprimir aria-label="Guardar en PDF">
+      <svg aria-hidden="true" focusable="false"><use href="#i-descarga"/></svg><span><span class="boton__largo">Guardar </span>PDF</span>
+    </button>
+  </div>
+  <nav class="partes" aria-label="Partes del TP N°7">
+    <a href="#pag-25">25 · HTML, CSS y JS</a>
+    <a href="#pag-26">26 · Entorno</a>
+    <a href="#pag-27">27 · Estructura</a>
+    <a href="#pag-28">28 · Títulos y párrafos</a>
+    <a href="#profundizar">Para profundizar</a>
+    <a href="#actividades">Actividades</a>
+  </nav>
+</header>
+
+<main id="contenido" class="laminas">
+  <h1 class="sr-only">TP N°7 — Mi primera página web</h1>
+
+  <!-- =================== LÁMINA 25 =================== -->
+  <article class="lamina lamina--compacta" id="pag-25" aria-labelledby="t25">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°7</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t25"><span class="tit__num">25.</span> HTML + CSS + JavaScript</h2>
+      <p class="tit__sub">Cómo trabajan juntos</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-capas"/></svg>
+      <p>Una página web se construye con <strong>tres tecnologías</strong> que trabajan en conjunto. Cada una tiene un rol específico:</p>
+    </div>
+
+    <ul class="tecs">
+      <li class="tec tec--html">
+        <h3><span class="etq etq--html">HTML</span> Estructura</h3>
+        <p>HTML (<span lang="en">HyperText Markup Language</span>) crea la estructura de la página. Define el contenido y su organización: títulos, párrafos, imágenes, enlaces, formularios.</p>
+      </li>
+      <li class="tec tec--css">
+        <h3><span class="etq etq--css">CSS</span> Diseño</h3>
+        <p>CSS (<span lang="en">Cascading Style Sheets</span>) da estilo y diseño a la página. Controla colores, tipografías, tamaños, espaciados, posiciones y mucho más.</p>
+      </li>
+      <li class="tec tec--js">
+        <h3><span class="etq etq--js">JavaScript</span> Interactividad</h3>
+        <p>El lenguaje que usamos desde el TP1. En la página, responde a acciones del usuario, modifica el contenido, valida formularios y muestra mensajes.</p>
+      </li>
+    </ul>
+
+    <div class="juntos">
+      <div class="juntos__col">
+        <figure class="codigo codigo--html" id="ej-25h">
+          <figcaption><span class="codigo__archivo">index.html</span></figcaption>
+          <pre tabindex="0" aria-label="Código de index.html"><code><span class="c-etq">&lt;!DOCTYPE html&gt;</span>
+<span class="c-etq">&lt;html</span> <span class="c-atr">lang</span>=<span class="c-str">"es-AR"</span><span class="c-etq">&gt;</span>
+<span class="c-etq">&lt;head&gt;</span>
+  <span class="c-etq">&lt;meta</span> <span class="c-atr">charset</span>=<span class="c-str">"utf-8"</span><span class="c-etq">&gt;</span>
+  <span class="c-etq">&lt;title&gt;</span>Mi sitio web<span class="c-etq">&lt;/title&gt;</span>
+  <span class="c-etq">&lt;link</span> <span class="c-atr">rel</span>=<span class="c-str">"stylesheet"</span> <span class="c-atr">href</span>=<span class="c-str">"estilos.css"</span><span class="c-etq">&gt;</span>
+<span class="c-etq">&lt;/head&gt;</span>
+<span class="c-etq">&lt;body&gt;</span>
+  <span class="c-etq">&lt;h1&gt;</span>Bienvenido<span class="c-etq">&lt;/h1&gt;</span>
+  <span class="c-etq">&lt;p&gt;</span>Esta es mi página web.<span class="c-etq">&lt;/p&gt;</span>
+  <span class="c-etq">&lt;button</span> <span class="c-atr">id</span>=<span class="c-str">"btn"</span><span class="c-etq">&gt;</span>Saludar<span class="c-etq">&lt;/button&gt;</span>
+  <span class="c-etq">&lt;script</span> <span class="c-atr">src</span>=<span class="c-str">"app.js"</span><span class="c-etq">&gt;&lt;/script&gt;</span>
+<span class="c-etq">&lt;/body&gt;</span>
+<span class="c-etq">&lt;/html&gt;</span></code></pre>
+        </figure>
+        <figure class="codigo codigo--js" id="ej-25j">
+          <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+          <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">function</span> <span class="c-fun">saludar</span>() {
+  <span class="c-fun">alert</span>(<span class="c-str">"¡Hola!"</span>);
+}
+<span class="c-etq">const</span> boton = document.<span class="c-fun">getElementById</span>(<span class="c-str">"btn"</span>);
+boton.<span class="c-fun">addEventListener</span>(<span class="c-str">"click"</span>, saludar);</code></pre>
+        </figure>
+      </div>
+      <div class="juntos__col">
+        <figure class="codigo codigo--css" id="ej-25c">
+          <figcaption><span class="codigo__archivo">estilos.css</span></figcaption>
+          <pre tabindex="0" aria-label="Código de estilos.css"><code><span class="c-etq">h1</span> {
+  <span class="c-atr">color</span>: <span class="c-str">#2563eb</span>;
+  <span class="c-atr">font-size</span>: <span class="c-num">32px</span>;
+}
+<span class="c-etq">button</span> {
+  <span class="c-atr">background</span>: <span class="c-str">#be185d</span>;
+  <span class="c-atr">color</span>: <span class="c-str">white</span>;
+  <span class="c-atr">padding</span>: <span class="c-num">10px 20px</span>;
+  <span class="c-atr">border</span>: <span class="c-str">none</span>;
+  <span class="c-atr">border-radius</span>: <span class="c-num">8px</span>;
+}</code></pre>
+        </figure>
+        <figure class="resultado" data-html="ej-25h" data-css="ej-25c" data-js="ej-25j" style="--alto:158px">
+          <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">Mi sitio web</span></div>
+          <iframe title="Resultado en el navegador: el título Bienvenido en azul, un párrafo y el botón Saludar. Al tocar el botón aparece el mensaje ¡Hola!" sandbox="allow-scripts allow-modals"></iframe>
+          <figcaption class="resultado__nota">Tocá <strong>Saludar</strong>. El CSS y el JavaScript los vemos en los próximos TPs.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> la <b>estructura</b> (HTML), el <b>diseño</b> (CSS) y la <b>interactividad</b> (JavaScript) se complementan para crear páginas web completas.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 25">25</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 26 =================== -->
+  <article class="lamina lamina--compacta" id="pag-26" aria-labelledby="t26">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°7</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t26"><span class="tit__num">26.</span> El entorno de trabajo</h2>
+      <p class="tit__sub">Archivos .html, .css y .js</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-editor"/></svg>
+      <p>Antes de crear páginas web, necesitamos un entorno de trabajo simple y organizado. Es el mismo que usamos desde el TP1. Lo nuevo: ahora <strong>creamos los archivos desde cero</strong>.</p>
+    </div>
+
+    <div class="esquema-par">
+      <figure class="esquema">
+        <svg viewBox="0 0 420 150" style="max-width:420px;margin:0 auto" role="img" aria-labelledby="esq26a">
+          <title id="esq26a">El entorno de trabajo. En el editor de código, VS Code, escribimos los archivos. Se guardan en la carpeta del proyecto, mi-sitio, con index.html, estilos.css y app.js. En el navegador web, Chrome, vemos la página.</title>
+          <!-- Editor -->
+          <rect x="2" y="6" width="118" height="96" rx="6" style="fill:var(--cod-fondo)"/>
+          <path d="M8 6h106a6 6 0 0 1 6 6v8H2v-8a6 6 0 0 1 6-6z" style="fill:var(--acento)"/>
+          <g style="fill:var(--cod-etq)"><rect x="12" y="32" width="30" height="6" rx="3"/><rect x="12" y="86" width="34" height="6" rx="3"/></g>
+          <g style="fill:var(--cod-atr)"><rect x="46" y="32" width="22" height="6" rx="3"/><rect x="22" y="50" width="26" height="6" rx="3"/></g>
+          <g style="fill:var(--cod-str)"><rect x="72" y="32" width="34" height="6" rx="3"/><rect x="52" y="50" width="40" height="6" rx="3"/></g>
+          <g style="fill:var(--cod-fun)"><rect x="22" y="68" width="50" height="6" rx="3"/></g>
+          <g style="fill:var(--cod-com)"><rect x="76" y="68" width="24" height="6" rx="3"/></g>
+          <rect x="2" y="6" width="118" height="96" rx="6" style="fill:none;stroke:var(--tinta);stroke-width:2"/>
+          <!-- Carpeta -->
+          <rect x="151" y="6" width="118" height="96" rx="6" style="fill:var(--carpeta-claro);stroke:var(--tinta);stroke-width:2"/>
+          <path d="M160 17a2 2 0 0 1 2-2h6l3 3h10a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-19a2 2 0 0 1-2-2z" style="fill:var(--carpeta);stroke:var(--tinta);stroke-width:1.5"/>
+          <text x="188" y="28" style="font-family:var(--fuente-codigo);font-size:13px;font-weight:700;fill:var(--tinta)">mi-sitio</text>
+          <rect x="162" y="42" width="10" height="13" rx="1.5" style="fill:var(--html)"/>
+          <rect x="162" y="62" width="10" height="13" rx="1.5" style="fill:var(--css)"/>
+          <rect x="162" y="82" width="10" height="13" rx="1.5" style="fill:var(--js)"/>
+          <g style="font-family:var(--fuente-codigo);font-size:12.5px;fill:var(--tinta)">
+            <text x="178" y="53">index.html</text>
+            <text x="178" y="73">estilos.css</text>
+            <text x="178" y="93">app.js</text>
+          </g>
+          <!-- Navegador -->
+          <rect x="300" y="6" width="118" height="96" rx="6" style="fill:var(--blanco)"/>
+          <path d="M306 6h106a6 6 0 0 1 6 6v8H300v-8a6 6 0 0 1 6-6z" style="fill:var(--acento-claro)"/>
+          <circle cx="310" cy="13" r="2.5" style="fill:var(--punto-rojo)"/><circle cx="318" cy="13" r="2.5" style="fill:var(--punto-amarillo)"/><circle cx="326" cy="13" r="2.5" style="fill:var(--punto-verde)"/>
+          <text x="310" y="42" style="font-family:var(--fuente);font-size:14px;font-weight:700;fill:var(--acento-numero)">Mi sitio web</text>
+          <g style="fill:var(--linea)"><rect x="310" y="52" width="96" height="5" rx="2.5"/><rect x="310" y="62" width="76" height="5" rx="2.5"/></g>
+          <rect x="310" y="76" width="46" height="16" rx="4" style="fill:var(--js)"/>
+          <rect x="300" y="6" width="118" height="96" rx="6" style="fill:none;stroke:var(--tinta);stroke-width:2"/>
+          <path d="M300 20h118" style="stroke:var(--tinta);stroke-width:1.5"/>
+          <!-- Flechas -->
+          <g style="fill:none;stroke:var(--acento);stroke-width:3;stroke-linecap:round;stroke-linejoin:round">
+            <path d="M127 54h17M138 48l6 6-6 6"/>
+            <path d="M276 54h17M287 48l6 6-6 6"/>
+          </g>
+          <!-- Rótulos -->
+          <g class="tt" style="font-size:14.5px;font-weight:700" text-anchor="middle">
+            <text x="61" y="124">Editor de código</text>
+            <text x="210" y="124">Carpeta del proyecto</text>
+            <text x="359" y="124">Navegador web</text>
+          </g>
+          <g class="tt" style="font-size:13.5px;font-weight:600" text-anchor="middle">
+            <text x="61" y="143" style="fill:var(--acento-numero)">VS Code</text>
+            <text x="210" y="143" style="fill:var(--carpeta-texto)">mi-sitio</text>
+            <text x="359" y="143" style="fill:var(--acento-numero)">Chrome</text>
+          </g>
+        </svg>
+      </figure>
+      <aside class="esquema-nota" aria-labelledby="n26a">
+        <h3 id="n26a">Elementos del entorno</h3>
+        <ul class="pf__lista">
+          <li><strong>Editor:</strong> para escribir HTML, CSS y JavaScript.</li>
+          <li><strong>Navegador:</strong> para ver y probar la página. También sirven Firefox o Edge.</li>
+          <li><strong>Carpeta:</strong> guarda los archivos del sitio.</li>
+          <li><strong>Extensiones (opcionales):</strong> Live Server y Prettier.</li>
+        </ul>
+      </aside>
+    </div>
+
+    <section aria-labelledby="s26">
+      <h3 class="subtitulo" id="s26">Paso a paso</h3>
+      <ol class="pasos2">
+        <li class="paso"><svg class="ico ico--carpeta" aria-hidden="true" focusable="false"><use href="#i-carpeta"/></svg><h3><span class="paso__n">1</span>Crear la carpeta</h3><p>Clic derecho → <strong>Nuevo → Carpeta</strong>. La llamamos <code class="cod-carpeta">mi-sitio</code>.</p></li>
+        <li class="paso"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-editor"/></svg><h3><span class="paso__n">2</span>Abrirla en el editor</h3><p>En VS Code: <strong>Archivo → Abrir carpeta…</strong></p></li>
+        <li class="paso"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-archivo"/></svg><h3><span class="paso__n">3</span>Crear los archivos</h3><p>En el panel de VS Code, clic derecho → <strong>Nuevo archivo…</strong> y el nombre con su extensión.</p></li>
+        <li class="paso"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-navegador"/></svg><h3><span class="paso__n">4</span>Probar en el navegador</h3><p>Abrimos <code>index.html</code> con Chrome. Con cada cambio: <kbd>Ctrl</kbd> + <kbd>S</kbd> y <kbd>F5</kbd>.</p></li>
+      </ol>
+    </section>
+
+    <div class="esquema-par">
+      <figure class="esquema">
+        <svg viewBox="0 0 340 158" style="max-width:340px;margin:0 auto" role="img" aria-labelledby="esq26b">
+          <title id="esq26b">La carpeta mi-sitio tiene tres archivos: index.html, estilos.css y app.js. Desde index.html, la etiqueta link vincula estilos.css y la etiqueta script vincula app.js.</title>
+          <path d="M4 10a3 3 0 0 1 3-3h9l4 5h17a3 3 0 0 1 3 3v15a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z" style="fill:var(--carpeta);stroke:var(--tinta);stroke-width:2;stroke-linejoin:round"/>
+          <text x="48" y="28" style="font-family:var(--fuente-codigo);font-size:17px;font-weight:700;fill:var(--tinta)">mi-sitio/</text>
+          <path d="M20 38v94M20 56h14M20 94h14M20 132h14" style="fill:none;stroke:var(--gris);stroke-width:2"/>
+          <path d="M36 42h14l8 8v20H36z" style="fill:var(--html)"/>
+          <path d="M36 80h14l8 8v20H36z" style="fill:var(--css)"/>
+          <path d="M36 118h14l8 8v20H36z" style="fill:var(--js)"/>
+          <g style="font-family:var(--fuente-codigo);font-size:16px;fill:var(--tinta)">
+            <text x="68" y="62">index.html</text>
+            <text x="68" y="100">estilos.css</text>
+            <text x="68" y="138">app.js</text>
+          </g>
+          <g style="fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round">
+            <path d="M206 56H266V132H130M137 126l-7 6 7 6" style="stroke:var(--js)"/>
+            <path d="M166 56H206V94H184M191 88l-7 6 7 6" style="stroke:var(--css)"/>
+          </g>
+          <g style="font-family:var(--fuente-codigo);font-size:14px;font-weight:700">
+            <text x="213" y="80" style="fill:var(--css-texto)">&lt;link&gt;</text>
+            <text x="272" y="108" style="fill:var(--js)">&lt;script&gt;</text>
+          </g>
+        </svg>
+      </figure>
+      <aside class="esquema-nota" aria-labelledby="n26b">
+        <h3 id="n26b">Cómo se conectan</h3>
+        <ul class="pf__lista">
+          <li>Los tres archivos se guardan en la <strong>misma carpeta</strong> y se vinculan desde <code>index.html</code>.</li>
+          <li>Archivo <code>.html</code> = contenido. Archivo <code class="cod-css">.css</code> = apariencia. Archivo <code class="cod-js">.js</code> = comportamiento.</li>
+          <li><code>&lt;script&gt;</code> lo vemos en la lámina 27 y <code>&lt;link&gt;</code>, en el TP11.</li>
+        </ul>
+      </aside>
+    </div>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> para empezar a desarrollar necesitamos un editor de código, un navegador web y una carpeta ordenada para guardar los archivos.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 26">26</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 27 =================== -->
+  <article class="lamina lamina--compacta" id="pag-27" aria-labelledby="t27">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°7</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t27"><span class="tit__num">27.</span> Estructura básica de HTML</h2>
+      <p class="tit__sub">La plantilla del TP1, línea por línea</p>
+    </div>
+
+    <div class="ej ej--est">
+      <figure class="codigo codigo--html" id="ej-27">
+        <figcaption><span class="codigo__archivo">index.html</span></figcaption>
+        <pre tabindex="0" aria-label="Código de index.html de la plantilla"><code><span class="c-etq">&lt;!DOCTYPE html&gt;</span>
+<span class="c-etq">&lt;html</span> <span class="c-atr">lang</span>=<span class="c-str">"es-AR"</span><span class="c-etq">&gt;</span>
+<span class="c-etq">&lt;head&gt;</span>
+  <span class="c-etq">&lt;meta</span> <span class="c-atr">charset</span>=<span class="c-str">"utf-8"</span><span class="c-etq">&gt;</span>
+  <span class="c-etq">&lt;meta</span> <span class="c-atr">name</span>=<span class="c-str">"viewport"</span> <span class="c-atr">content</span>=<span class="c-str">"width=device-width, initial-scale=1"</span><span class="c-etq">&gt;</span>
+  <span class="c-etq">&lt;title&gt;</span>Mi programa en JavaScript<span class="c-etq">&lt;/title&gt;</span>
+<span class="c-etq">&lt;/head&gt;</span>
+<span class="c-etq">&lt;body&gt;</span>
+  <span class="c-etq">&lt;h1&gt;</span>Mi programa en JavaScript<span class="c-etq">&lt;/h1&gt;</span>
+  <span class="c-etq">&lt;p&gt;</span>Esta página ejecuta el programa que está en <span class="c-etq">&lt;strong&gt;</span>app.js<span class="c-etq">&lt;/strong&gt;</span>.<span class="c-etq">&lt;/p&gt;</span>
+  <span class="c-etq">&lt;p&gt;</span>Para ver lo que muestra, abrí la consola con la tecla <span class="c-etq">&lt;strong&gt;</span>F12<span class="c-etq">&lt;/strong&gt;</span> (pestaña <span class="c-etq">&lt;strong&gt;</span>Console<span class="c-etq">&lt;/strong&gt;</span>).<span class="c-etq">&lt;/p&gt;</span>
+  <span class="c-etq">&lt;p&gt;</span>Cada vez que cambies app.js: guardá con <span class="c-etq">&lt;strong&gt;</span>Ctrl + S<span class="c-etq">&lt;/strong&gt;</span> y recargá esta página con <span class="c-etq">&lt;strong&gt;</span>F5<span class="c-etq">&lt;/strong&gt;</span>.<span class="c-etq">&lt;/p&gt;</span>
+
+  <span class="c-etq">&lt;script</span> <span class="c-atr">src</span>=<span class="c-str">"app.js"</span><span class="c-etq">&gt;&lt;/script&gt;</span>
+<span class="c-etq">&lt;/body&gt;</span>
+<span class="c-etq">&lt;/html&gt;</span></code></pre>
+      </figure>
+      <aside class="esquema-nota" aria-labelledby="n27">
+        <h3 id="n27">Qué hace cada línea</h3>
+        <ul class="pf__lista">
+          <li><code>&lt;!DOCTYPE html&gt;</code>: es un documento HTML5. Va primero.</li>
+          <li><code>&lt;html lang="es-AR"&gt;</code> contiene todo. <code>lang</code> es el idioma: español de Argentina.</li>
+          <li class="punto--turquesa"><code>&lt;head&gt;</code>: datos que <strong>no se ven</strong>. En las dos <code>&lt;meta&gt;</code>, <code>charset</code> hace que se vean bien los acentos y la ñ, y <code>viewport</code>, que la página se adapte al celular. <code>&lt;title&gt;</code> es el título de la pestaña.</li>
+          <li class="punto--naranja"><code>&lt;body&gt;</code>: el contenido <strong>visible</strong>. <code>&lt;h1&gt;</code> es un título y <code>&lt;p&gt;</code>, un párrafo (lámina 28). <code>&lt;strong&gt;</code> resalta un texto (TP8).</li>
+          <li><code>&lt;script src="app.js"&gt;</code> carga y ejecuta <code class="cod-js">app.js</code>: por eso nuestros programas corren al abrir la página.</li>
+          <li><code>&lt;/head&gt;</code>, <code>&lt;/body&gt;</code>, <code>&lt;/html&gt;</code> cierran lo que se abrió, con <code>/</code>.</li>
+        </ul>
+      </aside>
+    </div>
+
+    <div class="esquema-par esquema-par--res">
+      <figure class="esquema">
+        <svg viewBox="0 0 320 206" style="max-width:320px;margin:0 auto" role="img" aria-labelledby="esq27">
+          <title id="esq27">Árbol de la plantilla. html contiene a head y a body. Dentro de head están las dos etiquetas meta y title: son datos para el navegador. Dentro de body están h1, tres párrafos p y script: es el contenido de la página.</title>
+          <rect x="110" y="2" width="100" height="32" rx="6" style="fill:var(--acento)"/>
+          <text x="160" y="23" text-anchor="middle" style="font-family:var(--fuente-codigo);font-size:16px;font-weight:700;fill:var(--blanco)">&lt;html&gt;</text>
+          <g style="fill:none;stroke-width:2.5">
+            <path d="M160 34v11" style="stroke:var(--acento)"/>
+            <path d="M160 45H65v11M65 86v10" style="stroke:var(--turquesa)"/>
+            <path d="M160 45h95v11M255 86v10" style="stroke:var(--naranja)"/>
+          </g>
+          <rect x="15" y="56" width="100" height="30" rx="6" style="fill:var(--turquesa-texto)"/>
+          <rect x="195" y="56" width="120" height="30" rx="6" style="fill:var(--naranja-texto)"/>
+          <g text-anchor="middle" style="font-family:var(--fuente-codigo);font-size:16px;font-weight:700;fill:var(--blanco)">
+            <text x="65" y="76">&lt;head&gt;</text>
+            <text x="255" y="76">&lt;body&gt;</text>
+          </g>
+          <rect x="15" y="96" width="100" height="84" rx="6" style="fill:var(--turquesa-claro);stroke:var(--turquesa);stroke-width:1.5"/>
+          <rect x="195" y="96" width="120" height="84" rx="6" style="fill:var(--naranja-claro);stroke:var(--naranja);stroke-width:1.5"/>
+          <g text-anchor="middle" style="font-family:var(--fuente-codigo);font-size:14.5px;fill:var(--tinta)">
+            <text x="65" y="119">&lt;meta&gt;</text>
+            <text x="65" y="142">&lt;meta&gt;</text>
+            <text x="65" y="165">&lt;title&gt;</text>
+            <text x="255" y="119">&lt;h1&gt;</text>
+            <text x="255" y="142">&lt;p&gt; &lt;p&gt; &lt;p&gt;</text>
+            <text x="255" y="165">&lt;script&gt;</text>
+          </g>
+          <g class="tt" text-anchor="middle" style="font-size:13.5px;font-weight:700">
+            <text x="65" y="199" style="fill:var(--turquesa-texto)">datos del navegador</text>
+            <text x="255" y="199" style="fill:var(--naranja-texto)">contenido de la página</text>
+          </g>
+        </svg>
+      </figure>
+      <figure class="resultado" data-html="ej-27" style="--alto:258px;--alto-cel:278px">
+        <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">Mi programa en JavaScript</span></div>
+        <iframe title="Resultado en el navegador: el título Mi programa en JavaScript y los tres párrafos de la plantilla. Lo que está en el head no se ve." sandbox=""></iframe>
+        <figcaption class="resultado__nota">Solo se ve lo que está dentro de <code>&lt;body&gt;</code>.</figcaption>
+      </figure>
+    </div>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> todo documento HTML parte de una estructura base, con <b>doctype</b>, <b>html</b>, <b>head</b> y <b>body</b>, que el navegador usa para mostrar la página.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 27">27</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 28 =================== -->
+  <article class="lamina lamina--compacta" id="pag-28" aria-labelledby="t28">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°7</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t28"><span class="tit__num">28.</span> Títulos y párrafos</h2>
+      <p class="tit__sub">De h1 a h6, p, br y hr</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-texto"/></svg>
+      <p>Los títulos y los párrafos nos permiten organizar y presentar la información de una página web. Los títulos van del <code>&lt;h1&gt;</code>, el más importante, al <code>&lt;h6&gt;</code>, el de menor jerarquía.</p>
+    </div>
+
+    <div class="ej ej--res">
+      <div class="ej-col">
+        <figure class="codigo codigo--html" id="ej-28a">
+          <figcaption><span class="codigo__archivo">index.html</span><span class="codigo__donde">dentro de &lt;body&gt;</span></figcaption>
+          <pre tabindex="0" aria-label="Código de index.html, dentro de body"><code><span class="c-etq">&lt;h1&gt;</span>Título principal<span class="c-etq">&lt;/h1&gt;</span>
+<span class="c-etq">&lt;h2&gt;</span>Título secundario<span class="c-etq">&lt;/h2&gt;</span>
+<span class="c-etq">&lt;h3&gt;</span>Título de nivel 3<span class="c-etq">&lt;/h3&gt;</span>
+<span class="c-etq">&lt;h4&gt;</span>Título de nivel 4<span class="c-etq">&lt;/h4&gt;</span>
+<span class="c-etq">&lt;h5&gt;</span>Título de nivel 5<span class="c-etq">&lt;/h5&gt;</span>
+<span class="c-etq">&lt;h6&gt;</span>Título de nivel 6<span class="c-etq">&lt;/h6&gt;</span></code></pre>
+        </figure>
+        <aside class="esquema-nota esquema-nota--importante" aria-labelledby="n28a">
+          <h3 id="n28a"><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-importante"/></svg>Importante</h3>
+          <p class="esquema-nota__p">Usá <strong>un solo</strong> <code>&lt;h1&gt;</code> por página y mantené el orden de jerarquía (<code>h1</code>, <code>h2</code>, <code>h3</code>…) para una mejor estructura.</p>
+        </aside>
+      </div>
+      <figure class="resultado" data-html="ej-28a" style="--alto:292px">
+        <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">index.html</span></div>
+        <iframe title="Resultado en el navegador: los seis títulos, del h1 al h6, cada uno más chico que el anterior." sandbox=""></iframe>
+      </figure>
+    </div>
+
+    <ul class="comparar comparar--3">
+      <li><div><h3>Párrafo <code>&lt;p&gt;</code></h3><p>Define un párrafo de texto, con espacio arriba y abajo.</p></div></li>
+      <li><div><h3>Salto <code>&lt;br&gt;</code></h3><p>Corta la línea dentro de un texto. No se cierra.</p></div></li>
+      <li><div><h3>Línea <code>&lt;hr&gt;</code></h3><p>Separa dos partes con una línea. No se cierra.</p></div></li>
+    </ul>
+
+    <div class="ej ej--res">
+      <figure class="codigo codigo--html" id="ej-28b">
+        <figcaption><span class="codigo__archivo">index.html</span><span class="codigo__donde">dentro de &lt;body&gt;</span></figcaption>
+        <pre tabindex="0" aria-label="Código de index.html, dentro de body"><code><span class="c-etq">&lt;h1&gt;</span>Bienvenido a mi sitio<span class="c-etq">&lt;/h1&gt;</span>
+<span class="c-etq">&lt;p&gt;</span>Este es un párrafo.<span class="c-etq">&lt;/p&gt;</span>
+<span class="c-etq">&lt;hr&gt;</span>
+<span class="c-etq">&lt;p&gt;</span>Hecho por Lucía<span class="c-etq">&lt;br&gt;</span>Ushuaia, Tierra del Fuego<span class="c-etq">&lt;/p&gt;</span></code></pre>
+      </figure>
+      <figure class="resultado" data-html="ej-28b" style="--alto:184px">
+        <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">index.html</span></div>
+        <iframe title="Resultado en el navegador: el título Bienvenido a mi sitio, un párrafo, una línea horizontal y un párrafo en dos renglones: Hecho por Lucía y, abajo, Ushuaia, Tierra del Fuego." sandbox=""></iframe>
+      </figure>
+    </div>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> los títulos organizan la información y los párrafos desarrollan el contenido. <code>&lt;br&gt;</code> corta una línea y <code>&lt;hr&gt;</code> separa dos partes.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 28">28</span>
+    </footer>
+  </article>
+
+  <!-- =================== PARA PROFUNDIZAR =================== -->
+  <article class="lamina lamina--pf" id="profundizar" aria-labelledby="tpf">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°7</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="tpf"><span class="tit__num">+</span> Para profundizar</h2>
+      <p class="tit__sub">Un poco más sobre cada lámina</p>
+    </div>
+
+    <div class="pf-grid">
+    <section class="pf" aria-labelledby="pf25">
+      <p class="pf__etiqueta">Lámina 25</p>
+      <h3 class="pf__titulo" id="pf25">Cómo funciona una página web</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p>Una página web es un conjunto de archivos que un <strong>servidor</strong> envía a nuestro <strong>navegador</strong>, que los interpreta y los muestra.</p>
+          <figure class="esquema">
+            <svg viewBox="0 0 330 128" style="max-width:330px;margin:0 auto" role="img" aria-labelledby="esq25">
+              <title id="esq25">Cómo se carga una página web. 1: escribimos una dirección web en el navegador. 2: el navegador pide la página al servidor web, a través de Internet. 3: el servidor envía los archivos. 4: el navegador los interpreta. 5: muestra la página.</title>
+              <!-- Navegador -->
+              <rect x="6" y="20" width="96" height="66" rx="4" style="fill:var(--blanco);stroke:var(--tinta);stroke-width:2"/>
+              <path d="M7 21h94v14H7z" style="fill:var(--acento-claro)"/>
+              <path d="M6 35h96" style="stroke:var(--tinta);stroke-width:1.5"/>
+              <rect x="34" y="24" width="62" height="7" rx="3.5" style="fill:var(--blanco);stroke:var(--html-linea);stroke-width:1"/>
+              <rect x="40" y="44" width="40" height="7" rx="2" style="fill:var(--acento)"/>
+              <g style="fill:var(--linea)"><rect x="40" y="57" width="54" height="5" rx="2.5"/><rect x="40" y="68" width="30" height="5" rx="2.5"/></g>
+              <rect x="74" y="66" width="20" height="9" rx="2.5" style="fill:var(--js)"/>
+              <rect x="0" y="86" width="108" height="7" rx="3.5" style="fill:var(--tinta)"/>
+              <!-- Servidor -->
+              <g style="fill:var(--naranja-claro);stroke:var(--naranja-texto);stroke-width:2">
+                <rect x="244" y="18" width="80" height="22" rx="4"/>
+                <rect x="244" y="42" width="80" height="22" rx="4"/>
+                <rect x="244" y="66" width="80" height="22" rx="4"/>
+              </g>
+              <g style="fill:var(--punto-verde)"><circle cx="256" cy="29" r="3.5"/><circle cx="256" cy="53" r="3.5"/><circle cx="256" cy="77" r="3.5"/></g>
+              <path d="M268 29h44M268 53h44M268 77h44" style="stroke:var(--naranja);stroke-width:3;stroke-linecap:round"/>
+              <!-- Internet -->
+              <path d="M150 74a12 12 0 0 1 2-23.8 16 16 0 0 1 30-3 11 11 0 0 1 14 10.6A9 9 0 0 1 194 74z" style="fill:var(--turquesa-claro);stroke:var(--turquesa);stroke-width:2"/>
+              <text class="tt" x="172" y="68" text-anchor="middle" style="font-size:12px;font-weight:700;fill:var(--turquesa-texto)">Internet</text>
+              <!-- Flechas: el pedido va en azul y los archivos vuelven en naranja -->
+              <g style="fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round">
+                <path d="M114 30H232M225 24l7 6-7 6" style="stroke:var(--acento)"/>
+                <path d="M232 92H114M121 86l-7 6 7 6" style="stroke:var(--naranja)"/>
+              </g>
+              <!-- Pasos: 1 la dirección, 2 el pedido, 3 los archivos, 4 y 5 en el navegador -->
+              <g style="fill:var(--acento-numero)">
+                <circle cx="20" cy="28" r="9"/><circle cx="173" cy="16" r="9"/>
+                <circle cx="20" cy="50" r="9"/><circle cx="20" cy="71" r="9"/>
+              </g>
+              <circle cx="173" cy="106" r="9" style="fill:var(--naranja-texto)"/>
+              <g class="tt tt--claro" text-anchor="middle" style="font-size:12px;font-weight:700">
+                <text x="20" y="32">1</text><text x="173" y="20">2</text><text x="173" y="110">3</text>
+                <text x="20" y="54">4</text><text x="20" y="75">5</text>
+              </g>
+              <g class="tt" text-anchor="middle" style="font-size:13px;font-weight:700">
+                <text x="54" y="112" style="fill:var(--acento-numero)">Navegador</text>
+                <text x="284" y="106" style="fill:var(--naranja-texto)">Servidor web</text>
+              </g>
+            </svg>
+          </figure>
+          <ol class="pf__lista">
+            <li>Escribimos la dirección de la página.</li>
+            <li>El navegador se la pide al servidor.</li>
+            <li class="punto--naranja">El servidor envía el HTML, el CSS y el JS.</li>
+            <li>El navegador interpreta los archivos.</li>
+            <li>Se muestra la página y podemos usarla.</li>
+          </ol>
+          <p>Mientras trabajamos no hace falta servidor: el navegador abre los archivos desde la carpeta.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf26">
+      <p class="pf__etiqueta">Lámina 26</p>
+      <h3 class="pf__titulo" id="pf26">Buenas prácticas iniciales</h3>
+      <div class="pf__cols">
+        <div class="pf__caja pf__caja--consejo">
+          <h4><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-consejo"/></svg>Desde el primer día</h4>
+          <ul class="pf__lista">
+            <li><strong>Nombres simples,</strong> sin espacios: <code class="cod-carpeta">mi-sitio</code>.</li>
+            <li><strong>Guardar seguido:</strong> <kbd>Ctrl</kbd> + <kbd>S</kbd>.</li>
+            <li><strong>Archivos ordenados:</strong> las imágenes, aparte.</li>
+            <li><strong>Probar los cambios:</strong> <kbd>F5</kbd> en el navegador.</li>
+          </ul>
+        </div>
+        <div class="pf__caja">
+          <h4>Extensiones de VS Code (opcionales)</h4>
+          <ul class="pf__lista">
+            <li><strong>Instalar:</strong> <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>X</kbd>, buscar el nombre e <strong>Instalar</strong>.</li>
+            <li><strong>Live Server:</strong> clic derecho sobre <code>index.html</code> → <strong>Open with Live Server</strong>. Al guardar, la página se recarga sola.</li>
+            <li><strong>Prettier:</strong> <kbd>Shift</kbd> + <kbd>Alt</kbd> + <kbd>F</kbd> ordena el código.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf27">
+      <p class="pf__etiqueta">Lámina 27</p>
+      <h3 class="pf__titulo" id="pf27">La estructura, en un segundo</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p>Todo lo que está dentro de <code>&lt;body&gt;</code> es lo que el usuario ve en la página. El contenido del <code>&lt;head&gt;</code> no se muestra directamente.</p>
+          <p>Las etiquetas se cierran en orden inverso: lo último que se abrió es lo primero que se cierra. Por eso <code>&lt;/body&gt;</code> va antes que <code>&lt;/html&gt;</code>.</p>
+        </div>
+        <div class="pf__caja">
+          <h4>Atajo de VS Code</h4>
+          <ol class="pf__lista">
+            <li>En un <code>index.html</code> vacío, escribimos <code>!</code> y tocamos <kbd>Enter</kbd>.</li>
+            <li>Aparece la estructura básica completa.</li>
+            <li>Cambiamos <code>lang="en"</code> por <code>lang="es-AR"</code> y <code>Document</code> por el título de nuestra página.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf28">
+      <p class="pf__etiqueta">Lámina 28</p>
+      <h3 class="pf__titulo" id="pf28">Los espacios de más no cuentan</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p>El navegador junta los espacios y <kbd>Enter</kbd> de más en uno solo. Para cortar una línea, va <code>&lt;br&gt;</code>.</p>
+          <figure class="codigo codigo--html" id="ej-pf28">
+            <figcaption><span class="codigo__archivo">index.html</span><span class="codigo__donde">dentro de &lt;body&gt;</span></figcaption>
+            <pre tabindex="0" aria-label="Código de index.html, dentro de body"><code><span class="c-etq">&lt;p&gt;</span>Hola,     ¿cómo
+     andás?<span class="c-etq">&lt;/p&gt;</span>
+<span class="c-etq">&lt;p&gt;</span>Hola,<span class="c-etq">&lt;br&gt;</span>¿cómo andás?<span class="c-etq">&lt;/p&gt;</span></code></pre>
+          </figure>
+          <figure class="resultado" data-html="ej-pf28" style="--alto:104px">
+            <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">index.html</span></div>
+            <iframe title="Resultado en el navegador: el primer párrafo dice Hola, ¿cómo andás? en un solo renglón; el segundo, Hola, y abajo ¿cómo andás?" sandbox=""></iframe>
+          </figure>
+          <p class="consejo"><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-consejo"/></svg><strong>Recomendación:</strong> escribí textos claros y breves para que tu página sea más fácil de leer.</p>
+        </div>
+      </div>
+    </section>
+    </div>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 7</span>
+    </footer>
+  </article>
+
+  <!-- =================== ACTIVIDADES · Parte 1 =================== -->
+  <article class="lamina lamina--act" id="actividades" aria-labelledby="act-1">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°7</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <header class="act-banda">
+      <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-lapiz"/></svg>
+      <div>
+        <h2 id="act-1">Actividades para hacer en la carpeta</h2>
+        <p>TP N°7 — Mi primera página web</p>
+      </div>
+      <span class="act-banda__parte">Parte<br>1 de 2</span>
+    </header>
+
+    <p class="consigna"><strong>Consigna:</strong> Resolvé cada punto en la carpeta, con lápiz y sin usar la computadora.</p>
+
+    <ol class="acts acts--2col">
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">1-</span> HTML + CSS + JavaScript</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿Cuál es el rol principal de HTML en una página web?</div></li>
+          <li><b class="act__letra">b)</b><div>¿Para qué se usa CSS?</div></li>
+          <li><b class="act__letra">c)</b><div>¿Qué permite hacer JavaScript?</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">2-</span> El entorno de trabajo</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿Para qué sirve un editor de código?</div></li>
+          <li><b class="act__letra">b)</b><div>Ordená los pasos: probar en el navegador / crear los archivos / crear la carpeta / abrirla en el editor.</div></li>
+          <li><b class="act__letra">c)</b><div>¿Qué extensión tiene un archivo de estilos?</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">3-</span> Estructura básica de HTML</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿Qué parte del documento contiene el contenido visible?</div></li>
+          <li><b class="act__letra">b)</b><div>¿Para qué sirve la etiqueta <code>&lt;title&gt;</code>?</div></li>
+          <li><b class="act__letra">c)</b><div>Completá: <code>&lt;____&gt;</code> contiene información general del documento.</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">4-</span> Títulos y párrafos</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿Qué etiqueta se usa para un párrafo?</div></li>
+          <li><b class="act__letra">b)</b><div>¿Qué diferencia hay entre <code>&lt;br&gt;</code> y <code>&lt;hr&gt;</code>?</div></li>
+          <li><b class="act__letra">c)</b><div>Ordená la jerarquía de títulos: <code>h3</code> / <code>h1</code> / <code>h2</code>.</div></li>
+        </ol>
+      </li>
+    </ol>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 7</span>
+    </footer>
+  </article>
+
+  <!-- =================== ACTIVIDADES · Parte 2 =================== -->
+  <article class="lamina lamina--act lamina--compu" id="actividades-2" aria-labelledby="act-2">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°7</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <header class="act-banda">
+      <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-editor"/></svg>
+      <div>
+        <h2 id="act-2">Práctica en la computadora</h2>
+        <p>TP N°7 — Mi primera página web</p>
+      </div>
+      <span class="act-banda__parte">Parte<br>2 de 2</span>
+    </header>
+
+    <p class="consigna"><strong>Consigna:</strong> Creá desde cero tu página “Sobre mí”, en una carpeta llamada <code class="cod-carpeta">tp7-apellido</code>.</p>
+
+    <ol class="acts acts--amplio">
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">1-</span> Mi página “Sobre mí”</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">1</b><div>Creá la carpeta <code class="cod-carpeta">tp7-apellido</code> (por ejemplo, <code class="cod-carpeta">tp7-gomez</code>) y abrila en VS Code.</div></li>
+          <li><b class="act__letra">2</b><div>Adentro, creá el archivo <code>index.html</code> con la estructura básica de la lámina 27.</div></li>
+          <li><b class="act__letra">3</b><div>Escribí un <strong>título principal con tu nombre</strong>.</div></li>
+          <li><b class="act__letra">4</b><div>Armá <strong>3 secciones con subtítulos</strong>: “Quién soy”, “Lo que me gusta” y “Mis metas”.</div></li>
+          <li><b class="act__letra">5</b><div>Cada sección, con <strong>al menos 2 párrafos</strong>.</div></li>
+          <li><b class="act__letra">6</b><div>Abrí <code>index.html</code> en Chrome, revisá cómo se ve y sacá una captura.</div></li>
+        </ol>
+      </li>
+    </ol>
+
+    <section class="panel" aria-label="Para tener en cuenta">
+      <ol class="puntos">
+        <li><span class="puntos__n" aria-hidden="true">!</span><span>Si los acentos o la ñ se ven mal, revisá que esté <code>&lt;meta charset="utf-8"&gt;</code> en el <code>&lt;head&gt;</code>.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">!</span><span>Guardá la carpeta: en el TP10 le vamos a dar estilo a esta página.</span></li>
+      </ol>
+    </section>
+
+    <section class="entrega" aria-labelledby="ent-1">
+      <svg class="ico ico--l" aria-hidden="true" focusable="false"><use href="#i-subir"/></svg>
+      <div>
+        <h3 id="ent-1">Entrega</h3>
+        <div class="entrega__cols">
+          <div>
+            <p>El archivo <code>index.html</code> y la captura de cómo se ve en el navegador, <strong>dentro de un .zip</strong>: guardá la captura adentro de la carpeta y subí la carpeta en .zip a Classroom.</p>
+            <p class="entrega__sub--sep">Para sacar una captura: <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd>, marcá la parte de la pantalla y tocá el aviso que aparece para guardarla.</p>
+          </div>
+          <div>
+            <p class="entrega__sub">Antes de entregar, marcá:</p>
+            <ul class="checklist">
+              <li>La página tiene la estructura básica completa.</li>
+              <li>Hay un solo <code>&lt;h1&gt;</code>, con mi nombre.</li>
+              <li>Están los 3 subtítulos con <code>&lt;h2&gt;</code>.</li>
+              <li>Cada sección tiene al menos 2 párrafos.</li>
+              <li>Los acentos y la ñ se ven bien en Chrome.</li>
+              <li>La captura está adentro del <code class="cod-carpeta">.zip</code>.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 7</span>
+    </footer>
+  </article>
+</main>
+
+<script src="../assets/js/actividades.js"></script>
+<script src="../assets/js/ejemplos.js"></script>
+</body>
+</html>

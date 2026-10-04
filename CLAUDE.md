@@ -65,20 +65,30 @@ HTML, CSS y JavaScript vanilla. Sin frameworks, sin build, sin backend, sin depe
   --ok: #15803D;     --ok-claro: #DCFCE7;     /* resultado correcto, checklist */
   --aviso: #92400E;  --aviso-claro: #FEF3C7;  /* "Error controlado" */
 
-  /* Código y consola */
+  /* Código y consola: colores bien distintos entre sí, todos 5:1 o más sobre el fondo */
   --cod-fondo: #1E293B;  --cod-base: #E2E8F0;
-  --cod-etq: #7DD3FC;    /* etiquetas HTML, palabras clave de JS, selectores */
-  --cod-atr: #FDBA74;    /* atributos HTML, propiedades CSS */
-  --cod-str: #FCD34D;    /* cadenas y valores */
-  --cod-com: #86EFAC;    /* comentarios */
-  --cod-num: #F9A8D4;    /* números */
-  --cod-fun: #C4B5FD;    /* nombres de funciones y métodos */
+  --cod-etq: #FB7185;    /* rosa: etiquetas HTML, palabras clave de JS, selectores */
+  --cod-atr: #A3E635;    /* lima: atributos HTML, propiedades CSS */
+  --cod-str: #FDE047;    /* amarillo: cadenas y valores */
+  --cod-com: #94A3B8;    /* gris azulado: comentarios */
+  --cod-num: #C084FC;    /* violeta: números */
+  --cod-fun: #67E8F9;    /* cian: nombres de funciones y métodos */
   --consola-fondo: #0F172A;  --consola-texto: #E2E8F0;  --consola-guia: #94A3B8;  --consola-error: #FCA5A5;
+
+  /* Ventanas de código y de navegador: los tres puntos */
+  --punto-rojo: #FF5F57;  --punto-amarillo: #FEBC2E;  --punto-verde: #28C840;
+  /* Etiquetas de código dentro del texto: borde de cada tecnología */
+  --html-linea: #BFDBFE;  --css-linea: #DDD6FE;  --js-linea: #FBCFE8;
+  /* Colores de apoyo para esquemas y recuadros (no etiquetan tecnologías) */
+  --carpeta: #F59E0B;  --carpeta-claro: #FEF3C7;  --carpeta-texto: #92400E;  --carpeta-linea: #FDE68A;
+  --turquesa: #0D9488;  --turquesa-claro: #CCFBF1;  --turquesa-texto: #0F766E;  /* texto: 5,5:1 */
+  --naranja: #EA580C;   --naranja-claro: #FFEDD5;   --naranja-texto: #C2410C;   /* "Importante"; texto: 5,2:1 */
+  --ok-oscuro: #166534;   /* botones verdes al pasar el mouse */
 }
 ```
 
 - **Texto sobre color:** sobre `--acento`, `--css` y `--js` va texto **blanco** (5,2:1, 5,7:1 y 6:1). Es al revés que en el repo de origen, donde sobre el cian iba texto oscuro: revisar cada lugar donde había texto sobre el acento. Sobre los tonos claros y suaves va `--tinta` o `--texto`.
-- **Código en la impresión:** en el bloque `print`, el código y la consola pasan a fondo claro `#F1F5F9` con borde, y las variables `--cod-*` se redefinen: base `#0F172A`, etq `#1D4ED8`, atr `#9A3412`, str `#047857`, com `#475569`, num `#BE185D`, fun `#6D28D9`. Ahorra tinta y se lee en blanco y negro.
+- **Código en la impresión:** en el bloque `print`, el código y la consola pasan a fondo claro `#F1F5F9` con borde, y las variables `--cod-*` se redefinen: base `#0F172A`, etq `#BE123C`, atr `#3F6212`, str `#854D0E`, com `#475569`, num `#7E22CE`, fun `#0E7490` (5:1 o más sobre `#F1F5F9`). La cabecera del código va en blanco y sin sombras en código, consola ni resultado. Ahorra tinta y se lee en blanco y negro.
 - **Cabecera de cada hoja:** `PROGRAMACIÓN` con la bajada `HTML · CSS · JS`, y a la derecha `TRABAJO PRÁCTICO N°X` con la barra azul vertical. Mismas reglas de tamaño y de celular que el repo de origen.
 - **Pie de cada hoja y de la portada:** `Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi`, exactamente así: guion corto (`-`) entre "Programación" y "HTML", y guion largo (`—`) antes de "Prof.". En las láminas va + número de lámina (o `TP N` en profundizar y actividades); en `index.html`, sin número.
 - **Datos de la portada (`index.html`, `p.portada__datos`):** exactamente estas dos líneas, la primera en negrita y la segunda sin negrita, y sin el nombre de la escuela:
@@ -93,13 +103,34 @@ HTML, CSS y JavaScript vanilla. Sin frameworks, sin build, sin backend, sin depe
 - **Sin eslóganes ni frases decorativas.** El "Desde Cero" del PDF no va.
 - **Progreso:** la clave de `localStorage` es `prog:tp-visto-`. No usar `tpd1:` ni `bd1:`: todos los cuadernillos comparten el dominio `prof-nkocussi.github.io` y se pisarían las marcas de "✓ Visto".
 
+### Colores vivos (aprobado el 4/10/2026)
+
+El cuadernillo se ve vivo sin perder legibilidad. El color va en marcos, etiquetas, íconos y esquemas, y **cada color significa algo**; no va en títulos ni en texto corrido. Todo texto de color: 4,5:1 o más. Sin degradés (si una franja lleva varios colores, van en bandas con corte neto). Todo está en `estilos.css`; en cada TP solo hay que poner las clases.
+
+- **Bloques de código:** ventana del editor, con tres puntos de color, cabecera oscura y una franja de 3 px del color de su tecnología (`box-shadow` inset, no cambia el alto). El botón Copiar va a la derecha y, si no entra, baja de renglón.
+- **Consola:** tres puntos, título en `--cod-atr` y "▶ Ejecutar" en verde (`--ok`).
+- **Resultado en el navegador:** marco `--acento` con sombra, barra `--acento-claro`, puntos de color e ícono en la pestaña. El contenido del iframe no se toca.
+- **Etiquetas de código en el texto** (`<code>` fuera de un `pre`): fondo, texto y borde del color de su tecnología. Sin clase es HTML (azul). Clases: `cod-js` (magenta), `cod-css` (violeta), `cod-py` (gris, lo que es de Python) y `cod-carpeta` (amarillo: carpetas y `.zip`). En los TP de JavaScript, toda etiqueta de código lleva `cod-js` salvo esas excepciones.
+- **Esquemas SVG:**
+  - Carpetas en `--carpeta`; el ícono del sprite con `<svg class="ico ico--carpeta">`. Archivos con el color de su tecnología; una flecha que vincula un archivo, con el color de ese archivo.
+  - Dos grupos en un mismo esquema, uno en turquesa y otro en naranja: nodo con fondo `-texto` y letra blanca, cajas `-claro` con borde del color, rótulos en `-texto`. Las viñetas del texto de al lado repiten el color (`li.punto--turquesa`, `li.punto--naranja`).
+  - Significados ya usados, a mantener: **naranja** = posiciones de un array, argumento, respuesta del servidor; **turquesa** = nombres de propiedades, parámetro, acumulador, `<head>`; **azul** = los datos y lo que se resalta. Navegadores dibujados con barra `--acento-claro` y puntos de color; servidor en naranja con luces `--punto-verde`.
+- **Tarjetas de las tres tecnologías** (`.tec--html`, `.tec--css`, `.tec--js`): fondo `-claro` de su tecnología.
+- **Recuadros según qué son,** con ícono delante del título (`<svg class="ico tit-ico"><use href="#i-importante"/></svg>`; los `<symbol>` `i-importante` y `i-consejo` van en el sprite del TP que los use):
+  - "Importante" y los de errores ("Errores frecuentes", "Cuidado con", "Otro error común"): naranja. Clases `.esquema-nota--importante` o `.pf__caja--importante`.
+  - "Recomendación" y "Buenas prácticas": verde. Clases `p.consejo` o `.pf__caja--consejo`.
+  - Siguen igual: "Idea clave" azul, "Error controlado" ámbar, "Receta" con borde punteado azul.
+- **Actividades:** la Parte 1 (carpeta) en azul; la Parte 2 (computadora) en verde, con la clase `.lamina--compu` en su `article` (banda, números, letras, consigna y "Entrega" en verde; los "!" de "Para tener en cuenta" en naranja).
+- **Portada:** cada `.tp` lleva la clase de su tecnología principal (`tp--js`, `tp--html`, `tp--css`, `tp--php`, `tp--git`, `tp--todo` en el integrador): franja izquierda de 6 px y número de ese color. En `.tp__meta`, antes de "Láminas", van las etiquetas de las tecnologías que usa (`<span class="tp__tecs"><span class="etq etq--html">HTML</span> <span class="etq etq--css">CSS</span></span>`, separadas por espacios). Cada `section.bloque` lleva la clase de su módulo (`bloque--js`, etc.) y su barrita toma ese color.
+- **No cambian:** fondo gris de las introducciones, "Idea clave" en azul, títulos y texto corrido, el contenido real de los resultados. Los colores de tecnología siguen siendo solo para etiquetarlas.
+
 ## Formato de cada TP
 
 1. **Barra superior** (`header.barra`): botón "Índice" · "TP N°X — nombre del TP" · botón `data-imprimir`. El botón "Índice" es igual al de "Guardar PDF" (clase `.boton`, fondo `--tinta`, texto blanco), con el ícono de flecha hacia atrás `#i-atras` en lugar de la flecha de descarga: `<a class="boton barra__volver" href="../index.html"><svg aria-hidden="true" focusable="false"><use href="#i-atras"/></svg><span>Índice</span></a>`. El `<symbol id="i-atras">` va en el sprite de cada TP, junto a `i-descarga`. Debajo, `nav.partes` con accesos a cada lámina, "Para profundizar" y "Actividades". Hay nombres largos (TP6, TP9): verificar a 360 px.
 2. **Láminas** (`article.lamina#pag-N`): `.cab` → `.tit` (número en azul + título + subtítulo) → bloques → `.idea` (Idea clave) → `.pie`. 4 láminas por TP; 5 en los TP11, TP12 y TP13; 3 en los TP15 y TP18.
 3. **Para profundizar** (`article.lamina.lamina--pf#profundizar`): `.pf-grid` de 2×2, un bloque `.pf` por lámina (texto + recuadro `.pf__caja` con ejemplo o lista). Con 3 láminas, el cuarto bloque integra. Con 5 láminas, dos láminas vecinas comparten un bloque. Acá van las "Buenas prácticas" y los "Resumen" del PDF que no entren en la lámina.
 4. **Actividades** (`article.lamina.lamina--act`, ids `actividades` y `actividades-2`), en dos hojas:
-   - **Parte 1 · Para hacer en la carpeta:** banda `.act-banda`, `.consigna`, y un punto `.act` por lámina con incisos a), b), c), en grilla `.acts--2col`. En las láminas que salen del PDF, los incisos son las 3 preguntas de "Poné a prueba lo aprendido" de esa página (corrigiendo las mal planteadas, ver "Errores del PDF"). En las láminas nuevas, usar incisos que se resuelvan con lápiz: predecir la salida de un código, encontrar el error, pasar de Python a JavaScript, completar el código, hacer la prueba de escritorio.
+   - **Parte 1 · Para hacer en la carpeta:** banda `.act-banda`, `.consigna`, y un punto `.act` por lámina con incisos a), b), c), en grilla `.acts--2col`. Los puntos se numeran desde 1 en cada TP (`1-`, `2-`, `3-`…), no con el número de la lámina. En las láminas que salen del PDF, los incisos son las 3 preguntas de "Poné a prueba lo aprendido" de esa página (corrigiendo las mal planteadas, ver "Errores del PDF"). En las láminas nuevas, usar incisos que se resuelvan con lápiz: predecir la salida de un código, encontrar el error, pasar de Python a JavaScript, completar el código, hacer la prueba de escritorio.
    - **Parte 2 · Práctica en la computadora:** la "Práctica" de Nicolás, partida en pasos numerados, y un recuadro **"Entrega"** con lo que se entrega y por dónde, más un checklist para marcar con lápiz.
    - Sin corrección automática. Si los 5 puntos de un TP de 5 láminas no entran en una hoja, la Parte 1 puede usar dos.
    - Objetivo: que el TP se trabaje en 2 semanas (10 horas cátedra). El TP17 (GitHub) puede darse en una.
@@ -120,7 +151,10 @@ Se crean al hacer el TP donde aparecen por primera vez (casi todos en el TP1) y 
   - Formato de salida parecido al de la consola de Chrome: `["manzana", "banana"]`, `{texto: "Comprar yerba", completada: false}`. Los errores se muestran en `--consola-error` con su mensaje.
   - En el HTML siempre va escrita la **salida esperada**: es lo que se ve antes de ejecutar, sin JavaScript y en la impresión. En los ejemplos con `prompt()`, aclarar con qué datos ("Con 5 y 3:").
   - Todo ejemplo con `prompt()` dentro de un bucle tiene que terminar si el usuario toca "Cancelar" (`null`). Si no, queda un bucle infinito de ventanas.
-- **Resultado en el navegador** (`figure.resultado`): marco de navegador con un `iframe` que muestra **el resultado real** del código del ejemplo. `ejemplos.js` arma el `srcdoc` con el HTML del bloque; si ese HTML enlaza `estilos.css` o `app.js`, reemplaza el enlace por el contenido del bloque CSS o JS del mismo ejemplo. Agrega un `<base>` a `assets/img/ejemplos/` para que funcionen las imágenes. `iframe` con `title`, `sandbox` (más `allow-scripts allow-modals` desde el TP13) y alto fijo por ejemplo. Nunca dibujar el resultado a mano: en el PDF el dibujo y el código no coinciden en varias páginas.
+- **Resultado en el navegador** (`figure.resultado`): marco de navegador con un `iframe` que muestra **el resultado real** del código del ejemplo. `ejemplos.js` arma el `srcdoc` con el HTML del bloque; si ese HTML enlaza `estilos.css` o `app.js`, reemplaza el enlace por el contenido del bloque CSS o JS del mismo ejemplo. Agrega un `<base>` a `assets/img/ejemplos/` para que funcionen las imágenes. `iframe` con `title`, `sandbox` (más `allow-scripts allow-modals` cuando el ejemplo usa JavaScript: TP7 lámina 25 y desde el TP13) y alto fijo por ejemplo (`style="--alto:…px; --alto-cel:…px"`: `--alto` en A4 y escritorio, `--alto-cel` en pantallas de menos de 860 px; medir que el contenido no se corte). Si el HTML es un fragmento (sin `<html>`), `ejemplos.js` lo envuelve en un documento mínimo y la pestaña muestra el `<title>` del código. Nunca dibujar el resultado a mano: en el PDF el dibujo y el código no coinciden en varias páginas.
+- **Fragmento de HTML** (`.codigo__donde`): en el `figcaption`, después del nombre del archivo, `<span class="codigo__donde">dentro de &lt;body&gt;</span>` cuando el bloque no es el documento completo.
+- **Tarjetas de las tres tecnologías** (`ul.tecs > li.tec.tec--html|css|js`, TP7): `h3` con la etiqueta y el rol, y un `p`. Tres columnas desde 600 px.
+- **Ejemplo con tres archivos** (`.juntos` con dos `.juntos__col`, TP7): HTML y JS en una columna, CSS y el resultado en la otra; en el celular se ven en orden HTML, CSS, JS y resultado.
 - **Fila "En Python → En JavaScript"** (`.py-js`): dos columnas con el mismo código en los dos lenguajes. Una por lámina en el TP1 y el TP2. En el TP16, la misma fila como **"En JavaScript → En PHP"** (ver equivalencias en las notas del plan).
 - **Ejemplo de PHP** (TP16): el sitio no puede correr PHP, así que estos ejemplos **no llevan** botón "Ejecutar" ni `iframe`. Van el bloque de código y un marco de navegador con la salida escrita a mano y `localhost/...` en la barra de direcciones. Es la única excepción a "nunca dibujar el resultado a mano".
 - **Error controlado** (`.error-controlado`, colores `--aviso`): código que falla a propósito con su consola "Ejecutar", qué pasó y por qué, y el código corregido. TP1 (`"5" + "3"`), TP5 (`sort()`) y TP16 (abrir el `.php` con doble clic muestra el código en vez de ejecutarlo; sin consola, con el marco de navegador escrito a mano).
@@ -289,6 +323,11 @@ Notas del plan:
 - Ni el README ni la portada llevan el nombre de la escuela. Datos de la portada: "Programación - HTML, CSS, JS • Prof. Nicolás A. Cussi" en negrita y "Bachillerato Profesional en Programación · Ushuaia" sin negrita (3/10/2026).
 - Entregas por Classroom con la carpeta en `.zip`; el TP1 explica cómo comprimir.
 - Visual Studio Code desde el TP1. Laboratorio con Windows.
+
+### Agregado (4/10/2026)
+
+- Colores vivos en todo el cuadernillo y en la portada (ver "Colores vivos" en Identidad). Se probaron en el TP7 y se pasaron a los TP1–TP6.
+- Los puntos de "Para hacer en la carpeta" se numeran desde 1 en cada TP.
 
 ### Agregado (3/10/2026)
 

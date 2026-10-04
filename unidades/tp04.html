@@ -41,6 +41,14 @@
       <path d="M5 11h36M35 5l6 6-6 6" style="stroke:var(--ac);stroke-width:3.4"/>
       <path d="M3 25a2 2 0 0 1 2-2h38a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM17 23v18M31 23v18"/>
     </symbol>
+    <symbol id="i-consejo" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="21" style="fill:var(--ac);stroke:none"/>
+      <path d="M14 24.5l7 7 13-14" style="stroke:var(--blanco);stroke-width:5.5"/>
+    </symbol>
+    <symbol id="i-importante" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="21" style="fill:var(--ac);stroke:none"/>
+      <path d="M24 12v15M24 35v.5" style="stroke:var(--blanco);stroke-width:5.5"/>
+    </symbol>
     <symbol id="i-foco" viewBox="0 0 48 48">
       <path d="M24 2.5v4M10 8.5l2.8 2.8M38 8.5l-2.8 2.8M4 22h4M40 22h4"/>
       <path d="M24 12a10 10 0 0 0-6.2 17.8c1.4 1.2 2.2 2.6 2.2 4.2v1h8v-1c0-1.6.8-3 2.2-4.2A10 10 0 0 0 24 12z" style="fill:var(--ac)"/>
@@ -112,8 +120,8 @@
     </div>
 
     <ul class="comparar">
-      <li><div><h3>Sin array</h3><p>Una variable por dato: <code>fruta1</code>, <code>fruta2</code>, <code>fruta3</code>… Con 30 datos, 30 variables.</p></div></li>
-      <li><div><h3>Con array</h3><p>Todos los datos en <strong>una variable</strong>, entre corchetes <code>[ ]</code> y separados por coma.</p></div></li>
+      <li><div><h3>Sin array</h3><p>Una variable por dato: <code class="cod-js">fruta1</code>, <code class="cod-js">fruta2</code>, <code class="cod-js">fruta3</code>… Con 30 datos, 30 variables.</p></div></li>
+      <li><div><h3>Con array</h3><p>Todos los datos en <strong>una variable</strong>, entre corchetes <code class="cod-js">[ ]</code> y separados por coma.</p></div></li>
     </ul>
 
     <div class="esquema-par">
@@ -135,7 +143,7 @@
           <text x="275" y="58">"pera"</text>
           <text x="410" y="58">"frutilla"</text>
         </g>
-        <g style="fill:var(--acento)">
+        <g style="fill:var(--naranja-texto)">
           <circle cx="140" cy="96" r="14"/>
           <circle cx="275" cy="96" r="14"/>
           <circle cx="410" cy="96" r="14"/>
@@ -145,15 +153,15 @@
           <text x="275" y="102">1</text>
           <text x="410" y="102">2</text>
         </g>
-        <text class="tt" x="112" y="101" text-anchor="end" style="font-size:15px;fill:var(--gris)">posición</text>
+        <text class="tt" x="112" y="101" text-anchor="end" style="font-size:15px;font-weight:700;fill:var(--naranja-texto)">posición</text>
       </svg>
     </figure>
     <aside class="esquema-nota" aria-labelledby="n13">
       <h3 id="n13">¿Por qué la última posición es la 2?</h3>
       <ul class="pf__lista">
-        <li><code>frutas.length</code> es 3: cuenta cuántos datos hay. Son 3: uva, pera y frutilla. Va <strong>sin paréntesis</strong>.</li>
+        <li><code class="cod-js">frutas.length</code> es 3: cuenta cuántos datos hay. Son 3: uva, pera y frutilla. Va <strong>sin paréntesis</strong>.</li>
         <li>Las posiciones se cuentan desde 0: uva está en la 0, pera en la 1 y frutilla en la 2.</li>
-        <li>Por eso la última siempre es <strong>uno menos</strong> que la cantidad: 3 datos, última posición 2. En código, <code>length - 1</code>.</li>
+        <li>Por eso la última siempre es <strong>uno menos</strong> que la cantidad: 3 datos, última posición 2. En código, <code class="cod-js">length - 1</code>.</li>
       </ul>
     </aside>
     </div>
@@ -183,14 +191,14 @@ undefined
 
     <section class="panel" aria-label="Reglas para usar un array">
       <ol class="puntos puntos--2col">
-        <li><span class="puntos__n" aria-hidden="true">1</span><span>Leemos un dato con <code>frutas[0]</code> y lo cambiamos con <code>=</code>.</span></li>
-        <li><span class="puntos__n" aria-hidden="true">2</span><span>Una posición que no existe da <code>undefined</code> (sin valor).</span></li>
+        <li><span class="puntos__n" aria-hidden="true">1</span><span>Leemos un dato con <code class="cod-js">frutas[0]</code> y lo cambiamos con <code class="cod-js">=</code>.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">2</span><span>Una posición que no existe da <code class="cod-js">undefined</code> (sin valor).</span></li>
       </ol>
     </section>
 
     <aside class="idea" aria-label="Idea clave">
       <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
-      <p><strong>Idea clave:</strong> las posiciones empiezan en <b>0</b>. Por eso la última es <code>length - 1</code>: <code>frutas[frutas.length - 1]</code> devuelve "frutilla".</p>
+      <p><strong>Idea clave:</strong> las posiciones empiezan en <b>0</b>. Por eso la última es <code class="cod-js">length - 1</code>: <code class="cod-js">frutas[frutas.length - 1]</code> devuelve "frutilla".</p>
     </aside>
 
     <footer class="pie">
@@ -217,7 +225,7 @@ undefined
 
     <div class="intro">
       <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-agregar"/></svg>
-      <p>Un array puede crecer y achicarse mientras el programa corre. Para eso usamos <strong>métodos</strong>: acciones que se escriben después del nombre del array, con un punto: <code>fila.push("Caro")</code>.</p>
+      <p>Un array puede crecer y achicarse mientras el programa corre. Para eso usamos <strong>métodos</strong>: acciones que se escriben después del nombre del array, con un punto: <code class="cod-js">fila.push("Caro")</code>.</p>
     </div>
 
     <table class="tabla-comp">
@@ -226,8 +234,8 @@ undefined
         <tr><th scope="col">Dónde</th><th scope="col">Agregar</th><th scope="col">Quitar</th></tr>
       </thead>
       <tbody>
-        <tr><th scope="row">Al final</th><td><code>push(dato)</code></td><td><code>pop()</code></td></tr>
-        <tr><th scope="row">Al principio</th><td><code>unshift(dato)</code></td><td><code>shift()</code></td></tr>
+        <tr><th scope="row">Al final</th><td><code class="cod-js">push(dato)</code></td><td><code class="cod-js">pop()</code></td></tr>
+        <tr><th scope="row">Al principio</th><td><code class="cod-js">unshift(dato)</code></td><td><code class="cod-js">shift()</code></td></tr>
       </tbody>
     </table>
 
@@ -260,16 +268,16 @@ Caro se cansó y se fue
 
     <section class="panel" aria-label="Qué pasó en el ejemplo">
       <ol class="puntos puntos--2col">
-        <li><span class="puntos__n" aria-hidden="true">1</span><span><code>push</code> y <code>unshift</code> reciben entre paréntesis el dato que agregan.</span></li>
-        <li><span class="puntos__n" aria-hidden="true">2</span><span><code>shift</code> y <code>pop</code> van con paréntesis vacíos y <strong>devuelven</strong> el dato que quitan: lo guardamos en una variable.</span></li>
-        <li><span class="puntos__n" aria-hidden="true">3</span><span>Los cuatro <strong>cambian el array</strong> y su <code>length</code>.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">1</span><span><code class="cod-js">push</code> y <code class="cod-js">unshift</code> reciben entre paréntesis el dato que agregan.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">2</span><span><code class="cod-js">shift</code> y <code class="cod-js">pop</code> van con paréntesis vacíos y <strong>devuelven</strong> el dato que quitan: lo guardamos en una variable.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">3</span><span>Los cuatro <strong>cambian el array</strong> y su <code class="cod-js">length</code>.</span></li>
         <li><span class="puntos__n" aria-hidden="true">4</span><span>Al agregar o quitar <strong>adelante</strong>, los demás datos cambian de posición: "Ana" pasó de la 0 a la 1.</span></li>
       </ol>
     </section>
 
     <aside class="idea" aria-label="Idea clave">
       <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
-      <p><strong>Idea clave:</strong> <code>push</code> y <code>pop</code> trabajan al <b>final</b> del array; <code>unshift</code> y <code>shift</code>, al <b>principio</b>.</p>
+      <p><strong>Idea clave:</strong> <code class="cod-js">push</code> y <code class="cod-js">pop</code> trabajan al <b>final</b> del array; <code class="cod-js">unshift</code> y <code class="cod-js">shift</code>, al <b>principio</b>.</p>
     </aside>
 
     <footer class="pie">
@@ -295,8 +303,8 @@ Caro se cansó y se fue
     </div>
 
     <ul class="comparar">
-      <li><div><h3>Buscar: indexOf()</h3><p><code>indexOf(dato)</code> devuelve la <strong>posición</strong> del dato. Si no lo encuentra, devuelve <strong>-1</strong>.</p></div></li>
-      <li><div><h3>Eliminar: splice()</h3><p><code>splice(posición, cantidad)</code> quita datos desde esa posición. Los de atrás <strong>se corren</strong>.</p></div></li>
+      <li><div><h3>Buscar: indexOf()</h3><p><code class="cod-js">indexOf(dato)</code> devuelve la <strong>posición</strong> del dato. Si no lo encuentra, devuelve <strong>-1</strong>.</p></div></li>
+      <li><div><h3>Eliminar: splice()</h3><p><code class="cod-js">splice(posición, cantidad)</code> quita datos desde esa posición. Los de atrás <strong>se corren</strong>.</p></div></li>
     </ul>
 
     <div class="ej ej--ancho">
@@ -342,16 +350,16 @@ console.<span class="c-fun">log</span>(materias);</code></pre>
 
     <section class="panel" aria-label="Qué pasó en los ejemplos">
       <ol class="puntos puntos--2col">
-        <li><span class="puntos__n" aria-hidden="true">1</span><span>"Arte" está en la posición 1. "Química" no está: <code>indexOf</code> devuelve <strong>-1</strong>.</span></li>
-        <li><span class="puntos__n" aria-hidden="true">2</span><span><code>splice(-1, 1)</code> no da error: borra el <strong>último</strong>. Perdimos "Inglés".</span></li>
-        <li><span class="puntos__n" aria-hidden="true">3</span><span>El segundo ejemplo revisa <code>pos !== -1</code> antes de usar <code>splice</code>.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">1</span><span>"Arte" está en la posición 1. "Química" no está: <code class="cod-js">indexOf</code> devuelve <strong>-1</strong>.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">2</span><span><code class="cod-js">splice(-1, 1)</code> no da error: borra el <strong>último</strong>. Perdimos "Inglés".</span></li>
+        <li><span class="puntos__n" aria-hidden="true">3</span><span>El segundo ejemplo revisa <code class="cod-js">pos !== -1</code> antes de usar <code class="cod-js">splice</code>.</span></li>
         <li><span class="puntos__n" aria-hidden="true">4</span><span>Si escribimos una materia que no está, avisa y el array queda igual.</span></li>
       </ol>
     </section>
 
     <aside class="idea" aria-label="Idea clave">
       <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
-      <p><strong>Idea clave:</strong> <code>indexOf</code> devuelve <b>-1</b> cuando no encuentra el dato. Antes de usar <code>splice</code>, siempre revisamos ese -1 con un <code>if</code>.</p>
+      <p><strong>Idea clave:</strong> <code class="cod-js">indexOf</code> devuelve <b>-1</b> cuando no encuentra el dato. Antes de usar <code class="cod-js">splice</code>, siempre revisamos ese -1 con un <code class="cod-js">if</code>.</p>
     </aside>
 
     <footer class="pie">
@@ -429,16 +437,16 @@ Total: 2</pre>
 
     <section class="panel" aria-label="Cómo recorrer y cargar un array">
       <ol class="puntos puntos--2col">
-        <li><span class="puntos__n" aria-hidden="true">1</span><span><strong>for:</strong> con <code>i &lt; notas.length</code>, <code>i</code> llega hasta <code>length - 1</code>.</span></li>
-        <li><span class="puntos__n" aria-hidden="true">2</span><span><strong>Al revés:</strong> <code>i</code> arranca en <code>length - 1</code> y baja mientras <code>i &gt;= 0</code>.</span></li>
-        <li><span class="puntos__n" aria-hidden="true">3</span><span><strong>for...of:</strong> en cada vuelta, <code>amigo</code> toma el dato siguiente.</span></li>
-        <li><span class="puntos__n" aria-hidden="true">4</span><span><strong>Cargar:</strong> <code>[]</code> y un <code>push</code> por vuelta, hasta "fin" o Cancelar.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">1</span><span><strong>for:</strong> con <code class="cod-js">i &lt; notas.length</code>, <code class="cod-js">i</code> llega hasta <code class="cod-js">length - 1</code>.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">2</span><span><strong>Al revés:</strong> <code class="cod-js">i</code> arranca en <code class="cod-js">length - 1</code> y baja mientras <code class="cod-js">i &gt;= 0</code>.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">3</span><span><strong>for...of:</strong> en cada vuelta, <code class="cod-js">amigo</code> toma el dato siguiente.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">4</span><span><strong>Cargar:</strong> <code class="cod-js">[]</code> y un <code class="cod-js">push</code> por vuelta, hasta "fin" o Cancelar.</span></li>
       </ol>
     </section>
 
     <aside class="idea" aria-label="Idea clave">
       <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
-      <p><strong>Idea clave:</strong> con <code>for</code> recorremos por posición, de <code>0</code> a <code>length - 1</code> o al revés. Con <code>for...of</code> recorremos los datos directamente.</p>
+      <p><strong>Idea clave:</strong> con <code class="cod-js">for</code> recorremos por posición, de <code class="cod-js">0</code> a <code class="cod-js">length - 1</code> o al revés. Con <code class="cod-js">for...of</code> recorremos los datos directamente.</p>
     </aside>
 
     <footer class="pie">
@@ -469,14 +477,14 @@ Total: 2</pre>
       <h3 class="pf__titulo" id="pf13">Qué se puede guardar en un array</h3>
       <div class="pf__cols">
         <div class="pf__texto">
-          <p>Un array puede guardar números, textos o booleanos: <code>[7, 9, 5]</code>, <code>["sí", "no"]</code>, <code>[true, false]</code>. <code>[]</code> es un array vacío: su <code>length</code> es 0.</p>
+          <p>Un array puede guardar números, textos o booleanos: <code class="cod-js">[7, 9, 5]</code>, <code class="cod-js">["sí", "no"]</code>, <code class="cod-js">[true, false]</code>. <code class="cod-js">[]</code> es un array vacío: su <code class="cod-js">length</code> es 0.</p>
         </div>
-        <div class="pf__caja">
-          <h4>Buenas prácticas</h4>
+        <div class="pf__caja pf__caja--consejo">
+          <h4><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-consejo"/></svg>Buenas prácticas</h4>
           <ul class="pf__lista">
             <li>Recordar que las posiciones empiezan en 0.</li>
             <li>Guardar en un array datos <strong>del mismo tipo</strong> y relacionados: todas notas o todos nombres.</li>
-            <li>Nombrar el array en plural: <code>frutas</code>, <code>notas</code>, <code>amigos</code>.</li>
+            <li>Nombrar el array en plural: <code class="cod-js">frutas</code>, <code class="cod-js">notas</code>, <code class="cod-js">amigos</code>.</li>
           </ul>
         </div>
       </div>
@@ -487,7 +495,7 @@ Total: 2</pre>
       <h3 class="pf__titulo" id="pf14">Lo que devuelven los métodos</h3>
       <div class="pf__cols">
         <div class="pf__texto">
-          <p><code>pop</code> y <code>shift</code> devuelven el dato que quitaron; con el array vacío, devuelven <code>undefined</code>. <code>push</code> y <code>unshift</code> devuelven el nuevo <code>length</code>:</p>
+          <p><code class="cod-js">pop</code> y <code class="cod-js">shift</code> devuelven el dato que quitaron; con el array vacío, devuelven <code class="cod-js">undefined</code>. <code class="cod-js">push</code> y <code class="cod-js">unshift</code> devuelven el nuevo <code class="cod-js">length</code>:</p>
           <div class="ej ej--pf">
             <figure class="codigo codigo--js" id="ej-pf14">
               <figcaption><span class="codigo__archivo">app.js</span></figcaption>
@@ -512,15 +520,15 @@ console.<span class="c-fun">log</span>(mochila);</code></pre>
       <h3 class="pf__titulo" id="pf15">Más sobre indexOf y splice</h3>
       <div class="pf__cols">
         <div class="pf__texto">
-          <p><code>indexOf</code> busca el dato <strong>exacto</strong>: <code>"arte"</code> no es igual a <code>"Arte"</code> y da -1. Si el dato está repetido, devuelve la <strong>primera</strong> posición donde aparece.</p>
+          <p><code class="cod-js">indexOf</code> busca el dato <strong>exacto</strong>: <code class="cod-js">"arte"</code> no es igual a <code class="cod-js">"Arte"</code> y da -1. Si el dato está repetido, devuelve la <strong>primera</strong> posición donde aparece.</p>
         </div>
         <div class="pf__caja">
           <h4>Con [10, 20, 30, 40]</h4>
           <ul class="pf__lista">
-            <li><code>splice(1, 1)</code> quita el 20: queda <code>[10, 30, 40]</code>.</li>
-            <li><code>splice(0, 2)</code> quita los dos primeros: queda <code>[30, 40]</code>.</li>
-            <li><code>splice(2, 2)</code> quita los dos últimos: queda <code>[10, 20]</code>.</li>
-            <li><code>splice(-1, 1)</code> quita el último: queda <code>[10, 20, 30]</code>. Por eso revisamos el -1.</li>
+            <li><code class="cod-js">splice(1, 1)</code> quita el 20: queda <code class="cod-js">[10, 30, 40]</code>.</li>
+            <li><code class="cod-js">splice(0, 2)</code> quita los dos primeros: queda <code class="cod-js">[30, 40]</code>.</li>
+            <li><code class="cod-js">splice(2, 2)</code> quita los dos últimos: queda <code class="cod-js">[10, 20]</code>.</li>
+            <li><code class="cod-js">splice(-1, 1)</code> quita el último: queda <code class="cod-js">[10, 20, 30]</code>. Por eso revisamos el -1.</li>
           </ul>
         </div>
       </div>
@@ -531,7 +539,7 @@ console.<span class="c-fun">log</span>(mochila);</code></pre>
       <h3 class="pf__titulo" id="pf16">Una vuelta de más</h3>
       <div class="pf__cols">
         <div class="pf__texto">
-          <p>Con <code>&lt;=</code> en lugar de <code>&lt;</code>, el <code>for</code> da una vuelta de más y lee una posición que no existe:</p>
+          <p>Con <code class="cod-js">&lt;=</code> en lugar de <code class="cod-js">&lt;</code>, el <code class="cod-js">for</code> da una vuelta de más y lee una posición que no existe:</p>
           <div class="ej ej--pf">
             <figure class="codigo codigo--js" id="ej-pf16">
               <figcaption><span class="codigo__archivo">app.js</span></figcaption>
@@ -548,11 +556,11 @@ undefined</pre>
             </div>
           </div>
         </div>
-        <div class="pf__caja">
-          <h4>Otros errores comunes</h4>
+        <div class="pf__caja pf__caja--importante">
+          <h4><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-importante"/></svg>Otros errores comunes</h4>
           <ul class="pf__lista">
-            <li>Empezar en <code>i = 1</code>: se saltea el primer dato.</li>
-            <li>Al revés, empezar en <code>length</code>: la primera vuelta da <code>undefined</code>.</li>
+            <li>Empezar en <code class="cod-js">i = 1</code>: se saltea el primer dato.</li>
+            <li>Al revés, empezar en <code class="cod-js">length</code>: la primera vuelta da <code class="cod-js">undefined</code>.</li>
           </ul>
         </div>
       </div>
@@ -589,7 +597,7 @@ undefined</pre>
 
     <ol class="acts acts--2col">
       <li class="act">
-        <h3 class="act__titulo"><span class="act__num">13-</span> ¿Qué es un array?</h3>
+        <h3 class="act__titulo"><span class="act__num">1-</span> ¿Qué es un array?</h3>
         <ol class="act__items">
           <li><b class="act__letra">a)</b><div>¿Desde qué posición empieza un array? Si tiene 6 datos, ¿en qué posición está el último?</div></li>
           <li><b class="act__letra">b)</b><div>Predecí qué muestra:
@@ -601,14 +609,14 @@ console.<span class="c-fun">log</span>(n.length);
 console.<span class="c-fun">log</span>(n[n.length - <span class="c-num">1</span>]);
 console.<span class="c-fun">log</span>(n[<span class="c-num">4</span>]);</code></pre>
             </figure></div></li>
-          <li><b class="act__letra">c)</b><div>¿Qué propiedad indica cuántos datos tiene un array? Escribí cómo se usa con un array llamado <code>notas</code>.</div></li>
+          <li><b class="act__letra">c)</b><div>¿Qué propiedad indica cuántos datos tiene un array? Escribí cómo se usa con un array llamado <code class="cod-js">notas</code>.</div></li>
         </ol>
       </li>
       <li class="act">
-        <h3 class="act__titulo"><span class="act__num">14-</span> Agregar y quitar datos</h3>
+        <h3 class="act__titulo"><span class="act__num">2-</span> Agregar y quitar datos</h3>
         <ol class="act__items">
           <li><b class="act__letra">a)</b><div>¿Qué método agrega un dato al final? ¿Y cuál lo agrega al principio?</div></li>
-          <li><b class="act__letra">b)</b><div>Anotá cómo queda <code>fila</code> después de cada línea:
+          <li><b class="act__letra">b)</b><div>Anotá cómo queda <code class="cod-js">fila</code> después de cada línea:
             <figure class="codigo codigo--js" id="act-14b">
               <figcaption><span class="codigo__archivo">app.js</span></figcaption>
               <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> fila = [<span class="c-str">"Ana"</span>];
@@ -618,14 +626,14 @@ fila.<span class="c-fun">pop</span>();
 fila.<span class="c-fun">push</span>(<span class="c-str">"Dani"</span>);
 fila.<span class="c-fun">shift</span>();</code></pre>
             </figure></div></li>
-          <li><b class="act__letra">c)</b><div><code>colores</code> tiene 4 datos y se ejecuta <code>let x = colores.pop();</code> ¿Qué guarda <code>x</code>? ¿Cuánto vale <code>colores.length</code>?</div></li>
+          <li><b class="act__letra">c)</b><div><code class="cod-js">colores</code> tiene 4 datos y se ejecuta <code class="cod-js">let x = colores.pop();</code> ¿Qué guarda <code class="cod-js">x</code>? ¿Cuánto vale <code class="cod-js">colores.length</code>?</div></li>
         </ol>
       </li>
       <li class="act">
-        <h3 class="act__titulo"><span class="act__num">15-</span> Buscar y eliminar</h3>
+        <h3 class="act__titulo"><span class="act__num">3-</span> Buscar y eliminar</h3>
         <ol class="act__items">
-          <li><b class="act__letra">a)</b><div>Si <code>letras</code> es <code>["a", "b", "c", "b"]</code>, ¿qué devuelve <code>letras.indexOf("b")</code>? ¿Y <code>letras.indexOf("z")</code>?</div></li>
-          <li><b class="act__letra">b)</b><div>Anotá cómo queda <code>n</code> después de cada línea:
+          <li><b class="act__letra">a)</b><div>Si <code class="cod-js">letras</code> es <code class="cod-js">["a", "b", "c", "b"]</code>, ¿qué devuelve <code class="cod-js">letras.indexOf("b")</code>? ¿Y <code class="cod-js">letras.indexOf("z")</code>?</div></li>
+          <li><b class="act__letra">b)</b><div>Anotá cómo queda <code class="cod-js">n</code> después de cada línea:
             <figure class="codigo codigo--js" id="act-15b">
               <figcaption><span class="codigo__archivo">app.js</span></figcaption>
               <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> n = [<span class="c-num">1</span>, <span class="c-num">2</span>, <span class="c-num">3</span>, <span class="c-num">4</span>, <span class="c-num">5</span>];
@@ -634,13 +642,13 @@ n.<span class="c-fun">splice</span>(<span class="c-num">0</span>, <span class="c
 n.<span class="c-fun">push</span>(<span class="c-num">6</span>);
 n.<span class="c-fun">unshift</span>(<span class="c-num">0</span>);</code></pre>
             </figure></div></li>
-          <li><b class="act__letra">c)</b><div>Un programa usa <code>splice(pos, 1)</code> sin revisar <code>pos</code>, y la materia buscada no está. ¿Qué dato borra? ¿Cómo se evita?</div></li>
+          <li><b class="act__letra">c)</b><div>Un programa usa <code class="cod-js">splice(pos, 1)</code> sin revisar <code class="cod-js">pos</code>, y la materia buscada no está. ¿Qué dato borra? ¿Cómo se evita?</div></li>
         </ol>
       </li>
       <li class="act">
-        <h3 class="act__titulo"><span class="act__num">16-</span> Recorrer un array</h3>
+        <h3 class="act__titulo"><span class="act__num">4-</span> Recorrer un array</h3>
         <ol class="act__items">
-          <li><b class="act__letra">a)</b><div>Prueba de escritorio: anotá <code>i</code> en cada vuelta y qué muestra.
+          <li><b class="act__letra">a)</b><div>Prueba de escritorio: anotá <code class="cod-js">i</code> en cada vuelta y qué muestra.
             <figure class="codigo codigo--js" id="act-16a">
               <figcaption><span class="codigo__archivo">app.js</span></figcaption>
               <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> v = [<span class="c-str">"x"</span>, <span class="c-str">"y"</span>, <span class="c-str">"z"</span>];
@@ -650,8 +658,8 @@ n.<span class="c-fun">unshift</span>(<span class="c-num">0</span>);</code></pre>
   i--;
 }</code></pre>
             </figure></div></li>
-          <li><b class="act__letra">b)</b><div>Escribí un <code>for...of</code> que muestre cada dato de <code>frutas</code>.</div></li>
-          <li><b class="act__letra">c)</b><div>Un <code>for</code> usa <code>i = 1</code> e <code>i &lt;= notas.length</code>. ¿Qué dato se saltea? ¿Qué muestra de más?</div></li>
+          <li><b class="act__letra">b)</b><div>Escribí un <code class="cod-js">for...of</code> que muestre cada dato de <code class="cod-js">frutas</code>.</div></li>
+          <li><b class="act__letra">c)</b><div>Un <code class="cod-js">for</code> usa <code class="cod-js">i = 1</code> e <code class="cod-js">i &lt;= notas.length</code>. ¿Qué dato se saltea? ¿Qué muestra de más?</div></li>
         </ol>
       </li>
     </ol>
@@ -665,7 +673,7 @@ n.<span class="c-fun">unshift</span>(<span class="c-num">0</span>);</code></pre>
   </article>
 
   <!-- =================== ACTIVIDADES · Parte 2 =================== -->
-  <article class="lamina lamina--act" id="actividades-2" aria-labelledby="act-2">
+  <article class="lamina lamina--act lamina--compu" id="actividades-2" aria-labelledby="act-2">
     <div class="cab" aria-hidden="true">
       <svg class="cab__logo"><use href="#i-web"/></svg>
       <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
@@ -682,7 +690,7 @@ n.<span class="c-fun">unshift</span>(<span class="c-num">0</span>);</code></pre>
       <span class="act-banda__parte">Parte<br>2 de 2</span>
     </header>
 
-    <p class="consigna"><strong>Consigna:</strong> Creá la carpeta <code>tp4-apellido</code> con una copia de la plantilla por ejercicio (<code>ejercicio-1</code> a <code>ejercicio-6</code>). Cada <code>app.js</code> empieza con un comentario que dice qué hace el programa.</p>
+    <p class="consigna"><strong>Consigna:</strong> Creá la carpeta <code class="cod-carpeta">tp4-apellido</code> con una copia de la plantilla por ejercicio (<code class="cod-carpeta">ejercicio-1</code> a <code class="cod-carpeta">ejercicio-6</code>). Cada <code class="cod-js">app.js</code> empieza con un comentario que dice qué hace el programa.</p>
 
     <ol class="acts acts--amplio">
       <li class="act">
@@ -710,9 +718,9 @@ n.<span class="c-fun">unshift</span>(<span class="c-num">0</span>);</code></pre>
             <p class="entrega__sub">Antes de entregar, marcá:</p>
             <ul class="checklist">
               <li>Están las 6 carpetas.</li>
-              <li>Cada <code>app.js</code> tiene su comentario.</li>
+              <li>Cada <code class="cod-js">app.js</code> tiene su comentario.</li>
               <li>El 4 termina con "fin" y también con Cancelar.</li>
-              <li>El 5 revisa el -1 antes de usar <code>splice</code>.</li>
+              <li>El 5 revisa el -1 antes de usar <code class="cod-js">splice</code>.</li>
               <li>Ninguno muestra errores en la consola.</li>
             </ul>
           </div>

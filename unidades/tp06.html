@@ -33,6 +33,10 @@
       <rect x="32" y="9" width="12" height="30" rx="2"/>
       <path d="M4 24h12M18 24h12M32 24h12"/>
     </symbol>
+    <symbol id="i-importante" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="21" style="fill:var(--ac);stroke:none"/>
+      <path d="M24 12v15M24 35v.5" style="stroke:var(--blanco);stroke-width:5.5"/>
+    </symbol>
     <symbol id="i-foco" viewBox="0 0 48 48">
       <path d="M24 2.5v4M10 8.5l2.8 2.8M38 8.5l-2.8 2.8M4 22h4M40 22h4"/>
       <path d="M24 12a10 10 0 0 0-6.2 17.8c1.4 1.2 2.2 2.6 2.2 4.2v1h8v-1c0-1.6.8-3 2.2-4.2A10 10 0 0 0 24 12z" style="fill:var(--ac)"/>
@@ -119,7 +123,7 @@
               <text x="142" y="57">500</text>
               <text x="238" y="57">1200</text>
             </g>
-            <g style="fill:var(--acento)">
+            <g style="fill:var(--naranja-texto)">
               <circle cx="46" cy="94" r="14"/>
               <circle cx="142" cy="94" r="14"/>
               <circle cx="238" cy="94" r="14"/>
@@ -129,7 +133,7 @@
               <text x="142" y="100">1</text>
               <text x="238" y="100">2</text>
             </g>
-            <text class="tt" x="142" y="128" text-anchor="middle" style="font-size:14px;fill:var(--gris)">posición</text>
+            <text class="tt" x="142" y="128" text-anchor="middle" style="font-size:14px;font-weight:700;fill:var(--naranja-texto)">posición</text>
           </svg>
         </figure></div></li>
       <li><div><h3>Objeto</h3><p>Guarda los <strong>datos distintos de una sola cosa</strong>: el nombre, el precio y si hay stock de un alfajor. Cada dato tiene un <strong>nombre</strong>.</p>
@@ -137,7 +141,7 @@
           <svg viewBox="0 0 300 130" style="max-width:300px" role="img" aria-labelledby="esq21b">
             <title id="esq21b">El objeto alfajor guarda tres datos distintos de un mismo producto, cada uno con su nombre: nombre vale "Alfajor", precio vale 800 y hayStock vale true.</title>
             <text x="2" y="17" style="font-family:var(--fuente-codigo);font-size:17px;font-weight:700;fill:var(--tinta)">alfajor</text>
-            <rect x="2" y="28" width="108" height="84" style="fill:var(--acento-claro)"/>
+            <rect x="2" y="28" width="108" height="84" style="fill:var(--turquesa-claro)"/>
             <rect x="2" y="28" width="296" height="84" rx="6" style="fill:none;stroke:var(--acento);stroke-width:2"/>
             <path d="M110 28v84M2 56h296M2 84h296" style="fill:none;stroke:var(--acento);stroke-width:2"/>
             <g style="font-family:var(--fuente-codigo);font-size:16px;font-weight:700;fill:var(--tinta)">
@@ -151,7 +155,7 @@
               <text x="122" y="104">true</text>
             </g>
             <g class="tt" style="font-size:14px;fill:var(--gris)" text-anchor="middle">
-              <text x="56" y="128">nombre</text>
+              <text x="56" y="128" style="font-weight:700;fill:var(--turquesa-texto)">nombre</text>
               <text x="204" y="128">valor</text>
             </g>
           </svg>
@@ -171,10 +175,10 @@ console.<span class="c-fun">log</span>(alfajor);</code></pre>
       <aside class="esquema-nota" aria-labelledby="n21">
         <h3 id="n21">Cómo se escribe</h3>
         <ul class="pf__lista">
-          <li>Las propiedades van entre <strong>llaves</strong> <code>{ }</code>.</li>
-          <li>Cada una lleva <strong>nombre</strong>, dos puntos y <strong>valor</strong>: <code>precio: 800</code>.</li>
+          <li>Las propiedades van entre <strong>llaves</strong> <code class="cod-js">{ }</code>.</li>
+          <li>Cada una lleva <strong>nombre</strong>, dos puntos y <strong>valor</strong>: <code class="cod-js">precio: 800</code>.</li>
           <li>Entre una propiedad y la siguiente va una <strong>coma</strong>.</li>
-          <li>El valor puede ser un número, un texto o un booleano. El nombre va en camelCase: <code>hayStock</code>.</li>
+          <li>El valor puede ser un número, un texto o un booleano. El nombre va en camelCase: <code class="cod-js">hayStock</code>.</li>
         </ul>
       </aside>
     </div>
@@ -211,8 +215,8 @@ console.<span class="c-fun">log</span>(alfajor);</code></pre>
     </div>
 
     <ul class="comparar">
-      <li><div><h3>Leer</h3><p>Nombre del objeto, un <strong>punto</strong> y la propiedad: <code>alfajor.precio</code> da 800. Si la propiedad no existe, da <code>undefined</code>.</p></div></li>
-      <li><div><h3>Modificar</h3><p>Con <code>=</code> le damos un valor nuevo: <code>alfajor.precio = 900;</code> El valor anterior <strong>se pierde</strong>. Si la propiedad no existía, <strong>se agrega</strong>.</p></div></li>
+      <li><div><h3>Leer</h3><p>Nombre del objeto, un <strong>punto</strong> y la propiedad: <code class="cod-js">alfajor.precio</code> da 800. Si la propiedad no existe, da <code class="cod-js">undefined</code>.</p></div></li>
+      <li><div><h3>Modificar</h3><p>Con <code class="cod-js">=</code> le damos un valor nuevo: <code class="cod-js">alfajor.precio = 900;</code> El valor anterior <strong>se pierde</strong>. Si la propiedad no existía, <strong>se agrega</strong>.</p></div></li>
     </ul>
 
     <div class="ej ej--apilado">
@@ -246,7 +250,7 @@ undefined</pre>
           <text x="85" y="15">antes</text>
           <text x="330" y="15">después</text>
         </g>
-        <g style="fill:var(--acento-claro)">
+        <g style="fill:var(--turquesa-claro)">
           <rect x="1" y="25" width="66" height="96"/>
           <rect x="241" y="25" width="66" height="128"/>
         </g>
@@ -285,17 +289,17 @@ undefined</pre>
     <aside class="esquema-nota" aria-labelledby="n22">
       <h3 id="n22">¿Qué pasó?</h3>
       <ul class="pf__lista">
-        <li><code>precio</code> pasó de 800 a 900: el 800 se perdió.</li>
-        <li><code>stock</code> usó su propio valor: 12 − 1 = 11, como un acumulador.</li>
-        <li><code>sabor</code> no existía: se agregó al final.</li>
-        <li><code>marca</code> no existe: leerla da <code>undefined</code> (sin valor).</li>
+        <li><code class="cod-js">precio</code> pasó de 800 a 900: el 800 se perdió.</li>
+        <li><code class="cod-js">stock</code> usó su propio valor: 12 − 1 = 11, como un acumulador.</li>
+        <li><code class="cod-js">sabor</code> no existía: se agregó al final.</li>
+        <li><code class="cod-js">marca</code> no existe: leerla da <code class="cod-js">undefined</code> (sin valor).</li>
       </ul>
     </aside>
     </div>
 
     <aside class="idea" aria-label="Idea clave">
       <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
-      <p><strong>Idea clave:</strong> con un punto leemos una propiedad: <code>alfajor.precio</code>. Con <code>=</code> la cambiamos. Si no existe, leerla da <b>undefined</b> y darle un valor la agrega.</p>
+      <p><strong>Idea clave:</strong> con un punto leemos una propiedad: <code class="cod-js">alfajor.precio</code>. Con <code class="cod-js">=</code> la cambiamos. Si no existe, leerla da <b>undefined</b> y darle un valor la agrega.</p>
     </aside>
 
     <footer class="pie">
@@ -344,7 +348,7 @@ undefined</pre>
           <text x="297" y="80">nota: 7</text>
         </g>
         <text x="154" y="80" style="font-family:var(--fuente-codigo);font-size:14px;font-weight:700;fill:var(--blanco)">nota: 5</text>
-        <g style="fill:var(--acento)">
+        <g style="fill:var(--naranja-texto)">
           <circle cx="68" cy="112" r="13"/>
           <circle cx="211" cy="112" r="13"/>
           <circle cx="354" cy="112" r="13"/>
@@ -360,9 +364,9 @@ undefined</pre>
     <aside class="esquema-nota" aria-labelledby="n23">
       <h3 id="n23">Primero la posición, después la propiedad</h3>
       <ul class="pf__lista">
-        <li><code>alumnos[1]</code> es el objeto de la posición 1: el de Tomás.</li>
-        <li><code>alumnos[1].nota</code> es la nota de ese objeto: 5.</li>
-        <li><code>alumnos.length</code> cuenta los objetos: 3.</li>
+        <li><code class="cod-js">alumnos[1]</code> es el objeto de la posición 1: el de Tomás.</li>
+        <li><code class="cod-js">alumnos[1].nota</code> es la nota de ese objeto: 5.</li>
+        <li><code class="cod-js">alumnos.length</code> cuenta los objetos: 3.</li>
       </ul>
     </aside>
     </div>
@@ -397,14 +401,14 @@ Lucía aprobó</pre>
 
     <section class="panel" aria-label="Qué pasó en el ejemplo">
       <ol class="puntos puntos--2col">
-        <li><span class="puntos__n" aria-hidden="true">1</span><span>En el <code>for...of</code>, <code>alumno</code> toma <strong>un objeto por vuelta</strong>. <code>push</code> agrega un objeto entero.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">1</span><span>En el <code class="cod-js">for...of</code>, <code class="cod-js">alumno</code> toma <strong>un objeto por vuelta</strong>. <code class="cod-js">push</code> agrega un objeto entero.</span></li>
         <li><span class="puntos__n" aria-hidden="true">2</span><span>Todos los objetos tienen las <strong>mismas propiedades</strong>: el mismo código sirve para todos.</span></li>
       </ol>
     </section>
 
     <aside class="idea" aria-label="Idea clave">
       <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
-      <p><strong>Idea clave:</strong> en un array de objetos, primero va la posición y después la propiedad: <code>alumnos[1].nota</code>. Con <code>for...of</code>, cada vuelta trae un objeto entero.</p>
+      <p><strong>Idea clave:</strong> en un array de objetos, primero va la posición y después la propiedad: <code class="cod-js">alumnos[1].nota</code>. Con <code class="cod-js">for...of</code>, cada vuelta trae un objeto entero.</p>
     </aside>
 
     <footer class="pie">
@@ -454,8 +458,8 @@ Lucía aprobó</pre>
         <ul class="pf__lista">
           <li><strong>Los datos:</strong> un array de objetos, arriba de todo.</li>
           <li><strong>Una función por opción.</strong> Las dos trabajan sobre el mismo array.</li>
-          <li>Si tocan Cancelar o no escriben un nombre, <code>agregarAlumno</code> no agrega nada.</li>
-          <li><strong>El menú</strong> va abajo, en el mismo <code>app.js</code>.</li>
+          <li>Si tocan Cancelar o no escriben un nombre, <code class="cod-js">agregarAlumno</code> no agrega nada.</li>
+          <li><strong>El menú</strong> va abajo, en el mismo <code class="cod-js">app.js</code>.</li>
         </ul>
       </aside>
     </div>
@@ -489,7 +493,7 @@ Fin</pre>
         <aside class="esquema-nota" aria-labelledby="n24b">
           <h3 id="n24b">El menú</h3>
           <ul class="pf__lista">
-            <li>Sigue hasta "salir" o Cancelar (<code>null</code>).</li>
+            <li>Sigue hasta "salir" o Cancelar (<code class="cod-js">null</code>).</li>
             <li>Lo que agrega la opción 2 <strong>queda en el array</strong>.</li>
           </ul>
         </aside>
@@ -569,10 +573,10 @@ console.<span class="c-fun">log</span>(chicle);</code></pre>
             </div>
           </div>
         </div>
-        <div class="pf__caja">
-          <h4>Otro error común</h4>
+        <div class="pf__caja pf__caja--importante">
+          <h4><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-importante"/></svg>Otro error común</h4>
           <ul class="pf__lista">
-            <li><code>alfajor.precio: 900;</code> da error: los dos puntos van solo adentro de las llaves. Para modificar va <code>=</code>.</li>
+            <li><code class="cod-js">alfajor.precio: 900;</code> da error: los dos puntos van solo adentro de las llaves. Para modificar va <code class="cod-js">=</code>.</li>
           </ul>
         </div>
       </div>
@@ -602,7 +606,7 @@ console.<span class="c-fun">log</span>(suma / alumnos.length);</code></pre>
               <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">7</pre>
             </div>
           </div>
-          <p>Para contar aprobados: un contador y <code>if (alumno.nota &gt;= 6)</code>.</p>
+          <p>Para contar aprobados: un contador y <code class="cod-js">if (alumno.nota &gt;= 6)</code>.</p>
         </div>
       </div>
     </section>
@@ -612,7 +616,7 @@ console.<span class="c-fun">log</span>(suma / alumnos.length);</code></pre>
       <h3 class="pf__titulo" id="pf24">Elegir un objeto por su número</h3>
       <div class="pf__cols">
         <div class="pf__texto">
-          <p>La posición es uno menos que el número: <code>n - 1</code>. Con Cancelar, <code>Number(null)</code> da 0 y el <code>if</code> lo frena.</p>
+          <p>La posición es uno menos que el número: <code class="cod-js">n - 1</code>. Con Cancelar, <code class="cod-js">Number(null)</code> da 0 y el <code class="cod-js">if</code> lo frena.</p>
           <div class="ej ej--pf">
             <figure class="codigo codigo--js" id="ej-pf24">
               <figcaption><span class="codigo__archivo">app.js</span></figcaption>
@@ -668,7 +672,7 @@ console.<span class="c-fun">log</span>(suma / alumnos.length);</code></pre>
 
     <ol class="acts acts--2col">
       <li class="act">
-        <h3 class="act__titulo"><span class="act__num">21-</span> ¿Qué es un objeto?</h3>
+        <h3 class="act__titulo"><span class="act__num">1-</span> ¿Qué es un objeto?</h3>
         <ol class="act__items">
           <li><b class="act__letra">a)</b><div>¿Qué diferencia hay entre un array y un objeto? Escribí un ejemplo de cada uno.</div></li>
           <li><b class="act__letra">b)</b><div>Encontrá los 3 errores y escribí el objeto bien:
@@ -680,11 +684,11 @@ console.<span class="c-fun">log</span>(suma / alumnos.length);</code></pre>
   conRueditas: <span class="c-etq">false</span>
 ];</code></pre>
             </figure></div></li>
-          <li><b class="act__letra">c)</b><div>Escribí el objeto <code>libro</code> con el título, el autor y la cantidad de páginas de un libro que te guste.</div></li>
+          <li><b class="act__letra">c)</b><div>Escribí el objeto <code class="cod-js">libro</code> con el título, el autor y la cantidad de páginas de un libro que te guste.</div></li>
         </ol>
       </li>
       <li class="act">
-        <h3 class="act__titulo"><span class="act__num">22-</span> Leer y modificar propiedades</h3>
+        <h3 class="act__titulo"><span class="act__num">2-</span> Leer y modificar propiedades</h3>
         <ol class="act__items">
           <li><b class="act__letra">a)</b><div>Predecí cómo queda el objeto y qué muestra:
             <figure class="codigo codigo--js" id="act-22a">
@@ -698,29 +702,29 @@ bici.prestada = <span class="c-etq">true</span>;
 bici.color = <span class="c-str">"rojo"</span>;
 console.<span class="c-fun">log</span>(bici);</code></pre>
             </figure></div></li>
-          <li><b class="act__letra">b)</b><div>¿Qué muestran <code>bici.Km</code> y <code>bici.marca</code>? ¿Por qué?</div></li>
-          <li><b class="act__letra">c)</b><div>Escribí la línea que sube en 100 el precio de <code>alfajor</code>, a partir del precio que tiene.</div></li>
+          <li><b class="act__letra">b)</b><div>¿Qué muestran <code class="cod-js">bici.Km</code> y <code class="cod-js">bici.marca</code>? ¿Por qué?</div></li>
+          <li><b class="act__letra">c)</b><div>Escribí la línea que sube en 100 el precio de <code class="cod-js">alfajor</code>, a partir del precio que tiene.</div></li>
         </ol>
       </li>
       <li class="act">
-        <h3 class="act__titulo"><span class="act__num">23-</span> Arrays de objetos</h3>
+        <h3 class="act__titulo"><span class="act__num">3-</span> Arrays de objetos</h3>
         <ol class="act__items">
-          <li><b class="act__letra">a)</b><div>En la lámina 23, sin el <code>push</code>, ¿qué muestran <code>alumnos[2].nombre</code>, <code>alumnos[0]</code> y <code>alumnos.length</code>?</div></li>
+          <li><b class="act__letra">a)</b><div>En la lámina 23, sin el <code class="cod-js">push</code>, ¿qué muestran <code class="cod-js">alumnos[2].nombre</code>, <code class="cod-js">alumnos[0]</code> y <code class="cod-js">alumnos.length</code>?</div></li>
           <li><b class="act__letra">b)</b><div>¿Array, objeto o array de objetos? Elegí uno para cada caso:
             <ul class="act__frases">
               <li>las temperaturas de la semana;</li>
               <li>nombre, edad y ciudad de una alumna;</li>
               <li>los libros de la biblioteca, con título y autor.</li>
             </ul></div></li>
-          <li><b class="act__letra">c)</b><div>Escribí un <code>for...of</code> que muestre a los alumnos con nota menor que 6.</div></li>
+          <li><b class="act__letra">c)</b><div>Escribí un <code class="cod-js">for...of</code> que muestre a los alumnos con nota menor que 6.</div></li>
         </ol>
       </li>
       <li class="act">
-        <h3 class="act__titulo"><span class="act__num">24-</span> Todo junto en un programa</h3>
+        <h3 class="act__titulo"><span class="act__num">4-</span> Todo junto en un programa</h3>
         <ol class="act__items">
           <li><b class="act__letra">a)</b><div>En el programa de la lámina 24, ¿qué pasa si escribís 3? ¿Y si tocás Cancelar en el menú?</div></li>
           <li><b class="act__letra">b)</b><div>Prueba de escritorio: si escribís 2, Ana, 8, 1 y salir, ¿qué muestra la consola?</div></li>
-          <li><b class="act__letra">c)</b><div>Escribí la función <code>verAprobados()</code>, que muestre solo los alumnos con nota 6 o más. ¿Qué líneas sumás al menú para que sea la opción 3?</div></li>
+          <li><b class="act__letra">c)</b><div>Escribí la función <code class="cod-js">verAprobados()</code>, que muestre solo los alumnos con nota 6 o más. ¿Qué líneas sumás al menú para que sea la opción 3?</div></li>
         </ol>
       </li>
     </ol>
@@ -734,7 +738,7 @@ console.<span class="c-fun">log</span>(bici);</code></pre>
   </article>
 
   <!-- =================== ACTIVIDADES · Parte 2 =================== -->
-  <article class="lamina lamina--act" id="actividades-2" aria-labelledby="act-2">
+  <article class="lamina lamina--act lamina--compu" id="actividades-2" aria-labelledby="act-2">
     <div class="cab" aria-hidden="true">
       <svg class="cab__logo"><use href="#i-web"/></svg>
       <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
@@ -751,12 +755,12 @@ console.<span class="c-fun">log</span>(bici);</code></pre>
       <span class="act-banda__parte">Parte<br>2 de 2</span>
     </header>
 
-    <p class="consigna"><strong>Consigna:</strong> Armá el programa en una copia de la plantilla llamada <code>tp6-apellido</code>. El <code>app.js</code> empieza con un comentario que dice qué hace.</p>
+    <p class="consigna"><strong>Consigna:</strong> Armá el programa en una copia de la plantilla llamada <code class="cod-carpeta">tp6-apellido</code>. El <code class="cod-js">app.js</code> empieza con un comentario que dice qué hace.</p>
 
     <ol class="acts acts--amplio">
       <li class="act">
         <h3 class="act__titulo"><span class="act__num">1-</span> Lista de tareas</h3>
-        <p class="act__caso">Programa de lista de tareas con menú (hecho con <code>prompt()</code>), donde cada tarea es un objeto:</p>
+        <p class="act__caso">Programa de lista de tareas con menú (hecho con <code class="cod-js">prompt()</code>), donde cada tarea es un objeto:</p>
         <figure class="codigo codigo--js" id="act-tarea">
           <figcaption><span class="codigo__archivo">app.js</span></figcaption>
           <pre tabindex="0" aria-label="Código de app.js, una tarea"><code><span class="c-etq">let</span> tarea = { texto: <span class="c-str">"Comprar yerba"</span>, completada: <span class="c-etq">false</span> };</code></pre>
@@ -764,7 +768,7 @@ console.<span class="c-fun">log</span>(bici);</code></pre>
         <ol class="act__items act__items--2col">
           <li><b class="act__letra">1</b><div><strong>Agregar tarea.</strong></div></li>
           <li><b class="act__letra">2</b><div><strong>Ver todas las tareas:</strong> las completadas se muestran con "✓".</div></li>
-          <li><b class="act__letra">3</b><div><strong>Marcar tarea como completada:</strong> cambia la propiedad <code>completada</code> a <code>true</code>.</div></li>
+          <li><b class="act__letra">3</b><div><strong>Marcar tarea como completada:</strong> cambia la propiedad <code class="cod-js">completada</code> a <code class="cod-js">true</code>.</div></li>
           <li><b class="act__letra">4</b><div><strong>Eliminar tarea.</strong></div></li>
           <li><b class="act__letra">5</b><div><strong>Salir.</strong></div></li>
         </ol>
@@ -790,12 +794,12 @@ console.<span class="c-fun">log</span>(bici);</code></pre>
           <div>
             <p class="entrega__sub">Antes de entregar, marcá:</p>
             <ul class="checklist">
-              <li>Cada tarea es un objeto con <code>texto</code> y <code>completada</code>.</li>
+              <li>Cada tarea es un objeto con <code class="cod-js">texto</code> y <code class="cod-js">completada</code>.</li>
               <li>Cada opción del menú es una función.</li>
               <li>Las completadas se ven con "✓".</li>
               <li>El menú termina con "salir" y con Cancelar.</li>
-              <li>Las capturas están adentro del <code>.zip</code>.</li>
-              <li>El <code>app.js</code> tiene su comentario. No hay errores en la consola.</li>
+              <li>Las capturas están adentro del <code class="cod-carpeta">.zip</code>.</li>
+              <li>El <code class="cod-js">app.js</code> tiene su comentario. No hay errores en la consola.</li>
             </ul>
           </div>
         </div>

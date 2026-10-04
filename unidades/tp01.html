@@ -62,6 +62,10 @@
       <path d="M24 5 45 42H3z" style="fill:var(--ac)"/>
       <path d="M24 18v11M24 35v.5" style="stroke-width:3.4"/>
     </symbol>
+    <symbol id="i-importante" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="21" style="fill:var(--ac);stroke:none"/>
+      <path d="M24 12v15M24 35v.5" style="stroke:var(--blanco);stroke-width:5.5"/>
+    </symbol>
     <symbol id="i-foco" viewBox="0 0 48 48">
       <path d="M24 2.5v4M10 8.5l2.8 2.8M38 8.5l-2.8 2.8M4 22h4M40 22h4"/>
       <path d="M24 12a10 10 0 0 0-6.2 17.8c1.4 1.2 2.2 2.6 2.2 4.2v1h8v-1c0-1.6.8-3 2.2-4.2A10 10 0 0 0 24 12z" style="fill:var(--ac)"/>
@@ -130,7 +134,7 @@
     <section class="panel" aria-labelledby="s1">
       <div class="panel__cab"><h3 class="subtitulo" id="s1">La carpeta plantilla</h3></div>
       <div class="carpeta">
-        <p class="carpeta__raiz"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-carpeta"/></svg>plantilla-js</p>
+        <p class="carpeta__raiz"><svg class="ico ico--carpeta" aria-hidden="true" focusable="false"><use href="#i-carpeta"/></svg>plantilla-js</p>
         <ul class="carpeta__arch carpeta__arch--2col">
           <li><span class="etq etq--html">index.html</span><span>Ya está armado. Lo abrimos en Chrome, pero <strong>no lo tocamos</strong>.</span></li>
           <li><span class="etq etq--js">app.js</span><span>Empieza vacío. Acá <strong>escribimos el programa</strong>.</span></li>
@@ -145,7 +149,7 @@
     <section aria-labelledby="s1b">
       <h3 class="subtitulo" id="s1b">Cómo trabajamos</h3>
       <ol class="pasos2">
-        <li class="paso"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-editor"/></svg><h3><span class="paso__n">1</span>VS Code</h3><p>En Visual Studio Code, <strong>Archivo → Abrir carpeta…</strong> y elegimos la carpeta. Escribimos en <code>app.js</code>.</p></li>
+        <li class="paso"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-editor"/></svg><h3><span class="paso__n">1</span>VS Code</h3><p>En Visual Studio Code, <strong>Archivo → Abrir carpeta…</strong> y elegimos la carpeta. Escribimos en <code class="cod-js">app.js</code>.</p></li>
         <li class="paso"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-navegador"/></svg><h3><span class="paso__n">2</span>Chrome</h3><p>En el Explorador de archivos, clic derecho sobre <code>index.html</code> → <strong>Abrir con → Google Chrome</strong>.</p></li>
         <li class="paso"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-consola"/></svg><h3><span class="paso__n">3</span>La consola</h3><p>En Chrome tocamos <kbd>F12</kbd> y elegimos la pestaña <strong>Console</strong>. Ahí vemos lo que muestra el programa.</p></li>
         <li class="paso"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-recargar"/></svg><h3><span class="paso__n">4</span>Cada cambio</h3><p>Guardamos con <kbd>Ctrl</kbd> + <kbd>S</kbd> en VS Code y recargamos con <kbd>F5</kbd> en Chrome.</p></li>
@@ -168,7 +172,7 @@
 
     <aside class="idea" aria-label="Idea clave">
       <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
-      <p><strong>Idea clave:</strong> escribimos el programa en <code>app.js</code> con VS Code y vemos el resultado en la consola de Chrome.</p>
+      <p><strong>Idea clave:</strong> escribimos el programa en <code class="cod-js">app.js</code> con VS Code y vemos el resultado en la consola de Chrome.</p>
     </aside>
 
     <footer class="pie">
@@ -221,10 +225,10 @@ Fin del programa</pre>
     <section class="panel" aria-labelledby="s2">
       <div class="panel__cab"><h3 class="subtitulo" id="s2">Reglas para escribir</h3></div>
       <ol class="puntos puntos--2col">
-        <li><span class="puntos__n" aria-hidden="true">1</span><span>Cada instrucción termina con <strong>punto y coma</strong>: <code>;</code></span></li>
-        <li><span class="puntos__n" aria-hidden="true">2</span><span>Los <strong>textos</strong> van entre comillas: <code>"Hola"</code>. Los <strong>números</strong>, no: <code>7</code>.</span></li>
-        <li><span class="puntos__n" aria-hidden="true">3</span><span>Lo que sigue a <code>//</code> es un <strong>comentario</strong>: el programa lo saltea. Sirve para explicar el código.</span></li>
-        <li><span class="puntos__n" aria-hidden="true">4</span><span>Las <strong>mayúsculas</strong> importan: <code>Console.log</code> da error.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">1</span><span>Cada instrucción termina con <strong>punto y coma</strong>: <code class="cod-js">;</code></span></li>
+        <li><span class="puntos__n" aria-hidden="true">2</span><span>Los <strong>textos</strong> van entre comillas: <code class="cod-js">"Hola"</code>. Los <strong>números</strong>, no: <code class="cod-js">7</code>.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">3</span><span>Lo que sigue a <code class="cod-js">//</code> es un <strong>comentario</strong>: el programa lo saltea. Sirve para explicar el código.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">4</span><span>Las <strong>mayúsculas</strong> importan: <code class="cod-js">Console.log</code> da error.</span></li>
       </ol>
     </section>
 
@@ -248,7 +252,7 @@ console.<span class="c-fun">log</span>(<span class="c-num">7</span> + <span clas
 
     <aside class="idea" aria-label="Idea clave">
       <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
-      <p><strong>Idea clave:</strong> <code>console.log()</code> muestra en la consola y <code>alert()</code>, en una ventana. Cada instrucción termina con <code>;</code></p>
+      <p><strong>Idea clave:</strong> <code class="cod-js">console.log()</code> muestra en la consola y <code class="cod-js">alert()</code>, en una ventana. Cada instrucción termina con <code class="cod-js">;</code></p>
     </aside>
 
     <footer class="pie">
@@ -274,15 +278,15 @@ console.<span class="c-fun">log</span>(<span class="c-num">7</span> + <span clas
     </div>
 
     <ul class="comparar comparar--3">
-      <li><div><h3>Variable</h3><p>Guarda un dato con un nombre, como en Python. La primera vez, la creamos con <code>let</code> o <code>const</code>.</p></div><svg class="ico ico--l" aria-hidden="true" focusable="false"><use href="#i-caja"/></svg></li>
-      <li><div><h3>let</h3><p>Para datos que <strong>cambian</strong>. Después se cambian sin <code>let</code>: <code>puntos = 10;</code></p></div></li>
-      <li><div><h3>const</h3><p>Para datos que <strong>no cambian</strong>: <code>const dias = 7;</code> Si lo cambiamos, da error.</p></div></li>
+      <li><div><h3>Variable</h3><p>Guarda un dato con un nombre, como en Python. La primera vez, la creamos con <code class="cod-js">let</code> o <code class="cod-js">const</code>.</p></div><svg class="ico ico--l" aria-hidden="true" focusable="false"><use href="#i-caja"/></svg></li>
+      <li><div><h3>let</h3><p>Para datos que <strong>cambian</strong>. Después se cambian sin <code class="cod-js">let</code>: <code class="cod-js">puntos = 10;</code></p></div></li>
+      <li><div><h3>const</h3><p>Para datos que <strong>no cambian</strong>: <code class="cod-js">const dias = 7;</code> Si lo cambiamos, da error.</p></div></li>
     </ul>
 
     <ul class="tipos">
-      <li class="tarjeta"><span class="tarjeta__cab">Número</span><p class="tipo__valor tipo__valor--acento">42 · 3.5</p><p>Enteros y decimales. El decimal va con punto.</p><p><code>typeof</code> → <code>"number"</code></p></li>
-      <li class="tarjeta"><span class="tarjeta__cab">Texto</span><p class="tipo__valor tipo__valor--acento">"Hola"</p><p>Letras, números o signos entre comillas.</p><p><code>typeof</code> → <code>"string"</code></p></li>
-      <li class="tarjeta"><span class="tarjeta__cab">Booleano</span><p class="tipo__valor tipo__valor--acento">true · false</p><p>Solo dos valores: verdadero o falso.</p><p><code>typeof</code> → <code>"boolean"</code></p></li>
+      <li class="tarjeta"><span class="tarjeta__cab">Número</span><p class="tipo__valor tipo__valor--acento">42 · 3.5</p><p>Enteros y decimales. El decimal va con punto.</p><p><code class="cod-js">typeof</code> → <code class="cod-js">"number"</code></p></li>
+      <li class="tarjeta"><span class="tarjeta__cab">Texto</span><p class="tipo__valor tipo__valor--acento">"Hola"</p><p>Letras, números o signos entre comillas.</p><p><code class="cod-js">typeof</code> → <code class="cod-js">"string"</code></p></li>
+      <li class="tarjeta"><span class="tarjeta__cab">Booleano</span><p class="tipo__valor tipo__valor--acento">true · false</p><p>Solo dos valores: verdadero o falso.</p><p><code class="cod-js">typeof</code> → <code class="cod-js">"boolean"</code></p></li>
     </ul>
 
     <div class="ej">
@@ -325,7 +329,7 @@ edad = <span class="c-num">16</span></code></pre>
 
     <aside class="idea" aria-label="Idea clave">
       <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
-      <p><strong>Idea clave:</strong> <code>let</code> para lo que cambia y <code>const</code> para lo que no. <code>typeof</code> nos dice de qué tipo es un dato.</p>
+      <p><strong>Idea clave:</strong> <code class="cod-js">let</code> para lo que cambia y <code class="cod-js">const</code> para lo que no. <code class="cod-js">typeof</code> nos dice de qué tipo es un dato.</p>
     </aside>
 
     <footer class="pie">
@@ -352,15 +356,15 @@ edad = <span class="c-num">16</span></code></pre>
 
     <div class="intro">
       <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-pregunta"/></svg>
-      <p><code>prompt()</code> abre una ventana con una pregunta y un casillero. Lo que escribe el usuario llega siempre como <strong>texto</strong>.</p>
+      <p><code class="cod-js">prompt()</code> abre una ventana con una pregunta y un casillero. Lo que escribe el usuario llega siempre como <strong>texto</strong>.</p>
     </div>
 
     <ul class="operaciones" aria-label="Operaciones aritméticas">
-      <li><b aria-hidden="true">+</b><span>Suma</span><p><code>7 + 2</code> → 9</p></li>
-      <li><b aria-hidden="true">-</b><span>Resta</span><p><code>7 - 2</code> → 5</p></li>
-      <li><b aria-hidden="true">*</b><span>Multiplicación</span><p><code>7 * 2</code> → 14</p></li>
-      <li><b aria-hidden="true">/</b><span>División</span><p><code>7 / 2</code> → 3.5</p></li>
-      <li><b aria-hidden="true">%</b><span>Resto</span><p><code>7 % 2</code> → 1</p></li>
+      <li><b aria-hidden="true">+</b><span>Suma</span><p><code class="cod-js">7 + 2</code> → 9</p></li>
+      <li><b aria-hidden="true">-</b><span>Resta</span><p><code class="cod-js">7 - 2</code> → 5</p></li>
+      <li><b aria-hidden="true">*</b><span>Multiplicación</span><p><code class="cod-js">7 * 2</code> → 14</p></li>
+      <li><b aria-hidden="true">/</b><span>División</span><p><code class="cod-js">7 / 2</code> → 3.5</p></li>
+      <li><b aria-hidden="true">%</b><span>Resto</span><p><code class="cod-js">7 % 2</code> → 1</p></li>
     </ul>
 
     <section class="error-controlado" aria-labelledby="ec4">
@@ -395,7 +399,7 @@ console.<span class="c-fun">log</span>(a + b);</code></pre>
           </div>
         </div>
       </div>
-      <p><strong>Qué pasó:</strong> <code>prompt()</code> devuelve texto: <code>"5"</code> y <code>"3"</code>. Entre dos textos, <code>+</code> no suma: los <strong>une</strong>. <strong>Cómo se corrige:</strong> <code>Number()</code> convierte el texto en número, y ahora <code>+</code> suma.</p>
+      <p><strong>Qué pasó:</strong> <code class="cod-js">prompt()</code> devuelve texto: <code class="cod-js">"5"</code> y <code class="cod-js">"3"</code>. Entre dos textos, <code class="cod-js">+</code> no suma: los <strong>une</strong>. <strong>Cómo se corrige:</strong> <code class="cod-js">Number()</code> convierte el texto en número, y ahora <code class="cod-js">+</code> suma.</p>
     </section>
 
     <section class="py-js" aria-labelledby="pj4">
@@ -416,7 +420,7 @@ console.<span class="c-fun">log</span>(edad + <span class="c-num">1</span>);</co
 
     <aside class="idea" aria-label="Idea clave">
       <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
-      <p><strong>Idea clave:</strong> <code>prompt()</code> siempre devuelve texto. Para hacer cuentas, lo pasamos a número con <code>Number()</code>, que reemplaza a <code>int()</code> y <code>float()</code>.</p>
+      <p><strong>Idea clave:</strong> <code class="cod-js">prompt()</code> siempre devuelve texto. Para hacer cuentas, lo pasamos a número con <code class="cod-js">Number()</code>, que reemplaza a <code class="cod-py">int()</code> y <code class="cod-py">float()</code>.</p>
     </aside>
 
     <footer class="pie">
@@ -466,7 +470,7 @@ console.<span class="c-fun">log</span>(edad + <span class="c-num">1</span>);</co
       <h3 class="pf__titulo" id="pf2">Cuando algo falla</h3>
       <div class="pf__cols">
         <div class="pf__texto">
-          <p>Si hay un error, la consola lo muestra <strong>en rojo</strong>, con el archivo y la línea (por ejemplo, <code>app.js:2</code>). El programa se detiene en esa línea.</p>
+          <p>Si hay un error, la consola lo muestra <strong>en rojo</strong>, con el archivo y la línea (por ejemplo, <code class="cod-js">app.js:2</code>). El programa se detiene en esa línea.</p>
           <div class="ej ej--pf">
             <figure class="codigo codigo--js" id="ej-pf2">
               <figcaption><span class="codigo__archivo">app.js</span></figcaption>
@@ -481,11 +485,11 @@ console.<span class="c-fun">log</span>(<span class="c-str">"Tres"</span>);</code
             </div>
           </div>
         </div>
-        <div class="pf__caja">
-          <h4>Errores frecuentes</h4>
+        <div class="pf__caja pf__caja--importante">
+          <h4><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-importante"/></svg>Errores frecuentes</h4>
           <ul class="pf__lista">
-            <li><code>console.log(Hola);</code> Faltan las comillas: <em>Hola is not defined</em>.</li>
-            <li><code>console.log("Hola";</code> Falta cerrar el paréntesis: <em>missing ) after argument list</em>.</li>
+            <li><code class="cod-js">console.log(Hola);</code> Faltan las comillas: <em>Hola is not defined</em>.</li>
+            <li><code class="cod-js">console.log("Hola";</code> Falta cerrar el paréntesis: <em>missing ) after argument list</em>.</li>
           </ul>
         </div>
       </div>
@@ -496,15 +500,15 @@ console.<span class="c-fun">log</span>(<span class="c-str">"Tres"</span>);</code
       <h3 class="pf__titulo" id="pf3">Nombres de variables</h3>
       <div class="pf__cols">
         <div class="pf__texto">
-          <p>Un buen nombre dice qué guarda la variable: <code>edad</code>, <code>precioFinal</code>. Si tiene dos o más palabras, usamos <strong>camelCase</strong>: todo junto y cada palabra nueva con mayúscula.</p>
-          <p>Cambiar una <code>const</code> da error: <em>Assignment to constant variable</em>.</p>
+          <p>Un buen nombre dice qué guarda la variable: <code class="cod-js">edad</code>, <code class="cod-js">precioFinal</code>. Si tiene dos o más palabras, usamos <strong>camelCase</strong>: todo junto y cada palabra nueva con mayúscula.</p>
+          <p>Cambiar una <code class="cod-js">const</code> da error: <em>Assignment to constant variable</em>.</p>
         </div>
         <div class="pf__caja">
           <h4>Reglas</h4>
           <ul class="pf__lista">
-            <li>Sin espacios ni guiones, y sin empezar con un número: <code>nota final</code>, <code>nota-final</code> y <code>1nota</code> dan error.</li>
-            <li>No podemos usar palabras de JavaScript, como <code>let</code> o <code>const</code>.</li>
-            <li><code>nota</code> y <code>Nota</code> son dos variables distintas.</li>
+            <li>Sin espacios ni guiones, y sin empezar con un número: <code class="cod-js">nota final</code>, <code class="cod-js">nota-final</code> y <code class="cod-js">1nota</code> dan error.</li>
+            <li>No podemos usar palabras de JavaScript, como <code class="cod-js">let</code> o <code class="cod-js">const</code>.</li>
+            <li><code class="cod-js">nota</code> y <code class="cod-js">Nota</code> son dos variables distintas.</li>
           </ul>
         </div>
       </div>
@@ -515,16 +519,16 @@ console.<span class="c-fun">log</span>(<span class="c-str">"Tres"</span>);</code
       <h3 class="pf__titulo" id="pf4">Más sobre números</h3>
       <div class="pf__cols">
         <div class="pf__texto">
-          <p>Si <code>Number()</code> recibe algo que no es un número, devuelve <strong>NaN</strong> (<em>Not a Number</em>: "no es un número"). Pasa, por ejemplo, si escribimos el decimal con coma.</p>
-          <p>Como en matemática, primero se hacen <code>*</code> y <code>/</code>, y después <code>+</code> y <code>-</code>. Los paréntesis cambian el orden.</p>
+          <p>Si <code class="cod-js">Number()</code> recibe algo que no es un número, devuelve <strong>NaN</strong> (<em>Not a Number</em>: "no es un número"). Pasa, por ejemplo, si escribimos el decimal con coma.</p>
+          <p>Como en matemática, primero se hacen <code class="cod-js">*</code> y <code class="cod-js">/</code>, y después <code class="cod-js">+</code> y <code class="cod-js">-</code>. Los paréntesis cambian el orden.</p>
         </div>
         <div class="pf__caja">
           <h4>Ejemplos</h4>
           <ul class="pf__lista">
-            <li><code>Number("3.5")</code> → 3.5 · <code>Number("3,5")</code> → NaN</li>
-            <li><code>Number("hola")</code> → NaN</li>
-            <li><code>2 + 3 * 4</code> → 14 · <code>(2 + 3) * 4</code> → 20</li>
-            <li>Promedio de tres notas: <code>(n1 + n2 + n3) / 3</code></li>
+            <li><code class="cod-js">Number("3.5")</code> → 3.5 · <code class="cod-js">Number("3,5")</code> → NaN</li>
+            <li><code class="cod-js">Number("hola")</code> → NaN</li>
+            <li><code class="cod-js">2 + 3 * 4</code> → 14 · <code class="cod-js">(2 + 3) * 4</code> → 20</li>
+            <li>Promedio de tres notas: <code class="cod-js">(n1 + n2 + n3) / 3</code></li>
           </ul>
         </div>
       </div>
@@ -564,8 +568,8 @@ console.<span class="c-fun">log</span>(<span class="c-str">"Tres"</span>);</code
         <h3 class="act__titulo"><span class="act__num">1-</span> Hola, JavaScript</h3>
         <ol class="act__items">
           <li><b class="act__letra">a)</b><div>¿Dónde corren los programas de JavaScript? ¿Hace falta instalar algo para ejecutarlos?</div></li>
-          <li><b class="act__letra">b)</b><div>Ordená los pasos: recargar con <kbd>F5</kbd> / abrir <code>index.html</code> en Chrome / escribir en <code>app.js</code> / abrir la carpeta en VS Code / guardar con <kbd>Ctrl</kbd> + <kbd>S</kbd>.</div></li>
-          <li><b class="act__letra">c)</b><div>Pasá a JavaScript: <code>print("Hola, mundo")</code></div></li>
+          <li><b class="act__letra">b)</b><div>Ordená los pasos: recargar con <kbd>F5</kbd> / abrir <code>index.html</code> en Chrome / escribir en <code class="cod-js">app.js</code> / abrir la carpeta en VS Code / guardar con <kbd>Ctrl</kbd> + <kbd>S</kbd>.</div></li>
+          <li><b class="act__letra">c)</b><div>Pasá a JavaScript: <code class="cod-py">print("Hola, mundo")</code></div></li>
         </ol>
       </li>
       <li class="act">
@@ -578,15 +582,15 @@ console.<span class="c-fun">log</span>(<span class="c-str">"Tres"</span>);</code
 <span class="c-com">// console.log("Mañana");</span>
 console.<span class="c-fun">log</span>(<span class="c-num">4</span> + <span class="c-num">5</span>);</code></pre>
             </figure></div></li>
-          <li><b class="act__letra">b)</b><div>Encontrá el error de cada línea: <code>Console.log("Hola");</code> / <code>console.log(Chau);</code> / <code>console.log("Adiós";</code></div></li>
-          <li><b class="act__letra">c)</b><div>¿Qué diferencia hay entre <code>console.log()</code> y <code>alert()</code>?</div></li>
+          <li><b class="act__letra">b)</b><div>Encontrá el error de cada línea: <code class="cod-js">Console.log("Hola");</code> / <code class="cod-js">console.log(Chau);</code> / <code class="cod-js">console.log("Adiós";</code></div></li>
+          <li><b class="act__letra">c)</b><div>¿Qué diferencia hay entre <code class="cod-js">console.log()</code> y <code class="cod-js">alert()</code>?</div></li>
         </ol>
       </li>
       <li class="act">
         <h3 class="act__titulo"><span class="act__num">3-</span> Variables y tipos de datos</h3>
         <ol class="act__items">
-          <li><b class="act__letra">a)</b><div>¿<code>let</code> o <code>const</code>? La edad de un alumno / los días de la semana / el puntaje de un juego.</div></li>
-          <li><b class="act__letra">b)</b><div>¿Qué devuelve <code>typeof</code> en cada caso? <code>25</code> / <code>"25"</code> / <code>false</code></div></li>
+          <li><b class="act__letra">a)</b><div>¿<code class="cod-js">let</code> o <code class="cod-js">const</code>? La edad de un alumno / los días de la semana / el puntaje de un juego.</div></li>
+          <li><b class="act__letra">b)</b><div>¿Qué devuelve <code class="cod-js">typeof</code> en cada caso? <code class="cod-js">25</code> / <code class="cod-js">"25"</code> / <code class="cod-js">false</code></div></li>
           <li><b class="act__letra">c)</b><div>Hacé la prueba de escritorio y escribí qué muestra:
             <figure class="codigo codigo--js" id="act-3c">
               <figcaption><span class="codigo__archivo">app.js</span></figcaption>
@@ -613,7 +617,7 @@ console.<span class="c-fun">log</span>(puntos + premio);</code></pre>
 <span class="c-etq">let</span> b = <span class="c-fun">prompt</span>(<span class="c-str">"Número 2:"</span>);
 console.<span class="c-fun">log</span>(a + b);</code></pre>
             </figure></div></li>
-          <li><b class="act__letra">c)</b><div>Calculá: <code>7 + 3 * 2</code> / <code>(7 + 3) * 2</code> / <code>10 % 3</code></div></li>
+          <li><b class="act__letra">c)</b><div>Calculá: <code class="cod-js">7 + 3 * 2</code> / <code class="cod-js">(7 + 3) * 2</code> / <code class="cod-js">10 % 3</code></div></li>
         </ol>
       </li>
     </ol>
@@ -627,7 +631,7 @@ console.<span class="c-fun">log</span>(a + b);</code></pre>
   </article>
 
   <!-- =================== ACTIVIDADES · Parte 2 =================== -->
-  <article class="lamina lamina--act" id="actividades-2" aria-labelledby="act-2">
+  <article class="lamina lamina--act lamina--compu" id="actividades-2" aria-labelledby="act-2">
     <div class="cab" aria-hidden="true">
       <svg class="cab__logo"><use href="#i-web"/></svg>
       <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
@@ -650,10 +654,10 @@ console.<span class="c-fun">log</span>(a + b);</code></pre>
       <li class="act">
         <h3 class="act__titulo"><span class="act__num">1-</span> Cómo trabajar</h3>
         <ol class="act__items">
-          <li><b class="act__letra">a)</b><div>Creá la carpeta <code>tp1-apellido</code> (por ejemplo, <code>tp1-gomez</code>) con 8 copias de la plantilla: <code>ejercicio-1</code> a <code>ejercicio-8</code>.</div></li>
-          <li><b class="act__letra">b)</b><div>Cada <code>app.js</code> empieza con un comentario que dice qué hace el programa.</div></li>
+          <li><b class="act__letra">a)</b><div>Creá la carpeta <code class="cod-carpeta">tp1-apellido</code> (por ejemplo, <code class="cod-carpeta">tp1-gomez</code>) con 8 copias de la plantilla: <code class="cod-carpeta">ejercicio-1</code> a <code class="cod-carpeta">ejercicio-8</code>.</div></li>
+          <li><b class="act__letra">b)</b><div>Cada <code class="cod-js">app.js</code> empieza con un comentario que dice qué hace el programa.</div></li>
           <li><b class="act__letra">c)</b><div>Probá cada programa en Chrome con la consola abierta y con datos distintos. Si aparece un error en rojo, buscá la línea y corregilo.</div></li>
-          <li><b class="act__letra">d)</b><div>En el ejercicio 3, dejá la versión sin <code>Number()</code> como comentario y abajo, la corregida.</div></li>
+          <li><b class="act__letra">d)</b><div>En el ejercicio 3, dejá la versión sin <code class="cod-js">Number()</code> como comentario y abajo, la corregida.</div></li>
         </ol>
       </li>
       <li class="act">
@@ -661,7 +665,7 @@ console.<span class="c-fun">log</span>(a + b);</code></pre>
         <ol class="act__items act__items--2col">
           <li><b class="act__letra">1</b><div>Programa que muestre tu nombre, edad y ciudad en 3 líneas.</div></li>
           <li><b class="act__letra">2</b><div>Programa que pregunte el nombre y salude.</div></li>
-          <li><b class="act__letra">3</b><div>Programa que pida 2 números y muestre la suma (primero sin <code>Number()</code>, para ver el error; después corregido).</div></li>
+          <li><b class="act__letra">3</b><div>Programa que pida 2 números y muestre la suma (primero sin <code class="cod-js">Number()</code>, para ver el error; después corregido).</div></li>
           <li><b class="act__letra">4</b><div>Programa que pida 2 números y muestre suma, resta, multiplicación y división.</div></li>
           <li><b class="act__letra">5</b><div>Calculadora de área de un rectángulo (pide base y altura).</div></li>
           <li><b class="act__letra">6</b><div>Conversor de pesos a dólares (cotización fija).</div></li>
@@ -677,7 +681,7 @@ console.<span class="c-fun">log</span>(a + b);</code></pre>
         <h3 id="ent-1">Entrega</h3>
         <div class="entrega__cols">
           <div>
-            <p>Subí a la tarea de Classroom la carpeta <code>tp1-apellido</code> con los 8 ejercicios comentados, comprimida en <strong>.zip</strong>.</p>
+            <p>Subí a la tarea de Classroom la carpeta <code class="cod-carpeta">tp1-apellido</code> con los 8 ejercicios comentados, comprimida en <strong>.zip</strong>.</p>
             <p class="entrega__sub entrega__sub--sep">Cómo comprimir</p>
             <p>Clic derecho sobre la carpeta → <strong>Enviar a → Carpeta comprimida (en zip)</strong> en Windows 10, o <strong>Comprimir en archivo ZIP</strong> en Windows 11.</p>
           </div>
@@ -685,7 +689,7 @@ console.<span class="c-fun">log</span>(a + b);</code></pre>
             <p class="entrega__sub">Antes de entregar, marcá:</p>
             <ul class="checklist">
               <li>Están las 8 carpetas de los ejercicios.</li>
-              <li>Cada <code>app.js</code> empieza con un comentario.</li>
+              <li>Cada <code class="cod-js">app.js</code> empieza con un comentario.</li>
               <li>Ningún programa muestra errores en la consola.</li>
               <li>El ejercicio 3 tiene las dos versiones.</li>
               <li>Subí el .zip y toqué <strong>Entregar</strong>.</li>

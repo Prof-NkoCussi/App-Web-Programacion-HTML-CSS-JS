@@ -42,15 +42,25 @@
   --ok: #15803D;     --ok-claro: #DCFCE7;     /* resultado correcto, checklist */
   --aviso: #92400E;  --aviso-claro: #FEF3C7;  /* "Error controlado" */
 
-  /* Código y consola */
+  /* Código y consola: colores bien distintos entre sí, todos 5:1 o más sobre el fondo */
   --cod-fondo: #1E293B;  --cod-base: #E2E8F0;
-  --cod-etq: #7DD3FC;    /* etiquetas HTML, palabras clave de JS, selectores */
-  --cod-atr: #FDBA74;    /* atributos HTML, propiedades CSS */
-  --cod-str: #FCD34D;    /* cadenas y valores */
-  --cod-com: #86EFAC;    /* comentarios */
-  --cod-num: #F9A8D4;    /* números */
-  --cod-fun: #C4B5FD;    /* nombres de funciones y métodos */
+  --cod-etq: #FB7185;    /* rosa: etiquetas HTML, palabras clave de JS, selectores */
+  --cod-atr: #A3E635;    /* lima: atributos HTML, propiedades CSS */
+  --cod-str: #FDE047;    /* amarillo: cadenas y valores */
+  --cod-com: #94A3B8;    /* gris azulado: comentarios */
+  --cod-num: #C084FC;    /* violeta: números */
+  --cod-fun: #67E8F9;    /* cian: nombres de funciones y métodos */
   --consola-fondo: #0F172A;  --consola-texto: #E2E8F0;  --consola-guia: #94A3B8;  --consola-error: #FCA5A5;
+
+  /* Ventanas de código y de navegador: los tres puntos */
+  --punto-rojo: #FF5F57;  --punto-amarillo: #FEBC2E;  --punto-verde: #28C840;
+  /* Etiquetas de código dentro del texto: borde de cada tecnología */
+  --html-linea: #BFDBFE;  --css-linea: #DDD6FE;  --js-linea: #FBCFE8;
+  /* Colores de apoyo para esquemas y recuadros (no etiquetan tecnologías) */
+  --carpeta: #F59E0B;  --carpeta-claro: #FEF3C7;  --carpeta-texto: #92400E;  --carpeta-linea: #FDE68A;  /* carpetas, como en Windows */
+  --turquesa: #0D9488;  --turquesa-claro: #CCFBF1;  --turquesa-texto: #0F766E;  /* texto: 5,5:1 */
+  --naranja: #EA580C;   --naranja-claro: #FFEDD5;   --naranja-texto: #C2410C;   /* "Importante"; texto: 5,2:1 */
+  --ok-oscuro: #166534;   /* botones verdes al pasar el mouse */
 
   --radio: 10px;
   --fuente: "Barlow", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -427,7 +437,6 @@ kbd {
 .esquema-nota { background: var(--acento-suave); border-radius: var(--radio); padding: 10px 14px; }
 .esquema-nota h3 { font-family: var(--fuente-titulo); font-weight: 700; font-size: 18px; line-height: 1.15; color: var(--tinta); margin-bottom: 6px; }
 .esquema-nota li { font-size: 15.5px; line-height: 1.35; }
-.esquema-nota :not(pre) > code { background: var(--blanco); }
 
 /* Lista numerada con círculos */
 .puntos { display: grid; gap: 6px; }
@@ -586,23 +595,40 @@ ol.pf__lista li::before {
 .etq--js   { background: var(--js); }
 .etq--py   { background: var(--gris); }
 
-/* Código dentro del texto */
+/* Código dentro del texto: con el color de su tecnología (HTML si no tiene clase).
+   El borde va con box-shadow para no cambiar el ancho. */
 :not(pre) > code {
   font-family: var(--fuente-codigo); font-size: .9em;
-  background: var(--panel); color: var(--tinta);
+  background: var(--html-claro); color: var(--acento-numero);
+  box-shadow: inset 0 0 0 1px var(--html-linea);
   padding: 0 .3em; border-radius: 4px; white-space: nowrap;
 }
-.panel :not(pre) > code, .act :not(pre) > code, .pf :not(pre) > code, .error-controlado :not(pre) > code { background: var(--blanco); }
+code.cod-css { background: var(--css-claro); color: var(--css-texto); box-shadow: inset 0 0 0 1px var(--css-linea); }
+code.cod-js { background: var(--js-claro); color: var(--js); box-shadow: inset 0 0 0 1px var(--js-linea); }
+code.cod-py { background: var(--panel); color: var(--tinta); box-shadow: inset 0 0 0 1px var(--linea); }
+code.cod-carpeta { background: var(--carpeta-claro); color: var(--carpeta-texto); box-shadow: inset 0 0 0 1px var(--carpeta-linea); }
 
-/* Bloque de código */
+/* Tres puntos de ventana (código, consola y navegador) */
+.codigo figcaption::before, .consola__barra::before {
+  content: ""; flex: none; width: 8px; height: 8px; margin-right: 24px; border-radius: 50%;
+  background: var(--punto-rojo); box-shadow: 12px 0 var(--punto-amarillo), 24px 0 var(--punto-verde);
+}
+
+/* Bloque de código: ventana del editor, con una franja del color de su tecnología */
 .codigo {
   margin: 0; min-width: 0;
   background: var(--cod-fondo); border-radius: var(--radio); overflow: hidden;
+  box-shadow: 0 6px 16px -8px rgba(15, 23, 42, .6);
 }
 .codigo figcaption {
-  display: flex; align-items: center; justify-content: space-between; gap: 8px;
-  padding: 6px 8px 6px 10px; background: rgba(0, 0, 0, .25);
+  display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px;
+  padding: 6px 8px 6px 10px; background: var(--consola-fondo);
+  box-shadow: inset 0 3px 0 var(--js);   /* franja sin cambiar el alto */
 }
+.codigo--html figcaption { box-shadow: inset 0 3px 0 var(--html); }
+.codigo--css figcaption { box-shadow: inset 0 3px 0 var(--css); }
+.codigo--py figcaption { box-shadow: inset 0 3px 0 var(--gris); }
+.codigo figcaption .boton-cod { margin-left: auto; }   /* si no entra, baja de renglón en vez de cortar el texto */
 .codigo__archivo {
   display: inline-block; padding: 1px 9px; border-radius: 6px;
   font-family: var(--fuente-codigo); font-size: 13px; font-weight: 700; line-height: 1.5;
@@ -633,20 +659,24 @@ ol.pf__lista li::before {
 }
 .boton-cod:hover { background: rgba(226, 232, 240, .12); }
 .boton-cod:focus-visible { outline: 3px solid var(--foco-claro); outline-offset: 2px; }
-.boton-cod--ejecutar { background: var(--acento); border-color: var(--acento); color: var(--blanco); }
-.boton-cod--ejecutar:hover { background: var(--acento-numero); }
+.boton-cod--ejecutar { background: var(--ok); border-color: var(--ok); color: var(--blanco); }   /* verde, como un botón de play */
+.boton-cod--ejecutar:hover { background: var(--ok-oscuro); border-color: var(--ok-oscuro); }
 
 /* Consola */
 .consola {
   min-width: 0; display: flex; flex-direction: column;
   background: var(--consola-fondo); color: var(--consola-texto);
   border-radius: var(--radio); overflow: hidden;
+  box-shadow: 0 6px 16px -8px rgba(15, 23, 42, .6);
 }
 .consola__barra {
-  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px;
   padding: 6px 8px 6px 12px; border-bottom: 1px solid rgba(148, 163, 184, .3);
 }
-.consola__titulo { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--consola-guia); }
+.consola__barra .boton-cod { margin-left: auto; }   /* si no entra, baja de renglón en vez de partir el título */
+.consola { container-type: inline-size; }
+@container (max-width: 270px) { .consola__barra::before { display: none; } }   /* consola angosta: sin puntos, para que entre el título */
+.consola__titulo { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--cod-atr); white-space: nowrap; }
 .consola__nota { padding: 8px 14px 0; font-size: 13px; color: var(--consola-guia); }
 .consola__salida {
   margin: 0; padding: 8px 14px 12px; overflow-x: auto; flex: 1;
@@ -716,7 +746,110 @@ ol.pf__lista li::before {
 }
 .receta__tit .ico { width: 30px; height: 30px; }
 .receta p { font-size: 16px; line-height: 1.4; }
-.receta :not(pre) > code { background: var(--blanco); }
+
+/* Fragmento de HTML: aclara dónde va (por ejemplo, "dentro de <body>") */
+.codigo__donde { font-size: 12.5px; font-weight: 600; color: var(--consola-guia); white-space: nowrap; }
+
+/* Resultado en el navegador: el iframe muestra el resultado real del código (lo arma ejemplos.js).
+   El marco lleva color; el contenido del iframe no se toca. */
+.resultado {
+  margin: 0; min-width: 0;
+  background: var(--blanco); border: 1.5px solid var(--acento); border-radius: var(--radio); overflow: hidden;
+  box-shadow: 0 6px 16px -8px rgba(37, 99, 235, .5);
+}
+.resultado__barra {
+  display: flex; align-items: flex-end; gap: 10px;
+  padding: 5px 10px 0; background: var(--acento-claro); border-bottom: 1px solid var(--panel-linea);
+}
+.resultado__puntos {   /* los tres puntos de la ventana */
+  flex: none; width: 8px; height: 8px; margin: 0 26px 9px 0; border-radius: 50%;
+  background: var(--punto-rojo); box-shadow: 13px 0 var(--punto-amarillo), 26px 0 var(--punto-verde);
+}
+.resultado__pestana {
+  min-width: 0; padding: 3px 12px 4px; border-radius: 6px 6px 0 0; background: var(--blanco);
+  font-size: 12.5px; font-weight: 600; color: var(--texto);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.resultado__pestana::before {   /* ícono de la pestaña */
+  content: ""; display: inline-block; width: 9px; height: 9px; margin-right: 6px; vertical-align: -1px;
+  border-radius: 2px; background: var(--html);
+}
+.resultado iframe {
+  display: block; width: 100%; border: 0; background: var(--blanco);
+  height: var(--alto-cel, var(--alto, 200px));   /* alto fijo por ejemplo; --alto-cel, más alto, para pantallas angostas */
+}
+.resultado__nota {
+  padding: 6px 12px 7px; border-top: 1px solid var(--linea); background: var(--acento-suave); color: var(--tinta);
+  font-size: 14.5px; line-height: 1.35;
+}
+
+/* Las tres tecnologías: tarjeta con el color de cada una */
+.tecs { display: grid; gap: 10px; }
+.tec { background: var(--html-claro); border-radius: var(--radio); border-top: 5px solid var(--html); padding: 10px 14px 12px; }
+.tec--css { background: var(--css-claro); border-top-color: var(--css); }
+.tec--js { background: var(--js-claro); border-top-color: var(--js); }
+.tec h3 {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin-bottom: 5px;
+  font-family: var(--fuente-titulo); font-weight: 700; font-size: 21px; line-height: 1.15; color: var(--tinta);
+}
+.tec .etq { font-size: 15px; }
+.tec p { font-size: 15.5px; line-height: 1.35; }
+
+/* Ejemplo con HTML, CSS y JavaScript: en el celular, en ese orden y el resultado al final */
+.juntos { display: grid; gap: 8px; }
+.juntos__col { display: contents; }
+.juntos .codigo--css { order: 1; }
+.juntos .codigo--js { order: 2; }
+.juntos .resultado { order: 3; }
+.esquema-nota__p { font-size: 15.5px; line-height: 1.35; }
+
+/* Íconos de carpeta en amarillo */
+.ico--carpeta { --ac: var(--carpeta); }
+
+/* Recuadros por tipo: "Importante" en naranja; "Recomendación" y buenas prácticas en verde */
+.tit-ico { display: inline-block; width: 1.2em; height: 1.2em; margin-right: 6px; vertical-align: -.25em; }
+.esquema-nota--importante { background: var(--naranja-claro); box-shadow: inset 4px 0 0 var(--naranja); }
+.esquema-nota--importante h3 { color: var(--naranja-texto); }
+.pf__caja--importante h4 { color: var(--naranja-texto); border-bottom-color: var(--naranja); }
+.pf__caja--importante { background: var(--naranja-claro); }
+.esquema-nota--importante .tit-ico, .pf__caja--importante .tit-ico { --ac: var(--naranja-texto); }
+.consejo { background: var(--ok-claro); border-radius: 8px; padding: 6px 10px; box-shadow: inset 4px 0 0 var(--ok); }
+.consejo strong { color: var(--ok); }
+.pf__caja--consejo { background: var(--ok-claro); }
+.pf__caja--consejo h4 { color: var(--ok); border-bottom-color: var(--ok); }
+.consejo .tit-ico, .pf__caja--consejo .tit-ico { --ac: var(--ok); }
+
+/* Actividades: Parte 1 (carpeta) en azul, Parte 2 (computadora) en verde */
+.lamina--compu .act-banda, .lamina--compu .act__num { background: var(--ok); }
+.lamina--compu .act__letra, .lamina--compu .consigna { background: var(--ok-claro); }
+.lamina--compu .entrega { border-color: var(--ok); }
+.lamina--compu .entrega .ico { --ac: var(--ok); }
+.lamina--compu .puntos__n { background: var(--naranja-texto); }   /* los "!" son avisos importantes */
+
+/* Portada: cada TP con las tecnologías que usa, y franja y número del color de la principal */
+.tp__tecs { display: inline-flex; flex-wrap: wrap; gap: 4px; margin-right: 8px; vertical-align: 1px; }
+.tp__tecs .etq { font-size: 11px; letter-spacing: 0; text-transform: none; padding: 0 7px; }
+.tp { box-shadow: inset 6px 0 0 var(--tp-color, var(--acento)); }   /* franja sin tocar el borde del hover */
+.tp--js { --tp-color: var(--js); }
+.tp--html { --tp-color: var(--html); }
+.tp--css { --tp-color: var(--css); }
+.tp--php, .tp--git { --tp-color: var(--tinta); }
+.tp--todo {   /* integrador: las tres tecnologías, en bandas */
+  box-shadow: none;
+  background: linear-gradient(var(--html) 0 33.4%, var(--css) 33.4% 66.7%, var(--js) 66.7%) left top / 6px 100% no-repeat, var(--acento-suave);
+}
+.tp--js .tp__num { color: var(--js); }
+.tp--css .tp__num { color: var(--css-texto); }
+.tp--php .tp__num, .tp--git .tp__num { color: var(--tinta); }
+.bloque--js .subtitulo::after { background: var(--js); }
+.bloque--html .subtitulo::after { background: var(--html); }
+.bloque--css .subtitulo::after { background: var(--css); }
+.bloque--php .subtitulo::after { background: var(--tinta); }
+.bloque--todo .subtitulo::after { background: linear-gradient(90deg, var(--html) 0 33.4%, var(--css) 33.4% 66.7%, var(--js) 66.7%); }
+
+/* Viñetas que repiten el color de su parte en el esquema de al lado */
+.pf__lista li.punto--turquesa::before { background: var(--turquesa-texto); }
+.pf__lista li.punto--naranja::before { background: var(--naranja-texto); }
 
 /* ==========================================================
    Pantallas medianas
@@ -781,6 +914,12 @@ ol.pf__lista li::before {
   .pasos2 .paso .ico { width: 52px; height: 52px; margin-top: 2px; }
   .puntos--2col { grid-template-columns: 1fr 1fr; }
   .comparar--3 { grid-template-columns: 1.15fr 1fr 1fr; }
+  .tecs { grid-template-columns: repeat(3, 1fr); }
+  .juntos { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); align-items: start; }
+  .juntos__col { display: grid; gap: 8px; }
+  .ej--est { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: start; }   /* código largo + qué hace cada línea */
+  .ej--res { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }      /* código + resultado */
+  .esquema-par--res { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); }
 }
 
 /* ==========================================================
@@ -935,6 +1074,16 @@ ol.pf__lista li::before {
   .checklist { gap: 3px; margin-top: 4px; }
   .checklist li { font-size: 15px; }
   .entrega h3 { font-size: 24px; margin-bottom: 4px; }
+  .resultado iframe { height: var(--alto, 200px); }
+  .resultado__nota { font-size: 14px; padding: 5px 12px 6px; }
+  .tecs { grid-template-columns: 1fr 1fr 1.15fr; gap: 3mm; }
+  .tec { padding: 8px 13px 10px; }
+  .tec h3 { font-size: 19px; }
+  .tec .etq { font-size: 14px; }
+  .tec p { font-size: 15px; line-height: 1.32; }
+  .juntos .codigo pre, .ej--est .codigo pre { font-size: 13px; line-height: 1.4; }
+  .ej--est .codigo pre { font-size: 12.5px; }
+  .ej--est .esquema-nota li { font-size: 14.5px; line-height: 1.32; }
 }
 
 /* ==========================================================
@@ -945,8 +1094,9 @@ ol.pf__lista li::before {
   :root {
     --cod-fondo: #F1F5F9; --consola-fondo: #F1F5F9;
     --cod-base: #0F172A;  --consola-texto: #0F172A;
-    --cod-etq: #1D4ED8;   --cod-atr: #9A3412;  --cod-str: #047857;
-    --cod-com: #475569;   --cod-num: #BE185D;  --cod-fun: #6D28D9;
+    /* en papel: código claro y colores oscuros (5:1 o más sobre #F1F5F9) */
+    --cod-etq: #BE123C;   --cod-atr: #3F6212;  --cod-str: #854D0E;
+    --cod-com: #475569;   --cod-num: #7E22CE;  --cod-fun: #0E7490;
     --consola-guia: #475569; --consola-error: #B91C1C;
   }
   html, body { background: var(--blanco); }
@@ -962,6 +1112,8 @@ ol.pf__lista li::before {
   .codigo figcaption { background: var(--blanco); border-bottom: 1px solid var(--linea); }
   .consola__barra { border-bottom-color: var(--linea); }
   .codigo pre, .consola__salida { overflow: visible; white-space: pre-wrap; overflow-wrap: anywhere; }
+
+  .codigo, .consola, .resultado { box-shadow: none; }
 }
 
 /* ==========================================================

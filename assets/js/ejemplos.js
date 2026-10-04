@@ -5,10 +5,16 @@
    - Botón "▶ Ejecutar" en cada consola (.consola[data-codigo]):
      corre el texto del bloque de código en un iframe aislado
      y muestra la salida real, con formato parecido al de Chrome.
+   - Resultado en el navegador (figure.resultado[data-html]):
+     muestra en un iframe el resultado real del código HTML del ejemplo.
    Sin JavaScript, la página muestra el código y la salida esperada.
    ========================================================== */
 (function () {
   "use strict";
+
+  /* Carpeta de las imágenes de los ejemplos de HTML, relativa a este archivo */
+  var carpetaImg = "";
+  try { carpetaImg = new URL("../img/ejemplos/", document.currentScript.src).href; } catch (e) { /* sin <base> */ }
 
   /* ---- Aviso para lectores de pantalla ---- */
   var aviso = document.createElement("p");
@@ -190,5 +196,51 @@
     boton.setAttribute("aria-label", "Ejecutar " + archivo + " y ver la salida");
     boton.addEventListener("click", function () { ejecutar(consola, boton); });
     barra.appendChild(boton);
+  });
+
+  /* ==========================================================
+     Resultado en el navegador
+     data-html: id del bloque HTML. Si es un fragmento (sin <html>), va dentro de <body>.
+     data-css y data-js (opcionales): ids de los bloques que reemplazan
+     al <link> de estilos.css y al <script src="app.js">.
+     ========================================================== */
+  function textoDe(id) {
+    var fig = id ? document.getElementById(id) : null;
+    var pre = fig && fig.querySelector("pre");
+    return pre ? pre.textContent : null;
+  }
+
+  function armarPagina(fig) {
+    var html = textoDe(fig.getAttribute("data-html"));
+    if (html === null) { return null; }
+    var css = textoDe(fig.getAttribute("data-css"));
+    var js = textoDe(fig.getAttribute("data-js"));
+    if (!/<html[\s>]/i.test(html)) {
+      html = "<!DOCTYPE html>\n<html lang=\"es-AR\">\n<head>\n<meta charset=\"utf-8\">\n</head>\n<body>\n" + html + "\n</body>\n</html>";
+    }
+    /* Se reemplaza con funciones para que un "$" del código no se tome como patrón */
+    html = html.replace(/<link\b[^>]*href="estilos\.css"[^>]*>/gi, function () {
+      return css === null ? "" : "<style>\n" + css + "\n</style>";
+    });
+    html = html.replace(/<script\b[^>]*src="app\.js"[^>]*>\s*<\/script>/gi, function () {
+      return js === null ? "" : "<script>\n" + js.replace(/<\/script/gi, "<\\/script") + "\n<\/script>";
+    });
+    if (carpetaImg) {
+      html = html.replace(/<head(\s[^>]*)?>/i, function (m) { return m + "\n<base href=\"" + carpetaImg + "\">"; });
+    }
+    return html;
+  }
+
+  var resultados = document.querySelectorAll("figure.resultado[data-html]");
+  Array.prototype.forEach.call(resultados, function (fig) {
+    var marco = fig.querySelector("iframe");
+    var html = armarPagina(fig);
+    if (!marco || html === null) { return; }
+    if (!marco.hasAttribute("sandbox")) { marco.setAttribute("sandbox", ""); }
+    /* La pestaña muestra el <title> del código, como el navegador */
+    var titulo = html.match(/<title>([\s\S]*?)<\/title>/i);
+    var pestana = fig.querySelector(".resultado__pestana");
+    if (pestana && titulo) { pestana.textContent = titulo[1].trim(); }
+    marco.srcdoc = html;
   });
 })();
