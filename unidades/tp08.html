@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TP N°8 — Listas, imágenes y enlaces · Programación - HTML, CSS, JS</title>
+  <meta name="description" content="TP N°8 de Programación: etiquetas, elementos y atributos, strong y em, listas y listas anidadas, imágenes, enlaces y rutas relativas y absolutas. Prof. Nicolás A. Cussi.">
+  <meta name="theme-color" content="#2563EB">
+  <link rel="preload" href="../assets/fonts/barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/barlow-semi-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/estilos.css">
+</head>
+<body data-tp="8">
+
+<!-- ====== Íconos ====== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-web" viewBox="0 0 48 48">
+      <rect x="4" y="7" width="40" height="34" rx="4" style="fill:var(--ac2, var(--acento-claro))"/>
+      <path d="M8 7h32a4 4 0 0 1 4 4v5H4v-5a4 4 0 0 1 4-4z" style="fill:var(--ac)"/>
+      <rect x="4" y="7" width="40" height="34" rx="4"/>
+      <path d="M4 16h40M19 23l-6 6 6 6M29 23l6 6-6 6M26.5 21l-5 16"/>
+    </symbol>
+    <symbol id="i-etiqueta" viewBox="0 0 48 48">
+      <path d="M16 12 4 24l12 12M32 12l12 12-12 12"/>
+      <path d="M28 7 20 41" style="stroke:var(--ac);stroke-width:3.6"/>
+    </symbol>
+    <symbol id="i-lista" viewBox="0 0 48 48">
+      <circle cx="9" cy="12" r="4" style="fill:var(--ac)"/>
+      <circle cx="9" cy="24" r="4" style="fill:var(--ac)"/>
+      <circle cx="9" cy="36" r="4" style="fill:var(--ac)"/>
+      <path d="M19 12h25M19 24h25M19 36h25"/>
+    </symbol>
+    <symbol id="i-imagen" viewBox="0 0 48 48">
+      <path d="M5 39 17 24l8 9 6-6 12 12z" style="fill:var(--ac)"/>
+      <rect x="4" y="8" width="40" height="32" rx="4"/>
+      <circle cx="33" cy="17" r="4"/>
+    </symbol>
+    <symbol id="i-enlace" viewBox="0 0 48 48">
+      <path d="M21 28a8 8 0 0 0 11 1l7-7a8 8 0 0 0-11-11l-3 3"/>
+      <path d="M27 20a8 8 0 0 0-11-1l-7 7a8 8 0 0 0 11 11l3-3" style="stroke:var(--ac);stroke-width:3.4"/>
+    </symbol>
+    <symbol id="i-importante" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="21" style="fill:var(--ac);stroke:none"/>
+      <path d="M24 12v15M24 35v.5" style="stroke:var(--blanco);stroke-width:5.5"/>
+    </symbol>
+    <symbol id="i-consejo" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="21" style="fill:var(--ac);stroke:none"/>
+      <path d="M14 24.5l7 7 13-14" style="stroke:var(--blanco);stroke-width:5.5"/>
+    </symbol>
+    <symbol id="i-foco" viewBox="0 0 48 48">
+      <path d="M24 2.5v4M10 8.5l2.8 2.8M38 8.5l-2.8 2.8M4 22h4M40 22h4"/>
+      <path d="M24 12a10 10 0 0 0-6.2 17.8c1.4 1.2 2.2 2.6 2.2 4.2v1h8v-1c0-1.6.8-3 2.2-4.2A10 10 0 0 0 24 12z" style="fill:var(--ac)"/>
+      <path d="M20 39h8M21.5 43h5"/>
+    </symbol>
+    <symbol id="i-lapiz" viewBox="0 0 48 48">
+      <path d="M33 6l9 9-25 25-9-9z" style="fill:var(--ac)"/>
+      <path d="M8 31 5.5 42.5 17 40z"/>
+      <path d="M27 12l9 9"/>
+    </symbol>
+    <symbol id="i-editor" viewBox="0 0 48 48">
+      <path d="M7 7h34a3 3 0 0 1 3 3v4H4v-4a3 3 0 0 1 3-3z" style="fill:var(--ac)"/>
+      <rect x="4" y="7" width="40" height="34" rx="3"/>
+      <path d="M4 14h40M10 21h14M15 27h18M15 33h11"/>
+    </symbol>
+    <symbol id="i-subir" viewBox="0 0 48 48">
+      <path d="M6 30v8a3 3 0 0 0 3 3h30a3 3 0 0 0 3-3v-8"/>
+      <path d="M24 31V7M15 16l9-9 9 9" style="stroke:var(--ac);stroke-width:3.4"/>
+    </symbol>
+    <symbol id="i-descarga" viewBox="0 0 24 24">
+      <path d="M12 3v12M7 10l5 5 5-5M5 20h14"/>
+    </symbol>
+    <symbol id="i-atras" viewBox="0 0 24 24">
+      <path d="M20 12H5M11 6l-6 6 6 6"/>
+    </symbol>
+  </defs>
+</svg>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="barra">
+  <div class="barra__fila">
+    <a class="boton barra__volver" href="../index.html"><svg aria-hidden="true" focusable="false"><use href="#i-atras"/></svg><span>Índice</span></a>
+    <span class="barra__titulo">TP N°8 — Listas, imágenes y enlaces</span>
+    <button class="boton" type="button" data-imprimir aria-label="Guardar en PDF">
+      <svg aria-hidden="true" focusable="false"><use href="#i-descarga"/></svg><span><span class="boton__largo">Guardar </span>PDF</span>
+    </button>
+  </div>
+  <nav class="partes" aria-label="Partes del TP N°8">
+    <a href="#pag-29">29 · Etiquetas</a>
+    <a href="#pag-30">30 · Listas</a>
+    <a href="#pag-31">31 · Imágenes</a>
+    <a href="#pag-32">32 · Enlaces</a>
+    <a href="#profundizar">Para profundizar</a>
+    <a href="#actividades">Actividades</a>
+  </nav>
+</header>
+
+<main id="contenido" class="laminas">
+  <h1 class="sr-only">TP N°8 — Listas, imágenes y enlaces</h1>
+
+  <!-- =================== LÁMINA 29 =================== -->
+  <article class="lamina lamina--compacta" id="pag-29" aria-labelledby="t29">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°8</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t29"><span class="tit__num">29.</span> Etiquetas, elementos y atributos</h2>
+      <p class="tit__sub">Las piezas de HTML · Negrita y cursiva</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-etiqueta"/></svg>
+      <p>HTML utiliza <strong>etiquetas</strong> para marcar el contenido de una página. Los <strong>elementos</strong> son estructuras completas que incluyen una etiqueta de apertura, el contenido y una etiqueta de cierre. Los <strong>atributos</strong> agregan información adicional o configuración a las etiquetas.</p>
+    </div>
+
+    <div class="esquema-par">
+      <aside class="esquema-nota" aria-labelledby="n29a">
+        <h3 id="n29a">¿Qué es una etiqueta?</h3>
+        <p class="esquema-nota__p">Una marca que se escribe entre los signos <code>&lt;</code> y <code>&gt;</code> para indicar el tipo de contenido:</p>
+        <ul class="pf__lista">
+          <li><code>&lt;p&gt; … &lt;/p&gt;</code>: párrafo, indica un texto.</li>
+          <li><code>&lt;h1&gt; … &lt;/h1&gt;</code>: título, indica un encabezado de nivel 1.</li>
+        </ul>
+      </aside>
+      <figure class="esquema">
+        <svg viewBox="0 0 322 160" style="max-width:360px;margin:0 auto" role="img" aria-labelledby="esq29">
+          <title id="esq29">¿Qué es un elemento? En p class="destacado", Hola mundo, cierre de p: la etiqueta de apertura es p class="destacado" y la de cierre, la barra p. Dentro de la etiqueta de apertura está el atributo class="destacado". Entre las dos etiquetas está el contenido, Hola mundo, que puede ser texto o más etiquetas. Todo junto es el elemento.</title>
+          <!-- Arriba: atributo y contenido -->
+          <g style="fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round">
+            <path d="M40 34v-6h141v6" style="stroke:var(--turquesa)"/>
+            <path d="M191 34v-6h83v6" style="stroke:var(--acento)"/>
+          </g>
+          <g class="tt" text-anchor="middle" style="font-size:13.5px;font-weight:700">
+            <text x="110" y="19" style="fill:var(--turquesa-texto)">Atributo</text>
+            <text x="232" y="19" style="fill:var(--acento-numero)">Contenido</text>
+          </g>
+          <!-- El código -->
+          <rect x="2" y="40" width="318" height="34" rx="6" style="fill:var(--cod-fondo)"/>
+          <text x="14" y="62" textLength="294" lengthAdjust="spacingAndGlyphs" style="font-family:var(--fuente-codigo);font-size:15px;fill:var(--cod-base)"><tspan style="fill:var(--cod-etq)">&lt;p</tspan> <tspan style="fill:var(--cod-atr)">class</tspan>=<tspan style="fill:var(--cod-str)">"destacado"</tspan><tspan style="fill:var(--cod-etq)">&gt;</tspan>Hola mundo<tspan style="fill:var(--cod-etq)">&lt;/p&gt;</tspan></text>
+          <!-- Abajo: las etiquetas y el elemento completo -->
+          <g style="fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round">
+            <path d="M15 80v6h175v-6M275 80v6h33v-6" style="stroke:var(--naranja)"/>
+            <path d="M15 112v6h293v-6" style="stroke:var(--tinta)"/>
+          </g>
+          <g class="tt" style="font-size:13.5px;font-weight:700">
+            <text x="102" y="103" text-anchor="middle" style="fill:var(--naranja-texto)">Etiqueta de apertura</text>
+            <text x="320" y="103" text-anchor="end" style="fill:var(--naranja-texto)">Etiqueta de cierre</text>
+            <text x="161" y="137" text-anchor="middle">Elemento: la estructura completa</text>
+          </g>
+          <text class="tt" x="161" y="155" text-anchor="middle" style="font-size:12.5px;fill:var(--gris)">El contenido puede ser texto o más etiquetas.</text>
+        </svg>
+      </figure>
+    </div>
+
+    <section aria-labelledby="s29a">
+      <h3 class="subtitulo" id="s29a">Atributos frecuentes</h3>
+      <p class="texto--sub">Van dentro de la etiqueta de apertura. <code>class</code> e <code>id</code> los usamos en el TP11.</p>
+      <ul class="operaciones operaciones--atr" aria-label="Atributos frecuentes">
+        <li><b>href</b><span>La dirección de un enlace</span><code>&lt;a href="…"&gt;</code></li>
+        <li><b>src</b><span>La ruta de una imagen</span><code>&lt;img src="…"&gt;</code></li>
+        <li><b>alt</b><span>Un texto que describe la imagen</span><code>&lt;img alt="…"&gt;</code></li>
+        <li><b>class</b><span>Agrupa estilos CSS</span><code>&lt;p class="…"&gt;</code></li>
+        <li><b>id</b><span>Un identificador único</span><code>&lt;h2 id="…"&gt;</code></li>
+      </ul>
+    </section>
+
+    <div class="ej ej--res ej--chico">
+      <div class="ej-col">
+        <aside class="esquema-nota" aria-labelledby="n29b">
+          <h3 id="n29b">Negrita y cursiva</h3>
+          <ul class="pf__lista">
+            <li><code>&lt;strong&gt;</code> resalta un texto importante.</li>
+            <li><code>&lt;em&gt;</code> enfatiza un texto.</li>
+          </ul>
+        </aside>
+        <figure class="codigo codigo--html" id="ej-29">
+          <figcaption><span class="codigo__archivo">index.html</span><span class="codigo__donde">dentro de &lt;body&gt;</span></figcaption>
+          <pre tabindex="0" aria-label="Código de index.html, dentro de body"><code><span class="c-etq">&lt;h1&gt;</span>Bienvenido a mi sitio<span class="c-etq">&lt;/h1&gt;</span>
+<span class="c-etq">&lt;h2&gt;</span>Sobre este proyecto<span class="c-etq">&lt;/h2&gt;</span>
+<span class="c-etq">&lt;p&gt;</span>Este es un párrafo con un
+  <span class="c-etq">&lt;strong&gt;</span>texto importante<span class="c-etq">&lt;/strong&gt;</span> y
+  también un <span class="c-etq">&lt;em&gt;</span>texto enfatizado<span class="c-etq">&lt;/em&gt;</span>.<span class="c-etq">&lt;/p&gt;</span></code></pre>
+        </figure>
+      </div>
+      <figure class="resultado" data-html="ej-29" style="--alto:184px;--alto-cel:184px">
+        <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">index.html</span></div>
+        <iframe title="Resultado en el navegador: el título Bienvenido a mi sitio, el subtítulo Sobre este proyecto y un párrafo donde texto importante se ve en negrita y texto enfatizado, en cursiva." sandbox=""></iframe>
+      </figure>
+    </div>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> una <b>etiqueta</b> indica el tipo de contenido, un <b>elemento</b> es la estructura completa y un <b>atributo</b> agrega datos adicionales o configuración.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 29">29</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 30 =================== -->
+  <article class="lamina lamina--compacta" id="pag-30" aria-labelledby="t30">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°8</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t30"><span class="tit__num">30.</span> Listas</h2>
+      <p class="tit__sub">ul, ol, li y listas anidadas</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-lista"/></svg>
+      <p>Una lista es un conjunto de elementos (<strong>ítems</strong>) que se muestran uno debajo del otro. Cada ítem va en un <code>&lt;li&gt;</code>.</p>
+    </div>
+
+    <ul class="comparar" aria-label="Tipos de listas">
+      <li><div><h3>Lista desordenada <code>&lt;ul&gt;</code></h3><p>Con viñetas: el orden <strong>no importa</strong>.</p></div></li>
+      <li><div><h3>Lista ordenada <code>&lt;ol&gt;</code></h3><p>Con números: el orden <strong>sí importa</strong>.</p></div></li>
+    </ul>
+
+    <div class="ej ej--res ej--chico">
+      <figure class="codigo codigo--html" id="ej-30a">
+        <figcaption><span class="codigo__archivo">index.html</span><span class="codigo__donde">dentro de &lt;body&gt;</span></figcaption>
+        <pre tabindex="0" aria-label="Código de index.html, dentro de body"><code><span class="c-etq">&lt;h2&gt;</span>Mis hobbies<span class="c-etq">&lt;/h2&gt;</span>
+<span class="c-etq">&lt;ul&gt;</span>
+  <span class="c-etq">&lt;li&gt;</span>Leer<span class="c-etq">&lt;/li&gt;</span>
+  <span class="c-etq">&lt;li&gt;</span>Escuchar música<span class="c-etq">&lt;/li&gt;</span>
+  <span class="c-etq">&lt;li&gt;</span>Programar<span class="c-etq">&lt;/li&gt;</span>
+<span class="c-etq">&lt;/ul&gt;</span>
+
+<span class="c-etq">&lt;h2&gt;</span>Pasos para una receta<span class="c-etq">&lt;/h2&gt;</span>
+<span class="c-etq">&lt;ol&gt;</span>
+  <span class="c-etq">&lt;li&gt;</span>Mezclar los ingredientes<span class="c-etq">&lt;/li&gt;</span>
+  <span class="c-etq">&lt;li&gt;</span>Cocinar a fuego lento<span class="c-etq">&lt;/li&gt;</span>
+  <span class="c-etq">&lt;li&gt;</span>Servir y disfrutar<span class="c-etq">&lt;/li&gt;</span>
+<span class="c-etq">&lt;/ol&gt;</span></code></pre>
+      </figure>
+      <figure class="resultado" data-html="ej-30a" style="--alto:262px;--alto-cel:262px">
+        <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">index.html</span></div>
+        <iframe title="Resultado en el navegador: Mis hobbies, con Leer, Escuchar música y Programar marcados con viñetas, y Pasos para una receta, con los tres pasos numerados del 1 al 3." sandbox=""></iframe>
+      </figure>
+    </div>
+
+    <div class="ej ej--res ej--chico">
+      <figure class="codigo codigo--html" id="ej-30b">
+        <figcaption><span class="codigo__archivo">index.html</span><span class="codigo__donde">dentro de &lt;body&gt;</span></figcaption>
+        <pre tabindex="0" aria-label="Código de index.html, dentro de body"><code><span class="c-etq">&lt;ul&gt;</span>
+  <span class="c-etq">&lt;li&gt;</span>Frutas
+    <span class="c-etq">&lt;ul&gt;</span>
+      <span class="c-etq">&lt;li&gt;</span>Manzana<span class="c-etq">&lt;/li&gt;</span>
+      <span class="c-etq">&lt;li&gt;</span>Banana<span class="c-etq">&lt;/li&gt;</span>
+    <span class="c-etq">&lt;/ul&gt;</span>
+  <span class="c-etq">&lt;/li&gt;</span>
+  <span class="c-etq">&lt;li&gt;</span>Verduras
+    <span class="c-etq">&lt;ul&gt;</span>
+      <span class="c-etq">&lt;li&gt;</span>Lechuga<span class="c-etq">&lt;/li&gt;</span>
+      <span class="c-etq">&lt;li&gt;</span>Tomate<span class="c-etq">&lt;/li&gt;</span>
+    <span class="c-etq">&lt;/ul&gt;</span>
+  <span class="c-etq">&lt;/li&gt;</span>
+<span class="c-etq">&lt;/ul&gt;</span></code></pre>
+      </figure>
+      <div class="ej-col">
+        <aside class="esquema-nota" aria-labelledby="n30">
+          <h3 id="n30">Dato útil: listas anidadas</h3>
+          <p class="esquema-nota__p">Una <strong>lista anidada</strong> va dentro de un ítem de otra lista. Sirve para organizar subelementos.</p>
+        </aside>
+        <figure class="resultado" data-html="ej-30b" style="--alto:144px;--alto-cel:144px">
+          <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">index.html</span></div>
+          <iframe title="Resultado en el navegador: Frutas, con Manzana y Banana más adentro, y Verduras, con Lechuga y Tomate más adentro. Las sublistas llevan otra viñeta." sandbox=""></iframe>
+        </figure>
+      </div>
+    </div>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> las listas sirven para organizar información en varios ítems y pueden ser <b>ordenadas</b> o <b>no ordenadas</b>.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 30">30</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 31 =================== -->
+  <article class="lamina lamina--compacta" id="pag-31" aria-labelledby="t31">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°8</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t31"><span class="tit__num">31.</span> Imágenes</h2>
+      <p class="tit__sub">img, src, alt, width, height y formatos</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-imagen"/></svg>
+      <p>La etiqueta <code>&lt;img&gt;</code> inserta una imagen en la página: fotos, ilustraciones, logotipos y otros recursos visuales. Necesita la <strong>ruta</strong> del archivo y un <strong>texto alternativo</strong> que describa su contenido. Es un <strong>elemento vacío</strong>: no tiene etiqueta de cierre.</p>
+    </div>
+
+    <div class="ej ej--chico">
+      <div class="ej-col">
+        <figure class="codigo codigo--html" id="ej-31">
+          <figcaption><span class="codigo__archivo">index.html</span><span class="codigo__donde">dentro de &lt;body&gt;</span></figcaption>
+          <pre tabindex="0" aria-label="Código de index.html, dentro de body"><code><span class="c-etq">&lt;h1&gt;</span>Un lugar increíble<span class="c-etq">&lt;/h1&gt;</span>
+<span class="c-etq">&lt;img</span> <span class="c-atr">src</span>=<span class="c-str">"paisaje.svg"</span>
+     <span class="c-atr">alt</span>=<span class="c-str">"Montañas con nieve y un lago"</span>
+     <span class="c-atr">width</span>=<span class="c-str">"220"</span><span class="c-etq">&gt;</span>
+<span class="c-etq">&lt;p&gt;</span>La naturaleza nos regala paisajes únicos.<span class="c-etq">&lt;/p&gt;</span></code></pre>
+        </figure>
+        <aside class="esquema-nota" aria-labelledby="n31a">
+          <h3 id="n31a">Atributos más usados</h3>
+          <p class="esquema-nota__p">La estructura mínima es <code>&lt;img src="foto.jpg" alt="Paisaje"&gt;</code>.</p>
+          <ul class="pf__lista">
+            <li><code>src</code> (ruta de la imagen): indica la ubicación del archivo de imagen que se quiere mostrar.</li>
+            <li><code>alt</code> (texto alternativo): describe el contenido de la imagen. Se muestra si la imagen no puede cargarse y mejora la accesibilidad.</li>
+            <li><code>width</code> (ancho) y <code>height</code> (alto): definen el tamaño de la imagen, en píxeles.</li>
+          </ul>
+        </aside>
+      </div>
+      <figure class="resultado" data-html="ej-31" style="--alto:270px;--alto-cel:288px">
+        <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">index.html</span></div>
+        <iframe title="Resultado en el navegador: el título Un lugar increíble, la ilustración de unas montañas con nieve junto a un lago y el párrafo La naturaleza nos regala paisajes únicos." sandbox=""></iframe>
+        <figcaption class="resultado__nota">La imagen es un archivo <code>.svg</code>.</figcaption>
+      </figure>
+    </div>
+
+    <section aria-labelledby="s31">
+      <h3 class="subtitulo" id="s31">Formatos comunes</h3>
+      <ul class="operaciones operaciones--4" aria-label="Formatos de imagen">
+        <li><b>JPG</b><span><code>.jpg</code> o <code>.jpeg</code></span><p>Ideal para fotografías. Buen equilibrio entre calidad y tamaño de archivo.</p></li>
+        <li><b>PNG</b><span><code>.png</code></span><p>Soporta transparencia y mantiene buena calidad. Muy usado en logotipos e ilustraciones.</p></li>
+        <li><b>SVG</b><span><code>.svg</code></span><p>Formato vectorial: se puede escalar sin perder calidad. Ideal para íconos y gráficos simples.</p></li>
+        <li><b>GIF</b><span><code>.gif</code></span><p>Permite imágenes animadas. Se usa para animaciones simples y elementos decorativos.</p></li>
+      </ul>
+    </section>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> la etiqueta <code>&lt;img&gt;</code> permite mostrar imágenes y necesita información como su <b>ruta</b> y un <b>texto alternativo</b>.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 31">31</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 32 =================== -->
+  <article class="lamina lamina--compacta" id="pag-32" aria-labelledby="t32">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°8</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t32"><span class="tit__num">32.</span> Enlaces</h2>
+      <p class="tit__sub">a, href, target y title · Rutas</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-enlace"/></svg>
+      <p>Los enlaces conectan páginas, archivos o secciones de una misma página. Se crean con la etiqueta <code>&lt;a&gt;</code>: el atributo <code>href</code> indica la dirección de destino y, entre las etiquetas, va el texto del enlace.</p>
+    </div>
+
+    <div class="ej ej--chico">
+      <div class="ej-col">
+        <figure class="codigo codigo--html" id="ej-32">
+          <figcaption><span class="codigo__archivo">index.html</span><span class="codigo__donde">dentro de &lt;body&gt;</span></figcaption>
+          <pre tabindex="0" aria-label="Código de index.html, dentro de body"><code><span class="c-etq">&lt;h1&gt;</span>Enlaces de ejemplo<span class="c-etq">&lt;/h1&gt;</span>
+<span class="c-etq">&lt;ul&gt;</span>
+  <span class="c-etq">&lt;li&gt;&lt;a</span> <span class="c-atr">href</span>=<span class="c-str">"https://ejemplo.com"</span>
+         <span class="c-atr">target</span>=<span class="c-str">"_blank"</span><span class="c-etq">&gt;</span>Sitio externo<span class="c-etq">&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="c-etq">&lt;li&gt;&lt;a</span> <span class="c-atr">href</span>=<span class="c-str">"nosotros.html"</span><span class="c-etq">&gt;</span>Sobre nosotros<span class="c-etq">&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="c-etq">&lt;li&gt;&lt;a</span> <span class="c-atr">href</span>=<span class="c-str">"#contacto"</span><span class="c-etq">&gt;</span>Ir al contacto<span class="c-etq">&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="c-etq">&lt;li&gt;&lt;a</span> <span class="c-atr">href</span>=<span class="c-str">"mailto:hola@ejemplo.com"</span><span class="c-etq">&gt;</span>
+         Enviar un correo<span class="c-etq">&lt;/a&gt;&lt;/li&gt;</span>
+<span class="c-etq">&lt;/ul&gt;</span>
+<span class="c-etq">&lt;h2</span> <span class="c-atr">id</span>=<span class="c-str">"contacto"</span><span class="c-etq">&gt;</span>Contacto<span class="c-etq">&lt;/h2&gt;</span></code></pre>
+        </figure>
+        <aside class="esquema-nota" aria-labelledby="n32a">
+          <h3 id="n32a">Atributos frecuentes</h3>
+          <ul class="pf__lista">
+            <li><code>href</code>: una URL, un archivo o una sección.</li>
+            <li><code>target="_blank"</code>: lo abre en una pestaña nueva.</li>
+            <li><code>title</code>: texto de ayuda al pasar el cursor.</li>
+          </ul>
+        </aside>
+      </div>
+      <figure class="resultado" data-html="ej-32" style="--alto:222px;--alto-cel:260px">
+        <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">index.html</span></div>
+        <iframe title="Resultado en el navegador: el título Enlaces de ejemplo, una lista con cuatro enlaces en azul y subrayados, Sitio externo, Sobre nosotros, Ir al contacto y Enviar un correo, y el subtítulo Contacto." sandbox="allow-scripts"></iframe>
+        <figcaption class="resultado__nota">Los enlaces se ven en azul y subrayados. Tocá uno para ver a dónde lleva.</figcaption>
+      </figure>
+    </div>
+
+    <section class="esquema-par" aria-labelledby="n32b">
+      <figure class="esquema">
+        <svg viewBox="0 0 360 232" style="max-width:380px;margin:0 auto" role="img" aria-labelledby="esq32">
+          <title id="esq32">Rutas desde index.html. La carpeta mi-sitio tiene index.html, nosotros.html y la carpeta img, con paisaje.svg adentro. Con ruta relativa, para el archivo de al lado se escribe href="nosotros.html", y para la imagen dentro de img, src="img/paisaje.svg". Para un sitio de internet se usa la ruta absoluta: href="https://es.wikipedia.org".</title>
+          <!-- Carpeta del proyecto -->
+          <path d="M4 10a3 3 0 0 1 3-3h9l4 5h17a3 3 0 0 1 3 3v15a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z" style="fill:var(--carpeta);stroke:var(--tinta);stroke-width:2;stroke-linejoin:round"/>
+          <text x="48" y="28" style="font-family:var(--fuente-codigo);font-size:17px;font-weight:700;fill:var(--tinta)">mi-sitio/</text>
+          <path d="M20 38v94M20 58h12M20 96h12M20 132h12M46 142v32M46 174h12" style="fill:none;stroke:var(--gris);stroke-width:2"/>
+          <!-- index.html: la página con los enlaces -->
+          <rect x="31" y="42" width="140" height="32" rx="6" style="fill:var(--acento-claro)"/>
+          <path d="M36 46h14l8 8v16H36z" style="fill:var(--html)"/>
+          <path d="M36 84h14l8 8v16H36z" style="fill:var(--html)"/>
+          <path d="M36 125a2 2 0 0 1 2-2h6l3 3h11a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H38a2 2 0 0 1-2-2z" style="fill:var(--carpeta);stroke:var(--tinta);stroke-width:1.5;stroke-linejoin:round"/>
+          <rect x="62" y="164" width="22" height="18" rx="2" style="fill:var(--acento-claro);stroke:var(--tinta);stroke-width:1.5"/>
+          <path d="M64 180l6-8 4 4 3-3 5 7z" style="fill:var(--acento)"/>
+          <g style="font-family:var(--fuente-codigo);font-size:15px;fill:var(--tinta)">
+            <text x="66" y="63" style="font-weight:700">index.html</text>
+            <text x="66" y="101">nosotros.html</text>
+            <text x="66" y="137">img/</text>
+            <text x="92" y="179">paisaje.svg</text>
+          </g>
+          <!-- Ruta relativa -->
+          <text class="tt" x="276" y="70" text-anchor="middle" style="font-size:13.5px;font-weight:700;fill:var(--turquesa-texto)">Ruta relativa</text>
+          <g style="fill:var(--turquesa-claro);stroke:var(--turquesa);stroke-width:1.5">
+            <rect x="200" y="84" width="152" height="24" rx="12"/>
+            <rect x="200" y="162" width="152" height="24" rx="12"/>
+          </g>
+          <g text-anchor="middle" style="font-family:var(--fuente-codigo);font-size:12.5px;font-weight:700;fill:var(--turquesa-texto)">
+            <text x="276" y="100">href="nosotros.html"</text>
+            <text x="276" y="178">src="img/paisaje.svg"</text>
+          </g>
+          <g style="fill:none;stroke:var(--turquesa);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round">
+            <path d="M196 96h-12M189 91l-5 5 5 5"/>
+            <path d="M196 174h-6M195 169l-5 5 5 5"/>
+          </g>
+          <!-- Ruta absoluta -->
+          <path d="M0 198h360" style="stroke:var(--linea);stroke-width:1.5;stroke-dasharray:5 4"/>
+          <text class="tt" x="4" y="224" style="font-size:13.5px;font-weight:700;fill:var(--naranja-texto)">Ruta absoluta</text>
+          <rect x="104" y="207" width="252" height="24" rx="12" style="fill:var(--naranja-claro);stroke:var(--naranja);stroke-width:1.5"/>
+          <text x="230" y="223" text-anchor="middle" style="font-family:var(--fuente-codigo);font-size:12.5px;font-weight:700;fill:var(--naranja-texto)">href="https://es.wikipedia.org"</text>
+        </svg>
+      </figure>
+      <aside class="esquema-nota">
+        <h3 id="n32b">Tipos de enlaces y rutas</h3>
+        <ul class="pf__lista">
+          <li class="punto--naranja"><strong>Externo:</strong> a otra página web en internet, con <strong>ruta absoluta</strong>: la dirección completa.</li>
+          <li class="punto--turquesa"><strong>Interno:</strong> a otra página del mismo sitio, con <strong>ruta relativa</strong>, que se escribe desde la carpeta de la página: si el archivo está al lado, va su nombre; si está en una carpeta, la carpeta, una barra y el nombre.</li>
+          <li><strong>A una sección</strong> de la misma página: <code>#contacto</code> lleva a la que tiene <code>id="contacto"</code>.</li>
+          <li><strong>De correo:</strong> abre el programa de correo del usuario.</li>
+        </ul>
+      </aside>
+    </section>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> los enlaces conectan páginas, archivos o secciones y permiten la navegación en la web.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 32">32</span>
+    </footer>
+  </article>
+
+  <!-- =================== PARA PROFUNDIZAR =================== -->
+  <article class="lamina lamina--pf" id="profundizar" aria-labelledby="tpf">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°8</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="tpf"><span class="tit__num">+</span> Para profundizar</h2>
+      <p class="tit__sub">Un poco más sobre cada lámina</p>
+    </div>
+
+    <div class="pf-grid">
+    <section class="pf" aria-labelledby="pf29">
+      <p class="pf__etiqueta">Lámina 29</p>
+      <h3 class="pf__titulo" id="pf29">Etiqueta, elemento y atributo</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <ul class="pf__lista">
+            <li class="punto--naranja"><strong>Etiqueta:</strong> la marca que indica el tipo de contenido. Ej.: <code>&lt;p&gt;</code>.</li>
+            <li><strong>Elemento:</strong> la estructura completa (etiqueta de apertura + contenido + etiqueta de cierre). Ej.: <code>&lt;p&gt;Hola&lt;/p&gt;</code>.</li>
+            <li class="punto--turquesa"><strong>Atributo:</strong> agrega información adicional o configuración a una etiqueta. Ej.: <code>class="destacado"</code>.</li>
+          </ul>
+          <p>Una etiqueta puede tener varios atributos, separados por un espacio, y cada valor va entre comillas: <code>&lt;img src="foto.jpg" alt="Paisaje"&gt;</code>.</p>
+        </div>
+        <div class="pf__caja">
+          <h4>Elementos vacíos</h4>
+          <p>No tienen contenido ni etiqueta de cierre: <code>&lt;img&gt;</code>, <code>&lt;br&gt;</code>, <code>&lt;hr&gt;</code> y <code>&lt;meta&gt;</code>. Todo lo que necesitan va en sus atributos.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf30">
+      <p class="pf__etiqueta">Lámina 30</p>
+      <h3 class="pf__titulo" id="pf30">¿Cuándo usar cada una?</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <ul class="pf__lista">
+            <li>Usá <code>&lt;ul&gt;</code> cuando el orden no importa: para mostrar opciones o listar características, elementos o ideas.</li>
+            <li>Usá <code>&lt;ol&gt;</code> cuando el orden sí importa: para mostrar pasos o indicar un proceso o una secuencia.</li>
+          </ul>
+        </div>
+        <div class="pf__caja pf__caja--importante">
+          <h4><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-importante"/></svg>Errores frecuentes</h4>
+          <ul class="pf__lista">
+            <li>Escribir <code>&lt;li&gt;</code> sin un <code>&lt;ul&gt;</code> o un <code>&lt;ol&gt;</code> alrededor.</li>
+            <li>Poner la lista anidada <strong>después</strong> de <code>&lt;/li&gt;</code>: va antes, dentro del ítem.</li>
+            <li>Olvidar el <code>&lt;/ul&gt;</code> de la lista de afuera.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf31">
+      <p class="pf__etiqueta">Lámina 31</p>
+      <h3 class="pf__titulo" id="pf31">Imágenes que cargan bien</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p>En HTML, <code>width</code> y <code>height</code> van en píxeles, sin escribir <code>px</code>. Si ponemos solo uno, como en el ejemplo, el navegador calcula el otro para que la imagen no se deforme. Los porcentajes se dan con CSS (TP11).</p>
+        </div>
+        <div class="pf__caja pf__caja--consejo">
+          <h4><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-consejo"/></svg>Buenas prácticas</h4>
+          <ul class="pf__lista">
+            <li><strong>Usá el atributo <code>alt</code> siempre.</strong> Mejora la accesibilidad y ayuda a las personas que no pueden ver la imagen.</li>
+            <li><strong>Optimizá el tamaño del archivo.</strong> Usá imágenes livianas para que la página cargue más rápido.</li>
+            <li><strong>Usá nombres descriptivos,</strong> por ejemplo <code>paisaje.jpg</code> en lugar de <code>img_123.jpg</code>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf32">
+      <p class="pf__etiqueta">Lámina 32</p>
+      <h3 class="pf__titulo" id="pf32">Enlaces claros, rutas sin errores</h3>
+      <div class="pf__cols">
+        <div class="pf__caja pf__caja--consejo">
+          <h4><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-consejo"/></svg>Buenas prácticas</h4>
+          <ul class="pf__lista">
+            <li><strong>Usá textos descriptivos:</strong> “Ver precios” en lugar de “Hacé clic aquí”.</li>
+            <li><strong>No abuses de “hacé clic aquí”:</strong> el texto tiene que describir el destino.</li>
+            <li><strong>Revisá las rutas:</strong> que los archivos existan y estén bien escritos.</li>
+            <li><strong>Usá <code>target</code> solo cuando tenga sentido,</strong> como en los enlaces externos.</li>
+          </ul>
+        </div>
+        <div class="pf__caja pf__caja--importante">
+          <h4><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-importante"/></svg>Cuidado con las rutas</h4>
+          <ul class="pf__lista">
+            <li>Va siempre la barra <code>/</code>, aunque Windows muestre <code>\</code>.</li>
+            <li>En internet, <code>Foto.JPG</code> y <code>foto.jpg</code> son archivos distintos.</li>
+            <li>Nombres sin espacios ni acentos.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    </div>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 8</span>
+    </footer>
+  </article>
+
+  <!-- =================== ACTIVIDADES · Parte 1 =================== -->
+  <article class="lamina lamina--act" id="actividades" aria-labelledby="act-1">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°8</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <header class="act-banda">
+      <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-lapiz"/></svg>
+      <div>
+        <h2 id="act-1">Actividades para hacer en la carpeta</h2>
+        <p>TP N°8 — Listas, imágenes y enlaces</p>
+      </div>
+      <span class="act-banda__parte">Parte<br>1 de 2</span>
+    </header>
+
+    <p class="consigna"><strong>Consigna:</strong> Resolvé cada punto en la carpeta, con lápiz y sin usar la computadora.</p>
+
+    <ol class="acts acts--2col">
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">1-</span> Etiquetas, elementos y atributos</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿Qué diferencia hay entre una etiqueta y un elemento?</div></li>
+          <li><b class="act__letra">b)</b><div>¿Qué atributo se usa para indicar la dirección de un enlace?</div></li>
+          <li><b class="act__letra">c)</b><div>Marcá dos atributos válidos: <code>href</code> / <code>color</code> / <code>src</code> / <code>tamaño</code>.</div></li>
+          <li><b class="act__letra">d)</b><div>¿Cuál es la diferencia entre <code>&lt;strong&gt;</code> y <code>&lt;em&gt;</code>?</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">2-</span> Listas</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿Qué etiqueta se usa para una lista ordenada?</div></li>
+          <li><b class="act__letra">b)</b><div>¿Qué etiqueta representa cada ítem de la lista?</div></li>
+          <li><b class="act__letra">c)</b><div>Relacioná cada etiqueta con cómo se muestra la lista: <code>&lt;ul&gt;</code> / <code>&lt;ol&gt;</code> con “numerada” / “con viñetas”.</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">3-</span> Imágenes</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿Qué atributo indica la ruta de la imagen?</div></li>
+          <li><b class="act__letra">b)</b><div>¿Para qué sirve el atributo <code>alt</code>?</div></li>
+          <li><b class="act__letra">c)</b><div>Marcá dos formatos de imagen válidos: PNG / CSS / JPG / DIV.</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">4-</span> Enlaces</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>Escribí la etiqueta básica de un enlace.</div></li>
+          <li><b class="act__letra">b)</b><div>Marcá cuál es un enlace válido:
+            <ul class="act__frases">
+              <li><code>&lt;a href="pagina.html"&gt;</code></li>
+              <li><code>&lt;enlace href="pagina.html"&gt;</code></li>
+              <li><code>&lt;a&gt;pagina.html&lt;/a&gt;</code></li>
+            </ul></div></li>
+          <li><b class="act__letra">c)</b><div>¿Qué diferencia hay entre una ruta relativa y una ruta absoluta? Escribí un ejemplo de cada una.</div></li>
+        </ol>
+      </li>
+    </ol>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 8</span>
+    </footer>
+  </article>
+
+  <!-- =================== ACTIVIDADES · Parte 2 =================== -->
+  <article class="lamina lamina--act lamina--compu" id="actividades-2" aria-labelledby="act-2">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°8</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <header class="act-banda">
+      <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-editor"/></svg>
+      <div>
+        <h2 id="act-2">Práctica en la computadora</h2>
+        <p>TP N°8 — Listas, imágenes y enlaces</p>
+      </div>
+      <span class="act-banda__parte">Parte<br>2 de 2</span>
+    </header>
+
+    <p class="consigna"><strong>Consigna:</strong> Creá tu página “Mis recomendaciones”, en una carpeta llamada <code class="cod-carpeta">tp8-apellido</code>.</p>
+
+    <ol class="acts acts--amplio">
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">1-</span> Mi página “Mis recomendaciones”</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">1</b><div>Creá la carpeta <code class="cod-carpeta">tp8-apellido</code> y, adentro, la carpeta <code class="cod-carpeta">img</code>.</div></li>
+          <li><b class="act__letra">2</b><div>Creá <code>index.html</code> con la estructura básica y el título “Mis recomendaciones”.</div></li>
+          <li><b class="act__letra">3</b><div>Armá <strong>3 secciones</strong> con sus subtítulos: “Películas”, “Música” y “Lugares”.</div></li>
+          <li><b class="act__letra">4</b><div>En cada sección, <strong>una lista</strong> (con o sin orden) de <strong>al menos 4 ítems</strong>.</div></li>
+          <li><b class="act__letra">5</b><div>En cada sección, <strong>al menos 1 imagen</strong> con su <code>alt</code>. Guardá las imágenes <strong>dentro de la carpeta <code class="cod-carpeta">img</code></strong> y enlazalas con <strong>ruta relativa</strong>: <code>src="img/pelicula.jpg"</code>.</div></li>
+          <li><b class="act__letra">6</b><div>En cada sección, <strong>al menos 1 enlace a un sitio externo</strong> (YouTube, Spotify, Wikipedia).</div></li>
+          <li><b class="act__letra">7</b><div>Abrí <code>index.html</code> en Chrome y probá cada imagen y cada enlace.</div></li>
+        </ol>
+      </li>
+    </ol>
+
+    <section class="panel" aria-label="Para tener en cuenta">
+      <ol class="puntos">
+        <li><span class="puntos__n" aria-hidden="true">!</span><span>Para guardar una imagen de internet: clic derecho → <strong>Guardar imagen como…</strong></span></li>
+        <li><span class="puntos__n" aria-hidden="true">!</span><span>Guardá la carpeta: en el TP11 le vamos a dar estilo a esta página.</span></li>
+      </ol>
+    </section>
+
+    <section class="entrega" aria-labelledby="ent-1">
+      <svg class="ico ico--l" aria-hidden="true" focusable="false"><use href="#i-subir"/></svg>
+      <div>
+        <h3 id="ent-1">Entrega</h3>
+        <div class="entrega__cols">
+          <div>
+            <p>La carpeta <code class="cod-carpeta">tp8-apellido</code> <strong>en un .zip</strong>, con <code>index.html</code> y la carpeta <code class="cod-carpeta">img</code> con todas las imágenes. Subí el <code class="cod-carpeta">.zip</code> a Classroom.</p>
+            <p class="entrega__sub--sep">Antes de comprimir, revisá que los nombres de los archivos estén en minúscula y sin espacios ni acentos.</p>
+          </div>
+          <div>
+            <p class="entrega__sub">Antes de entregar, marcá:</p>
+            <ul class="checklist">
+              <li>Estructura básica y un solo <code>&lt;h1&gt;</code>.</li>
+              <li>3 secciones con sus subtítulos.</li>
+              <li>Cada sección: lista de 4 ítems o más.</li>
+              <li>Cada sección: imagen con <code>alt</code> y enlace externo.</li>
+              <li>Las imágenes se ven y los enlaces andan.</li>
+              <li>El <code class="cod-carpeta">.zip</code> tiene <code>index.html</code> y <code class="cod-carpeta">img</code>.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 8</span>
+    </footer>
+  </article>
+</main>
+
+<script src="../assets/js/actividades.js"></script>
+<script src="../assets/js/ejemplos.js"></script>
+</body>
+</html>

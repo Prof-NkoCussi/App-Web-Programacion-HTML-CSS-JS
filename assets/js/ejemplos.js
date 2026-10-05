@@ -7,6 +7,7 @@
      y muestra la salida real, con formato parecido al de Chrome.
    - Resultado en el navegador (figure.resultado[data-html]):
      muestra en un iframe el resultado real del código HTML del ejemplo.
+     Los enlaces del ejemplo no se abren: se avisa a dónde llevan.
    Sin JavaScript, la página muestra el código y la salida esperada.
    ========================================================== */
 (function () {
@@ -203,7 +204,46 @@
      data-html: id del bloque HTML. Si es un fragmento (sin <html>), va dentro de <body>.
      data-css y data-js (opcionales): ids de los bloques que reemplazan
      al <link> de estilos.css y al <script src="app.js">.
+     Si el ejemplo tiene enlaces, se ven y se señalan como enlaces, pero no se abren:
+     el marco no puede salir del cuadernillo ni cargar otro sitio. Debajo se avisa a dónde llevan.
      ========================================================== */
+
+  /* Este código corre DENTRO del iframe de un ejemplo con enlaces. Se pasa como texto. */
+  function frenoEnlaces() {
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest ? e.target.closest("a[href]") : null;
+      if (!a) { return; }
+      e.preventDefault();
+      var destino = a.getAttribute("href");
+      if (destino.charAt(0) === "#") {   // una sección de la misma página: baja dentro del marco
+        var seccion = document.getElementById(destino.slice(1));
+        if (seccion) { window.scrollTo(0, seccion.offsetTop); }
+      }
+      parent.postMessage({ enlace: true, destino: destino }, "*");
+    });
+  }
+
+  var avisosEnlace = [];  // { marco, aviso }
+
+  function textoEnlace(destino) {
+    if (destino.charAt(0) === "#") { return ["Este enlace lleva a la sección ", destino.slice(1), " de la misma página."]; }
+    if (/^mailto:/i.test(destino)) { return ["Este enlace abre el programa de correo para escribir a ", destino.slice(7), "."]; }
+    return ["Este enlace lleva a ", destino, ". En el cuadernillo no se abre: probalo en tu página."];
+  }
+
+  window.addEventListener("message", function (e) {
+    var d = e.data;
+    if (!d || d.enlace !== true || typeof d.destino !== "string") { return; }
+    avisosEnlace.forEach(function (x) {
+      if (e.source !== x.marco.contentWindow) { return; }
+      var partes = textoEnlace(d.destino);
+      var codigo = document.createElement("code");
+      codigo.textContent = partes[1];
+      x.aviso.textContent = partes[0];
+      x.aviso.appendChild(codigo);
+      x.aviso.appendChild(document.createTextNode(partes[2]));
+    });
+  });
   function textoDe(id) {
     var fig = id ? document.getElementById(id) : null;
     var pre = fig && fig.querySelector("pre");
@@ -237,6 +277,22 @@
     var html = armarPagina(fig);
     if (!marco || html === null) { return; }
     if (!marco.hasAttribute("sandbox")) { marco.setAttribute("sandbox", ""); }
+    if (/<a\s[^>]*href/i.test(html)) {
+      var permisos = marco.getAttribute("sandbox");
+      if (!/\ballow-scripts\b/.test(permisos)) { marco.setAttribute("sandbox", (permisos + " allow-scripts").trim()); }
+      var freno = "<script>(" + frenoEnlaces.toString() + ")();<\/script>";
+      html = /<\/body>/i.test(html) ? html.replace(/<\/body>/i, function () { return freno + "\n</body>"; }) : html + freno;
+      var aviso = document.createElement("p");
+      aviso.className = "resultado__nota resultado__aviso";
+      aviso.setAttribute("role", "status");
+      marco.parentNode.insertBefore(aviso, marco.nextSibling);
+      avisosEnlace.push({ marco: marco, aviso: aviso });
+    }
+    /* Abierto desde la computadora (file://), un marco aislado no puede cargar las imágenes de la carpeta:
+       si el ejemplo no corre scripts, se le da el origen del cuadernillo. En internet no hace falta. */
+    if (location.protocol === "file:" && /<img\b/i.test(html) && !/\ballow-scripts\b/.test(marco.getAttribute("sandbox"))) {
+      marco.setAttribute("sandbox", (marco.getAttribute("sandbox") + " allow-same-origin").trim());
+    }
     /* La pestaña muestra el <title> del código, como el navegador */
     var titulo = html.match(/<title>([\s\S]*?)<\/title>/i);
     var pestana = fig.querySelector(".resultado__pestana");

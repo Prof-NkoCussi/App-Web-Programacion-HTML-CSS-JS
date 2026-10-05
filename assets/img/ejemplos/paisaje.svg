@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="360" viewBox="0 0 600 360">
+  <title>Montañas con nieve junto a un lago</title>
+  <!-- Cielo y sol -->
+  <rect width="600" height="360" fill="#CDE8F6"/>
+  <circle cx="488" cy="72" r="32" fill="#FCD34D"/>
+  <!-- Nubes -->
+  <g fill="#FFFFFF">
+    <rect x="70" y="52" width="110" height="22" rx="11"/>
+    <rect x="96" y="38" width="56" height="26" rx="13"/>
+    <rect x="372" y="98" width="84" height="18" rx="9"/>
+  </g>
+  <!-- Cordón del fondo -->
+  <path d="M0 214 70 160 128 196 206 132 280 190 352 146 430 196 520 150 600 196V262H0z" fill="#9DB5CA"/>
+  <!-- Montañas -->
+  <path d="M18 262 158 112 298 262z" fill="#647C92"/>
+  <path d="M158 112 133 139 147 135 160 146 172 134 184 139z" fill="#FFFFFF"/>
+  <path d="M150 262 312 58 474 262z" fill="#506780"/>
+  <path d="M312 58 280 98 298 92 313 106 329 91 345 98z" fill="#FFFFFF"/>
+  <path d="M368 262 478 124 600 248V262z" fill="#5B7389"/>
+  <path d="M478 124 457 150 470 146 481 156 492 145 503 150z" fill="#FFFFFF"/>
+  <!-- Bosque en la orilla -->
+  <rect y="248" width="600" height="16" fill="#2F5D50"/>
+  <g fill="#2F5D50">
+    <path d="M30 252 42 222 54 252z"/><path d="M58 252 72 214 86 252z"/><path d="M96 252 106 228 116 252z"/>
+    <path d="M214 252 226 220 238 252z"/><path d="M242 252 252 230 262 252z"/>
+    <path d="M396 252 410 216 424 252z"/><path d="M428 252 438 230 448 252z"/>
+    <path d="M520 252 532 222 544 252z"/><path d="M548 252 562 212 576 252z"/>
+  </g>
+  <!-- Lago -->
+  <rect y="264" width="600" height="96" fill="#3F86BD"/>
+  <g fill="#7DB4DC">
+    <rect x="60" y="284" width="120" height="5" rx="2.5"/>
+    <rect x="250" y="300" width="160" height="5" rx="2.5"/>
+    <rect x="440" y="282" width="90" height="5" rx="2.5"/>
+    <rect x="120" y="326" width="110" height="5" rx="2.5"/>
+    <rect x="380" y="336" width="130" height="5" rx="2.5"/>
+  </g>
+</svg>
