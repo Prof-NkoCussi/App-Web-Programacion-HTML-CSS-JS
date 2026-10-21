@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TP N°10 — Primeros estilos con CSS · Programación - HTML, CSS, JS</title>
+  <meta name="description" content="TP N°10 de Programación: qué es CSS, la regla CSS, la etiqueta style y los selectores de etiqueta y universal, colores y fondos, tipografías y texto, margin y padding. Prof. Nicolás A. Cussi.">
+  <meta name="theme-color" content="#2563EB">
+  <link rel="preload" href="../assets/fonts/barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/barlow-semi-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/estilos.css">
+</head>
+<body data-tp="10">
+
+<!-- ====== Íconos ====== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-web" viewBox="0 0 48 48">
+      <rect x="4" y="7" width="40" height="34" rx="4" style="fill:var(--ac2, var(--acento-claro))"/>
+      <path d="M8 7h32a4 4 0 0 1 4 4v5H4v-5a4 4 0 0 1 4-4z" style="fill:var(--ac)"/>
+      <rect x="4" y="7" width="40" height="34" rx="4"/>
+      <path d="M4 16h40M19 23l-6 6 6 6M29 23l6 6-6 6M26.5 21l-5 16"/>
+    </symbol>
+    <symbol id="i-pincel" viewBox="0 0 48 48">
+      <path d="M41.2 5.3c-5.6 3.9-12.4 10.4-17.7 16.4l3.3 3.3c6-5.3 12.5-12.1 16.4-17.7a1.4 1.4 0 0 0-2-2z"/>
+      <path d="M21.6 24.4c-4.6-.6-8.4 2-9.3 6.4-.7 3.3-2.4 5.3-6.3 6.4 4.1 3.4 10.9 4 15.2.6 3.1-2.5 4-6.3 3.7-9.6z" style="fill:var(--ac)"/>
+    </symbol>
+    <symbol id="i-paleta" viewBox="0 0 48 48">
+      <path d="M24 4.5C12.7 4.5 4 12.6 4 23.2 4 33.7 12.5 43.5 23 43.5c3.2 0 4.8-1.8 4.8-4.1 0-2.6-2.3-3.6-2.3-6 0-2.2 1.8-3.8 4-3.8h4.8c6.3 0 9.7-4.4 9.7-9.7C44 11.6 35.3 4.5 24 4.5z"/>
+      <circle cx="13.5" cy="22.5" r="3.3" style="fill:var(--ac)"/>
+      <circle cx="19.5" cy="13.5" r="3.3" style="fill:var(--ac)"/>
+      <circle cx="29.5" cy="12.5" r="3.3"/>
+      <circle cx="36" cy="20" r="3.3" style="fill:var(--ac)"/>
+    </symbol>
+    <symbol id="i-letra" viewBox="0 0 48 48">
+      <path d="M3.5 40 15 8.5h1.5L28 40M8 29h16"/>
+      <circle cx="37" cy="33" r="7" style="fill:var(--ac)"/>
+      <path d="M44 24.5V40"/>
+    </symbol>
+    <symbol id="i-espacio" viewBox="0 0 48 48">
+      <rect x="4" y="4" width="40" height="40" rx="3" style="stroke-dasharray:4 4.2"/>
+      <rect x="14" y="14" width="20" height="20" rx="2" style="fill:var(--ac)"/>
+      <path d="M24 6.5v5M24 36.5v5M6.5 24h5M36.5 24h5"/>
+    </symbol>
+    <symbol id="i-padding" viewBox="0 0 48 48">
+      <rect x="4" y="4" width="40" height="40" rx="4"/>
+      <rect x="17" y="17" width="14" height="14" rx="2" style="fill:var(--ac)"/>
+      <path d="M24 8v6M21.5 11.5 24 14l2.5-2.5M24 40v-6M21.5 36.5 24 34l2.5 2.5M8 24h6M11.5 21.5 14 24l-2.5 2.5M40 24h-6M36.5 21.5 34 24l2.5 2.5"/>
+    </symbol>
+    <symbol id="i-margin" viewBox="0 0 48 48">
+      <rect x="3" y="11" width="14" height="26" rx="2" style="fill:var(--ac)"/>
+      <rect x="31" y="11" width="14" height="26" rx="2" style="fill:var(--ac)"/>
+      <path d="M20.5 24h7M23 21l-3 3 3 3M25 21l3 3-3 3"/>
+    </symbol>
+    <symbol id="i-consejo" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="21" style="fill:var(--ac);stroke:none"/>
+      <path d="M14 24.5l7 7 13-14" style="stroke:var(--blanco);stroke-width:5.5"/>
+    </symbol>
+    <symbol id="i-foco" viewBox="0 0 48 48">
+      <path d="M24 2.5v4M10 8.5l2.8 2.8M38 8.5l-2.8 2.8M4 22h4M40 22h4"/>
+      <path d="M24 12a10 10 0 0 0-6.2 17.8c1.4 1.2 2.2 2.6 2.2 4.2v1h8v-1c0-1.6.8-3 2.2-4.2A10 10 0 0 0 24 12z" style="fill:var(--ac)"/>
+      <path d="M20 39h8M21.5 43h5"/>
+    </symbol>
+    <symbol id="i-lapiz" viewBox="0 0 48 48">
+      <path d="M33 6l9 9-25 25-9-9z" style="fill:var(--ac)"/>
+      <path d="M8 31 5.5 42.5 17 40z"/>
+      <path d="M27 12l9 9"/>
+    </symbol>
+    <symbol id="i-editor" viewBox="0 0 48 48">
+      <path d="M7 7h34a3 3 0 0 1 3 3v4H4v-4a3 3 0 0 1 3-3z" style="fill:var(--ac)"/>
+      <rect x="4" y="7" width="40" height="34" rx="3"/>
+      <path d="M4 14h40M10 21h14M15 27h18M15 33h11"/>
+    </symbol>
+    <symbol id="i-subir" viewBox="0 0 48 48">
+      <path d="M6 30v8a3 3 0 0 0 3 3h30a3 3 0 0 0 3-3v-8"/>
+      <path d="M24 31V7M15 16l9-9 9 9" style="stroke:var(--ac);stroke-width:3.4"/>
+    </symbol>
+    <symbol id="i-descarga" viewBox="0 0 24 24">
+      <path d="M12 3v12M7 10l5 5 5-5M5 20h14"/>
+    </symbol>
+    <symbol id="i-atras" viewBox="0 0 24 24">
+      <path d="M20 12H5M11 6l-6 6 6 6"/>
+    </symbol>
+  </defs>
+</svg>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="barra">
+  <div class="barra__fila">
+    <a class="boton barra__volver" href="../index.html"><svg aria-hidden="true" focusable="false"><use href="#i-atras"/></svg><span>Índice</span></a>
+    <span class="barra__titulo">TP N°10 — Primeros estilos con CSS</span>
+    <button class="boton" type="button" data-imprimir aria-label="Guardar en PDF">
+      <svg aria-hidden="true" focusable="false"><use href="#i-descarga"/></svg><span><span class="boton__largo">Guardar </span>PDF</span>
+    </button>
+  </div>
+  <nav class="partes" aria-label="Partes del TP N°10">
+    <a href="#pag-37">37 · ¿Qué es CSS?</a>
+    <a href="#pag-38">38 · Colores y fondos</a>
+    <a href="#pag-39">39 · Tipografías y texto</a>
+    <a href="#pag-40">40 · Margin y padding</a>
+    <a href="#profundizar">Para profundizar</a>
+    <a href="#actividades">Actividades</a>
+  </nav>
+</header>
+
+<main id="contenido" class="laminas">
+  <h1 class="sr-only">TP N°10 — Primeros estilos con CSS</h1>
+
+  <!-- =================== LÁMINA 37 =================== -->
+  <article class="lamina lamina--compacta" id="pag-37" aria-labelledby="t37">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°10</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t37"><span class="tit__num">37.</span> ¿Qué es CSS?</h2>
+      <p class="tit__sub">La regla, los selectores y la etiqueta style</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-pincel"/></svg>
+      <p>CSS (<span lang="en">Cascading Style Sheets</span>) es el lenguaje que define la <strong>apariencia visual</strong> de una página web. Permite darle estilo: cambiar colores, definir tipografías, ajustar espaciados, establecer tamaños y crear diseños atractivos y coherentes.</p>
+    </div>
+
+    <section class="esquema-par" aria-labelledby="n37a">
+      <div class="ej-col">
+        <figure class="esquema">
+          <svg viewBox="0 0 340 88" style="max-width:380px;margin:0 auto" role="img" aria-labelledby="esq37">
+            <title id="esq37">Regla CSS básica: h1 { color: #2563eb; }. h1 es el selector, color es la propiedad y #2563eb es el valor.</title>
+            <!-- Rótulos -->
+            <rect x="15" y="0" width="68" height="24" rx="12" style="fill:var(--naranja-texto)"/>
+            <rect x="87.7" y="0" width="80" height="24" rx="12" style="fill:var(--turquesa-texto)"/>
+            <rect x="195.5" y="0" width="58" height="24" rx="12" style="fill:var(--acento)"/>
+            <g class="tt tt--claro" text-anchor="middle" style="font-size:13px;font-weight:700">
+              <text x="49" y="16.5">Selector</text>
+              <text x="127.7" y="16.5">Propiedad</text>
+              <text x="224.5" y="16.5">Valor</text>
+            </g>
+            <!-- La regla -->
+            <rect x="0" y="40" width="340" height="46" rx="6" style="fill:var(--cod-fondo)"/>
+            <text x="36.9" y="70.5" textLength="266.2" lengthAdjust="spacingAndGlyphs" style="font-family:var(--fuente-codigo);font-size:22px;fill:var(--cod-base)"><tspan style="fill:var(--cod-etq)">h1</tspan> { <tspan style="fill:var(--cod-atr)">color</tspan>: <tspan style="fill:var(--cod-str)">#2563eb</tspan>; }</text>
+            <g style="fill:none;stroke-width:2;stroke-linecap:round">
+              <path d="M49 24v22" style="stroke:var(--naranja)"/>
+              <path d="M127.7 24v22" style="stroke:var(--turquesa)"/>
+              <path d="M224.5 24v22" style="stroke:var(--acento)"/>
+              <rect x="34.4" y="48" width="29.2" height="30" rx="4" style="stroke:var(--naranja)"/>
+              <rect x="94.9" y="48" width="65.5" height="30" rx="4" style="stroke:var(--turquesa)"/>
+              <rect x="179.6" y="48" width="89.7" height="30" rx="4" style="stroke:var(--acento)"/>
+            </g>
+          </svg>
+        </figure>
+        <ul class="pf__lista esquema__lista">
+          <li class="punto--naranja"><strong>Selector:</strong> indica a qué elemento se aplica el estilo.</li>
+          <li class="punto--turquesa"><strong>Propiedad:</strong> define qué característica se va a modificar.</li>
+          <li><strong>Valor:</strong> es el valor que toma la propiedad (puede ser un color, un tamaño, etc.).</li>
+        </ul>
+      </div>
+      <aside class="esquema-nota">
+        <h3 id="n37a">Tipos de selectores</h3>
+        <p class="esquema-nota__p">El selector es la parte de la regla que indica qué elementos del HTML reciben el estilo.</p>
+        <ul class="pf__lista">
+          <li><code class="cod-css">h1</code> <strong>Selector de etiqueta:</strong> selecciona todos los elementos de ese tipo de etiqueta.</li>
+          <li><code class="cod-css">*</code> <strong>Selector universal:</strong> selecciona todos los elementos de la página.</li>
+        </ul>
+        <p class="esquema-nota__p esquema-nota__p--sep">Los selectores de clase y de id los vemos en el TP11.</p>
+      </aside>
+    </section>
+
+    <div class="ej ej--res ej--chico">
+      <figure class="codigo codigo--html" id="ej-37">
+        <figcaption><span class="codigo__archivo">index.html</span></figcaption>
+        <pre tabindex="0" aria-label="Código de index.html"><code><span class="c-etq">&lt;!DOCTYPE html&gt;</span>
+<span class="c-etq">&lt;html</span> <span class="c-atr">lang</span>=<span class="c-str">"es-AR"</span><span class="c-etq">&gt;</span>
+<span class="c-etq">&lt;head&gt;</span>
+  <span class="c-etq">&lt;meta</span> <span class="c-atr">charset</span>=<span class="c-str">"utf-8"</span><span class="c-etq">&gt;</span>
+  <span class="c-etq">&lt;title&gt;</span>Mi sitio web<span class="c-etq">&lt;/title&gt;</span>
+  <span class="c-etq">&lt;style&gt;</span>
+    <span class="c-etq">*</span> { <span class="c-atr">font-family</span>: <span class="c-str">Arial, sans-serif</span>; }
+    <span class="c-etq">h1</span> { <span class="c-atr">color</span>: <span class="c-str">#2563eb</span>; <span class="c-atr">font-size</span>: <span class="c-num">32px</span>; }
+    <span class="c-etq">p</span> { <span class="c-atr">color</span>: <span class="c-str">#374151</span>; <span class="c-atr">font-size</span>: <span class="c-num">16px</span>; }
+  <span class="c-etq">&lt;/style&gt;</span>
+<span class="c-etq">&lt;/head&gt;</span>
+<span class="c-etq">&lt;body&gt;</span>
+  <span class="c-etq">&lt;h1&gt;</span>Bienvenido<span class="c-etq">&lt;/h1&gt;</span>
+  <span class="c-etq">&lt;p&gt;</span>Esta es mi página web.<span class="c-etq">&lt;/p&gt;</span>
+<span class="c-etq">&lt;/body&gt;</span>
+<span class="c-etq">&lt;/html&gt;</span></code></pre>
+      </figure>
+      <div class="ej-col">
+        <figure class="resultado" data-html="ej-37" style="--alto:120px;--alto-cel:120px">
+          <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">Mi sitio web</span></div>
+          <iframe title="Resultado en el navegador: el título Bienvenido en azul y el párrafo Esta es mi página web en gris oscuro, los dos en letra Arial." sandbox=""></iframe>
+          <figcaption class="resultado__nota"><code class="cod-css">*</code> le pone la letra Arial a todos los elementos. <code class="cod-css">font-family</code> la vemos en la lámina 39.</figcaption>
+        </figure>
+        <aside class="esquema-nota" aria-labelledby="n37b">
+          <h3 id="n37b">Cómo se conecta con HTML</h3>
+          <p class="esquema-nota__p">Mediante la etiqueta <code>&lt;style&gt;</code>, en el encabezado de la página (<code>&lt;head&gt;</code>). Adentro van las reglas CSS que el navegador aplica a la página.</p>
+          <p class="esquema-nota__p esquema-nota__p--sep">En el TP11 pasamos el CSS a un archivo aparte.</p>
+        </aside>
+      </div>
+    </div>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> CSS define la <b>apariencia visual</b> de HTML. Sus reglas van dentro de <code>&lt;style&gt;</code>, en el <code>&lt;head&gt;</code>, y los <b>selectores</b> eligen qué elementos reciben cada estilo.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 37">37</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 38 =================== -->
+  <article class="lamina lamina--compacta" id="pag-38" aria-labelledby="t38">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°10</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t38"><span class="tit__num">38.</span> Colores y fondos</h2>
+      <p class="tit__sub">color, background-color y formatos de color</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-paleta"/></svg>
+      <p>CSS permite cambiar el color del texto y el fondo de los elementos y páginas. Con estas propiedades podemos darle estilo, destacar información importante y crear una identidad visual para nuestro sitio web.</p>
+    </div>
+
+    <section class="esquema-par esquema-par--igual" aria-label="Propiedades y formatos de color">
+      <aside class="esquema-nota" aria-labelledby="n38a">
+        <h3 id="n38a">Propiedades principales</h3>
+        <ul class="pf__lista">
+          <li><code class="cod-css">color</code> define el color del texto de un elemento: <code class="cod-css">color: #2563eb;</code></li>
+          <li><code class="cod-css">background-color</code> define el color de fondo de un elemento: <code class="cod-css">background-color: #f3f4f6;</code></li>
+        </ul>
+      </aside>
+      <aside class="esquema-nota" aria-labelledby="n38b">
+        <h3 id="n38b">Formatos de color</h3>
+        <ul class="colores">
+          <li><span class="muestra" style="--muestra: royalblue" aria-hidden="true"></span><b>Nombres de colores</b><code class="cod-css">royalblue</code></li>
+          <li><span class="muestra" style="--muestra: #2563eb" aria-hidden="true"></span><b>Código hexadecimal</b><code class="cod-css">#2563eb</code></li>
+          <li><span class="muestra" style="--muestra: rgb(236, 72, 153)" aria-hidden="true"></span><b>Función rgb()</b><code class="cod-css">rgb(236, 72, 153)</code></li>
+          <li><span class="muestra" style="--muestra: rgba(37, 99, 235, 0.7)" aria-hidden="true"></span><b>Función rgba()</b><code class="cod-css">rgba(37, 99, 235, 0.7)</code></li>
+        </ul>
+      </aside>
+    </section>
+
+    <div class="ej ej--res ej--chico ej--largo">
+      <div class="ej-col">
+        <figure class="codigo codigo--css" id="ej-38c">
+          <figcaption><span class="codigo__archivo">index.html</span><span class="codigo__donde">dentro de &lt;style&gt;</span></figcaption>
+          <pre tabindex="0" aria-label="Código CSS de index.html, dentro de style"><code><span class="c-etq">body</span> {
+  <span class="c-atr">background-color</span>: <span class="c-str">#f0f9ff</span>;
+  <span class="c-atr">font-family</span>: <span class="c-str">Arial, sans-serif</span>;
+  <span class="c-atr">color</span>: <span class="c-str">#1f2937</span>;
+}
+<span class="c-etq">h1</span> { <span class="c-atr">color</span>: <span class="c-str">#2563eb</span>; }
+<span class="c-etq">div</span> {
+  <span class="c-atr">background-color</span>: <span class="c-str">white</span>;
+  <span class="c-atr">padding</span>: <span class="c-num">16px</span>;
+}
+<span class="c-etq">button</span> {
+  <span class="c-atr">background-color</span>: <span class="c-str">#be185d</span>;
+  <span class="c-atr">color</span>: <span class="c-str">white</span>;
+}</code></pre>
+        </figure>
+        <figure class="codigo codigo--html" id="ej-38h">
+          <figcaption><span class="codigo__archivo">index.html</span><span class="codigo__donde">dentro de &lt;body&gt;</span></figcaption>
+          <pre tabindex="0" aria-label="Código de index.html, dentro de body"><code><span class="c-etq">&lt;h1&gt;</span>Mi sitio web<span class="c-etq">&lt;/h1&gt;</span>
+<span class="c-etq">&lt;div&gt;</span>
+  <span class="c-etq">&lt;h2&gt;</span>Una tarjeta de ejemplo<span class="c-etq">&lt;/h2&gt;</span>
+  <span class="c-etq">&lt;p&gt;</span>Este es un ejemplo de cómo se pueden
+    usar colores y fondos con CSS.<span class="c-etq">&lt;/p&gt;</span>
+  <span class="c-etq">&lt;button&gt;</span>Ver más<span class="c-etq">&lt;/button&gt;</span>
+<span class="c-etq">&lt;/div&gt;</span></code></pre>
+        </figure>
+      </div>
+      <figure class="resultado" data-html="ej-38h" data-css="ej-38c" style="--alto:290px;--alto-cel:290px">
+        <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">index.html</span></div>
+        <iframe title="Resultado en el navegador: la página con fondo celeste, el título Mi sitio web en azul y una tarjeta blanca con el subtítulo Una tarjeta de ejemplo, un párrafo y el botón Ver más, de fondo magenta y letras blancas." sandbox=""></iframe>
+        <figcaption class="resultado__nota"><code class="cod-css">font-family</code> y <code class="cod-css">padding</code> los vemos en las láminas 39 y 40.</figcaption>
+      </figure>
+    </div>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> CSS puede definir <b>colores de texto</b>, <b>colores de fondo</b> e <b>imágenes de fondo</b>, ayudando a crear jerarquía visual y una identidad para la página web.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 38">38</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 39 =================== -->
+  <article class="lamina lamina--compacta" id="pag-39" aria-labelledby="t39">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°10</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t39"><span class="tit__num">39.</span> Tipografías y texto</h2>
+      <p class="tit__sub">La letra, el tamaño, el grosor y la alineación</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-letra"/></svg>
+      <p>La tipografía es un elemento fundamental en el diseño web, ya que influye en la legibilidad y en la experiencia del usuario. CSS ofrece diversas propiedades para mejorar la presentación visual del texto y hacer que el contenido sea más claro y atractivo.</p>
+    </div>
+
+    <ul class="operaciones operaciones--css" aria-label="Propiedades más usadas para dar estilo al texto">
+      <li><b>font-family</b><p>Define el tipo de letra que se utiliza.</p><code class="cod-css">font-family: Arial,<br>sans-serif;</code></li>
+      <li><b>font-size</b><p>Establece el tamaño del texto.</p><code class="cod-css">font-size: 20px;</code></li>
+      <li><b>font-weight</b><p>Define el grosor del texto (normal, negrita, etc.).</p><code class="cod-css">font-weight: bold;</code></li>
+      <li><b>text-align</b><p>Determina la alineación del texto (izquierda, centro, derecha, etc.).</p><code class="cod-css">text-align: center;</code></li>
+      <li><b>line-height</b><p>Controla el espacio entre líneas de texto.</p><code class="cod-css">line-height: 1.5;</code></li>
+      <li><b>color</b><p>Define el color del texto.</p><code class="cod-css">color: #2563eb;</code></li>
+    </ul>
+
+    <div class="ej ej--res ej--chico">
+      <figure class="codigo codigo--css" id="ej-39c">
+        <figcaption><span class="codigo__archivo">index.html</span><span class="codigo__donde">dentro de &lt;style&gt;</span></figcaption>
+        <pre tabindex="0" aria-label="Código CSS de index.html, dentro de style"><code><span class="c-etq">body</span> {
+  <span class="c-atr">font-family</span>: <span class="c-str">"Segoe UI", Arial, sans-serif</span>;
+}
+<span class="c-etq">h1</span> {
+  <span class="c-atr">font-size</span>: <span class="c-num">32px</span>;
+  <span class="c-atr">font-weight</span>: <span class="c-str">bold</span>;
+  <span class="c-atr">color</span>: <span class="c-str">#2563eb</span>;
+}
+<span class="c-etq">h2</span> {
+  <span class="c-atr">font-size</span>: <span class="c-num">20px</span>;
+  <span class="c-atr">font-weight</span>: <span class="c-num">600</span>;
+  <span class="c-atr">color</span>: <span class="c-str">#374151</span>;
+}
+<span class="c-etq">p</span> {
+  <span class="c-atr">font-size</span>: <span class="c-num">16px</span>;
+  <span class="c-atr">line-height</span>: <span class="c-num">1.6</span>;
+  <span class="c-atr">color</span>: <span class="c-str">#4b5563</span>;
+}</code></pre>
+      </figure>
+      <div class="ej-col">
+        <figure class="codigo codigo--html" id="ej-39h">
+          <figcaption><span class="codigo__archivo">index.html</span><span class="codigo__donde">dentro de &lt;body&gt;</span></figcaption>
+          <pre tabindex="0" aria-label="Código de index.html, dentro de body"><code><span class="c-etq">&lt;h1&gt;</span>Bienvenido<span class="c-etq">&lt;/h1&gt;</span>
+<span class="c-etq">&lt;h2&gt;</span>Aprendé con CSS<span class="c-etq">&lt;/h2&gt;</span>
+<span class="c-etq">&lt;p&gt;</span>La tipografía mejora la lectura y hace
+  que tu página web sea más agradable.<span class="c-etq">&lt;/p&gt;</span></code></pre>
+        </figure>
+        <figure class="resultado" data-html="ej-39h" data-css="ej-39c" style="--alto:200px;--alto-cel:200px">
+          <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">index.html</span></div>
+          <iframe title="Resultado en el navegador: el título Bienvenido, grande y azul; el subtítulo Aprendé con CSS, en gris oscuro, y un párrafo gris con interlineado amplio, todo en letra Segoe UI." sandbox=""></iframe>
+          <figcaption class="resultado__nota">Con <code class="cod-css">font-family</code> en <code class="cod-css">body</code>, toda la página usa Segoe UI. Si la computadora no la tiene, usa Arial.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> CSS controla cómo se ve el texto en una página web: el <b>tipo de letra</b>, el <b>tamaño</b>, el <b>grosor</b>, la <b>alineación</b>, el <b>espaciado</b> y mucho más.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 39">39</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 40 =================== -->
+  <article class="lamina lamina--compacta" id="pag-40" aria-labelledby="t40">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°10</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t40"><span class="tit__num">40.</span> Margin y padding</h2>
+      <p class="tit__sub">Espacio externo y espacio interno</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-espacio"/></svg>
+      <p>En CSS, el <strong>padding</strong> es el espacio interno entre el contenido y el borde, mientras que el <strong>margin</strong> es el espacio externo entre un elemento y otros elementos. Ambos ayudan a organizar el contenido y mejorar el diseño visual de una página web.</p>
+    </div>
+
+    <ul class="comparar" aria-label="Padding y margin">
+      <li>
+        <div>
+          <h3>¿Qué es el padding?</h3>
+          <p>El padding es el espacio interno entre el contenido y el borde del elemento. Permite que el contenido no quede pegado al borde.</p>
+          <p class="comparar__cod"><code class="cod-css">padding: 20px;</code></p>
+        </div>
+        <svg class="ico ico--xl" aria-hidden="true" focusable="false" style="--ac:var(--turquesa)"><use href="#i-padding"/></svg>
+      </li>
+      <li>
+        <div>
+          <h3>¿Qué es el margin?</h3>
+          <p>El margin es el espacio externo fuera del borde del elemento, que lo separa de otros elementos. Se utiliza para crear distancia entre elementos.</p>
+          <p class="comparar__cod"><code class="cod-css">margin: 20px;</code></p>
+        </div>
+        <svg class="ico ico--xl" aria-hidden="true" focusable="false" style="--ac:var(--naranja)"><use href="#i-margin"/></svg>
+      </li>
+    </ul>
+
+    <div class="ej ej--res ej--chico">
+      <div class="ej-col">
+        <figure class="codigo codigo--html" id="ej-40h">
+          <figcaption><span class="codigo__archivo">index.html</span><span class="codigo__donde">dentro de &lt;body&gt;</span></figcaption>
+          <pre tabindex="0" aria-label="Código de index.html, dentro de body"><code><span class="c-etq">&lt;div&gt;</span>Hola<span class="c-etq">&lt;/div&gt;</span></code></pre>
+        </figure>
+        <figure class="codigo codigo--css" id="ej-40c">
+          <figcaption><span class="codigo__archivo">index.html</span><span class="codigo__donde">dentro de &lt;style&gt;</span></figcaption>
+          <pre tabindex="0" aria-label="Código CSS de index.html, dentro de style"><code><span class="c-etq">div</span> {
+  <span class="c-atr">padding</span>: <span class="c-num">20px</span>;
+  <span class="c-atr">margin</span>: <span class="c-num">30px</span>;
+  <span class="c-atr">background-color</span>: <span class="c-str">#dbeafe</span>;
+}</code></pre>
+        </figure>
+        <p class="consejo"><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-consejo"/></svg><strong>Buenas prácticas:</strong> usá padding para dar aire al contenido y margin para separar elementos. Mantené un espaciado consistente en toda la página.</p>
+      </div>
+      <div class="ej-col">
+        <figure class="resultado" data-html="ej-40h" data-css="ej-40c" style="--alto:136px;--alto-cel:136px">
+          <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">index.html</span></div>
+          <iframe title="Resultado en el navegador: una caja celeste con la palabra Hola, separada del texto por el padding y alejada del borde de la página por el margin." sandbox=""></iframe>
+          <figcaption class="resultado__nota">El borde de la caja es donde termina su fondo celeste.</figcaption>
+        </figure>
+        <figure class="esquema">
+          <svg viewBox="0 0 356 170" style="max-width:330px;margin:0 auto" role="img" aria-labelledby="esq40">
+            <title id="esq40">Cómo se ve el ejemplo, con cada espacio señalado. Afuera, una línea de puntos marca el margin, el espacio externo: 30 píxeles que separan la caja de lo que la rodea. Adentro, la caja celeste. Su fondo cubre el padding, el espacio interno de 20 píxeles, y el contenido: la palabra Hola.</title>
+            <!-- margin: espacio externo, sin color -->
+            <rect x="8" y="8" width="214" height="154" rx="4" style="fill:none;stroke:var(--naranja);stroke-width:1.5;stroke-dasharray:5 4"/>
+            <!-- la caja: su fondo cubre el padding y el contenido -->
+            <rect x="38" y="38" width="154" height="94" style="fill:var(--acento-claro)"/>
+            <rect x="58" y="58" width="114" height="54" style="fill:none;stroke:var(--gris);stroke-width:1.2;stroke-dasharray:3 3"/>
+            <text class="tt" x="115" y="92" text-anchor="middle" style="font-size:20px">Hola</text>
+            <!-- flechas -->
+            <g style="fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round">
+              <path d="M78 11v24M75 15l3-4 3 4M75 31l3 4 3-4M11 85h24M15 82l-4 3 4 3M31 82l4 3-4 3" style="stroke:var(--naranja)"/>
+              <path d="M150 41v14M147 45l3-4 3 4M147 51l3 4 3-4M41 85h14M45 82l-4 3 4 3M51 82l4 3-4 3" style="stroke:var(--turquesa)"/>
+            </g>
+            <!-- rótulos -->
+            <g style="fill:none;stroke-width:1.5">
+              <path d="M200 23h34" style="stroke:var(--naranja)"/>
+              <path d="M182 70h52" style="stroke:var(--turquesa)"/>
+              <path d="M160 104h74" style="stroke:var(--gris)"/>
+            </g>
+            <g style="stroke:none">
+              <circle cx="234" cy="23" r="3" style="fill:var(--naranja)"/>
+              <circle cx="234" cy="70" r="3" style="fill:var(--turquesa)"/>
+              <circle cx="234" cy="104" r="3" style="fill:var(--gris)"/>
+            </g>
+            <g class="tt" style="font-size:13px">
+              <text x="242" y="21" style="font-weight:700;fill:var(--naranja-texto)">margin</text>
+              <text x="242" y="37" style="fill:var(--naranja-texto)">(espacio externo)</text>
+              <text x="242" y="68" style="font-weight:700;fill:var(--turquesa-texto)">padding</text>
+              <text x="242" y="84" style="fill:var(--turquesa-texto)">(espacio interno)</text>
+              <text x="242" y="108" style="font-weight:700">contenido</text>
+            </g>
+          </svg>
+        </figure>
+      </div>
+    </div>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> el <b>padding</b> agrega espaciado interno (dentro del borde) y el <b>margin</b> agrega espaciado externo (fuera del borde). Ambos ayudan a organizar y mejorar el diseño.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 40">40</span>
+    </footer>
+  </article>
+
+  <!-- =================== PARA PROFUNDIZAR =================== -->
+  <article class="lamina lamina--pf" id="profundizar" aria-labelledby="tpf">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°10</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="tpf"><span class="tit__num">+</span> Para profundizar</h2>
+      <p class="tit__sub">Un poco más sobre cada lámina</p>
+    </div>
+
+    <div class="pf-grid">
+    <section class="pf" aria-labelledby="pf37">
+      <p class="pf__etiqueta">Lámina 37</p>
+      <h3 class="pf__titulo" id="pf37">Un CSS ordenado</h3>
+      <div class="pf__texto">
+        <p>Una regla puede ir en una sola línea, como en la lámina 37, o en varias, como en la 38: el navegador la lee igual. Con varias propiedades, conviene escribir una por línea.</p>
+        <p>Los comentarios de CSS van entre <code class="cod-css">/*</code> y <code class="cod-css">*/</code>: <code class="cod-css">/* Títulos */</code>. El <code class="cod-js">//</code> de JavaScript no sirve en CSS: rompe la regla que sigue.</p>
+        <p><strong>Resumen rápido:</strong> HTML es el contenido (estructura y significado) y CSS, la apariencia (diseño y estilo). Ambos trabajan juntos para crear páginas web completas.</p>
+        <p class="consejo"><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-consejo"/></svg><strong>Buenas prácticas:</strong> mantené tu CSS organizado. Agrupá y comentá tus estilos para que sea más fácil de leer y modificar.</p>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf38">
+      <p class="pf__etiqueta">Lámina 38</p>
+      <h3 class="pf__titulo" id="pf38">Más sobre colores y fondos</h3>
+      <div class="pf__texto">
+        <ul class="pf__lista">
+          <li><code class="cod-css">royalblue</code>: un nombre predefinido en inglés.</li>
+          <li><code class="cod-css">#2563eb</code>: el formato más utilizado. Tres pares de cifras, de <code class="cod-css">00</code> a <code class="cod-css">ff</code>: rojo, verde y azul.</li>
+          <li><code class="cod-css">rgb(37, 99, 235)</code>: el mismo azul, de 0 a 255.</li>
+          <li><code class="cod-css cod-larga">rgba(37, 99, 235, 0.7)</code>: el mismo azul, al 70&nbsp;%. El último valor, alpha, va de 0 a 1.</li>
+        </ul>
+        <p><code class="cod-css cod-larga">background-image: url("paisaje.svg");</code> pone una imagen de fondo. Con <code class="cod-css">background-repeat: no-repeat;</code>, se ve una sola vez.</p>
+        <p><code class="cod-css">opacity: 0.8;</code> define la transparencia de todo el elemento, también la de su texto: va de 0 a 1.</p>
+        <p class="consejo"><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-consejo"/></svg><strong>Buenas prácticas:</strong> mantener un buen contraste entre el texto y el fondo, no abusar de la cantidad de colores y usar una paleta coherente en todo el sitio.</p>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf39">
+      <p class="pf__etiqueta">Lámina 39</p>
+      <h3 class="pf__titulo" id="pf39">La lista de fuentes de respaldo</h3>
+      <div class="pf__texto">
+        <p><code class="cod-css cod-larga">font-family: "Segoe UI", Arial, sans-serif;</code> es una lista: el navegador usa la primera fuente que tenga la computadora. Si no está Segoe UI, prueba con Arial, y si tampoco, usa cualquier fuente sin serifa.</p>
+        <p>Los nombres con espacios van entre comillas. Al final va siempre una familia genérica: <code class="cod-css">sans-serif</code> (sin serifa, como Arial, Verdana o Segoe UI) o <code class="cod-css">serif</code> (con serifa, como Georgia). Esas cuatro fuentes ya vienen en Windows.</p>
+        <p><code class="cod-css">font-weight</code> también acepta números del 100 al 900: 400 es normal y 700, negrita.</p>
+        <p class="consejo"><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-consejo"/></svg><strong>Buenas prácticas:</strong> no uses demasiadas fuentes (con una o dos es suficiente), mantené una buena jerarquía con distintos tamaños y grosores, cuidá el contraste y usá tamaños legibles.</p>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf40">
+      <p class="pf__etiqueta">Lámina 40</p>
+      <h3 class="pf__titulo" id="pf40">Un lado por vez</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <ul class="pf__lista">
+            <li><strong>Un valor:</strong> el mismo espacio en los cuatro lados: <code class="cod-css">margin: 20px;</code></li>
+            <li><strong>Dos valores:</strong> el primero es arriba y abajo; el segundo, a los costados: <code class="cod-css">padding: 10px 20px;</code></li>
+            <li><strong>Un solo lado:</strong> se agrega <code class="cod-css">-top</code> (arriba), <code class="cod-css">-right</code> (derecha), <code class="cod-css">-bottom</code> (abajo) o <code class="cod-css">-left</code> (izquierda): <code class="cod-css">margin-bottom: 16px;</code></li>
+          </ul>
+          <p>El navegador ya les pone margin a <code class="cod-css">body</code>, a los títulos y a los párrafos: por eso la página no empieza pegada al borde de la ventana. Con <code class="cod-css">margin: 0;</code> se lo sacamos.</p>
+        </div>
+      </div>
+    </section>
+    </div>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 10</span>
+    </footer>
+  </article>
+
+  <!-- =================== ACTIVIDADES · Parte 1 =================== -->
+  <article class="lamina lamina--act" id="actividades" aria-labelledby="act-1">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°10</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <header class="act-banda">
+      <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-lapiz"/></svg>
+      <div>
+        <h2 id="act-1">Actividades para hacer en la carpeta</h2>
+        <p>TP N°10 — Primeros estilos con CSS</p>
+      </div>
+      <span class="act-banda__parte">Parte<br>1 de 2</span>
+    </header>
+
+    <p class="consigna"><strong>Consigna:</strong> Resolvé cada punto en la carpeta, con lápiz y sin usar la computadora.</p>
+
+    <ol class="acts acts--2col">
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">1-</span> ¿Qué es CSS?</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>Relacioná cada lenguaje con lo que define: HTML / CSS con apariencia / contenido.</div></li>
+          <li><b class="act__letra">b)</b><div>¿Qué selector se usa para seleccionar todos los elementos?</div></li>
+          <li><b class="act__letra">c)</b><div>Relacioná cada selector con lo que selecciona: <code class="cod-css">p</code> / <code class="cod-css">*</code> / <code class="cod-css">h1</code> con todos los títulos <code>&lt;h1&gt;</code> / todos los párrafos / todos los elementos de la página.</div></li>
+          <li><b class="act__letra">d)</b><div>Escribí una regla con selector de etiqueta que cambie el color del texto de todos los botones (<code>&lt;button&gt;</code>). Marcá su selector, su propiedad y su valor.</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">2-</span> Colores y fondos</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿Qué propiedad cambia el color del texto?</div></li>
+          <li><b class="act__letra">b)</b><div>¿Qué propiedad cambia el fondo de un elemento?</div></li>
+          <li><b class="act__letra">c)</b><div>Relacioná: <code class="cod-css">color</code> / <code class="cod-css">background-color</code> / <code class="cod-css">#2563eb</code> con color hexadecimal / texto / fondo.</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">3-</span> Tipografías y texto</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿Qué propiedad cambia el tamaño del texto?</div></li>
+          <li><b class="act__letra">b)</b><div>¿Para qué sirve <code class="cod-css">font-weight</code>?</div></li>
+          <li><b class="act__letra">c)</b><div>Completá: <code class="cod-css">text-align</code> se usa para ________ el texto.</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">4-</span> Margin y padding</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿Qué propiedad agrega espacio interno?</div></li>
+          <li><b class="act__letra">b)</b><div>¿Qué propiedad separa un elemento de otros?</div></li>
+          <li><b class="act__letra">c)</b><div>¿Cuál es la diferencia entre <code class="cod-css">margin</code> y <code class="cod-css">padding</code>?</div></li>
+        </ol>
+      </li>
+    </ol>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 10</span>
+    </footer>
+  </article>
+
+  <!-- =================== ACTIVIDADES · Parte 2 =================== -->
+  <article class="lamina lamina--act lamina--compu" id="actividades-2" aria-labelledby="act-2">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°10</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <header class="act-banda">
+      <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-editor"/></svg>
+      <div>
+        <h2 id="act-2">Práctica en la computadora</h2>
+        <p>TP N°10 — Primeros estilos con CSS</p>
+      </div>
+      <span class="act-banda__parte">Parte<br>2 de 2</span>
+    </header>
+
+    <p class="consigna"><strong>Consigna:</strong> Tomá tu página “Sobre mí” del TP7 y dale estilo con CSS interno, dentro de <code>&lt;style&gt;</code>.</p>
+
+    <ol class="acts">
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">1-</span> Mi página “Sobre mí”, con estilo</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">1</b><div>Hacé una copia de la carpeta <code class="cod-carpeta">tp7-apellido</code>, llamala <code class="cod-carpeta">tp10-apellido</code> y abrila en VS Code.</div></li>
+          <li><b class="act__letra">2</b><div>En el <code>&lt;head&gt;</code> de <code>index.html</code>, debajo del <code>&lt;title&gt;</code>, agregá la etiqueta <code>&lt;style&gt;</code>. Todo el CSS va adentro.</div></li>
+          <li><b class="act__letra">3</b><div>Título principal (<code class="cod-css">h1</code>): cambiá su <strong>fuente</strong> y su <strong>color</strong>.</div></li>
+          <li><b class="act__letra">4</b><div>Página (<code class="cod-css">body</code>): un <strong>color de fondo distinto al blanco</strong>.</div></li>
+          <li><b class="act__letra">5</b><div>Subtítulos (<code class="cod-css">h2</code>): un <strong>color destacado</strong>.</div></li>
+          <li><b class="act__letra">6</b><div>Párrafos (<code class="cod-css">p</code>): <strong>interlineado</strong> (<code class="cod-css">line-height</code>) y <strong>márgenes</strong> (<code class="cod-css">margin</code>).</div></li>
+          <li><b class="act__letra">7</b><div>Abrí <code>index.html</code> en Chrome. Después de cada cambio, guardá con <kbd>Ctrl</kbd> + <kbd>S</kbd> y recargá la página con <kbd>F5</kbd>.</div></li>
+        </ol>
+      </li>
+    </ol>
+
+    <section class="panel" aria-label="Para tener en cuenta">
+      <ol class="puntos">
+        <li><span class="puntos__n" aria-hidden="true">!</span><span>Usá fuentes que ya vienen en Windows (Arial, Verdana, Georgia o Segoe UI), siempre con una de respaldo: <code class="cod-css">font-family: Georgia, serif;</code></span></li>
+        <li><span class="puntos__n" aria-hidden="true">!</span><span>Cuidá el contraste: el texto se tiene que leer bien sobre el fondo.</span></li>
+      </ol>
+    </section>
+
+    <section class="entrega" aria-labelledby="ent-1">
+      <svg class="ico ico--l" aria-hidden="true" focusable="false"><use href="#i-subir"/></svg>
+      <div>
+        <h3 id="ent-1">Entrega</h3>
+        <div class="entrega__cols">
+          <div>
+            <p>La carpeta <code class="cod-carpeta">tp10-apellido</code> <strong>en un .zip</strong>, con <code>index.html</code> y su CSS interno, dentro de <code>&lt;style&gt;</code>. Subí el <code class="cod-carpeta">.zip</code> a Classroom.</p>
+          </div>
+          <div>
+            <p class="entrega__sub">Antes de entregar, marcá:</p>
+            <ul class="checklist">
+              <li><code>&lt;style&gt;</code> dentro del <code>&lt;head&gt;</code>.</li>
+              <li>El <code>&lt;h1&gt;</code> con otra fuente y otro color.</li>
+              <li>El fondo de la página no es blanco.</li>
+              <li>Los <code>&lt;h2&gt;</code> con un color destacado.</li>
+              <li>Los <code>&lt;p&gt;</code> con interlineado y márgenes.</li>
+              <li>El texto se lee bien sobre el fondo.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 10</span>
+    </footer>
+  </article>
+</main>
+
+<script src="../assets/js/actividades.js"></script>
+<script src="../assets/js/ejemplos.js"></script>
+</body>
+</html>

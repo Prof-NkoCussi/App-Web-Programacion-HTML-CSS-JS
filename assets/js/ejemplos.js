@@ -63,7 +63,8 @@
     var cab = fig.querySelector("figcaption");
     var pre = fig.querySelector("pre");
     if (!cab || !pre) { return; }
-    var archivo = cab.textContent.trim();
+    /* "index.html dentro de <style>": el nombre del archivo y dónde va, con un espacio entre los dos */
+    var archivo = Array.prototype.map.call(cab.children, function (c) { return c.textContent.trim(); }).join(" ") || cab.textContent.trim();
     var boton = crearBoton("Copiar");
     boton.setAttribute("aria-label", "Copiar el código de " + archivo);
     boton.addEventListener("click", function () {
@@ -205,6 +206,7 @@
      data-html: id del bloque HTML. Si es un fragmento (sin <html>), va dentro de <body>.
      data-css y data-js (opcionales): ids de los bloques que reemplazan
      al <link> de estilos.css y al <script src="app.js">.
+     Si el HTML no enlaza estilos.css, el bloque de data-css va en un <style> del <head> (CSS interno, TP10).
      Si el ejemplo tiene enlaces, se ven y se señalan como enlaces, pero no se abren:
      el marco no puede salir del cuadernillo ni cargar otro sitio. Debajo se avisa a dónde llevan.
      Si tiene un formulario, se puede completar (y el navegador revisa required y type="email"),
@@ -280,9 +282,14 @@
       html = "<!DOCTYPE html>\n<html lang=\"es-AR\">\n<head>\n<meta charset=\"utf-8\">\n</head>\n<body>\n" + html + "\n</body>\n</html>";
     }
     /* Se reemplaza con funciones para que un "$" del código no se tome como patrón */
+    var conLink = false;
     html = html.replace(/<link\b[^>]*href="estilos\.css"[^>]*>/gi, function () {
+      conLink = true;
       return css === null ? "" : "<style>\n" + css + "\n</style>";
     });
+    if (css !== null && !conLink) {
+      html = html.replace(/<\/head>/i, function () { return "<style>\n" + css + "\n</style>\n</head>"; });
+    }
     html = html.replace(/<script\b[^>]*src="app\.js"[^>]*>\s*<\/script>/gi, function () {
       return js === null ? "" : "<script>\n" + js.replace(/<\/script/gi, "<\\/script") + "\n<\/script>";
     });
@@ -317,9 +324,10 @@
       marco.parentNode.insertBefore(aviso, marco.nextSibling);
       avisos.push({ marco: marco, aviso: aviso });
     }
-    /* Abierto desde la computadora (file://), un marco aislado no puede cargar las imágenes de la carpeta:
-       si el ejemplo no corre scripts, se le da el origen del cuadernillo. En internet no hace falta. */
-    if (location.protocol === "file:" && /<img\b/i.test(html) && !/\ballow-scripts\b/.test(marco.getAttribute("sandbox"))) {
+    /* Abierto desde la computadora (file://), un marco aislado no puede cargar las imágenes de la carpeta
+       (las de <img> y las de url() en el CSS): si el ejemplo no corre scripts, se le da el origen del cuadernillo.
+       En internet no hace falta. */
+    if (location.protocol === "file:" && /<img\b|url\(/i.test(html) && !/\ballow-scripts\b/.test(marco.getAttribute("sandbox"))) {
       marco.setAttribute("sandbox", (marco.getAttribute("sandbox") + " allow-same-origin").trim());
     }
     /* La pestaña muestra el <title> del código, como el navegador */
