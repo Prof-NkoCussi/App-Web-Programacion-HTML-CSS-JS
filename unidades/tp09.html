@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TP N°9 — Estructura más completa: tablas y formularios · Programación - HTML, CSS, JS</title>
+  <meta name="description" content="TP N°9 de Programación: tablas, formularios con form, label e input, tipos de campo, textarea, select y button, contenedores y HTML semántico. Prof. Nicolás A. Cussi.">
+  <meta name="theme-color" content="#2563EB">
+  <link rel="preload" href="../assets/fonts/barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/barlow-semi-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/estilos.css">
+</head>
+<body data-tp="9">
+
+<!-- ====== Íconos ====== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-web" viewBox="0 0 48 48">
+      <rect x="4" y="7" width="40" height="34" rx="4" style="fill:var(--ac2, var(--acento-claro))"/>
+      <path d="M8 7h32a4 4 0 0 1 4 4v5H4v-5a4 4 0 0 1 4-4z" style="fill:var(--ac)"/>
+      <rect x="4" y="7" width="40" height="34" rx="4"/>
+      <path d="M4 16h40M19 23l-6 6 6 6M29 23l6 6-6 6M26.5 21l-5 16"/>
+    </symbol>
+    <symbol id="i-tabla" viewBox="0 0 48 48">
+      <path d="M7 7h34a3 3 0 0 1 3 3v7H4v-7a3 3 0 0 1 3-3z" style="fill:var(--ac)"/>
+      <rect x="4" y="7" width="40" height="34" rx="3"/>
+      <path d="M4 17h40M4 29h40M17 7v34M31 7v34"/>
+    </symbol>
+    <symbol id="i-formulario" viewBox="0 0 48 48">
+      <rect x="6" y="4" width="36" height="40" rx="3"/>
+      <path d="M12 11h11M12 24h11"/>
+      <rect x="12" y="14.5" width="24" height="5.5" rx="1.5"/>
+      <rect x="12" y="27.5" width="24" height="5.5" rx="1.5"/>
+      <rect x="22" y="35.5" width="14" height="4.5" rx="2.25" style="fill:var(--ac)"/>
+    </symbol>
+    <symbol id="i-campos" viewBox="0 0 48 48">
+      <rect x="5" y="6" width="15" height="15" rx="3" style="fill:var(--ac)"/>
+      <path d="M8.5 13.5l3 3 5-6"/>
+      <path d="M26 13.5h17M26 34.5h17"/>
+      <circle cx="12.5" cy="34.5" r="7.5"/>
+      <circle cx="12.5" cy="34.5" r="3.2" style="fill:var(--ac);stroke:none"/>
+    </symbol>
+    <symbol id="i-estructura" viewBox="0 0 48 48">
+      <rect x="9" y="18" width="20" height="12" rx="1.5" style="fill:var(--ac)"/>
+      <rect x="4" y="5" width="40" height="38" rx="3"/>
+      <path d="M4 13h40M4 35h40"/>
+      <rect x="33" y="18" width="6" height="12" rx="1.5"/>
+    </symbol>
+    <symbol id="i-importante" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="21" style="fill:var(--ac);stroke:none"/>
+      <path d="M24 12v15M24 35v.5" style="stroke:var(--blanco);stroke-width:5.5"/>
+    </symbol>
+    <symbol id="i-consejo" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="21" style="fill:var(--ac);stroke:none"/>
+      <path d="M14 24.5l7 7 13-14" style="stroke:var(--blanco);stroke-width:5.5"/>
+    </symbol>
+    <symbol id="i-foco" viewBox="0 0 48 48">
+      <path d="M24 2.5v4M10 8.5l2.8 2.8M38 8.5l-2.8 2.8M4 22h4M40 22h4"/>
+      <path d="M24 12a10 10 0 0 0-6.2 17.8c1.4 1.2 2.2 2.6 2.2 4.2v1h8v-1c0-1.6.8-3 2.2-4.2A10 10 0 0 0 24 12z" style="fill:var(--ac)"/>
+      <path d="M20 39h8M21.5 43h5"/>
+    </symbol>
+    <symbol id="i-lapiz" viewBox="0 0 48 48">
+      <path d="M33 6l9 9-25 25-9-9z" style="fill:var(--ac)"/>
+      <path d="M8 31 5.5 42.5 17 40z"/>
+      <path d="M27 12l9 9"/>
+    </symbol>
+    <symbol id="i-editor" viewBox="0 0 48 48">
+      <path d="M7 7h34a3 3 0 0 1 3 3v4H4v-4a3 3 0 0 1 3-3z" style="fill:var(--ac)"/>
+      <rect x="4" y="7" width="40" height="34" rx="3"/>
+      <path d="M4 14h40M10 21h14M15 27h18M15 33h11"/>
+    </symbol>
+    <symbol id="i-subir" viewBox="0 0 48 48">
+      <path d="M6 30v8a3 3 0 0 0 3 3h30a3 3 0 0 0 3-3v-8"/>
+      <path d="M24 31V7M15 16l9-9 9 9" style="stroke:var(--ac);stroke-width:3.4"/>
+    </symbol>
+    <symbol id="i-descarga" viewBox="0 0 24 24">
+      <path d="M12 3v12M7 10l5 5 5-5M5 20h14"/>
+    </symbol>
+    <symbol id="i-atras" viewBox="0 0 24 24">
+      <path d="M20 12H5M11 6l-6 6 6 6"/>
+    </symbol>
+  </defs>
+</svg>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="barra">
+  <div class="barra__fila">
+    <a class="boton barra__volver" href="../index.html"><svg aria-hidden="true" focusable="false"><use href="#i-atras"/></svg><span>Índice</span></a>
+    <span class="barra__titulo">TP N°9 — Estructura más completa: tablas y formularios</span>
+    <button class="boton" type="button" data-imprimir aria-label="Guardar en PDF">
+      <svg aria-hidden="true" focusable="false"><use href="#i-descarga"/></svg><span><span class="boton__largo">Guardar </span>PDF</span>
+    </button>
+  </div>
+  <nav class="partes" aria-label="Partes del TP N°9">
+    <a href="#pag-33">33 · Tablas</a>
+    <a href="#pag-34">34 · Formularios</a>
+    <a href="#pag-35">35 · Tipos de campo</a>
+    <a href="#pag-36">36 · Contenedores</a>
+    <a href="#profundizar">Para profundizar</a>
+    <a href="#actividades">Actividades</a>
+  </nav>
+</header>
+
+<main id="contenido" class="laminas">
+  <h1 class="sr-only">TP N°9 — Estructura más completa: tablas y formularios</h1>
+
+  <!-- =================== LÁMINA 33 =================== -->
+  <article class="lamina lamina--compacta" id="pag-33" aria-labelledby="t33">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°9</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t33"><span class="tit__num">33.</span> Tablas</h2>
+      <p class="tit__sub">table, tr, th, td, thead y tbody</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-tabla"/></svg>
+      <p>Las tablas organizan información en <strong>filas</strong> (horizontales) y <strong>columnas</strong> (verticales), y cada <strong>celda</strong> contiene un dato. Son muy útiles para mostrar datos de forma clara, como listas, horarios, precios o resultados.</p>
+    </div>
+
+    <section class="esquema-par" aria-labelledby="n33a">
+      <figure class="esquema">
+        <svg viewBox="0 0 360 172" style="max-width:380px;margin:0 auto" role="img" aria-labelledby="esq33">
+          <title id="esq33">Estructura básica de una tabla. Las columnas son verticales y las filas, horizontales: cada fila es un tr. La primera fila tiene las celdas de encabezado, th: Nombre, Edad y Ciudad, y va dentro de thead. Las otras tres filas tienen las celdas de datos, td: Ana, 20, Madrid; Luis, 22, Buenos Aires; Sofía, 19, Lima, y van dentro de tbody.</title>
+          <!-- Columnas y filas -->
+          <text class="tt" x="161" y="13" text-anchor="middle" style="font-size:13.5px;font-weight:700">Columnas</text>
+          <text class="tt" x="2" y="76" style="font-size:13.5px;font-weight:700">Filas</text>
+          <text x="2" y="94" style="font-family:var(--fuente-codigo);font-size:13px;font-weight:700;fill:var(--tinta)">&lt;tr&gt;</text>
+          <path d="M58 26v-6h206v6M51 42h-6v72h6M45 66h6M45 90h6" style="fill:none;stroke:var(--tinta);stroke-width:2;stroke-linecap:round;stroke-linejoin:round"/>
+          <!-- Encabezado: th dentro de thead -->
+          <g style="fill:var(--turquesa-claro);stroke:var(--turquesa);stroke-width:1.5">
+            <rect x="58" y="30" width="64" height="24"/>
+            <rect x="122" y="30" width="50" height="24"/>
+            <rect x="172" y="30" width="92" height="24"/>
+          </g>
+          <!-- Datos: td dentro de tbody -->
+          <g style="fill:var(--naranja-claro);stroke:var(--naranja);stroke-width:1.5">
+            <rect x="58" y="54" width="64" height="24"/>
+            <rect x="122" y="54" width="50" height="24"/>
+            <rect x="172" y="54" width="92" height="24"/>
+            <rect x="58" y="78" width="64" height="24"/>
+            <rect x="122" y="78" width="50" height="24"/>
+            <rect x="172" y="78" width="92" height="24"/>
+            <rect x="58" y="102" width="64" height="24"/>
+            <rect x="122" y="102" width="50" height="24"/>
+            <rect x="172" y="102" width="92" height="24"/>
+          </g>
+          <g class="tt" text-anchor="middle" style="font-size:13px">
+            <g style="font-weight:700;fill:var(--turquesa-texto)">
+              <text x="90" y="47">Nombre</text>
+              <text x="147" y="47">Edad</text>
+              <text x="218" y="47">Ciudad</text>
+            </g>
+            <text x="90" y="71">Ana</text>
+            <text x="147" y="71">20</text>
+            <text x="218" y="71">Madrid</text>
+            <text x="90" y="95">Luis</text>
+            <text x="147" y="95">22</text>
+            <text x="218" y="95">Buenos Aires</text>
+            <text x="90" y="119">Sofía</text>
+            <text x="147" y="119">19</text>
+            <text x="218" y="119">Lima</text>
+          </g>
+          <!-- thead y tbody -->
+          <g style="fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round">
+            <path d="M270 33h5v18h-5" style="stroke:var(--turquesa)"/>
+            <path d="M270 57h5v66h-5" style="stroke:var(--naranja)"/>
+          </g>
+          <g style="font-family:var(--fuente-codigo);font-size:13px;font-weight:700">
+            <text x="281" y="46" style="fill:var(--turquesa-texto)">&lt;thead&gt;</text>
+            <text x="281" y="94" style="fill:var(--naranja-texto)">&lt;tbody&gt;</text>
+          </g>
+          <!-- Referencias -->
+          <rect x="58" y="140" width="13" height="13" rx="2" style="fill:var(--turquesa-claro);stroke:var(--turquesa);stroke-width:1.5"/>
+          <rect x="58" y="158" width="13" height="13" rx="2" style="fill:var(--naranja-claro);stroke:var(--naranja);stroke-width:1.5"/>
+          <g class="tt" style="font-size:13px">
+            <text x="78" y="151"><tspan style="font-family:var(--fuente-codigo);font-weight:700;fill:var(--turquesa-texto)">&lt;th&gt;</tspan> celda de encabezado</text>
+            <text x="78" y="169"><tspan style="font-family:var(--fuente-codigo);font-weight:700;fill:var(--naranja-texto)">&lt;td&gt;</tspan> celda de datos</text>
+          </g>
+        </svg>
+      </figure>
+      <aside class="esquema-nota">
+        <h3 id="n33a">Etiquetas principales</h3>
+        <ul class="pf__lista">
+          <li><code>&lt;table&gt;</code>: define el contenedor de la tabla.</li>
+          <li><code>&lt;tr&gt;</code>: define una fila de la tabla.</li>
+          <li class="punto--turquesa"><code>&lt;thead&gt;</code>: agrupa las filas de encabezado.</li>
+          <li class="punto--turquesa"><code>&lt;th&gt;</code>: define una celda de encabezado (título).</li>
+          <li class="punto--naranja"><code>&lt;tbody&gt;</code>: agrupa las filas de contenido principal.</li>
+          <li class="punto--naranja"><code>&lt;td&gt;</code>: define una celda de datos.</li>
+        </ul>
+      </aside>
+    </section>
+
+    <div class="ej ej--res ej--chico">
+      <figure class="codigo codigo--html" id="ej-33">
+        <figcaption><span class="codigo__archivo">index.html</span><span class="codigo__donde">dentro de &lt;body&gt;</span></figcaption>
+        <pre tabindex="0" aria-label="Código de index.html, dentro de body"><code><span class="c-etq">&lt;table&gt;</span>
+  <span class="c-etq">&lt;thead&gt;</span>
+    <span class="c-etq">&lt;tr&gt;</span>
+      <span class="c-etq">&lt;th&gt;</span>Día<span class="c-etq">&lt;/th&gt;</span>
+      <span class="c-etq">&lt;th&gt;</span>Materia<span class="c-etq">&lt;/th&gt;</span>
+      <span class="c-etq">&lt;th&gt;</span>Horario<span class="c-etq">&lt;/th&gt;</span>
+    <span class="c-etq">&lt;/tr&gt;</span>
+  <span class="c-etq">&lt;/thead&gt;</span>
+  <span class="c-etq">&lt;tbody&gt;</span>
+    <span class="c-etq">&lt;tr&gt;</span>
+      <span class="c-etq">&lt;td&gt;</span>Lunes<span class="c-etq">&lt;/td&gt;</span>
+      <span class="c-etq">&lt;td&gt;</span>Matemática<span class="c-etq">&lt;/td&gt;</span>
+      <span class="c-etq">&lt;td&gt;</span>10:00 - 11:00<span class="c-etq">&lt;/td&gt;</span>
+    <span class="c-etq">&lt;/tr&gt;</span>
+    <span class="c-etq">&lt;tr&gt;</span>
+      <span class="c-etq">&lt;td&gt;</span>Miércoles<span class="c-etq">&lt;/td&gt;</span>
+      <span class="c-etq">&lt;td&gt;</span>Historia<span class="c-etq">&lt;/td&gt;</span>
+      <span class="c-etq">&lt;td&gt;</span>12:00 - 13:00<span class="c-etq">&lt;/td&gt;</span>
+    <span class="c-etq">&lt;/tr&gt;</span>
+  <span class="c-etq">&lt;/tbody&gt;</span>
+<span class="c-etq">&lt;/table&gt;</span></code></pre>
+      </figure>
+      <div class="ej-col">
+        <figure class="resultado" data-html="ej-33" style="--alto:92px;--alto-cel:92px">
+          <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">index.html</span></div>
+          <iframe title="Resultado en el navegador: una tabla sin bordes. Arriba, los encabezados Día, Materia y Horario, en negrita; debajo, las filas Lunes, Matemática, 10:00 - 11:00 y Miércoles, Historia, 12:00 - 13:00." sandbox=""></iframe>
+          <figcaption class="resultado__nota">Sin CSS, la tabla no tiene bordes y cada <code>&lt;th&gt;</code> se ve en negrita y centrado. Los bordes se los damos con CSS en el TP11.</figcaption>
+        </figure>
+        <aside class="esquema-nota esquema-nota--importante" aria-labelledby="n33b">
+          <h3 id="n33b"><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-importante"/></svg>Importante</h3>
+          <p class="esquema-nota__p">Las tablas son muy útiles para mostrar datos, como listas, horarios, precios o resultados. Usalas solo cuando la información tenga una estructura tabular real (filas y columnas).</p>
+        </aside>
+      </div>
+    </div>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> las tablas organizan los datos en <b>filas</b> y <b>columnas</b>. Deben usarse para mostrar información tabular, no para armar el diseño general de una página.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 33">33</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 34 =================== -->
+  <article class="lamina lamina--compacta" id="pag-34" aria-labelledby="t34">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°9</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t34"><span class="tit__num">34.</span> Formularios</h2>
+      <p class="tit__sub">form, label e input</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-formulario"/></svg>
+      <p>Los formularios permiten que los usuarios ingresen y envíen información: para registrarse, iniciar sesión, enviar mensajes o completar encuestas. Cada dato se escribe en un <strong>campo</strong>, y los datos se envían a un servidor para ser procesados.</p>
+    </div>
+
+    <div class="ej ej--ancho ej--chico">
+      <div class="ej-col">
+        <figure class="codigo codigo--html" id="ej-34">
+          <figcaption><span class="codigo__archivo">index.html</span><span class="codigo__donde">dentro de &lt;body&gt;</span></figcaption>
+          <pre tabindex="0" aria-label="Código de index.html, dentro de body"><code><span class="c-etq">&lt;h1&gt;</span>Contacto<span class="c-etq">&lt;/h1&gt;</span>
+<span class="c-etq">&lt;form&gt;</span>
+  <span class="c-etq">&lt;label</span> <span class="c-atr">for</span>=<span class="c-str">"nombre"</span><span class="c-etq">&gt;</span>Nombre:<span class="c-etq">&lt;/label&gt;</span>
+  <span class="c-etq">&lt;input</span> <span class="c-atr">type</span>=<span class="c-str">"text"</span> <span class="c-atr">id</span>=<span class="c-str">"nombre"</span> <span class="c-atr">name</span>=<span class="c-str">"nombre"</span> <span class="c-atr">required</span><span class="c-etq">&gt;</span>
+  <span class="c-etq">&lt;br&gt;</span>
+  <span class="c-etq">&lt;label</span> <span class="c-atr">for</span>=<span class="c-str">"email"</span><span class="c-etq">&gt;</span>Correo electrónico:<span class="c-etq">&lt;/label&gt;</span>
+  <span class="c-etq">&lt;input</span> <span class="c-atr">type</span>=<span class="c-str">"email"</span> <span class="c-atr">id</span>=<span class="c-str">"email"</span> <span class="c-atr">name</span>=<span class="c-str">"email"</span> <span class="c-atr">required</span><span class="c-etq">&gt;</span>
+  <span class="c-etq">&lt;br&gt;</span>
+  <span class="c-etq">&lt;button</span> <span class="c-atr">type</span>=<span class="c-str">"submit"</span><span class="c-etq">&gt;</span>Enviar<span class="c-etq">&lt;/button&gt;</span>
+<span class="c-etq">&lt;/form&gt;</span></code></pre>
+        </figure>
+        <aside class="esquema-nota" aria-labelledby="n34a">
+          <h3 id="n34a">Etiquetas de un formulario</h3>
+          <ul class="pf__lista">
+            <li><code>&lt;form&gt;</code> contiene todos los campos del formulario.</li>
+            <li><code>&lt;label&gt;</code> asocia un texto descriptivo con un campo.</li>
+            <li><code>&lt;input&gt;</code> crea diferentes tipos de campos de entrada.</li>
+          </ul>
+        </aside>
+      </div>
+      <figure class="resultado" data-html="ej-34" style="--alto:192px;--alto-cel:192px">
+        <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">index.html</span></div>
+        <iframe title="Resultado en el navegador: el título Contacto, el campo Nombre, el campo Correo electrónico y el botón Enviar. Se puede escribir en los campos." sandbox="allow-scripts allow-forms"></iframe>
+        <figcaption class="resultado__nota">Tocá “Nombre:” y se activa su campo. “Enviar” todavía no manda los datos: el formulario cobra vida en el TP14.</figcaption>
+      </figure>
+    </div>
+
+    <section class="esquema-par" aria-labelledby="n34">
+      <figure class="esquema">
+        <svg viewBox="0 0 360 126" style="max-width:380px;margin:0 auto" role="img" aria-labelledby="esq34">
+          <title id="esq34">Cómo se une un label con su campo. En label for="email", el for vale email. En input type="email" id="email" name="email", el id también vale email: como son iguales, el texto Correo electrónico queda unido a ese campo. El name, email, es el nombre del dato.</title>
+          <rect x="0" y="0" width="360" height="30" rx="6" style="fill:var(--cod-fondo)"/>
+          <rect x="0" y="64" width="360" height="30" rx="6" style="fill:var(--cod-fondo)"/>
+          <g style="font-family:var(--fuente-codigo);font-size:14px;fill:var(--cod-base)">
+            <text x="10" y="20" textLength="335.8" lengthAdjust="spacingAndGlyphs"><tspan style="fill:var(--cod-etq)">&lt;label</tspan> <tspan style="fill:var(--cod-atr)">for</tspan>=<tspan style="fill:var(--cod-str)">"email"</tspan><tspan style="fill:var(--cod-etq)">&gt;</tspan>Correo electrónico:<tspan style="fill:var(--cod-etq)">&lt;/label&gt;</tspan></text>
+            <text x="10" y="84" textLength="321.2" lengthAdjust="spacingAndGlyphs"><tspan style="fill:var(--cod-etq)">&lt;input</tspan> <tspan style="fill:var(--cod-atr)">type</tspan>=<tspan style="fill:var(--cod-str)">"email"</tspan> <tspan style="fill:var(--cod-atr)">id</tspan>=<tspan style="fill:var(--cod-str)">"email"</tspan> <tspan style="fill:var(--cod-atr)">name</tspan>=<tspan style="fill:var(--cod-str)">"email"</tspan><tspan style="fill:var(--cod-etq)">&gt;</tspan></text>
+          </g>
+          <g style="fill:none;stroke-width:2">
+            <rect x="88.8" y="5" width="54.1" height="20" rx="4" style="stroke:var(--turquesa)"/>
+            <rect x="176.4" y="69" width="54.1" height="20" rx="4" style="stroke:var(--turquesa)"/>
+            <rect x="271.3" y="69" width="54.1" height="20" rx="4" style="stroke:var(--naranja)"/>
+          </g>
+          <g style="fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round">
+            <path d="M115.9 26v20h87.6v22" style="stroke:var(--turquesa)"/>
+            <path d="M298.4 90v18" style="stroke:var(--naranja)"/>
+          </g>
+          <g class="tt" text-anchor="middle" style="font-size:13px;font-weight:700">
+            <text x="159.7" y="59" style="fill:var(--turquesa-texto)">iguales</text>
+            <text x="298.4" y="123" style="fill:var(--naranja-texto)">nombre del dato</text>
+          </g>
+        </svg>
+      </figure>
+      <aside class="esquema-nota">
+        <h3 id="n34">for, id y name</h3>
+        <ul class="pf__lista">
+          <li class="punto--turquesa">El <code>for</code> del <code>&lt;label&gt;</code> tiene que ser <strong>igual</strong> al <code>id</code> de su campo: así quedan unidos. Cada <code>id</code> va una sola vez.</li>
+          <li class="punto--naranja"><code>name</code> es el <strong>nombre del dato</strong>: al enviar, cada valor viaja con su nombre (<code>email=ana@mail.com</code>). Un campo sin <code>name</code> no se envía.</li>
+          <li><code>required</code>: campo obligatorio (ver “Para profundizar”).</li>
+        </ul>
+      </aside>
+    </section>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> los formularios permiten que los usuarios <b>ingresen y envíen</b> información. Se utilizan para recolectar datos y comunicarse con los usuarios.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 34">34</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 35 =================== -->
+  <article class="lamina lamina--compacta" id="pag-35" aria-labelledby="t35">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°9</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t35"><span class="tit__num">35.</span> Tipos de campo</h2>
+      <p class="tit__sub">input, textarea, select y button</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-campos"/></svg>
+      <p>El atributo <code>type</code> del <code>&lt;input&gt;</code> indica qué tipo de campo se crea. Además, <code>&lt;textarea&gt;</code> permite ingresar varias líneas de texto, <code>&lt;select&gt;</code> crea una lista desplegable y <code>&lt;button&gt;</code>, un botón.</p>
+    </div>
+
+    <ul class="operaciones operaciones--tipos" aria-label="Tipos de campo del input">
+      <li><b>text</b><span>Texto</span><p>Para ingresar texto simple.</p></li>
+      <li><b>email</b><span>Correo electrónico</span><p>Para ingresar un email.</p></li>
+      <li><b>password</b><span>Contraseña</span><p>Oculta el texto ingresado.</p></li>
+      <li><b>tel</b><span>Teléfono</span><p>Para ingresar un número de teléfono.</p></li>
+      <li><b>checkbox</b><span>Casilla de verificación</span><p>Para seleccionar varias opciones.</p></li>
+      <li><b>radio</b><span>Botón de opción</span><p>Para elegir una sola opción.</p></li>
+    </ul>
+
+    <div class="ej ej--ancho ej--chico">
+      <figure class="codigo codigo--html" id="ej-35a">
+        <figcaption><span class="codigo__archivo">index.html</span><span class="codigo__donde">dentro de &lt;body&gt;</span></figcaption>
+        <pre tabindex="0" aria-label="Código de index.html, dentro de body"><code><span class="c-etq">&lt;form&gt;</span>
+  <span class="c-etq">&lt;label</span> <span class="c-atr">for</span>=<span class="c-str">"tel"</span><span class="c-etq">&gt;</span>Teléfono:<span class="c-etq">&lt;/label&gt;</span>
+  <span class="c-etq">&lt;input</span> <span class="c-atr">type</span>=<span class="c-str">"tel"</span> <span class="c-atr">id</span>=<span class="c-str">"tel"</span> <span class="c-atr">name</span>=<span class="c-str">"telefono"</span><span class="c-etq">&gt;</span>
+  <span class="c-etq">&lt;br&gt;</span>
+  <span class="c-etq">&lt;input</span> <span class="c-atr">type</span>=<span class="c-str">"checkbox"</span> <span class="c-atr">id</span>=<span class="c-str">"acepto"</span> <span class="c-atr">name</span>=<span class="c-str">"acepto"</span><span class="c-etq">&gt;</span>
+  <span class="c-etq">&lt;label</span> <span class="c-atr">for</span>=<span class="c-str">"acepto"</span><span class="c-etq">&gt;</span>Acepto los términos<span class="c-etq">&lt;/label&gt;</span>
+  <span class="c-etq">&lt;br&gt;</span>
+  <span class="c-etq">&lt;input</span> <span class="c-atr">type</span>=<span class="c-str">"radio"</span> <span class="c-atr">id</span>=<span class="c-str">"op1"</span> <span class="c-atr">name</span>=<span class="c-str">"opcion"</span> <span class="c-atr">value</span>=<span class="c-str">"1"</span><span class="c-etq">&gt;</span>
+  <span class="c-etq">&lt;label</span> <span class="c-atr">for</span>=<span class="c-str">"op1"</span><span class="c-etq">&gt;</span>Opción 1<span class="c-etq">&lt;/label&gt;</span>
+  <span class="c-etq">&lt;input</span> <span class="c-atr">type</span>=<span class="c-str">"radio"</span> <span class="c-atr">id</span>=<span class="c-str">"op2"</span> <span class="c-atr">name</span>=<span class="c-str">"opcion"</span> <span class="c-atr">value</span>=<span class="c-str">"2"</span><span class="c-etq">&gt;</span>
+  <span class="c-etq">&lt;label</span> <span class="c-atr">for</span>=<span class="c-str">"op2"</span><span class="c-etq">&gt;</span>Opción 2<span class="c-etq">&lt;/label&gt;</span>
+<span class="c-etq">&lt;/form&gt;</span></code></pre>
+      </figure>
+      <figure class="resultado" data-html="ej-35a" style="--alto:98px;--alto-cel:98px">
+        <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">index.html</span></div>
+        <iframe title="Resultado en el navegador: el campo Teléfono, la casilla Acepto los términos y dos botones de opción, Opción 1 y Opción 2." sandbox="allow-scripts allow-forms"></iframe>
+        <figcaption class="resultado__nota">Probá marcar las dos opciones: queda una sola, porque tienen el mismo <code>name</code>. En el celular, <code>type="tel"</code> abre el teclado de números.</figcaption>
+      </figure>
+    </div>
+
+    <div class="ej ej--ancho ej--chico">
+      <figure class="codigo codigo--html" id="ej-35b">
+        <figcaption><span class="codigo__archivo">index.html</span><span class="codigo__donde">dentro de &lt;body&gt;</span></figcaption>
+        <pre tabindex="0" aria-label="Código de index.html, dentro de body"><code><span class="c-etq">&lt;form&gt;</span>
+  <span class="c-etq">&lt;label</span> <span class="c-atr">for</span>=<span class="c-str">"motivo"</span><span class="c-etq">&gt;</span>Motivo:<span class="c-etq">&lt;/label&gt;</span>
+  <span class="c-etq">&lt;select</span> <span class="c-atr">id</span>=<span class="c-str">"motivo"</span> <span class="c-atr">name</span>=<span class="c-str">"motivo"</span><span class="c-etq">&gt;</span>
+    <span class="c-etq">&lt;option</span> <span class="c-atr">value</span>=<span class="c-str">"consulta"</span><span class="c-etq">&gt;</span>Consulta<span class="c-etq">&lt;/option&gt;</span>
+    <span class="c-etq">&lt;option</span> <span class="c-atr">value</span>=<span class="c-str">"pedido"</span><span class="c-etq">&gt;</span>Pedido<span class="c-etq">&lt;/option&gt;</span>
+    <span class="c-etq">&lt;option</span> <span class="c-atr">value</span>=<span class="c-str">"reclamo"</span><span class="c-etq">&gt;</span>Reclamo<span class="c-etq">&lt;/option&gt;</span>
+  <span class="c-etq">&lt;/select&gt;</span>
+  <span class="c-etq">&lt;br&gt;</span>
+  <span class="c-etq">&lt;label</span> <span class="c-atr">for</span>=<span class="c-str">"mensaje"</span><span class="c-etq">&gt;</span>Mensaje:<span class="c-etq">&lt;/label&gt;</span>
+  <span class="c-etq">&lt;textarea</span> <span class="c-atr">id</span>=<span class="c-str">"mensaje"</span> <span class="c-atr">name</span>=<span class="c-str">"mensaje"</span> <span class="c-atr">rows</span>=<span class="c-str">"4"</span><span class="c-etq">&gt;&lt;/textarea&gt;</span>
+  <span class="c-etq">&lt;br&gt;</span>
+  <span class="c-etq">&lt;button</span> <span class="c-atr">type</span>=<span class="c-str">"submit"</span><span class="c-etq">&gt;</span>Enviar<span class="c-etq">&lt;/button&gt;</span>
+<span class="c-etq">&lt;/form&gt;</span></code></pre>
+      </figure>
+      <figure class="resultado" data-html="ej-35b" style="--alto:150px;--alto-cel:150px">
+        <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">index.html</span></div>
+        <iframe title="Resultado en el navegador: una lista desplegable Motivo, con Consulta elegida, un campo Mensaje de varias líneas y el botón Enviar." sandbox="allow-scripts allow-forms"></iframe>
+        <figcaption class="resultado__nota"><code>rows</code> indica cuántas líneas se ven. “Enviar” todavía no manda los datos: el formulario cobra vida en el TP14.</figcaption>
+      </figure>
+    </div>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> el atributo <b>type</b> define qué campo crea el <code>&lt;input&gt;</code>. <code>&lt;textarea&gt;</code>, <code>&lt;select&gt;</code> y <code>&lt;button&gt;</code> completan el formulario.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 35">35</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 36 =================== -->
+  <article class="lamina lamina--compacta" id="pag-36" aria-labelledby="t36">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°9</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h tit__h--largo" id="t36"><span class="tit__num">36.</span> Contenedores y HTML semántico</h2>
+      <p class="tit__sub">div y las etiquetas con significado</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-estructura"/></svg>
+      <p>Un <strong>contenedor</strong> agrupa elementos y organiza la página en secciones. El <strong>HTML semántico</strong> usa etiquetas que dicen qué es cada parte.</p>
+    </div>
+
+    <section class="esquema-par ej--chico" aria-labelledby="n36b">
+      <figure class="esquema">
+        <svg viewBox="0 0 340 262" style="max-width:360px;margin:0 auto" role="img" aria-labelledby="esq36">
+          <title id="esq36">Esquema de una página semántica en el navegador. Arriba, header: el encabezado, con el logo y el título. Debajo, nav: el menú de navegación. Después, main: el contenido principal; adentro hay una section, una sección de un tema, y dentro de ella un article, un contenido autónomo. A la derecha de main, aside: contenido adicional, como una barra lateral. Abajo, footer: el pie de página, con contacto y redes. header, nav, aside y footer van en turquesa; main, section y article, en naranja.</title>
+          <!-- Ventana del navegador -->
+          <rect x="1" y="1" width="338" height="260" rx="8" style="fill:var(--blanco);stroke:var(--acento);stroke-width:1.5"/>
+          <path d="M1.75 9a7.25 7.25 0 0 1 7.25-7.25h322a7.25 7.25 0 0 1 7.25 7.25v13H1.75z" style="fill:var(--acento-claro)"/>
+          <circle cx="13" cy="12" r="3.5" style="fill:var(--punto-rojo)"/>
+          <circle cx="25" cy="12" r="3.5" style="fill:var(--punto-amarillo)"/>
+          <circle cx="37" cy="12" r="3.5" style="fill:var(--punto-verde)"/>
+          <!-- Lo que acompaña al contenido: turquesa -->
+          <g style="fill:var(--turquesa-claro);stroke:var(--turquesa);stroke-width:1.5">
+            <rect x="9" y="30" width="322" height="30" rx="5"/>
+            <rect x="9" y="66" width="322" height="26" rx="5"/>
+            <rect x="241" y="98" width="90" height="124" rx="5"/>
+            <rect x="9" y="228" width="322" height="26" rx="5"/>
+          </g>
+          <!-- El contenido principal: naranja -->
+          <rect x="9" y="98" width="226" height="124" rx="5" style="fill:var(--naranja-claro);stroke:var(--naranja);stroke-width:1.5"/>
+          <rect x="17" y="124" width="210" height="90" rx="4" style="fill:var(--blanco);stroke:var(--naranja);stroke-width:1.5"/>
+          <rect x="25" y="150" width="194" height="56" rx="4" style="fill:var(--naranja-claro);stroke:var(--naranja);stroke-width:1.5"/>
+          <!-- Etiquetas -->
+          <g style="font-family:var(--fuente-codigo);font-size:13px;font-weight:700">
+            <g style="fill:var(--turquesa-texto)">
+              <text x="17" y="50">&lt;header&gt;</text>
+              <text x="17" y="84">&lt;nav&gt;</text>
+              <text x="249" y="117">&lt;aside&gt;</text>
+              <text x="17" y="246">&lt;footer&gt;</text>
+            </g>
+            <g style="fill:var(--naranja-texto)">
+              <text x="17" y="117">&lt;main&gt;</text>
+              <text x="25" y="142">&lt;section&gt;</text>
+              <text x="33" y="170">&lt;article&gt;</text>
+            </g>
+          </g>
+          <!-- Qué es cada parte -->
+          <g class="tt" style="font-size:12.5px">
+            <text x="92" y="50">Encabezado (logo, título, etc.)</text>
+            <text x="64" y="84">Menú de navegación</text>
+            <text x="70" y="117">Contenido principal</text>
+            <text x="102" y="142">Sección (un tema)</text>
+            <text x="33" y="192">Artículo (contenido autónomo)</text>
+            <text x="249" y="140">Contenido</text>
+            <text x="249" y="156">adicional</text>
+            <text x="249" y="172">(barra</text>
+            <text x="249" y="188">lateral)</text>
+            <text x="82" y="246">Pie de página (contacto, redes, etc.)</text>
+          </g>
+        </svg>
+      </figure>
+      <div class="ej-col">
+        <figure class="codigo codigo--html" id="ej-36a">
+          <figcaption><span class="codigo__archivo">index.html</span><span class="codigo__donde">dentro de &lt;body&gt;</span></figcaption>
+          <pre tabindex="0" aria-label="Código de index.html, dentro de body"><code><span class="c-etq">&lt;div&gt;</span>
+  <span class="c-etq">&lt;p&gt;</span>Este es un contenido
+    dentro de un contenedor.<span class="c-etq">&lt;/p&gt;</span>
+<span class="c-etq">&lt;/div&gt;</span></code></pre>
+        </figure>
+        <aside class="esquema-nota esquema-nota--importante" aria-labelledby="n36b">
+          <h3 id="n36b"><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-importante"/></svg>Importante</h3>
+          <p class="esquema-nota__p"><code>&lt;div&gt;</code> es un contenedor genérico: no indica el significado del contenido. Las etiquetas semánticas, sí: ayudan a usuarios y navegadores a entender la estructura de la página.</p>
+        </aside>
+      </div>
+    </section>
+
+    <div class="ej ej--chico ej--largo">
+      <figure class="codigo codigo--html" id="ej-36">
+        <figcaption><span class="codigo__archivo">index.html</span><span class="codigo__donde">dentro de &lt;body&gt;</span></figcaption>
+        <pre tabindex="0" aria-label="Código de index.html, dentro de body"><code><span class="c-etq">&lt;header&gt;</span>
+  <span class="c-etq">&lt;h1&gt;</span>Mi sitio web<span class="c-etq">&lt;/h1&gt;</span>
+<span class="c-etq">&lt;/header&gt;</span>
+<span class="c-etq">&lt;nav&gt;</span>
+  <span class="c-etq">&lt;a</span> <span class="c-atr">href</span>=<span class="c-str">"#"</span><span class="c-etq">&gt;</span>Inicio<span class="c-etq">&lt;/a&gt;</span> |
+  <span class="c-etq">&lt;a</span> <span class="c-atr">href</span>=<span class="c-str">"#"</span><span class="c-etq">&gt;</span>Servicios<span class="c-etq">&lt;/a&gt;</span> |
+  <span class="c-etq">&lt;a</span> <span class="c-atr">href</span>=<span class="c-str">"#"</span><span class="c-etq">&gt;</span>Contacto<span class="c-etq">&lt;/a&gt;</span>
+<span class="c-etq">&lt;/nav&gt;</span>
+<span class="c-etq">&lt;main&gt;</span>
+  <span class="c-etq">&lt;section&gt;</span>
+    <span class="c-etq">&lt;h2&gt;</span>Últimas noticias<span class="c-etq">&lt;/h2&gt;</span>
+    <span class="c-etq">&lt;article&gt;</span>
+      <span class="c-etq">&lt;h3&gt;</span>Un artículo interesante<span class="c-etq">&lt;/h3&gt;</span>
+      <span class="c-etq">&lt;p&gt;</span>Este es un ejemplo de contenido.<span class="c-etq">&lt;/p&gt;</span>
+    <span class="c-etq">&lt;/article&gt;</span>
+  <span class="c-etq">&lt;/section&gt;</span>
+<span class="c-etq">&lt;/main&gt;</span>
+<span class="c-etq">&lt;aside&gt;</span>
+  <span class="c-etq">&lt;p&gt;</span>Información adicional.<span class="c-etq">&lt;/p&gt;</span>
+<span class="c-etq">&lt;/aside&gt;</span>
+<span class="c-etq">&lt;footer&gt;</span>
+  <span class="c-etq">&lt;p&gt;</span>© Mi sitio web. Todos los derechos reservados.<span class="c-etq">&lt;/p&gt;</span>
+<span class="c-etq">&lt;/footer&gt;</span></code></pre>
+      </figure>
+      <figure class="resultado" data-html="ej-36" style="--alto:328px;--alto-cel:328px">
+        <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">index.html</span></div>
+        <iframe title="Resultado en el navegador: el título Mi sitio web, los enlaces Inicio, Servicios y Contacto separados por barras, el subtítulo Últimas noticias, el título Un artículo interesante, el párrafo Este es un ejemplo de contenido, el párrafo Información adicional y el pie con el texto Todos los derechos reservados." sandbox="allow-scripts"></iframe>
+        <figcaption class="resultado__nota">Las etiquetas semánticas no cambian cómo se ve la página.</figcaption>
+      </figure>
+    </div>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> los contenedores organizan el contenido. Las etiquetas con <b>significado</b> mejoran la legibilidad y la accesibilidad de la página.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 36">36</span>
+    </footer>
+  </article>
+
+  <!-- =================== PARA PROFUNDIZAR =================== -->
+  <article class="lamina lamina--pf" id="profundizar" aria-labelledby="tpf">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°9</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="tpf"><span class="tit__num">+</span> Para profundizar</h2>
+      <p class="tit__sub">Un poco más sobre cada lámina</p>
+    </div>
+
+    <div class="pf-grid">
+    <section class="pf" aria-labelledby="pf33">
+      <p class="pf__etiqueta">Lámina 33</p>
+      <h3 class="pf__titulo" id="pf33">Tablas accesibles: caption y scope</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <ul class="pf__lista">
+            <li><code>&lt;caption&gt;</code> le pone un título a la tabla, justo después de <code>&lt;table&gt;</code>: <code>&lt;caption&gt;Horarios&lt;/caption&gt;</code>.</li>
+            <li><code>scope</code> indica si un <code>&lt;th&gt;</code> es el encabezado de una columna (<code>col</code>) o de una fila (<code>row</code>): <code>&lt;th scope="col"&gt;Día&lt;/th&gt;</code>.</li>
+          </ul>
+          <p>Los <strong>lectores de pantalla</strong>, que leen la página en voz alta para personas ciegas, usan estos datos para anunciar el título de la tabla y la columna de cada celda.</p>
+        </div>
+        <div class="pf__caja pf__caja--consejo">
+          <h4><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-consejo"/></svg>Buenas prácticas</h4>
+          <ul class="pf__lista">
+            <li><strong>Usá <code>&lt;th&gt;</code> para los encabezados:</strong> identifican cada columna.</li>
+            <li><strong>Mantené los datos claros y ordenados:</strong> textos breves y consistentes.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf34">
+      <p class="pf__etiqueta">Lámina 34</p>
+      <h3 class="pf__titulo" id="pf34">Campos obligatorios: required</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p>Con <code>required</code>, el campo es <strong>obligatorio</strong>: si queda vacío, el navegador no envía el formulario y muestra un aviso al lado del campo.</p>
+          <p>En un campo <code>type="email"</code>, además, revisa que lo escrito tenga forma de email, con <code>@</code>.</p>
+          <p>Probalo en el resultado de la lámina 34: tocá “Enviar” con los campos vacíos, o escribí un email sin <code>@</code>.</p>
+        </div>
+        <div class="pf__caja pf__caja--consejo">
+          <h4><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-consejo"/></svg>Buenas prácticas</h4>
+          <ul class="pf__lista">
+            <li><strong>Usá etiquetas <code>&lt;label&gt;</code>:</strong> ayudan a los usuarios a entender qué información deben ingresar.</li>
+            <li><strong>Pedí solo los datos necesarios:</strong> no solicites información que no sea importante.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf35">
+      <p class="pf__etiqueta">Lámina 35</p>
+      <h3 class="pf__titulo" id="pf35">Opciones, botones y ayudas</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p>El <code>value</code> es el dato que se envía. En un <code>&lt;select&gt;</code>, cada <code>&lt;option&gt;</code> tiene el suyo, y el texto de adentro es lo que ve el usuario. En los botones de opción, se envía el <code>value</code> del marcado: <code>opcion=1</code>.</p>
+          <p><code>placeholder</code> muestra un texto de ayuda dentro del campo, que se borra al escribir: <code>placeholder="tu@email.com"</code>. No reemplaza al <code>&lt;label&gt;</code>.</p>
+          <p>Un <code>&lt;button type="submit"&gt;</code> envía el formulario. Con <code>type="button"</code> es un botón que no envía nada: lo usamos con JavaScript en el TP13.</p>
+        </div>
+        <div class="pf__caja pf__caja--consejo">
+          <h4><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-consejo"/></svg>Buenas prácticas</h4>
+          <ul class="pf__lista">
+            <li><strong>Escribí botones claros:</strong> usá textos descriptivos, como “Enviar” o “Registrarse”.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf36">
+      <p class="pf__etiqueta">Lámina 36</p>
+      <h3 class="pf__titulo" id="pf36">¿section o article?</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <ul class="pf__lista">
+            <li><code>&lt;article&gt;</code> es un contenido <strong>autónomo</strong>: se entiende solo, aunque lo saquemos de la página, como una noticia o una publicación.</li>
+            <li><code>&lt;section&gt;</code> agrupa contenido de un <strong>mismo tema</strong> y casi siempre lleva su título. En el ejemplo, “Últimas noticias” es una <code>&lt;section&gt;</code> y cada noticia, un <code>&lt;article&gt;</code>.</li>
+          </ul>
+        </div>
+        <div class="pf__caja pf__caja--consejo">
+          <h4><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-consejo"/></svg>¿Por qué es importante?</h4>
+          <ul class="pf__lista">
+            <li><strong>Mejor estructura:</strong> el contenido queda claro y ordenado.</li>
+            <li><strong>Facilita el mantenimiento:</strong> el código se entiende y se modifica mejor.</li>
+            <li><strong>Mejora la accesibilidad:</strong> ayuda a quienes usan lectores de pantalla.</li>
+            <li><strong>Beneficia el SEO:</strong> los buscadores entienden mejor la página.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    </div>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 9</span>
+    </footer>
+  </article>
+
+  <!-- =================== ACTIVIDADES · Parte 1 =================== -->
+  <article class="lamina lamina--act" id="actividades" aria-labelledby="act-1">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°9</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <header class="act-banda">
+      <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-lapiz"/></svg>
+      <div>
+        <h2 id="act-1">Actividades para hacer en la carpeta</h2>
+        <p>TP N°9 — Estructura más completa: tablas y formularios</p>
+      </div>
+      <span class="act-banda__parte">Parte<br>1 de 2</span>
+    </header>
+
+    <p class="consigna"><strong>Consigna:</strong> Resolvé cada punto en la carpeta, con lápiz y sin usar la computadora.</p>
+
+    <ol class="acts acts--2col">
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">1-</span> Tablas</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿Qué etiqueta define una fila de tabla?</div></li>
+          <li><b class="act__letra">b)</b><div>¿Para qué se usa <code>&lt;th&gt;</code>?</div></li>
+          <li><b class="act__letra">c)</b><div>Completá: <code>&lt;table&gt;</code> contiene ________ y ________ para organizar la información.</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">2-</span> Formularios</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿Qué etiqueta agrupa los campos de un formulario?</div></li>
+          <li><b class="act__letra">b)</b><div>¿Para qué sirve <code>&lt;label&gt;</code>?</div></li>
+          <li><b class="act__letra">c)</b><div>Marcá los tres tipos de campo válidos para un <code>&lt;input&gt;</code>: <code>email</code> / <code>password</code> / <code>teclado</code> / <code>checkbox</code>.</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">3-</span> Tipos de campo</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿Qué <code>type</code> usarías para pedir un teléfono? ¿Y una contraseña? ¿Y para que el usuario acepte los términos?</div></li>
+          <li><b class="act__letra">b)</b><div>¿Qué etiqueta usarías para que el usuario escriba un mensaje largo? ¿Y para que elija una opción de una lista desplegable?</div></li>
+          <li><b class="act__letra">c)</b><div>Encontrá el error: con este código se pueden marcar las dos opciones a la vez. ¿Qué hay que cambiar?</div></li>
+        </ol>
+        <figure class="codigo codigo--html" id="ej-act3">
+          <figcaption><span class="codigo__archivo">index.html</span><span class="codigo__donde">dentro de &lt;form&gt;</span></figcaption>
+          <pre tabindex="0" aria-label="Código de index.html, dentro de form"><code><span class="c-etq">&lt;input</span> <span class="c-atr">type</span>=<span class="c-str">"radio"</span> <span class="c-atr">id</span>=<span class="c-str">"si"</span> <span class="c-atr">name</span>=<span class="c-str">"r1"</span><span class="c-etq">&gt;</span>
+<span class="c-etq">&lt;label</span> <span class="c-atr">for</span>=<span class="c-str">"si"</span><span class="c-etq">&gt;</span>Sí<span class="c-etq">&lt;/label&gt;</span>
+<span class="c-etq">&lt;input</span> <span class="c-atr">type</span>=<span class="c-str">"radio"</span> <span class="c-atr">id</span>=<span class="c-str">"no"</span> <span class="c-atr">name</span>=<span class="c-str">"r2"</span><span class="c-etq">&gt;</span>
+<span class="c-etq">&lt;label</span> <span class="c-atr">for</span>=<span class="c-str">"no"</span><span class="c-etq">&gt;</span>No<span class="c-etq">&lt;/label&gt;</span></code></pre>
+        </figure>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">4-</span> Contenedores y HTML semántico</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿Qué etiqueta suele representar el encabezado de una página?</div></li>
+          <li><b class="act__letra">b)</b><div>¿Qué ventaja tiene el HTML semántico?</div></li>
+          <li><b class="act__letra">c)</b><div>Marcá dos etiquetas semánticas válidas: <code>&lt;main&gt;</code> / <code>&lt;blue&gt;</code> / <code>&lt;section&gt;</code> / <code>&lt;size&gt;</code>.</div></li>
+        </ol>
+      </li>
+    </ol>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 9</span>
+    </footer>
+  </article>
+
+  <!-- =================== ACTIVIDADES · Parte 2 =================== -->
+  <article class="lamina lamina--act lamina--compu" id="actividades-2" aria-labelledby="act-2">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°9</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <header class="act-banda">
+      <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-editor"/></svg>
+      <div>
+        <h2 id="act-2">Práctica en la computadora</h2>
+        <p>TP N°9 — Estructura más completa: tablas y formularios</p>
+      </div>
+      <span class="act-banda__parte">Parte<br>2 de 2</span>
+    </header>
+
+    <p class="consigna"><strong>Consigna:</strong> Primero, la entrada en calor. Después, creá la página “Contacto” de un negocio ficticio.</p>
+
+    <ol class="acts acts--calor">
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">1-</span> Entrada en calor</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">1</b><div>Copiá el código en <code>pagina.html</code> y guardá una imagen en la misma carpeta.</div></li>
+          <li><b class="act__letra">2</b><div>Completá los espacios en blanco: título de la pestaña, <strong>título principal</strong>, <strong>párrafo</strong> con una breve descripción, <strong>imagen</strong>, <strong>lista</strong> de tres elementos o más y <strong>enlace</strong> a otra página.</div></li>
+        </ol>
+        <figure class="codigo codigo--html codigo--lineas" id="ej-calor">
+          <figcaption><span class="codigo__archivo">pagina.html</span></figcaption>
+          <pre tabindex="0" aria-label="Código incompleto de pagina.html, con espacios en blanco para completar"><code><span class="ln"></span><span class="c-etq">&lt;!DOCTYPE html&gt;</span>
+<span class="ln"></span><span class="c-etq">&lt;html</span> <span class="c-atr">lang</span>=<span class="c-str">"es-AR"</span><span class="c-etq">&gt;</span>
+<span class="ln"></span>  <span class="c-etq">&lt;head&gt;</span>
+<span class="ln"></span>    <span class="c-etq">&lt;meta</span> <span class="c-atr">charset</span>=<span class="c-str">"utf-8"</span><span class="c-etq">&gt;</span>
+<span class="ln"></span>    <span class="c-etq">&lt;title&gt;</span>__________<span class="c-etq">&lt;/title&gt;</span>
+<span class="ln"></span>  <span class="c-etq">&lt;/head&gt;</span>
+<span class="ln"></span>  <span class="c-etq">&lt;body&gt;</span>
+<span class="ln"></span>    ______<span class="c-etq">&gt;</span>Mi página<span class="c-etq">&lt;/____&gt;</span>
+<span class="ln"></span>    ______<span class="c-etq">&gt;</span>Esta es mi primera página web.<span class="c-etq">&lt;/___&gt;</span>
+<span class="ln"></span>    ______ <span class="c-atr">src</span>=<span class="c-str">"__________"</span> <span class="c-atr">alt</span>=<span class="c-str">"__________"</span><span class="c-etq">&gt;</span>
+<span class="ln"></span>    <span class="c-etq">&lt;ul&gt;</span>
+<span class="ln"></span>      <span class="c-etq">&lt;li&gt;</span>__________<span class="c-etq">&lt;/li&gt;</span>
+<span class="ln"></span>      <span class="c-etq">&lt;li&gt;</span>__________<span class="c-etq">&lt;/li&gt;</span>
+<span class="ln"></span>      <span class="c-etq">&lt;li&gt;</span>__________<span class="c-etq">&lt;/li&gt;</span>
+<span class="ln"></span>    <span class="c-etq">&lt;/ul&gt;</span>
+<span class="ln"></span>    <span class="c-etq">&lt;a</span> <span class="c-atr">href</span>=<span class="c-str">"__________"</span><span class="c-etq">&gt;</span>__________<span class="c-etq">&lt;/a&gt;</span>
+<span class="ln"></span>  <span class="c-etq">&lt;/body&gt;</span>
+<span class="ln"></span><span class="c-etq">&lt;/html&gt;</span></code></pre>
+        </figure>
+        <ol class="act__items" start="3">
+          <li><b class="act__letra">3</b><div>Abrila en Chrome y probá el enlace.</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">2-</span> Mi página “Contacto”</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">1</b><div>Creá la carpeta <code class="cod-carpeta">tp9-apellido</code> y, adentro, <code>index.html</code> con la estructura básica.</div></li>
+          <li><b class="act__letra">2</b><div>Elegí un negocio ficticio: un kiosco, una peluquería, un estudio de tatuajes, lo que te guste.</div></li>
+          <li><b class="act__letra">3</b><div>Un <code>&lt;header&gt;</code> con el <strong>nombre del negocio</strong>.</div></li>
+          <li><b class="act__letra">4</b><div>Dentro de <code>&lt;main&gt;</code>, una <strong>tabla con los horarios de atención</strong>, con <code>&lt;thead&gt;</code> y <code>&lt;tbody&gt;</code>.</div></li>
+          <li><b class="act__letra">5</b><div>Un <strong>formulario</strong> con nombre, email, teléfono (<code>type="tel"</code>), mensaje y botón “Enviar”, cada campo con su <code>&lt;label&gt;</code> y su <code>name</code>. Todavía no hace falta que funcione: <strong>cobra vida en el TP14</strong>.</div></li>
+          <li><b class="act__letra">6</b><div>Un <code>&lt;footer&gt;</code> con las <strong>redes sociales</strong> del negocio, como enlaces.</div></li>
+        </ol>
+      </li>
+    </ol>
+
+    <section class="entrega" aria-labelledby="ent-1">
+      <svg class="ico ico--l" aria-hidden="true" focusable="false"><use href="#i-subir"/></svg>
+      <div>
+        <h3 id="ent-1">Entrega</h3>
+        <div class="entrega__cols">
+          <div>
+            <p>La carpeta <code class="cod-carpeta">tp9-apellido</code> <strong>en un .zip</strong>, con <code>index.html</code>. Subí el <code class="cod-carpeta">.zip</code> a Classroom.</p>
+            <p class="entrega__sub--sep">Antes de comprimir, abrí <code>index.html</code> en Chrome y probá todo. Guardá la carpeta: en el TP14 el formulario cobra vida.</p>
+          </div>
+          <div>
+            <p class="entrega__sub">Antes de entregar, marcá:</p>
+            <ul class="checklist">
+              <li><code>&lt;header&gt;</code> con el nombre del negocio.</li>
+              <li>Horarios con <code>&lt;thead&gt;</code> y <code>&lt;tbody&gt;</code>.</li>
+              <li>Formulario con sus 5 campos.</li>
+              <li>Cada <code>for</code> igual al <code>id</code> de su campo.</li>
+              <li><code>&lt;footer&gt;</code> con enlaces a las redes.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 9</span>
+    </footer>
+  </article>
+</main>
+
+<script src="../assets/js/actividades.js"></script>
+<script src="../assets/js/ejemplos.js"></script>
+</body>
+</html>

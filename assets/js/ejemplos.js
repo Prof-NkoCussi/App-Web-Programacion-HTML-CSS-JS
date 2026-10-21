@@ -8,6 +8,7 @@
    - Resultado en el navegador (figure.resultado[data-html]):
      muestra en un iframe el resultado real del código HTML del ejemplo.
      Los enlaces del ejemplo no se abren: se avisa a dónde llevan.
+     Los formularios se pueden completar, pero no se envían.
    Sin JavaScript, la página muestra el código y la salida esperada.
    ========================================================== */
 (function () {
@@ -206,6 +207,8 @@
      al <link> de estilos.css y al <script src="app.js">.
      Si el ejemplo tiene enlaces, se ven y se señalan como enlaces, pero no se abren:
      el marco no puede salir del cuadernillo ni cargar otro sitio. Debajo se avisa a dónde llevan.
+     Si tiene un formulario, se puede completar (y el navegador revisa required y type="email"),
+     pero no se envía ni recarga el marco. Debajo se avisa que los datos no van a ningún lado.
      ========================================================== */
 
   /* Este código corre DENTRO del iframe de un ejemplo con enlaces. Se pasa como texto. */
@@ -215,7 +218,9 @@
       if (!a) { return; }
       e.preventDefault();
       var destino = a.getAttribute("href");
-      if (destino.charAt(0) === "#") {   // una sección de la misma página: baja dentro del marco
+      if (destino === "#") {   // enlace que todavía no lleva a ningún lado: sube al principio
+        window.scrollTo(0, 0);
+      } else if (destino.charAt(0) === "#") {   // una sección de la misma página: baja dentro del marco
         var seccion = document.getElementById(destino.slice(1));
         if (seccion) { window.scrollTo(0, seccion.offsetTop); }
       }
@@ -223,9 +228,20 @@
     });
   }
 
-  var avisosEnlace = [];  // { marco, aviso }
+  /* Este código corre DENTRO del iframe de un ejemplo con formulario. Se pasa como texto.
+     Si el propio ejemplo ya frenó el envío (desde el TP14), no se avisa nada. */
+  function frenoFormularios() {
+    document.addEventListener("submit", function (e) {
+      if (e.defaultPrevented) { return; }
+      e.preventDefault();
+      parent.postMessage({ formulario: true }, "*");
+    });
+  }
+
+  var avisos = [];  // { marco, aviso }
 
   function textoEnlace(destino) {
+    if (destino === "#") { return ["Este enlace tiene ", "href=\"#\"", ": todavía no lleva a ninguna página. Se usa para dejar el lugar del enlace."]; }
     if (destino.charAt(0) === "#") { return ["Este enlace lleva a la sección ", destino.slice(1), " de la misma página."]; }
     if (/^mailto:/i.test(destino)) { return ["Este enlace abre el programa de correo para escribir a ", destino.slice(7), "."]; }
     return ["Este enlace lleva a ", destino, ". En el cuadernillo no se abre: probalo en tu página."];
@@ -233,14 +249,19 @@
 
   window.addEventListener("message", function (e) {
     var d = e.data;
-    if (!d || d.enlace !== true || typeof d.destino !== "string") { return; }
-    avisosEnlace.forEach(function (x) {
+    if (!d) { return; }
+    var partes;
+    if (d.enlace === true && typeof d.destino === "string") { partes = textoEnlace(d.destino); }
+    else if (d.formulario === true) { partes = ["El formulario no se envió: en el cuadernillo, los datos no van a ningún lado.", "", ""]; }
+    else { return; }
+    avisos.forEach(function (x) {
       if (e.source !== x.marco.contentWindow) { return; }
-      var partes = textoEnlace(d.destino);
-      var codigo = document.createElement("code");
-      codigo.textContent = partes[1];
       x.aviso.textContent = partes[0];
-      x.aviso.appendChild(codigo);
+      if (partes[1]) {
+        var codigo = document.createElement("code");
+        codigo.textContent = partes[1];
+        x.aviso.appendChild(codigo);
+      }
       x.aviso.appendChild(document.createTextNode(partes[2]));
     });
   });
@@ -277,16 +298,24 @@
     var html = armarPagina(fig);
     if (!marco || html === null) { return; }
     if (!marco.hasAttribute("sandbox")) { marco.setAttribute("sandbox", ""); }
-    if (/<a\s[^>]*href/i.test(html)) {
+    var conEnlaces = /<a\s[^>]*href/i.test(html);
+    var conFormulario = /<form[\s>]/i.test(html);
+    if (conEnlaces || conFormulario) {
+      /* allow-forms deja que el navegador revise los campos al tocar "Enviar"; el envío lo frena frenoFormularios */
       var permisos = marco.getAttribute("sandbox");
-      if (!/\ballow-scripts\b/.test(permisos)) { marco.setAttribute("sandbox", (permisos + " allow-scripts").trim()); }
-      var freno = "<script>(" + frenoEnlaces.toString() + ")();<\/script>";
+      ["allow-scripts", conFormulario ? "allow-forms" : ""].forEach(function (p) {
+        if (p && permisos.split(/\s+/).indexOf(p) === -1) { permisos = (permisos + " " + p).trim(); }
+      });
+      marco.setAttribute("sandbox", permisos);
+      var freno = "<script>" +
+        (conEnlaces ? "(" + frenoEnlaces.toString() + ")();" : "") +
+        (conFormulario ? "(" + frenoFormularios.toString() + ")();" : "") + "<\/script>";
       html = /<\/body>/i.test(html) ? html.replace(/<\/body>/i, function () { return freno + "\n</body>"; }) : html + freno;
       var aviso = document.createElement("p");
       aviso.className = "resultado__nota resultado__aviso";
       aviso.setAttribute("role", "status");
       marco.parentNode.insertBefore(aviso, marco.nextSibling);
-      avisosEnlace.push({ marco: marco, aviso: aviso });
+      avisos.push({ marco: marco, aviso: aviso });
     }
     /* Abierto desde la computadora (file://), un marco aislado no puede cargar las imágenes de la carpeta:
        si el ejemplo no corre scripts, se le da el origen del cuadernillo. En internet no hace falta. */
