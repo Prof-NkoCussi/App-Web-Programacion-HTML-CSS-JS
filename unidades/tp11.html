@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TP N°11 — CSS externo y selectores · Programación - HTML, CSS, JS</title>
+  <meta name="description" content="TP N°11 de Programación: el archivo .css aparte y la etiqueta link, clases e id, bordes, sombras y esquinas, ancho, alto y unidades, y el modelo de cajas. Prof. Nicolás A. Cussi.">
+  <meta name="theme-color" content="#2563EB">
+  <link rel="preload" href="../assets/fonts/barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/barlow-semi-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/estilos.css">
+</head>
+<body data-tp="11">
+
+<!-- ====== Íconos ====== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-web" viewBox="0 0 48 48">
+      <rect x="4" y="7" width="40" height="34" rx="4" style="fill:var(--ac2, var(--acento-claro))"/>
+      <path d="M8 7h32a4 4 0 0 1 4 4v5H4v-5a4 4 0 0 1 4-4z" style="fill:var(--ac)"/>
+      <rect x="4" y="7" width="40" height="34" rx="4"/>
+      <path d="M4 16h40M19 23l-6 6 6 6M29 23l6 6-6 6M26.5 21l-5 16"/>
+    </symbol>
+    <symbol id="i-enlace" viewBox="0 0 48 48">
+      <path d="M21 28a8 8 0 0 0 11 1l7-7a8 8 0 0 0-11-11l-3 3"/>
+      <path d="M27 20a8 8 0 0 0-11-1l-7 7a8 8 0 0 0 11 11l3-3" style="stroke:var(--ac);stroke-width:3.4"/>
+    </symbol>
+    <symbol id="i-selector" viewBox="0 0 48 48">
+      <path d="M18 6 13 42M33 6 28 42M8 17h33M6 31h33"/>
+      <circle cx="41.5" cy="40.5" r="4.5" style="fill:var(--ac);stroke:none"/>
+    </symbol>
+    <symbol id="i-borde" viewBox="0 0 48 48">
+      <rect x="12" y="14" width="32" height="29" rx="8" style="fill:var(--ac);stroke:none"/>
+      <rect x="5" y="6" width="32" height="29" rx="8" style="fill:var(--blanco)"/>
+    </symbol>
+    <symbol id="i-regla" viewBox="0 0 48 48">
+      <rect x="4" y="22" width="40" height="16" rx="2.5" style="fill:var(--ac)"/>
+      <rect x="4" y="22" width="40" height="16" rx="2.5"/>
+      <path d="M12 22v6M20 22v9M28 22v6M36 22v9"/>
+      <path d="M6 10h36M10 6 6 10l4 4M38 6l4 4-4 4"/>
+    </symbol>
+    <symbol id="i-cajas" viewBox="0 0 48 48">
+      <rect x="3" y="3" width="42" height="42" rx="3" style="stroke-dasharray:4 4.2"/>
+      <rect x="10" y="10" width="28" height="28" rx="2.5"/>
+      <rect x="16.5" y="16.5" width="15" height="15" rx="1.5" style="fill:var(--ac)"/>
+    </symbol>
+    <symbol id="i-consejo" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="21" style="fill:var(--ac);stroke:none"/>
+      <path d="M14 24.5l7 7 13-14" style="stroke:var(--blanco);stroke-width:5.5"/>
+    </symbol>
+    <symbol id="i-foco" viewBox="0 0 48 48">
+      <path d="M24 2.5v4M10 8.5l2.8 2.8M38 8.5l-2.8 2.8M4 22h4M40 22h4"/>
+      <path d="M24 12a10 10 0 0 0-6.2 17.8c1.4 1.2 2.2 2.6 2.2 4.2v1h8v-1c0-1.6.8-3 2.2-4.2A10 10 0 0 0 24 12z" style="fill:var(--ac)"/>
+      <path d="M20 39h8M21.5 43h5"/>
+    </symbol>
+    <symbol id="i-lapiz" viewBox="0 0 48 48">
+      <path d="M33 6l9 9-25 25-9-9z" style="fill:var(--ac)"/>
+      <path d="M8 31 5.5 42.5 17 40z"/>
+      <path d="M27 12l9 9"/>
+    </symbol>
+    <symbol id="i-editor" viewBox="0 0 48 48">
+      <path d="M7 7h34a3 3 0 0 1 3 3v4H4v-4a3 3 0 0 1 3-3z" style="fill:var(--ac)"/>
+      <rect x="4" y="7" width="40" height="34" rx="3"/>
+      <path d="M4 14h40M10 21h14M15 27h18M15 33h11"/>
+    </symbol>
+    <symbol id="i-subir" viewBox="0 0 48 48">
+      <path d="M6 30v8a3 3 0 0 0 3 3h30a3 3 0 0 0 3-3v-8"/>
+      <path d="M24 31V7M15 16l9-9 9 9" style="stroke:var(--ac);stroke-width:3.4"/>
+    </symbol>
+    <symbol id="i-descarga" viewBox="0 0 24 24">
+      <path d="M12 3v12M7 10l5 5 5-5M5 20h14"/>
+    </symbol>
+    <symbol id="i-atras" viewBox="0 0 24 24">
+      <path d="M20 12H5M11 6l-6 6 6 6"/>
+    </symbol>
+  </defs>
+</svg>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="barra">
+  <div class="barra__fila">
+    <a class="boton barra__volver" href="../index.html"><svg aria-hidden="true" focusable="false"><use href="#i-atras"/></svg><span>Índice</span></a>
+    <span class="barra__titulo">TP N°11 — CSS externo y selectores</span>
+    <button class="boton" type="button" data-imprimir aria-label="Guardar en PDF">
+      <svg aria-hidden="true" focusable="false"><use href="#i-descarga"/></svg><span><span class="boton__largo">Guardar </span>PDF</span>
+    </button>
+  </div>
+  <nav class="partes" aria-label="Partes del TP N°11">
+    <a href="#pag-41">41 · CSS aparte</a>
+    <a href="#pag-42">42 · Clases e id</a>
+    <a href="#pag-43">43 · Bordes y sombras</a>
+    <a href="#pag-44">44 · Ancho y unidades</a>
+    <a href="#pag-45">45 · Modelo de cajas</a>
+    <a href="#profundizar">Para profundizar</a>
+    <a href="#actividades">Actividades</a>
+  </nav>
+</header>
+
+<main id="contenido" class="laminas">
+  <h1 class="sr-only">TP N°11 — CSS externo y selectores</h1>
+
+  <!-- =================== LÁMINA 41 =================== -->
+  <article class="lamina lamina--compacta" id="pag-41" aria-labelledby="t41">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°11</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t41"><span class="tit__num">41.</span> CSS en un archivo aparte</h2>
+      <p class="tit__sub">Cómo se conecta con HTML: la etiqueta link</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-enlace"/></svg>
+      <p>Ahora pasamos el CSS de <code>&lt;style&gt;</code> a un archivo aparte, <code class="cod-css">estilos.css</code>, y lo conectamos con HTML mediante la etiqueta <code>&lt;link&gt;</code>. Así separamos el contenido de su diseño y mantenemos el código más organizado.</p>
+    </div>
+
+    <ul class="comparar comparar--esquema" aria-label="CSS interno y archivo aparte">
+      <li><div><h3>CSS interno (TP10)</h3><p>Cada página lleva su propio CSS: hay que copiarlo en todas.</p>
+        <figure class="esquema">
+          <svg viewBox="0 0 290 92" style="max-width:290px" role="img" aria-labelledby="esq41a">
+            <title id="esq41a">CSS interno. La página index.html y la página contacto.html tienen, cada una, su propia etiqueta style con las reglas, por ejemplo h1 con llaves. El mismo CSS está copiado en las dos páginas.</title>
+            <g style="fill:var(--blanco)"><rect x="2" y="2" width="136" height="88" rx="6"/><rect x="152" y="2" width="136" height="88" rx="6"/></g>
+            <g style="fill:var(--html-claro)"><path d="M8 2h124a6 6 0 0 1 6 6v14H2V8a6 6 0 0 1 6-6z"/><path d="M158 2h124a6 6 0 0 1 6 6v14H152V8a6 6 0 0 1 6-6z"/></g>
+            <g style="fill:none;stroke:var(--html);stroke-width:2"><rect x="2" y="2" width="136" height="88" rx="6"/><rect x="152" y="2" width="136" height="88" rx="6"/></g>
+            <g style="font-family:var(--fuente-codigo);font-size:12.5px;font-weight:700;fill:var(--acento-numero)"><text x="12" y="17">index.html</text><text x="162" y="17">contacto.html</text></g>
+            <g style="fill:var(--css-claro);stroke:var(--css);stroke-width:1.5"><rect x="12" y="29" width="116" height="38" rx="4"/><rect x="162" y="29" width="116" height="38" rx="4"/></g>
+            <g style="font-family:var(--fuente-codigo);font-size:12px;fill:var(--css-texto)">
+              <text x="20" y="44" style="font-weight:700">&lt;style&gt;</text><text x="20" y="60">h1 { … }</text>
+              <text x="170" y="44" style="font-weight:700">&lt;style&gt;</text><text x="170" y="60">h1 { … }</text>
+            </g>
+            <g style="fill:var(--linea)"><rect x="12" y="74" width="96" height="5" rx="2.5"/><rect x="162" y="74" width="96" height="5" rx="2.5"/></g>
+          </svg>
+        </figure></div></li>
+      <li><div><h3>Archivo aparte</h3><p>Una sola hoja de estilos: un cambio sirve para todo el sitio.</p>
+        <figure class="esquema">
+          <svg viewBox="0 0 290 92" style="max-width:290px" role="img" aria-labelledby="esq41b">
+            <title id="esq41b">Archivo aparte. La página index.html y la página contacto.html tienen, cada una, una etiqueta link. Las dos vinculan el mismo archivo, estilos.css: una sola hoja de estilos para las dos páginas.</title>
+            <g style="fill:var(--blanco)"><rect x="2" y="2" width="136" height="50" rx="6"/><rect x="152" y="2" width="136" height="50" rx="6"/></g>
+            <g style="fill:var(--html-claro)"><path d="M8 2h124a6 6 0 0 1 6 6v14H2V8a6 6 0 0 1 6-6z"/><path d="M158 2h124a6 6 0 0 1 6 6v14H152V8a6 6 0 0 1 6-6z"/></g>
+            <g style="fill:none;stroke:var(--html);stroke-width:2"><rect x="2" y="2" width="136" height="50" rx="6"/><rect x="152" y="2" width="136" height="50" rx="6"/></g>
+            <g style="font-family:var(--fuente-codigo);font-size:12.5px;font-weight:700;fill:var(--acento-numero)"><text x="12" y="17">index.html</text><text x="162" y="17">contacto.html</text></g>
+            <g style="fill:var(--css-claro);stroke:var(--css);stroke-width:1.5"><rect x="12" y="27" width="58" height="18" rx="4"/><rect x="162" y="27" width="58" height="18" rx="4"/></g>
+            <g style="font-family:var(--fuente-codigo);font-size:12px;font-weight:700;fill:var(--css-texto)"><text x="18" y="40">&lt;link&gt;</text><text x="168" y="40">&lt;link&gt;</text></g>
+            <g style="fill:var(--linea)"><rect x="80" y="33" width="46" height="6" rx="3"/><rect x="230" y="33" width="46" height="6" rx="3"/></g>
+            <g style="fill:none;stroke:var(--css);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round">
+              <path d="M41 52v7h104M191 52v7h-46M145 59v6M140.5 61.5 145 67l4.5-5.5"/>
+            </g>
+            <rect x="85" y="68" width="120" height="22" rx="6" style="fill:var(--css-claro);stroke:var(--css);stroke-width:2"/>
+            <text x="145" y="83.5" text-anchor="middle" style="font-family:var(--fuente-codigo);font-size:13px;font-weight:700;fill:var(--css-texto)">estilos.css</text>
+          </svg>
+        </figure></div></li>
+    </ul>
+
+    <div class="ej ej--res ej--chico ej--largo">
+      <div class="ej-col">
+        <figure class="codigo codigo--html" id="ej-41h">
+          <figcaption><span class="codigo__archivo">index.html</span></figcaption>
+          <pre tabindex="0" aria-label="Código de index.html"><code><span class="c-etq">&lt;!DOCTYPE html&gt;</span>
+<span class="c-etq">&lt;html</span> <span class="c-atr">lang</span>=<span class="c-str">"es-AR"</span><span class="c-etq">&gt;</span>
+<span class="c-etq">&lt;head&gt;</span>
+  <span class="c-etq">&lt;meta</span> <span class="c-atr">charset</span>=<span class="c-str">"utf-8"</span><span class="c-etq">&gt;</span>
+  <span class="c-etq">&lt;title&gt;</span>Mi sitio web<span class="c-etq">&lt;/title&gt;</span>
+  <span class="c-etq">&lt;link</span> <span class="c-atr">rel</span>=<span class="c-str">"stylesheet"</span> <span class="c-atr">href</span>=<span class="c-str">"estilos.css"</span><span class="c-etq">&gt;</span>
+<span class="c-etq">&lt;/head&gt;</span>
+<span class="c-etq">&lt;body&gt;</span>
+  <span class="c-etq">&lt;h1&gt;</span>Bienvenido<span class="c-etq">&lt;/h1&gt;</span>
+  <span class="c-etq">&lt;p&gt;</span>Esta es mi página web.<span class="c-etq">&lt;/p&gt;</span>
+  <span class="c-etq">&lt;button&gt;</span>Saludar<span class="c-etq">&lt;/button&gt;</span>
+<span class="c-etq">&lt;/body&gt;</span>
+<span class="c-etq">&lt;/html&gt;</span></code></pre>
+        </figure>
+        <aside class="esquema-nota" aria-labelledby="n41">
+          <h3 id="n41">Cómo se conecta con HTML</h3>
+          <p class="esquema-nota__p">La etiqueta <code>&lt;link&gt;</code> va en el <code>&lt;head&gt;</code> e indica al navegador qué archivo CSS debe cargarse para aplicar los estilos.</p>
+          <ul class="pf__lista esquema-nota__p--sep">
+            <li><code>rel="stylesheet"</code>: es una hoja de estilos.</li>
+            <li><code>href="estilos.css"</code>: el archivo que se carga.</li>
+          </ul>
+        </aside>
+      </div>
+      <div class="ej-col">
+        <figure class="codigo codigo--css" id="ej-41c">
+          <figcaption><span class="codigo__archivo">estilos.css</span></figcaption>
+          <pre tabindex="0" aria-label="Código de estilos.css"><code><span class="c-etq">h1</span> { <span class="c-atr">color</span>: <span class="c-str">#2563eb</span>; <span class="c-atr">font-size</span>: <span class="c-num">32px</span>; }
+<span class="c-etq">p</span> { <span class="c-atr">color</span>: <span class="c-str">#374151</span>; <span class="c-atr">font-size</span>: <span class="c-num">16px</span>; }
+<span class="c-etq">button</span> {
+  <span class="c-atr">background-color</span>: <span class="c-str">#be185d</span>;
+  <span class="c-atr">color</span>: <span class="c-str">white</span>;
+  <span class="c-atr">padding</span>: <span class="c-num">10px 20px</span>;
+  <span class="c-atr">border</span>: <span class="c-str">none</span>;
+  <span class="c-atr">border-radius</span>: <span class="c-num">8px</span>;
+}</code></pre>
+        </figure>
+        <figure class="resultado" data-html="ej-41h" data-css="ej-41c" style="--alto:160px;--alto-cel:160px">
+          <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">Mi sitio web</span></div>
+          <iframe title="Resultado en el navegador: el título Bienvenido en azul, el párrafo Esta es mi página web en gris oscuro y el botón Saludar, magenta con letras blancas y esquinas redondeadas." sandbox=""></iframe>
+          <figcaption class="resultado__nota">Se ve igual que con <code>&lt;style&gt;</code>: solo cambió dónde está el CSS.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> CSS define la <b>apariencia visual</b> de HTML y normalmente se conecta con la página mediante una etiqueta <code>&lt;link&gt;</code>.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 41">41</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 42 =================== -->
+  <article class="lamina lamina--compacta" id="pag-42" aria-labelledby="t42">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°11</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t42"><span class="tit__num">42.</span> Clases e id</h2>
+      <p class="tit__sub">Selectores con punto y con almohadilla</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-selector"/></svg>
+      <p>Las clases y los id son atributos de HTML que nos permiten identificar elementos en una página web. Se utilizan en conjunto con CSS para aplicar estilos específicos. Las clases se seleccionan con un punto (<code class="cod-css">.</code>) y los id con un signo de almohadilla (<code class="cod-css">#</code>).</p>
+    </div>
+
+    <div class="ej ej--est ej--chico ej--largo">
+      <div class="ej-col">
+        <aside class="esquema-nota" aria-labelledby="n42a">
+          <h3 id="n42a">¿Qué es una clase?</h3>
+          <p class="esquema-nota__p">La clase es un atributo de HTML que puede aplicarse a varios elementos. Se utiliza para agrupar elementos que comparten los mismos estilos. En CSS se selecciona con un punto (<code class="cod-css">.</code>) seguido del nombre de la clase.</p>
+          <p class="esquema-nota__p"><code>&lt;div class="tarjeta"&gt;</code> → <code class="cod-css">.tarjeta { … }</code></p>
+          <p class="esquema-nota__p">Un elemento puede tener <strong>varias clases</strong>, separadas por un espacio: <code>class="tarjeta destacado"</code>.</p>
+        </aside>
+        <aside class="esquema-nota" aria-labelledby="n42b">
+          <h3 id="n42b">¿Qué es un id?</h3>
+          <p class="esquema-nota__p">El id es un identificador <strong>único</strong> que se utiliza para un solo elemento de la página. Sirve para señalar un elemento específico y en CSS se selecciona con un signo de almohadilla (<code class="cod-css">#</code>) seguido del nombre del id.</p>
+          <p class="esquema-nota__p"><code>&lt;h1 id="principal"&gt;</code> → <code class="cod-css">#principal { … }</code></p>
+        </aside>
+        <figure class="codigo codigo--html" id="ej-42h">
+          <figcaption><span class="codigo__archivo">index.html</span></figcaption>
+          <pre tabindex="0" aria-label="Código de index.html"><code><span class="c-etq">&lt;!DOCTYPE html&gt;</span>
+<span class="c-etq">&lt;html</span> <span class="c-atr">lang</span>=<span class="c-str">"es-AR"</span><span class="c-etq">&gt;</span>
+<span class="c-etq">&lt;head&gt;</span>
+  <span class="c-etq">&lt;meta</span> <span class="c-atr">charset</span>=<span class="c-str">"utf-8"</span><span class="c-etq">&gt;</span>
+  <span class="c-etq">&lt;title&gt;</span>Clases e id<span class="c-etq">&lt;/title&gt;</span>
+  <span class="c-etq">&lt;link</span> <span class="c-atr">rel</span>=<span class="c-str">"stylesheet"</span> <span class="c-atr">href</span>=<span class="c-str">"estilos.css"</span><span class="c-etq">&gt;</span>
+<span class="c-etq">&lt;/head&gt;</span>
+<span class="c-etq">&lt;body&gt;</span>
+  <span class="c-etq">&lt;h1</span> <span class="c-atr">id</span>=<span class="c-str">"principal"</span><span class="c-etq">&gt;</span>Mi sitio web<span class="c-etq">&lt;/h1&gt;</span>
+  <span class="c-etq">&lt;div</span> <span class="c-atr">class</span>=<span class="c-str">"tarjeta"</span><span class="c-etq">&gt;</span>Esta es una tarjeta.<span class="c-etq">&lt;/div&gt;</span>
+  <span class="c-etq">&lt;div</span> <span class="c-atr">class</span>=<span class="c-str">"tarjeta destacado"</span><span class="c-etq">&gt;</span>
+    Otra tarjeta, con una clase más.
+  <span class="c-etq">&lt;/div&gt;</span>
+<span class="c-etq">&lt;/body&gt;</span>
+<span class="c-etq">&lt;/html&gt;</span></code></pre>
+        </figure>
+      </div>
+      <div class="ej-col">
+        <figure class="codigo codigo--css" id="ej-42c">
+          <figcaption><span class="codigo__archivo">estilos.css</span></figcaption>
+          <pre tabindex="0" aria-label="Código de estilos.css"><code><span class="c-etq">#principal</span> {
+  <span class="c-atr">color</span>: <span class="c-str">#2563eb</span>;
+  <span class="c-atr">text-align</span>: <span class="c-str">center</span>;
+  <span class="c-atr">margin-bottom</span>: <span class="c-num">20px</span>;
+}
+<span class="c-etq">.tarjeta</span> {
+  <span class="c-atr">background-color</span>: <span class="c-str">#f3f4f6</span>;
+  <span class="c-atr">padding</span>: <span class="c-num">16px</span>;
+  <span class="c-atr">border-radius</span>: <span class="c-num">8px</span>;
+  <span class="c-atr">border</span>: <span class="c-str">1px solid #d1d5db</span>;
+  <span class="c-atr">margin-bottom</span>: <span class="c-num">12px</span>;
+}
+<span class="c-etq">.destacado</span> {
+  <span class="c-atr">color</span>: <span class="c-str">#92400e</span>;
+  <span class="c-atr">font-weight</span>: <span class="c-str">bold</span>;
+}</code></pre>
+        </figure>
+        <figure class="resultado" data-html="ej-42h" data-css="ej-42c" style="--alto:210px;--alto-cel:210px">
+          <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">Clases e id</span></div>
+          <iframe title="Resultado en el navegador: el título Mi sitio web, azul y centrado, y dos tarjetas grises con borde y esquinas redondeadas. La segunda, que también tiene la clase destacado, tiene la letra marrón y en negrita." sandbox=""></iframe>
+          <figcaption class="resultado__nota">La segunda tarjeta tiene dos clases: suma los estilos de <code class="cod-css">.tarjeta</code> y de <code class="cod-css">.destacado</code>.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> una <b>clase</b> puede reutilizarse en varios elementos, mientras que un <b>id</b> identifica un único elemento dentro de la página.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 42">42</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 43 =================== -->
+  <article class="lamina lamina--compacta" id="pag-43" aria-labelledby="t43">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°11</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t43"><span class="tit__num">43.</span> Bordes, sombras y esquinas</h2>
+      <p class="tit__sub">border, border-radius y box-shadow</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-borde"/></svg>
+      <p>CSS nos permite dar estilo a los elementos agregando bordes, esquinas redondeadas y sombras. Estas propiedades ayudan a mejorar la apariencia visual, destacar contenido y crear diseños más modernos y atractivos para nuestra página web.</p>
+    </div>
+
+    <div class="ej ej--res ej--chico ej--largo">
+      <figure class="codigo codigo--html" id="ej-43h">
+        <figcaption><span class="codigo__archivo">index.html</span></figcaption>
+        <pre tabindex="0" aria-label="Código de index.html"><code><span class="c-etq">&lt;!DOCTYPE html&gt;</span>
+<span class="c-etq">&lt;html</span> <span class="c-atr">lang</span>=<span class="c-str">"es-AR"</span><span class="c-etq">&gt;</span>
+<span class="c-etq">&lt;head&gt;</span>
+  <span class="c-etq">&lt;meta</span> <span class="c-atr">charset</span>=<span class="c-str">"utf-8"</span><span class="c-etq">&gt;</span>
+  <span class="c-etq">&lt;title&gt;</span>Bordes, sombras y esquinas<span class="c-etq">&lt;/title&gt;</span>
+  <span class="c-etq">&lt;link</span> <span class="c-atr">rel</span>=<span class="c-str">"stylesheet"</span> <span class="c-atr">href</span>=<span class="c-str">"estilos.css"</span><span class="c-etq">&gt;</span>
+<span class="c-etq">&lt;/head&gt;</span>
+<span class="c-etq">&lt;body&gt;</span>
+  <span class="c-etq">&lt;div</span> <span class="c-atr">class</span>=<span class="c-str">"tarjeta"</span><span class="c-etq">&gt;</span>
+    <span class="c-etq">&lt;h2</span> <span class="c-atr">class</span>=<span class="c-str">"titulo"</span><span class="c-etq">&gt;</span>Tarjeta de ejemplo<span class="c-etq">&lt;/h2&gt;</span>
+    <span class="c-etq">&lt;p</span> <span class="c-atr">class</span>=<span class="c-str">"texto"</span><span class="c-etq">&gt;</span>Este elemento tiene borde,
+      esquinas redondeadas y una sombra.<span class="c-etq">&lt;/p&gt;</span>
+    <span class="c-etq">&lt;button</span> <span class="c-atr">class</span>=<span class="c-str">"boton"</span><span class="c-etq">&gt;</span>Ver más<span class="c-etq">&lt;/button&gt;</span>
+  <span class="c-etq">&lt;/div&gt;</span>
+<span class="c-etq">&lt;/body&gt;</span>
+<span class="c-etq">&lt;/html&gt;</span></code></pre>
+      </figure>
+      <figure class="codigo codigo--css" id="ej-43c">
+        <figcaption><span class="codigo__archivo">estilos.css</span></figcaption>
+        <pre tabindex="0" aria-label="Código de estilos.css"><code><span class="c-etq">.tarjeta</span> {
+  <span class="c-atr">border</span>: <span class="c-str">2px solid #2563eb</span>;
+  <span class="c-atr">border-radius</span>: <span class="c-num">16px</span>;
+  <span class="c-atr">box-shadow</span>: <span class="c-str">0 4px 16px rgba(0, 0, 0, 0.15)</span>;
+  <span class="c-atr">padding</span>: <span class="c-num">20px</span>;
+  <span class="c-atr">width</span>: <span class="c-num">300px</span>;
+  <span class="c-atr">background-color</span>: <span class="c-str">#ffffff</span>;
+}
+<span class="c-etq">.titulo</span> { <span class="c-atr">margin</span>: <span class="c-num">0 0 10px 0</span>; <span class="c-atr">color</span>: <span class="c-str">#1e293b</span>; }
+<span class="c-etq">.texto</span> { <span class="c-atr">color</span>: <span class="c-str">#475569</span>; <span class="c-atr">margin-bottom</span>: <span class="c-num">16px</span>; }
+<span class="c-etq">.boton</span> {
+  <span class="c-atr">background-color</span>: <span class="c-str">#2563eb</span>;
+  <span class="c-atr">color</span>: <span class="c-str">white</span>;
+  <span class="c-atr">border</span>: <span class="c-str">none</span>;
+  <span class="c-atr">padding</span>: <span class="c-num">10px 20px</span>;
+  <span class="c-atr">border-radius</span>: <span class="c-num">8px</span>;
+  <span class="c-atr">cursor</span>: <span class="c-str">pointer</span>;
+  <span class="c-atr">box-shadow</span>: <span class="c-str">0 2px 6px rgba(0, 0, 0, 0.2)</span>;
+}</code></pre>
+      </figure>
+    </div>
+
+    <div class="ej ej--est ej--marco">
+      <figure class="resultado" data-html="ej-43h" data-css="ej-43c" style="--alto:194px;--alto-cel:194px">
+        <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">Bordes, sombras y esquinas</span></div>
+        <iframe title="Resultado en el navegador: una tarjeta blanca de borde azul, esquinas redondeadas y una sombra suave, con el título Tarjeta de ejemplo, un párrafo gris y el botón azul Ver más, también redondeado y con sombra." sandbox=""></iframe>
+        <figcaption class="resultado__nota"><code class="cod-css">width</code> lo vemos en la lámina 44.</figcaption>
+      </figure>
+      <aside class="esquema-nota" aria-labelledby="n43">
+        <h3 id="n43">Propiedades principales</h3>
+        <ul class="pf__lista">
+          <li><code class="cod-css">border</code> define el borde (ancho, estilo y color): <code class="cod-css">border: 2px solid #2563eb;</code></li>
+          <li>Por separado: <code class="cod-css">border-width</code> (grosor), <code class="cod-css">border-style</code> (estilo: solid, dashed, dotted, etc.) y <code class="cod-css">border-color</code> (color).</li>
+          <li><code class="cod-css">border-radius</code> redondea las esquinas de un elemento: <code class="cod-css">border-radius: 12px;</code></li>
+          <li><code class="cod-css">box-shadow</code> agrega una sombra a un elemento: <code class="cod-css cod-larga">box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);</code></li>
+        </ul>
+      </aside>
+    </div>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> los <b>bordes</b>, las <b>esquinas redondeadas</b> y las <b>sombras</b> hacen que los elementos se vean más claros, organizados y atractivos, mejorando la experiencia del usuario.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 43">43</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 44 =================== -->
+  <article class="lamina lamina--compacta" id="pag-44" aria-labelledby="t44">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°11</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t44"><span class="tit__num">44.</span> Ancho, alto y unidades</h2>
+      <p class="tit__sub">width, height y unidades de medida</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-regla"/></svg>
+      <p>Las propiedades de tamaño en CSS nos permiten controlar el ancho y alto de los elementos de una página web. Usar diferentes unidades de medida nos ayuda a crear diseños flexibles y adaptables, que se vean bien en distintos dispositivos y tamaños de pantalla.</p>
+    </div>
+
+    <ul class="operaciones operaciones--css operaciones--4" aria-label="Propiedades básicas de tamaño">
+      <li><b>width</b><p>Define el ancho de un elemento.</p><code class="cod-css">width: 300px;</code></li>
+      <li><b>height</b><p>Define el alto de un elemento.</p><code class="cod-css">height: 150px;</code></li>
+      <li><b>max-width</b><p>Establece un ancho máximo.</p><code class="cod-css">max-width: 100%;</code></li>
+      <li><b>min-height</b><p>Define un alto mínimo. Para el ancho: <code class="cod-css">min-width</code>.</p><code class="cod-css">min-height: 200px;</code></li>
+    </ul>
+
+    <div class="ej ej--res-ancho ej--chico ej--largo">
+      <div class="ej-col">
+        <figure class="codigo codigo--html" id="ej-44h">
+          <figcaption><span class="codigo__archivo">index.html</span></figcaption>
+          <pre tabindex="0" aria-label="Código de index.html"><code><span class="c-etq">&lt;!DOCTYPE html&gt;</span>
+<span class="c-etq">&lt;html</span> <span class="c-atr">lang</span>=<span class="c-str">"es-AR"</span><span class="c-etq">&gt;</span>
+<span class="c-etq">&lt;head&gt;</span>
+  <span class="c-etq">&lt;meta</span> <span class="c-atr">charset</span>=<span class="c-str">"utf-8"</span><span class="c-etq">&gt;</span>
+  <span class="c-etq">&lt;title&gt;</span>Tamaños en CSS<span class="c-etq">&lt;/title&gt;</span>
+  <span class="c-etq">&lt;link</span> <span class="c-atr">rel</span>=<span class="c-str">"stylesheet"</span>
+    <span class="c-atr">href</span>=<span class="c-str">"estilos.css"</span><span class="c-etq">&gt;</span>
+<span class="c-etq">&lt;/head&gt;</span>
+<span class="c-etq">&lt;body&gt;</span>
+  <span class="c-etq">&lt;div</span> <span class="c-atr">class</span>=<span class="c-str">"tarjeta"</span><span class="c-etq">&gt;</span>
+    <span class="c-etq">&lt;h2&gt;</span>Hola<span class="c-etq">&lt;/h2&gt;</span>
+    <span class="c-etq">&lt;p&gt;</span>Esta es una tarjeta.<span class="c-etq">&lt;/p&gt;</span>
+  <span class="c-etq">&lt;/div&gt;</span>
+<span class="c-etq">&lt;/body&gt;</span>
+<span class="c-etq">&lt;/html&gt;</span></code></pre>
+        </figure>
+        <figure class="codigo codigo--css" id="ej-44c">
+          <figcaption><span class="codigo__archivo">estilos.css</span></figcaption>
+          <pre tabindex="0" aria-label="Código de estilos.css"><code><span class="c-etq">.tarjeta</span> {
+  <span class="c-atr">width</span>: <span class="c-num">300px</span>;
+  <span class="c-atr">height</span>: <span class="c-num">200px</span>;
+  <span class="c-atr">max-width</span>: <span class="c-num">100%</span>;
+  <span class="c-atr">background-color</span>: <span class="c-str">#2563eb</span>;
+  <span class="c-atr">color</span>: <span class="c-str">white</span>;
+  <span class="c-atr">padding</span>: <span class="c-num">1rem</span>;
+  <span class="c-atr">border-radius</span>: <span class="c-num">8px</span>;
+}</code></pre>
+        </figure>
+      </div>
+      <div class="ej-col">
+        <figure class="resultado" data-html="ej-44h" data-css="ej-44c" style="--alto:250px;--alto-cel:250px">
+          <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">Tamaños en CSS</span></div>
+          <iframe title="Resultado en el navegador: una tarjeta azul de 300 píxeles de ancho y 200 de alto, con esquinas redondeadas, el título Hola y el párrafo Esta es una tarjeta, en letras blancas." sandbox=""></iframe>
+        </figure>
+        <aside class="esquema-nota" aria-labelledby="n44">
+          <h3 id="n44">Unidades comunes</h3>
+          <ul class="pf__lista">
+            <li><code class="cod-css">px</code> fija: un número exacto de píxeles en la pantalla.</li>
+            <li><code class="cod-css">%</code> relativa al tamaño del contenedor padre.</li>
+            <li><code class="cod-css">em</code> relativa al tamaño de la fuente del elemento.</li>
+            <li><code class="cod-css">rem</code> relativa a la fuente raíz (generalmente 16px).</li>
+            <li><code class="cod-css">vw</code> y <code class="cod-css">vh</code> relativas al ancho y al alto de la ventana.</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> CSS permite definir el ancho y el alto de los elementos. Los valores pueden expresarse con diferentes unidades, como px, %, em, rem y vw.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 44">44</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 45 =================== -->
+  <article class="lamina lamina--compacta" id="pag-45" aria-labelledby="t45">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°11</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t45"><span class="tit__num">45.</span> El modelo de cajas</h2>
+      <p class="tit__sub">Contenido, padding, border y margin</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-cajas"/></svg>
+      <p>En CSS, todos los elementos HTML se representan como cajas rectangulares. El modelo de cajas define cómo se distribuyen el contenido, el espacio interno (<code class="cod-css">padding</code>), el borde (<code class="cod-css">border</code>) y el espacio externo (<code class="cod-css">margin</code>) de cada elemento. Entender este modelo nos ayuda a controlar el tamaño, el espacio y la posición de los elementos.</p>
+    </div>
+
+    <div class="ej ej--res-ancho ej--chico ej--largo">
+      <div class="ej-col">
+        <figure class="codigo codigo--html" id="ej-45h">
+          <figcaption><span class="codigo__archivo">index.html</span></figcaption>
+          <pre tabindex="0" aria-label="Código de index.html"><code><span class="c-etq">&lt;!DOCTYPE html&gt;</span>
+<span class="c-etq">&lt;html</span> <span class="c-atr">lang</span>=<span class="c-str">"es-AR"</span><span class="c-etq">&gt;</span>
+<span class="c-etq">&lt;head&gt;</span>
+  <span class="c-etq">&lt;meta</span> <span class="c-atr">charset</span>=<span class="c-str">"utf-8"</span><span class="c-etq">&gt;</span>
+  <span class="c-etq">&lt;title&gt;</span>Modelo de cajas<span class="c-etq">&lt;/title&gt;</span>
+  <span class="c-etq">&lt;link</span> <span class="c-atr">rel</span>=<span class="c-str">"stylesheet"</span>
+    <span class="c-atr">href</span>=<span class="c-str">"estilos.css"</span><span class="c-etq">&gt;</span>
+<span class="c-etq">&lt;/head&gt;</span>
+<span class="c-etq">&lt;body&gt;</span>
+  <span class="c-etq">&lt;div</span> <span class="c-atr">class</span>=<span class="c-str">"tarjeta"</span><span class="c-etq">&gt;</span>
+    <span class="c-etq">&lt;h2&gt;</span>Una tarjeta de ejemplo<span class="c-etq">&lt;/h2&gt;</span>
+    <span class="c-etq">&lt;p&gt;</span>Este es un elemento con
+      padding, borde y margin.<span class="c-etq">&lt;/p&gt;</span>
+  <span class="c-etq">&lt;/div&gt;</span>
+<span class="c-etq">&lt;/body&gt;</span>
+<span class="c-etq">&lt;/html&gt;</span></code></pre>
+        </figure>
+        <figure class="codigo codigo--css" id="ej-45c">
+          <figcaption><span class="codigo__archivo">estilos.css</span></figcaption>
+          <pre tabindex="0" aria-label="Código de estilos.css"><code><span class="c-etq">.tarjeta</span> {
+  <span class="c-atr">width</span>: <span class="c-num">300px</span>;
+  <span class="c-atr">padding</span>: <span class="c-num">20px</span>;
+  <span class="c-atr">border</span>: <span class="c-str">2px solid #2563eb</span>;
+  <span class="c-atr">margin</span>: <span class="c-num">30px</span>;
+  <span class="c-atr">background-color</span>: <span class="c-str">#f0f8ff</span>;
+}</code></pre>
+        </figure>
+        <p class="consejo"><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-consejo"/></svg><strong>Buenas prácticas:</strong> separá elementos con margin, no con padding. Mantené un espaciado consistente y, mientras diseñás, ponele borde a las cajas.</p>
+      </div>
+      <div class="ej-col">
+        <figure class="esquema">
+          <svg viewBox="0 0 440 178" role="img" aria-labelledby="esq45">
+            <title id="esq45">El modelo de cajas de la tarjeta del ejemplo, con sus cuatro capas. En el centro, el contenido: texto, imágenes, etc. Alrededor, el padding, el espacio interno. Después, el border, el borde que rodea el contenido y el padding. Afuera, el margin, el espacio externo, que es transparente. El ancho total que ocupa es 300 píxeles de contenido, más 40 de padding (20 y 20), más 4 de border (2 y 2), más 60 de margin (30 y 30): 404 píxeles.</title>
+            <!-- margin: espacio externo, sin color -->
+            <rect x="4" y="4" width="212" height="170" rx="4" style="fill:none;stroke:var(--naranja);stroke-width:1.5;stroke-dasharray:5 4"/>
+            <!-- border y padding -->
+            <rect x="30" y="30" width="160" height="118" style="fill:var(--turquesa-claro);stroke:var(--acento);stroke-width:3"/>
+            <!-- contenido -->
+            <rect x="50" y="52" width="120" height="74" style="fill:var(--blanco);stroke:var(--gris);stroke-width:1.2;stroke-dasharray:3 3"/>
+            <text class="tt" x="110" y="85" text-anchor="middle" style="font-size:14px;font-weight:700">contenido</text>
+            <text class="tt" x="110" y="102" text-anchor="middle" style="font-size:10.5px;font-weight:500">(texto, imágenes, etc.)</text>
+            <!-- flechas -->
+            <g style="fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round">
+              <path d="M110 7v20M107 11l3-4 3 4M107 23l3 4 3-4M7 89h20M11 86l-4 3 4 3M23 86l4 3-4 3" style="stroke:var(--naranja)"/>
+              <path d="M110 34v15M107 38l3-4 3 4M107 45l3 4 3-4M34 89h13M38 86l-4 3 4 3M43 86l4 3-4 3" style="stroke:var(--turquesa)"/>
+            </g>
+            <!-- rótulos con el cálculo -->
+            <g style="fill:none;stroke-width:1.5">
+              <path d="M150 62h96" style="stroke:var(--gris)"/>
+              <path d="M180 84h66" style="stroke:var(--turquesa)"/>
+              <path d="M190 106h56" style="stroke:var(--acento)"/>
+              <path d="M202 128h44" style="stroke:var(--naranja)"/>
+            </g>
+            <g style="stroke:none">
+              <circle cx="150" cy="62" r="3" style="fill:var(--gris)"/>
+              <circle cx="180" cy="84" r="3" style="fill:var(--turquesa)"/>
+              <circle cx="190" cy="106" r="3" style="fill:var(--acento)"/>
+              <circle cx="202" cy="128" r="3" style="fill:var(--naranja)"/>
+            </g>
+            <g class="tt" style="font-size:13px">
+              <text x="230" y="28" style="font-weight:700">Ancho total que ocupa:</text>
+              <g text-anchor="end" style="font-weight:700">
+                <text x="300" y="66">300px</text>
+                <text x="300" y="88" style="fill:var(--turquesa-texto)">+ 40px</text>
+                <text x="300" y="110" style="fill:var(--acento-numero)">+ 4px</text>
+                <text x="300" y="132" style="fill:var(--naranja-texto)">+ 60px</text>
+                <text x="300" y="166" style="font-size:17px;fill:var(--acento-numero)">= 404px</text>
+              </g>
+              <text x="307" y="66">contenido</text>
+              <text x="307" y="88" style="fill:var(--turquesa-texto)">padding (20 + 20)</text>
+              <text x="307" y="110" style="fill:var(--acento-numero)">border (2 + 2)</text>
+              <text x="307" y="132" style="fill:var(--naranja-texto)">margin (30 + 30)</text>
+            </g>
+            <path d="M230 143h206" style="stroke:var(--tinta);stroke-width:1.5"/>
+          </svg>
+        </figure>
+        <figure class="resultado" data-html="ej-45h" data-css="ej-45c" style="--alto:226px;--alto-cel:226px">
+          <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">Modelo de cajas</span></div>
+          <iframe title="Resultado en el navegador: una tarjeta celeste con borde azul, el título Una tarjeta de ejemplo y un párrafo. El padding separa el texto del borde y el margin separa la tarjeta del borde de la página." sandbox=""></iframe>
+          <figcaption class="resultado__nota">La caja que se ve, hasta el borde, mide 344px. Con el margin, ocupa 404px.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> cada elemento en HTML es una <b>caja</b>. El modelo de cajas está compuesto por <b>contenido</b>, <b>padding</b>, <b>border</b> y <b>margin</b>, y nos permite controlar el espacio que ocupa el elemento.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 45">45</span>
+    </footer>
+  </article>
+
+  <!-- =================== PARA PROFUNDIZAR =================== -->
+  <article class="lamina lamina--pf" id="profundizar" aria-labelledby="tpf">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°11</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="tpf"><span class="tit__num">+</span> Para profundizar</h2>
+      <p class="tit__sub">Un poco más sobre cada lámina</p>
+    </div>
+
+    <div class="pf-grid">
+    <section class="pf" aria-labelledby="pf41">
+      <p class="pf__etiqueta">Lámina 41</p>
+      <h3 class="pf__titulo" id="pf41">Si la página se ve sin estilos</h3>
+      <div class="pf__texto">
+        <p>El navegador no encontró el CSS. Casi siempre es uno de estos errores:</p>
+        <ul class="pf__lista">
+          <li><code>rel</code> mal escrito: con <code class="cod-larga">rel="styleshet"</code>, el navegador ignora el <code>&lt;link&gt;</code> y no avisa nada.</li>
+          <li>Otro nombre en <code>href</code>: <code class="cod-larga">href="estilo.css"</code> no encuentra <code class="cod-css">estilos.css</code>. El nombre tiene que ser exacto.</li>
+          <li>El archivo en otra carpeta: si <code class="cod-css">estilos.css</code> está en la carpeta <code class="cod-carpeta">css</code>, la ruta es <code class="cod-larga">href="css/estilos.css"</code>.</li>
+          <li>Etiquetas en el <code class="cod-css">.css</code>: el archivo lleva solo reglas, sin <code>&lt;style&gt;</code> ni HTML.</li>
+        </ul>
+        <p>Con <kbd>F12</kbd>, en la pestaña <span lang="en">Console</span>, Chrome muestra un error si no encuentra el archivo del <code>href</code>.</p>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf42">
+      <p class="pf__etiqueta">Lámina 42</p>
+      <h3 class="pf__titulo" id="pf42">Resumen, y si chocan clase e id</h3>
+      <div class="pf__texto">
+        <ul class="pf__lista">
+          <li><code class="cod-css">h1</code>: todos los elementos <code>&lt;h1&gt;</code>.</li>
+          <li><code class="cod-css">*</code>: todos los elementos de la página.</li>
+          <li><code class="cod-css">.destacado</code>: los elementos con clase “destacado”.</li>
+          <li><code class="cod-css">#principal</code>: el elemento con id “principal”.</li>
+        </ul>
+        <p>Si la clase y el id de un elemento le dan valores distintos a la misma propiedad, gana el id: es más específico.</p>
+        <div class="pf__caja">
+          <p><code class="cod-larga">&lt;h1 id="principal" class="destacado"&gt;</code><br><code class="cod-css cod-larga">.destacado { color: #92400e; }</code><br><code class="cod-css cod-larga">#principal { color: #2563eb; }</code></p>
+          <p>Se ve azul. Entre dos clases, gana la de más abajo en el CSS.</p>
+        </div>
+        <p class="consejo"><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-consejo"/></svg><strong>Buenas prácticas:</strong> clases para lo que se repite, id solo para un elemento único, y nombres descriptivos en minúsculas.</p>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf43">
+      <p class="pf__etiqueta">Lámina 43</p>
+      <h3 class="pf__titulo" id="pf43">Más sobre bordes y sombras</h3>
+      <div class="pf__texto">
+        <ul class="pf__lista">
+          <li><code class="cod-css">border-style</code>: <code class="cod-css">solid</code> (línea), <code class="cod-css">dashed</code> (rayas), <code class="cod-css">dotted</code> (puntos) o <code class="cod-css">none</code> (sin borde).</li>
+          <li>Un solo lado: <code class="cod-css">border-top</code>, <code class="cod-css">-right</code>, <code class="cod-css">-bottom</code> o <code class="cod-css">-left</code>.</li>
+          <li><code class="cod-css">border-radius: 50%;</code> vuelve círculo una imagen cuadrada.</li>
+          <li><code class="cod-css cod-larga">box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);</code> corre la sombra 4px hacia abajo, la desenfoca 12px y la pinta de negro al 15&nbsp;%.</li>
+          <li><code class="cod-css">margin: 0 0 10px 0;</code> va en el sentido del reloj: arriba, derecha, abajo, izquierda.</li>
+          <li><code class="cod-css">cursor: pointer;</code> muestra la mano al pasar el mouse.</li>
+        </ul>
+        <p class="consejo"><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-consejo"/></svg><strong>Buenas prácticas:</strong> bordes sutiles, sombras suaves, el mismo estilo en elementos similares y buen contraste.</p>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf44">
+      <p class="pf__etiqueta">Láminas 44 y 45</p>
+      <h3 class="pf__titulo" id="pf44">box-sizing y las unidades</h3>
+      <div class="pf__texto">
+        <p>En la lámina 45, <code class="cod-css">width</code> mide solo el contenido: el padding y el borde se suman. Por eso la tarjeta de la lámina 44 se sale un poco en una ventana angosta. Con <code class="cod-css cod-larga">box-sizing: border-box;</code>, <code class="cod-css">width</code> mide la caja entera.</p>
+        <p>Para todo el sitio: <code class="cod-css">* { box-sizing: border-box; }</code></p>
+        <p><strong>¿Cuándo usar cada unidad?</strong></p>
+        <ul class="pf__lista">
+          <li><code class="cod-css">px</code>: valores fijos, de tamaño exacto.</li>
+          <li><code class="cod-css">%</code>: diseños que se adaptan al contenedor.</li>
+          <li><code class="cod-css">rem</code>: letras y espacios, parejos en todo el sitio.</li>
+          <li><code class="cod-css">vw</code> y <code class="cod-css">vh</code>: tamaños según la ventana.</li>
+        </ul>
+        <p class="consejo"><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-consejo"/></svg><strong>Buenas prácticas:</strong> priorizá las unidades relativas, evitá alturas fijas innecesarias y usá <code class="cod-css">max-width</code> para pantallas chicas.</p>
+      </div>
+    </section>
+    </div>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 11</span>
+    </footer>
+  </article>
+
+  <!-- =================== ACTIVIDADES · Parte 1 =================== -->
+  <article class="lamina lamina--act" id="actividades" aria-labelledby="act-1">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°11</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <header class="act-banda">
+      <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-lapiz"/></svg>
+      <div>
+        <h2 id="act-1">Actividades para hacer en la carpeta</h2>
+        <p>TP N°11 — CSS externo y selectores</p>
+      </div>
+      <span class="act-banda__parte">Parte<br>1 de 2</span>
+    </header>
+
+    <p class="consigna"><strong>Consigna:</strong> Resolvé cada punto en la carpeta, con lápiz y sin usar la computadora.</p>
+
+    <ol class="acts acts--2col">
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">1-</span> CSS en un archivo aparte</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿Qué etiqueta conecta el HTML con un archivo CSS aparte?</div></li>
+          <li><b class="act__letra">b)</b><div>¿Qué archivo suele contener los estilos?</div></li>
+          <li><b class="act__letra">c)</b><div>Relacioná cada archivo con lo que tiene: <code>index.html</code> / <code class="cod-css">estilos.css</code> con apariencia / contenido.</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">2-</span> Clases e id</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿Cuál es la diferencia principal entre una clase y un id?</div></li>
+          <li><b class="act__letra">b)</b><div>Relacioná cada selector con su tipo: <code class="cod-css">h1</code> / <code class="cod-css">.destacado</code> / <code class="cod-css">#principal</code> con clase / id / etiqueta.</div></li>
+          <li><b class="act__letra">c)</b><div>Marcá los dos selectores válidos: <code class="cod-css">.caja</code> / <code class="cod-css">#menu</code> / <code class="cod-css">*color</code> / <code class="cod-css">titulo#</code>.</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">3-</span> Bordes, sombras y esquinas</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿Qué propiedad de CSS se usa para redondear las esquinas de un elemento?</div></li>
+          <li><b class="act__letra">b)</b><div>¿Qué propiedad se usa para agregar una sombra a un elemento?</div></li>
+          <li><b class="act__letra">c)</b><div>Completá el estilo para que un elemento tenga un borde de 2px, estilo sólido y color <code class="cod-css">#2563eb</code>: <code class="cod-css">border: ____ ____ ____;</code></div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">4-</span> Ancho, alto y unidades</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿Qué propiedad define el ancho de un elemento?</div></li>
+          <li><b class="act__letra">b)</b><div>¿Qué unidades son relativas al ancho o al alto de la ventana?</div></li>
+          <li><b class="act__letra">c)</b><div>Relacioná: <code class="cod-css">px</code> / <code class="cod-css">%</code> / <code class="cod-css">rem</code> con relativa al contenedor / relativa a la fuente raíz / fija.</div></li>
+        </ol>
+      </li>
+      <li class="act act--ancho">
+        <h3 class="act__titulo"><span class="act__num">5-</span> El modelo de cajas</h3>
+        <ol class="act__items act__items--2col">
+          <li><b class="act__letra">a)</b><div>¿Qué parte del modelo de cajas define el espacio interno entre el contenido y el borde?</div></li>
+          <li><b class="act__letra">b)</b><div>Ordená las capas de afuera hacia adentro: padding / contenido / margin / border.</div></li>
+          <li><b class="act__letra">c)</b><div>¿Qué parte del modelo contiene el texto, las imágenes o el contenido del elemento?</div></li>
+          <li><b class="act__letra">d)</b><div>Calculá el ancho total que ocupa esta caja, como en la lámina 45: <code class="cod-css cod-larga">.caja { width: 200px; padding: 15px; border: 3px solid #2563eb; margin: 10px; }</code></div></li>
+        </ol>
+      </li>
+    </ol>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 11</span>
+    </footer>
+  </article>
+
+  <!-- =================== ACTIVIDADES · Parte 2 =================== -->
+  <article class="lamina lamina--act lamina--compu" id="actividades-2" aria-labelledby="act-2">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°11</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <header class="act-banda">
+      <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-editor"/></svg>
+      <div>
+        <h2 id="act-2">Práctica en la computadora</h2>
+        <p>TP N°11 — CSS externo y selectores</p>
+      </div>
+      <span class="act-banda__parte">Parte<br>2 de 2</span>
+    </header>
+
+    <p class="consigna"><strong>Consigna:</strong> Tomá tu página “Mis recomendaciones” del TP8 y dale estilo con un archivo CSS aparte.</p>
+
+    <ol class="acts">
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">1-</span> “Mis recomendaciones”, con su hoja de estilos</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">1</b><div>Hacé una copia de la carpeta <code class="cod-carpeta">tp8-apellido</code>, llamala <code class="cod-carpeta">tp11-apellido</code> y abrila en VS Code.</div></li>
+          <li><b class="act__letra">2</b><div>En esa carpeta, creá el archivo <code class="cod-css">estilos.css</code>. En el <code>&lt;head&gt;</code> de <code>index.html</code>, debajo del <code>&lt;title&gt;</code>, vinculalo con <code class="cod-larga">&lt;link rel="stylesheet" href="estilos.css"&gt;</code>.</div></li>
+          <li><b class="act__letra">3</b><div>Pasá <strong>todos los estilos</strong> a <code class="cod-css">estilos.css</code>: <code>index.html</code> no lleva <code>&lt;style&gt;</code>.</div></li>
+          <li><b class="act__letra">4</b><div>Imágenes: usá <strong>una clase</strong> para que tengan <strong>bordes redondeados</strong> (<code class="cod-css">border-radius</code>).</div></li>
+          <li><b class="act__letra">5</b><div>Enlaces: creá <strong>una clase para destacarlos</strong>, con un <strong>color</strong> y un <strong>subrayado</strong> distintos.</div></li>
+          <li><b class="act__letra">6</b><div>Las 3 secciones (películas, música y lugares): un <strong>color de fondo distinto</strong> para cada una.</div></li>
+          <li><b class="act__letra">7</b><div>Abrí <code>index.html</code> en Chrome. Después de cada cambio, guardá con <kbd>Ctrl</kbd> + <kbd>S</kbd> y recargá la página con <kbd>F5</kbd>.</div></li>
+        </ol>
+      </li>
+    </ol>
+
+    <section class="panel" aria-label="Para tener en cuenta">
+      <ol class="puntos">
+        <li><span class="puntos__n" aria-hidden="true">!</span><span>El subrayado se cambia con <code class="cod-css">text-decoration</code>, con un estilo y un color, como el borde: <code class="cod-css cod-larga">text-decoration: underline dotted #be185d;</code></span></li>
+        <li><span class="puntos__n" aria-hidden="true">!</span><span>Para darle fondo a una sección, todo su contenido tiene que estar dentro de un <code>&lt;section&gt;</code> o un <code>&lt;div&gt;</code>. Como cada sección es única, le podés poner un id.</span></li>
+      </ol>
+    </section>
+
+    <section class="entrega" aria-labelledby="ent-1">
+      <svg class="ico ico--l" aria-hidden="true" focusable="false"><use href="#i-subir"/></svg>
+      <div>
+        <h3 id="ent-1">Entrega</h3>
+        <div class="entrega__cols">
+          <div>
+            <p>La carpeta <code class="cod-carpeta">tp11-apellido</code> <strong>en un .zip</strong>, con <code>index.html</code>, <code class="cod-css">estilos.css</code> y la carpeta <code class="cod-carpeta">img</code> con todas las imágenes. Subí el <code class="cod-carpeta">.zip</code> a Classroom.</p>
+          </div>
+          <div>
+            <p class="entrega__sub">Antes de entregar, marcá:</p>
+            <ul class="checklist">
+              <li><code>&lt;link&gt;</code> a <code class="cod-css">estilos.css</code> en el <code>&lt;head&gt;</code>.</li>
+              <li>Ningún <code>&lt;style&gt;</code> en <code>index.html</code>.</li>
+              <li>Las imágenes, con una clase y bordes redondeados.</li>
+              <li>Los enlaces destacados, con otro color y otro subrayado.</li>
+              <li>Las 3 secciones, con fondos distintos.</li>
+              <li>El <code class="cod-carpeta">.zip</code> tiene <code>index.html</code>, <code class="cod-css">estilos.css</code> e <code class="cod-carpeta">img</code>.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 11</span>
+    </footer>
+  </article>
+</main>
+
+<script src="../assets/js/actividades.js"></script>
+<script src="../assets/js/ejemplos.js"></script>
+</body>
+</html>

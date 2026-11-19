@@ -40,7 +40,7 @@ Un cuadernillo web para pasar de Python a JavaScript y después armar páginas w
 | 9 | Estructura más completa: tablas y formularios | ✅ Disponible |
 | **Módulo 4 · CSS: dar estilo** | | |
 | 10 | Primeros estilos con CSS | ✅ Disponible |
-| 11 | CSS externo y selectores | Próximamente |
+| 11 | CSS externo y selectores | ✅ Disponible |
 | 12 | Diseñando una página completa | Próximamente |
 | **Módulo 5 · JavaScript en la página** | | |
 | 13 | Hacer que la página responda | Próximamente |

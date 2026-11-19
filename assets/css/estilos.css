@@ -752,6 +752,7 @@ code.cod-carpeta { background: var(--carpeta-claro); color: var(--carpeta-texto)
 .operaciones--css b { font-size: 19px; color: var(--css-texto); }
 .operaciones--css p { line-height: 1.3; }
 .operaciones--css code { white-space: normal; }   /* el ejemplo puede bajar de renglón en columnas angostas */
+.operaciones--css p code { white-space: nowrap; }   /* un nombre de propiedad dentro del texto no se corta */
 
 /* Formatos de color: cada valor con una muestra de su color real.
    El color de la muestra va en style="--muestra: …", con el mismo valor del código: es el contenido del ejemplo, no la paleta */
@@ -941,7 +942,8 @@ code.cod-larga { white-space: normal; }
   .ejemplo { grid-template-columns: auto auto 1fr; }
   .ejemplo p { grid-column: auto; padding-left: 12px; border-left: 2px solid var(--panel-linea); }
   .ej { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); }
-  .ej--pf, .ej--apilado { grid-template-columns: minmax(0, 1fr); }   /* apilado: la salida (objetos) necesita todo el ancho */
+  .ej--pf, .ej--apilado, .ej--res-ancho { grid-template-columns: minmax(0, 1fr); }   /* apilado: la salida (objetos) necesita todo el ancho */
+  .ej--marco { grid-template-columns: minmax(0, 1fr); }   /* resultado de una caja con width fijo: en tablet, solo en su fila */
   .ej--ancho { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }   /* código con líneas largas y salida corta */
   .esquema-par { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 14px; }
   .error-controlado__cols { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
@@ -955,6 +957,7 @@ code.cod-larga { white-space: normal; }
   .operaciones--4 { grid-template-columns: repeat(4, 1fr); }
   .operaciones--tipos { grid-template-columns: repeat(3, 1fr); }
   .operaciones--css { grid-template-columns: repeat(3, 1fr); }
+  .operaciones--css.operaciones--4 { grid-template-columns: repeat(4, 1fr); }   /* cuatro propiedades de CSS en una fila */
   .pasos2 { grid-template-columns: 1fr 1fr; }
   .pasos2 .paso {
     grid-template-columns: 56px 1fr; grid-template-areas: "ico tit" "ico txt";
@@ -1137,6 +1140,12 @@ code.cod-larga { white-space: normal; }
   .ej--largo .codigo pre { font-size: 12px; line-height: 1.3; }   /* código de más de 20 líneas */
   .acts--calor { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); align-items: start; }   /* entrada en calor + práctica */
   .acts--calor .codigo pre { font-size: 12px; line-height: 1.35; }
+  .ej--res-ancho { grid-template-columns: minmax(0, 1fr) minmax(0, 1.65fr); align-items: start; }   /* código angosto + resultado de una caja con width fijo, que necesita más ancho */
+  .ej--res-ancho .codigo pre { padding-left: 10px; padding-right: 10px; }
+  .ej--res-ancho .esquema-nota li { font-size: 14.5px; line-height: 1.32; }
+  .ej--marco { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); }
+  .ej--est .esquema-nota__p { font-size: 14.5px; line-height: 1.32; }
+  .acts--2col .act--ancho { grid-column: 1 / -1; }   /* el último punto, si queda solo, ocupa las dos columnas */
   .operaciones--tipos { grid-template-columns: repeat(6, 1fr); }   /* los seis tipos de campo en una fila */
   .operaciones--tipos b { font-size: 19px; }
   .operaciones--tipos span { font-size: 14.5px; }
