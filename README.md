@@ -18,7 +18,7 @@ Un cuadernillo web para pasar de Python a JavaScript y después armar páginas w
 
 - Abrí el link y elegí un TP en el índice.
 - Con la barra de arriba saltás a cada lámina, a "Para profundizar" o a las actividades.
-- Cada bloque de código tiene un botón **Copiar**. Los ejemplos de JavaScript tienen además un botón **▶ Ejecutar**, que muestra lo que el programa escribe en la consola. Los ejemplos de HTML y CSS muestran su resultado real en un marco de navegador; sus enlaces no se abren, pero al tocarlos dicen a dónde llevan, y sus formularios se pueden completar, pero no envían los datos.
+- Cada bloque de código tiene un botón **Copiar**. Los ejemplos de JavaScript tienen además un botón **▶ Ejecutar**, que muestra lo que el programa escribe en la consola. Los ejemplos de HTML y CSS muestran su resultado real en un marco de navegador; sus enlaces no se abren, pero al tocarlos dicen a dónde llevan, y sus formularios se pueden completar, pero no envían los datos. Desde el TP13, los botones de esos ejemplos funcionan: corren su JavaScript.
 - El botón **PDF** guarda el TP en hojas A4 (usa la opción de imprimir del navegador: elegí "Guardar como PDF").
 - El índice marca con **✓ Visto** los TPs que ya abriste. Eso se guarda solo en tu dispositivo.
 
@@ -43,7 +43,7 @@ Un cuadernillo web para pasar de Python a JavaScript y después armar páginas w
 | 11 | CSS externo y selectores | ✅ Disponible |
 | 12 | Diseñando una página completa | Próximamente |
 | **Módulo 5 · JavaScript en la página** | | |
-| 13 | Hacer que la página responda | Próximamente |
+| 13 | Hacer que la página responda | ✅ Disponible |
 | 14 | Formularios que funcionan | Próximamente |
 | 15 | Mini-app interactiva | Próximamente |
 | **Módulo 6 · Del navegador al servidor** | | |
